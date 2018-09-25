@@ -16,4 +16,3 @@
 
 // Reduces compile time via the removal of bloat.
 #define WIN32_LEAN_AND_MEAN
-

@@ -10,7 +10,7 @@
 #include "Helpers/Win32Ref.h"
 
 // Functions as the C main()
-int CALLBACK WinMain(
+int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
 	_In_ HINSTANCE hPrevInstance,
 	_In_ LPSTR     lpCmdLine,
