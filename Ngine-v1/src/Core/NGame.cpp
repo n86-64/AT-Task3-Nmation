@@ -3,8 +3,8 @@
 
 void NGame::init(NWindowHandle* window, std::string gameTitle)
 {
-	// Initialise the engine and all its managers. 
-	SetWindowText(*window, gameTitle.c_str());
+	gameWindow.setAndSetupNWindow(window);
+	gameWindow.setWindowTitle("Hello there");
 }
 
 void NGame::ProcessWindowEvents(NWinEvent winEvent)

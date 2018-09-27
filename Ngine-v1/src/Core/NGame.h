@@ -3,6 +3,7 @@
 // The NGame class will go here.
 
 #include "Core/NWinEvent.h"
+#include "Core/NWindow.h"
 #include "Helpers/Platform.h"
 
 class NGame 
@@ -17,4 +18,5 @@ public:
 
 private:
 	// Here we will store the games components.
+	NWindow  gameWindow;
 };
