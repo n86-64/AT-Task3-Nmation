@@ -7,6 +7,7 @@ NWindow::NWindow(std::string windowTitle,
 	int winHeight,
 
 	bool isFullscreen,
+	std::function<LRESULT (HWND, UINT, WPARAM, LPARAM)> WndProc,
 	HINSTANCE appInstance, int params)
 {
 	windowRectangle.top = 0;
@@ -14,13 +15,14 @@ NWindow::NWindow(std::string windowTitle,
 	windowRectangle.bottom = winHeight;
 	windowRectangle.right = winWidth;
 
-	TCHAR strWindowClass[] = _T("NGineApp");
+	// TODO - Move to std::string and then pass these through based on application names.
+	TCHAR strWindowClass[] = _T("NGinev1.0");
 	TCHAR strWindowTitle[] = _T("NGinev1.0");
 
 	WNDCLASSEX  windowClass;
 	windowClass.cbSize = sizeof(WNDCLASSEX);
 	windowClass.style = CS_HREDRAW | CS_VREDRAW; // The Style of the window.
-	windowClass.lpfnWndProc = this->WinProc;
+	//windowClass.lpfnWndProc = WndProc.target();
 	windowClass.cbClsExtra = 0;
 	windowClass.cbWndExtra = 0;
 	windowClass.hInstance = appInstance;

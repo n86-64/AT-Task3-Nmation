@@ -15,12 +15,10 @@ class NWindow
 {
 public:
 	NWindow(std::string  windowTitle,
-
 		int winWidth,
-
 		int winHeight,
-
 		bool isFullscreen,
+		std::function<LRESULT(HWND, UINT, WPARAM, LPARAM)> winProc,
 		HINSTANCE appInstance, int params);
 
 	HWND* getNWindow();
