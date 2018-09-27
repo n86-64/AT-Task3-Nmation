@@ -135,8 +135,11 @@
     <ClInclude Include="..\src\Core\NGame.h" />
     <ClInclude Include="..\src\Core\NWindow.h" />
     <ClInclude Include="..\src\Core\NWinEvent.h" />
+    <ClInclude Include="..\src\Helpers\Direct3D.h" />
+    <ClInclude Include="..\src\Helpers\NMaths.h" />
     <ClInclude Include="..\src\Helpers\Platform.h" />
     <ClInclude Include="..\src\Helpers\Win32Ref.h" />
+    <ClInclude Include="..\src\Renderer\NRenderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

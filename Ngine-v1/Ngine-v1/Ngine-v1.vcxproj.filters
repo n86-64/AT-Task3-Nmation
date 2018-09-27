@@ -25,6 +25,9 @@
     <Filter Include="Core\Game">
       <UniqueIdentifier>{e7a13d4f-9a13-485f-8d02-88d334045f32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Renderer">
+      <UniqueIdentifier>{3f57e9a1-f66a-4403-8ab4-d81e66d8dbe0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -40,6 +43,15 @@
       <Filter>Core\Window</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Helpers\Platform.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\NRenderer.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\Direct3D.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\NMaths.h">
       <Filter>Helpers</Filter>
     </ClInclude>
   </ItemGroup>
