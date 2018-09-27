@@ -31,8 +31,11 @@ void NWindow::setWindowTitle(std::string newWindowTitle)
 
 void NWindow::CloseWindow()
 {
-	DestroyWindow(*windowObject);
-	windowObject = nullptr;
+	if (windowObject) 
+	{
+		DestroyWindow(*windowObject);
+		windowObject = nullptr;
+	}
 }
 
 NWindowHandle* NWindow::getWindowHandle()
