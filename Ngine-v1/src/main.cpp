@@ -69,7 +69,7 @@ int WINAPI WinMain(
 		OutputDebugString("Error failed to create window handle.");
 	}
 
-	Application::game.init(&windowHandle);
+	Application::game.init(&windowHandle, "NWorld");
 
 	ShowWindow(windowHandle, nCmdShow);
 	UpdateWindow(windowHandle);

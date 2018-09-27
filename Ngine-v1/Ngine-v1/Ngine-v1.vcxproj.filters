@@ -5,8 +5,12 @@
     <ClCompile Include="..\src\Core\NWindow.cpp">
       <Filter>Core\Window</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Core\NGame.cpp" />
-    <ClCompile Include="..\src\Core\NWinEvent.cpp" />
+    <ClCompile Include="..\src\Core\NGame.cpp">
+      <Filter>Core\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NWinEvent.cpp">
+      <Filter>Core\Window</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">

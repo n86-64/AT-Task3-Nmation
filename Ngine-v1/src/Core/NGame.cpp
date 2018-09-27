@@ -1,9 +1,10 @@
+#include <string>
 #include "NGame.h"
 
-void NGame::init(HWND* window)
+void NGame::init(HWND* window, std::string gameTitle)
 {
 	// Initialise the engine and all its managers. 
-
+	SetWindowText(*window, gameTitle.c_str());
 }
 
 void NGame::ProcessWindowEvents(NWinEvent winEvent)

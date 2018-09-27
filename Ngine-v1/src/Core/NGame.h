@@ -9,7 +9,7 @@ class NGame
 public:
 	NGame() {};
 
-	void init(HWND* window); // Initialises the Engine. 
+	void init(HWND* window, std::string gameTitle); // Initialises the Engine. 
 
 	// Retreive WinProc Events. 
 	void ProcessWindowEvents(NWinEvent winEvent);
