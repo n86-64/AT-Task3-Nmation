@@ -69,17 +69,20 @@ int WINAPI WinMain(
 		OutputDebugString("Error failed to create window handle.");
 	}
 
-	Application::game.init(&windowHandle, "NWorld");
+	NInitSettings initParams = {};
+	initParams.gameTitle = "NPlatformer";
+	initParams.nCmdShow = nCmdShow;
 
-	ShowWindow(windowHandle, nCmdShow);
-	UpdateWindow(windowHandle);
+	Application::game.init(&windowHandle, initParams);
 
 	// TODO- Move window processing into the game object.
 	// For now we will do it here as it allows us to ensure that the game works.
+	// Yes this includes the ticking call.
+	// makes life easier.
 	MSG msg = {};
 	while (msg.message != WM_QUIT)
 	{
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) 
+		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);

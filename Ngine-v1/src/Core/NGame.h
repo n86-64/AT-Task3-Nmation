@@ -11,7 +11,11 @@ class NGame
 public:
 	NGame() {};
 
-	void init(NWindowHandle* window, std::string gameTitle); // Initialises the Engine. 
+	// Deprecated - do not use.
+	void init(NWindowHandle* window, std::string gameTitle); // Initialises the Engine.  
+
+	// Initialises the engine.
+	void init(NWindowHandle* window, NInitSettings launchParams);
 
 	// Retreive Window events from Windowing systems. 
 	void ProcessWindowEvents(NWinEvent winEvent);

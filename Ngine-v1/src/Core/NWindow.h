@@ -17,6 +17,7 @@ public:
 	NWindow(NWindowHandle* window);
 
 	void setAndSetupNWindow(NWindowHandle* window);
+	void setAndSetupWindow(NWindowHandle* window, int nCmdShow);
 
 	// Window properties will be shown here.
 	void setWindowTitle(std::string newWindowTitle);

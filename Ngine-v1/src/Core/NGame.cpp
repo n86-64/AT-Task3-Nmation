@@ -7,6 +7,12 @@ void NGame::init(NWindowHandle* window, std::string gameTitle)
 	gameWindow.setWindowTitle(gameTitle);
 }
 
+void NGame::init(NWindowHandle * window, NInitSettings launchParams)
+{
+	gameWindow.setAndSetupWindow(window, launchParams.nCmdShow);
+	gameWindow.setWindowTitle(launchParams.gameTitle);
+}
+
 void NGame::ProcessWindowEvents(NWinEvent winEvent)
 {
 	NWindowMessage message = winEvent.getEventData();
