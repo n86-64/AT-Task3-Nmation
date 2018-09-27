@@ -1,98 +1,44 @@
 #include "NWindow.h"
 
-NWindow::NWindow(std::string windowTitle,
 
-	int winWidth,
-
-	int winHeight,
-
-	bool isFullscreen,
-	HINSTANCE appInstance, int params)
+NWindow::NWindow()
 {
-	windowRectangle.top = 0;
-	windowRectangle.left = 0;
-	windowRectangle.bottom = winHeight;
-	windowRectangle.right = winWidth;
+}
 
-	TCHAR strWindowClass[] = _T("NGineApp");
-	TCHAR strWindowTitle[] = _T("NGinev1.0");
+NWindow::NWindow(NWindowHandle* window)
+	:windowObject(window)
+{
+}
 
-	WNDCLASSEX  windowClass;
-	windowClass.cbSize = sizeof(WNDCLASSEX);
-	windowClass.style = CS_HREDRAW | CS_VREDRAW; // The Style of the window.
-	windowClass.lpfnWndProc = this->WinProc;
-	windowClass.cbClsExtra = 0;
-	windowClass.cbWndExtra = 0;
-	windowClass.hInstance = appInstance;
-	windowClass.hIcon = LoadIcon(appInstance, IDI_APPLICATION);
-	windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
-	windowClass.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-	windowClass.lpszMenuName = NULL;
-	windowClass.lpszClassName = strWindowClass;
-	windowClass.hIconSm = LoadIcon(appInstance, IDI_APPLICATION);
+// DEPRECATED
+void NWindow::setAndSetupNWindow(NWindowHandle* window)
+{
+	windowObject = window;
+}
 
-	if (!RegisterClassEx(&windowClass)) 
+void NWindow::setAndSetupWindow(NWindowHandle * window, int nCmdShow)
+{
+	// Here we show the window once its created
+	windowObject = window;
+	ShowWindow(*windowObject, nCmdShow);
+	UpdateWindow(*windowObject);
+}
+
+void NWindow::setWindowTitle(std::string newWindowTitle)
+{
+	SetWindowText(*windowObject, newWindowTitle.c_str());
+}
+
+void NWindow::CloseWindow()
+{
+	if (windowObject) 
 	{
-		OutputDebugString("Error there was a problem. The window did not initialise.");
+		DestroyWindow(*windowObject);
+		windowObject = nullptr;
 	}
-
-	hInst = appInstance;
-
-	windowHandle = CreateWindow(
-		strWindowClass, 
-		strWindowTitle, 
-		WS_OVERLAPPEDWINDOW, 
-		CW_USEDEFAULT,
-		CW_USEDEFAULT, 
-		winWidth, 
-		winHeight,
-		NULL, 
-		NULL, 
-		hInst,
-		NULL
-	);
-
-	if (!windowHandle) 
-	{
-		OutputDebugString("Error failed to create window handle.");
-	}
-
-	ShowWindow(windowHandle, params);
-	UpdateWindow(windowHandle);
 }
 
-HWND* NWindow::getNWindow()
+NWindowHandle* NWindow::getWindowHandle()
 {
-	return &windowHandle;
-}
-
-// Processes any window messages before ticking the application.
-void NWindow::UpdateNWindow()
-{
-	MSG msg;
-	GetMessage(&msg, NULL, 0, 0);
-
-	quit = (msg.message == WM_QUIT);
-
-	TranslateMessage(&msg);
-	DispatchMessage(&msg);
-}
-
-bool NWindow::shouldQuit() const
-{
-	return quit;
-}
-
-LRESULT NWindow::WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	switch (message) 
-	{
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
-	default:
-		return DefWindowProc(hWnd, message, wParam, lParam);
-	}
-
-	return 0;
+	return windowObject;
 }

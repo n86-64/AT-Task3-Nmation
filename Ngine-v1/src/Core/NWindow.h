@@ -6,38 +6,26 @@
 #include <string>
 #include <tchar.h>
 
-#include "Helpers/Win32Ref.h"
+#include "Helpers/Platform.h"
 
-// TODO - Create an event notification.
-
-
+// Represents the window object.
+// ONLY the window though, events are processed seperatly.
 class NWindow 
 {
 public:
-	NWindow(std::string  windowTitle,
+	NWindow();
+	NWindow(NWindowHandle* window);
 
-		int winWidth,
+	void setAndSetupNWindow(NWindowHandle* window);
+	void setAndSetupWindow(NWindowHandle* window, int nCmdShow);
 
-		int winHeight,
+	// Window properties will be shown here.
+	void setWindowTitle(std::string newWindowTitle);
 
-		bool isFullscreen,
-		HINSTANCE appInstance, int params);
+	void CloseWindow();
 
-	HWND* getNWindow();
-	void UpdateNWindow();
-
-	bool shouldQuit() const;
+	NWindowHandle* getWindowHandle();
 
 private:
-	 bool quit = false;
-
-	// THe window itself.
-	HWND   windowHandle;
-	HINSTANCE hInst;
-
-	// Window Properties and Pointers.
-	RECT   windowRectangle;
-
-	// Windows procedure call. Handles all the events for the window, these will be sent to our game.
-	static LRESULT CALLBACK WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	NWindowHandle* windowObject;
 };
