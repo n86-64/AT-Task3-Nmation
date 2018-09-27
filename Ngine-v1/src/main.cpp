@@ -80,15 +80,18 @@ int WINAPI WinMain(
 		// For now we will do it here as it allows us to ensure that the game works.
 		// Yes this includes the ticking call.
 		// makes life easier.
-		while (msg.message != WM_QUIT)
+		while (!Application::game.shouldQuit())
 		{
 			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 			{
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
 			}
-			// tick the game here.
+			else 
+			{
+				// tick the game here.
 
+			}
 		}
 	}
 

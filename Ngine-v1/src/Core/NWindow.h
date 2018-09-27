@@ -22,6 +22,8 @@ public:
 	// Window properties will be shown here.
 	void setWindowTitle(std::string newWindowTitle);
 
+	void CloseWindow();
+
 	NWindowHandle* getWindowHandle();
 
 private:

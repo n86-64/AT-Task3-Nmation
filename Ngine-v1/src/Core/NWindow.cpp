@@ -10,6 +10,7 @@ NWindow::NWindow(NWindowHandle* window)
 {
 }
 
+// DEPRECATED
 void NWindow::setAndSetupNWindow(NWindowHandle* window)
 {
 	windowObject = window;
@@ -26,6 +27,12 @@ void NWindow::setAndSetupWindow(NWindowHandle * window, int nCmdShow)
 void NWindow::setWindowTitle(std::string newWindowTitle)
 {
 	SetWindowText(*windowObject, newWindowTitle.c_str());
+}
+
+void NWindow::CloseWindow()
+{
+	DestroyWindow(*windowObject);
+	windowObject = nullptr;
 }
 
 NWindowHandle* NWindow::getWindowHandle()
