@@ -5,7 +5,6 @@
 
 // TODO - Look at using doxygen instead for easier documentation.
 
-
 #include <tchar.h>
 #include <string>
 
@@ -101,6 +100,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message) 
 	{
 	case WM_DESTROY:
+	case WM_SIZE:
 		Application::game.ProcessWindowEvents(winEvent);
 		break;
 	default:
