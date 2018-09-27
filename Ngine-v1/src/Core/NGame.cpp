@@ -7,10 +7,11 @@ void NGame::init(NWindowHandle* window, std::string gameTitle)
 	gameWindow.setWindowTitle(gameTitle);
 }
 
-void NGame::init(NWindowHandle * window, NInitSettings launchParams)
+bool NGame::init(NWindowHandle * window, NInitSettings launchParams)
 {
 	gameWindow.setAndSetupWindow(window, launchParams.nCmdShow);
 	gameWindow.setWindowTitle(launchParams.gameTitle);
+	return true;
 }
 
 void NGame::ProcessWindowEvents(NWinEvent winEvent)
@@ -21,9 +22,20 @@ void NGame::ProcessWindowEvents(NWinEvent winEvent)
 	{
 	case WM_DESTROY:
 		PostQuitMessage(0);
+		quit = true;
 		break;
 	case WM_SIZE:
 		OutputDebugString("The window has been resized");
 		break;
 	}
+}
+
+bool NGame::shouldQuit() const
+{
+	return quit;
+}
+
+void NGame::ShutDown()
+{
+	// Clean up the engine and then terminate cleanly.
 }

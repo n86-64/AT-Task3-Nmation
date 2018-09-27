@@ -6,6 +6,7 @@
 #include <string>
 #include "Helpers/Win32Ref.h"
 
+
 #ifdef _WIN32
 using NWindowHandle = HWND;
 using NWindowMessage = MSG;

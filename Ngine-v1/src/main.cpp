@@ -70,22 +70,25 @@ int WINAPI WinMain(
 	}
 
 	NInitSettings initParams = {};
-	initParams.gameTitle = "NPlatformer";
+	initParams.gameTitle = "NLOL";
 	initParams.nCmdShow = nCmdShow;
 
-	Application::game.init(&windowHandle, initParams);
-
-	// TODO- Move window processing into the game object.
-	// For now we will do it here as it allows us to ensure that the game works.
-	// Yes this includes the ticking call.
-	// makes life easier.
 	MSG msg = {};
-	while (msg.message != WM_QUIT)
+	if (Application::game.init(&windowHandle, initParams)) 
 	{
-		if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+		// TODO- Move window processing into the game object.
+		// For now we will do it here as it allows us to ensure that the game works.
+		// Yes this includes the ticking call.
+		// makes life easier.
+		while (msg.message != WM_QUIT)
 		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
+			if (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+			// tick the game here.
+
 		}
 	}
 

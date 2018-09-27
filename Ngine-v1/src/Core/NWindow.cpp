@@ -2,7 +2,8 @@
 
 
 NWindow::NWindow()
-{}
+{
+}
 
 NWindow::NWindow(NWindowHandle* window)
 	:windowObject(window)
@@ -31,9 +32,3 @@ NWindowHandle* NWindow::getWindowHandle()
 {
 	return windowObject;
 }
-
-void NWindow::updateWindow()
-{
-
-}
-

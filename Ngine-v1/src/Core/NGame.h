@@ -15,12 +15,18 @@ public:
 	void init(NWindowHandle* window, std::string gameTitle); // Initialises the Engine.  
 
 	// Initialises the engine.
-	void init(NWindowHandle* window, NInitSettings launchParams);
+	bool init(NWindowHandle* window, NInitSettings launchParams);
 
 	// Retreive Window events from Windowing systems. 
 	void ProcessWindowEvents(NWinEvent winEvent);
 
+	bool shouldQuit() const;
+
 private:
 	// Here we will store the games components.
 	NWindow  gameWindow;
+
+	void ShutDown();
+
+	bool quit = false;
 };

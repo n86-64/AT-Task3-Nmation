@@ -24,8 +24,6 @@ public:
 
 	NWindowHandle* getWindowHandle();
 
-	void updateWindow(); // Retrieves messages from the window. 
-
 private:
 	NWindowHandle* windowObject;
 };
