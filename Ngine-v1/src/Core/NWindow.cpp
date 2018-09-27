@@ -1,11 +1,8 @@
 #include "NWindow.h"
 
 NWindow::NWindow(std::string windowTitle,
-
 	int winWidth,
-
 	int winHeight,
-
 	bool isFullscreen,
 	std::function<LRESULT (HWND, UINT, WPARAM, LPARAM)> WndProc,
 	HINSTANCE appInstance, int params)

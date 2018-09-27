@@ -8,8 +8,6 @@
 
 #include "Helpers/Win32Ref.h"
 
-// TODO - Create an event notification.
-
 
 class NWindow 
 {

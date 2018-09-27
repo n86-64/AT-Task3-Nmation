@@ -1,17 +1,18 @@
 #pragma once
 
 // The NGame class will go here.
+
 #include "Core/NWinEvent.h"
-#include "Helpers/Win32Ref.h"
+#include "Helpers/Platform.h"
 
 class NGame 
 {
 public:
 	NGame() {};
 
-	void init(HWND* window, std::string gameTitle); // Initialises the Engine. 
+	void init(NWindowHandle* window, std::string gameTitle); // Initialises the Engine. 
 
-	// Retreive WinProc Events. 
+	// Retreive Window events from Windowing systems. 
 	void ProcessWindowEvents(NWinEvent winEvent);
 
 private:

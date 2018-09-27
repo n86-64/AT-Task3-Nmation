@@ -5,14 +5,14 @@
 // We will only handle events that we care about all others will be handled via 
 // WndProc exclusivly.
 
-#include "Helpers/Win32Ref.h"
+#include "Helpers/Platform.h"
 
 class NWinEvent 
 {
 public:
 	NWinEvent(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	NWindowMessage  getEventData();
 
-	MSG  getEventData();
 private:
-	MSG  eventMessage;
+	NWindowMessage  eventMessage;
 };

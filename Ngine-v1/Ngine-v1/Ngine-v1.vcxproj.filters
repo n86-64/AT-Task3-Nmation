@@ -5,11 +5,11 @@
     <ClCompile Include="..\src\Core\NWindow.cpp">
       <Filter>Core\Window</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Core\NGame.cpp">
-      <Filter>Core\Window</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Core\NWinEvent.cpp">
       <Filter>Core\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NGame.cpp">
+      <Filter>Core\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +38,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NWinEvent.h">
       <Filter>Core\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\Platform.h">
+      <Filter>Helpers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

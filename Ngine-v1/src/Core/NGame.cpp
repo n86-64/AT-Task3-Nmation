@@ -1,7 +1,7 @@
 #include <string>
 #include "NGame.h"
 
-void NGame::init(HWND* window, std::string gameTitle)
+void NGame::init(NWindowHandle* window, std::string gameTitle)
 {
 	// Initialise the engine and all its managers. 
 	SetWindowText(*window, gameTitle.c_str());
@@ -9,7 +9,7 @@ void NGame::init(HWND* window, std::string gameTitle)
 
 void NGame::ProcessWindowEvents(NWinEvent winEvent)
 {
-	MSG message = winEvent.getEventData();
+	NWindowMessage message = winEvent.getEventData();
 
 	switch (message.message) 
 	{
