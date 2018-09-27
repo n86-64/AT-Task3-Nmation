@@ -4,7 +4,7 @@
 void NGame::init(NWindowHandle* window, std::string gameTitle)
 {
 	gameWindow.setAndSetupNWindow(window);
-	gameWindow.setWindowTitle("Hello there");
+	gameWindow.setWindowTitle(gameTitle);
 }
 
 void NGame::ProcessWindowEvents(NWinEvent winEvent)
