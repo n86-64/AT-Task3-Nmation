@@ -130,6 +130,8 @@
     <ClCompile Include="..\src\Core\NWindow.cpp" />
     <ClCompile Include="..\src\Core\NWinEvent.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Renderer\NRenderer.cpp" />
+    <ClCompile Include="..\src\Renderer\NRendererDevice.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Core\NGame.h" />
@@ -140,6 +142,7 @@
     <ClInclude Include="..\src\Helpers\Platform.h" />
     <ClInclude Include="..\src\Helpers\Win32Ref.h" />
     <ClInclude Include="..\src\Renderer\NRenderer.h" />
+    <ClInclude Include="..\src\Renderer\NRendererDevice.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
