@@ -20,7 +20,6 @@ public:
 };
 
 
-
 // Defines a Direct3D interface.
 class NRenderer 
 {
@@ -31,9 +30,12 @@ public:
 	// Initialise the renderer.
 	bool init(NWindowHandle& windowHadle, NRendererInit parameters);
 
+
+
 private:
-	// Device Functions
+	// Setup functions.
 	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererInit parameters);
+	bool setupRenderingPipelineRasterizer(NRendererInit& params);
 
 
 	// Represents the selected graphics adapter.
@@ -46,13 +48,17 @@ private:
 
 	ID3D11RenderTargetView* renderTarget;
 
-
 	// Swapchain rendering mechanism
 	IDXGISwapChain*			swapChain;
+
+	// Rasterizer State and related objects.
+	ID3D11RasterizerState*  rasterizerState;
 
 	// Buffer Views (Allows access to the Swapchain for rendering the window.)
 	ID3D11Texture2D*		swapchain_backBuffer = nullptr;
 
 	// Depth-Stencil Objects for rendering 3D objects (Attach to Output-merger stage)
-	
+	ID3D11Texture2D*		  depthStencilTextureBuffer;
+	ID3D11DepthStencilView*   depthStencilConfiguration;
+	ID3D11DepthStencilState*   depthStencilState;
 };
