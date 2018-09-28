@@ -4,7 +4,6 @@
 // Discription - Defines the renderer that the engine will use.
 
 #include "Core/NWindow.h"
-
 #include "Helpers/Direct3D.h"
 #include "Renderer/NRendererDevice.h"
 #include "Helpers/NMaths.h"
@@ -30,35 +29,32 @@ public:
 	// Initialise the renderer.
 	bool init(NWindowHandle& windowHadle, NRendererInit parameters);
 
-
-
 private:
 	// Setup functions.
 	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererInit parameters);
 	bool setupRenderingPipelineRasterizer(NRendererInit& params);
-
+	bool setupRenderingPipelineOutputMerger(NRendererInit& params);
 
 	// Represents the selected graphics adapter.
 	// NRenderDevice				graphicsAdapter;
 
 	// Direct3D core pipeline objects. 
-	ID3D11Device*		   renderDevice;
-	ID3D11DeviceContext*   deviceContext;
-	D3D_FEATURE_LEVEL	   requestedFeatureLevels;
+	ID3D11Device*		   renderDevice = nullptr; // Manages resources and provides access to the GPU.
+	ID3D11DeviceContext*   deviceContext = nullptr; // Manages the pipeline and settings
 
-	ID3D11RenderTargetView* renderTarget;
+	ID3D11RenderTargetView* renderTarget = nullptr;
 
 	// Swapchain rendering mechanism
-	IDXGISwapChain*			swapChain;
+	IDXGISwapChain*			swapChain = nullptr;
 
 	// Rasterizer State and related objects.
-	ID3D11RasterizerState*  rasterizerState;
+	ID3D11RasterizerState*  rasterizerState = nullptr;
 
 	// Buffer Views (Allows access to the Swapchain for rendering the window.)
 	ID3D11Texture2D*		swapchain_backBuffer = nullptr;
 
 	// Depth-Stencil Objects for rendering 3D objects (Attach to Output-merger stage)
-	ID3D11Texture2D*		  depthStencilTextureBuffer;
-	ID3D11DepthStencilView*   depthStencilConfiguration;
-	ID3D11DepthStencilState*   depthStencilState;
+	ID3D11Texture2D*		  depthStencilTextureBuffer = nullptr;
+	ID3D11DepthStencilView*   depthStencilConfiguration = nullptr;
+	ID3D11DepthStencilState*   depthStencilState = nullptr;
 };

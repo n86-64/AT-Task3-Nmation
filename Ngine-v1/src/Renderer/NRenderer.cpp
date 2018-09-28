@@ -1,10 +1,17 @@
 #include "NRenderer.h"
 
+constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
+
+
 NRenderer::~NRenderer()
 {
 	renderDevice->Release();
 	deviceContext->Release();
 	swapChain->Release();
+	renderTarget->Release();
+
+
+	// TODO - Clean up the pieline stuff.
 }
 
 bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
@@ -20,6 +27,7 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 	bool result;
 	result = setupDeviceAndSwapchain(windowHadle, parameters);
 	result = setupRenderingPipelineRasterizer(parameters);
+	result = setupRenderingPipelineOutputMerger(parameters);
 
 	return result;
 }
@@ -110,6 +118,7 @@ bool NRenderer::setupRenderingPipelineRasterizer(NRendererInit& params)
 
 	// Start by defining the rasterizer properties
 	D3D11_RASTERIZER_DESC   rasterizerSetup;
+	ZeroMemory(&rasterizerSetup, sizeof(rasterizerSetup));
 	rasterizerSetup.FillMode = D3D11_FILL_SOLID;
 	rasterizerSetup.CullMode = D3D11_CULL_FRONT;
 	rasterizerSetup.FrontCounterClockwise = true;
@@ -134,6 +143,36 @@ bool NRenderer::setupRenderingPipelineRasterizer(NRendererInit& params)
 	}
 
 	deviceContext->RSSetState(rasterizerState);
+
+	return true;
+}
+
+bool NRenderer::setupRenderingPipelineOutputMerger(NRendererInit& params)
+{
+	HRESULT hr;
+	hr = swapChain->GetBuffer(SWAP_CHAIN_BACK_BUFFER, __uuidof(ID3D11Texture2D), (LPVOID*)&swapchain_backBuffer);
+
+	if (FAILED(hr)) 
+	{
+		MessageBox(NULL, "Failed to fetch render target.", "NGine Direct3D Error", MB_ICONERROR | MB_OK);
+		return false;
+	}
+
+	D3D11_RENDER_TARGET_VIEW_DESC   rtvDiscription;
+	ZeroMemory(&rtvDiscription, sizeof(rtvDiscription));
+	rtvDiscription.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	rtvDiscription.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
+
+	hr = renderDevice->CreateRenderTargetView(swapchain_backBuffer, NULL, &renderTarget);
+
+	if (FAILED(hr))
+	{
+		MessageBox(NULL, "Failed to bind render target to pipeline. Exiting.", "NGine Direct3D Error", MB_ICONERROR | MB_OK);
+		return false;
+	}
+
+	swapchain_backBuffer->Release();
+	swapchain_backBuffer = nullptr;
 
 	return true;
 }
