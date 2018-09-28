@@ -14,8 +14,8 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	gameWindow.setWindowTitle(launchParams.gameTitle);
 
 	NRendererInit initParams = {};
-	initParams.width = 800;
-	initParams.height = 600;
+	initParams.width = 1280;
+	initParams.height = 720;
 
 	gameWindow.setWindowSize(initParams.width, initParams.height); // Set the window rectangle to match the resolution.
 	
@@ -26,6 +26,11 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	}
 
 	return true;
+}
+
+void NGame::Update()
+{
+	renderer.Present(); // Render the images.
 }
 
 void NGame::ProcessWindowEvents(NWinEvent winEvent)

@@ -17,6 +17,9 @@ public:
 	// Initialises the engine.
 	bool init(NWindowHandle* window, NInitSettings launchParams);
 
+	// Update routienes
+	void Update();
+
 	// Retreive Window events from Windowing systems. 
 	void ProcessWindowEvents(NWinEvent winEvent);
 

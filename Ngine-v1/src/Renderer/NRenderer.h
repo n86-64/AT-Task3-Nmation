@@ -29,6 +29,8 @@ public:
 	// Initialise the renderer.
 	bool init(NWindowHandle& windowHadle, NRendererInit parameters);
 
+	void Present();
+
 private:
 	// Setup functions.
 	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererInit parameters);
@@ -42,7 +44,7 @@ private:
 	ID3D11Device*		   renderDevice = nullptr; // Manages resources and provides access to the GPU.
 	ID3D11DeviceContext*   deviceContext = nullptr; // Manages the pipeline and settings
 
-	ID3D11RenderTargetView* renderTarget = nullptr;
+	ID3D11RenderTargetView* gameFrame = nullptr;
 
 	// Swapchain rendering mechanism
 	IDXGISwapChain*			swapChain = nullptr;

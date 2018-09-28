@@ -5,13 +5,12 @@ constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
 NRenderer::~NRenderer()
 {
+	gameFrame->Release();
+	swapChain->Release();
 	renderDevice->Release();
 	deviceContext->Release();
-	swapChain->Release();
-	renderTarget->Release();
 
-
-	// TODO - Clean up the pieline stuff.
+	// TODO - Clean up the pipeline stuff.
 }
 
 bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
@@ -30,6 +29,20 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 	result = setupRenderingPipelineOutputMerger(parameters);
 
 	return result;
+}
+
+void NRenderer::Present()
+{
+	float colour[4];
+	colour[0] = 1.0f;
+	colour[1] = 0.0f;
+	colour[2] = 0.0f;
+	colour[3] = 1.0f;
+
+	deviceContext->ClearRenderTargetView(gameFrame, colour);
+
+	swapChain->Present(0, 0); // Draw The Screen.
+
 }
 
 bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererInit parameters)
@@ -163,7 +176,7 @@ bool NRenderer::setupRenderingPipelineOutputMerger(NRendererInit& params)
 	rtvDiscription.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	rtvDiscription.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
 
-	hr = renderDevice->CreateRenderTargetView(swapchain_backBuffer, NULL, &renderTarget);
+	hr = renderDevice->CreateRenderTargetView(swapchain_backBuffer, NULL, &gameFrame);
 
 	if (FAILED(hr))
 	{
