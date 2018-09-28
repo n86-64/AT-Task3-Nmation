@@ -11,6 +11,14 @@ bool NGame::init(NWindowHandle * window, NInitSettings launchParams)
 {
 	gameWindow.setAndSetupWindow(window, launchParams.nCmdShow);
 	gameWindow.setWindowTitle(launchParams.gameTitle);
+
+	NRendererInit initParams = {};
+	initParams.width = 800;
+	initParams.height = 600;
+
+	gameWindow.setWindowSize(initParams.width, initParams.height); // Set the window rectangle to match the resolution.
+	renderer.init(*gameWindow.getWindowHandle(), initParams);
+
 	return true;
 }
 

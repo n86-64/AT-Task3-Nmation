@@ -21,6 +21,7 @@ public:
 
 	// Window properties will be shown here.
 	void setWindowTitle(std::string newWindowTitle);
+	void setWindowSize(int width, int height);
 
 	void CloseWindow();
 

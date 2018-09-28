@@ -3,7 +3,6 @@
 // File - NMaths.h
 // Discription - Defines all math classes.
 
-#include <DirectXMathVector.inl>
 #include <DirectXMath.h>
 
 // TODO - In thefuture consider a better wrapper. 
