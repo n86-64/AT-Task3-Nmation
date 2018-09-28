@@ -26,29 +26,29 @@ class NRenderer
 {
 public:
 	NRenderer() {};
+	~NRenderer();
 
 	// Initialise the renderer.
 	bool init(NWindowHandle& windowHadle, NRendererInit parameters);
 
 private:
 	// Device Functions
-
+	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererInit parameters);
 
 
 	// Represents the selected graphics adapter.
 	// NRenderDevice				graphicsAdapter;
 
 	// Direct3D core pipeline objects. 
-	std::unique_ptr<ID3D11Device>		  renderDevice;
-	std::unique_ptr<ID3D11DeviceContext> deviceContext;
+	ID3D11Device*		   renderDevice;
+	ID3D11DeviceContext*   deviceContext;
+	D3D_FEATURE_LEVEL	   requestedFeatureLevels;
 
-	D3D_FEATURE_LEVEL	 requestedFeatureLevels;
-
-	std::unique_ptr<ID3D11RenderTargetView>  renderTarget;
+	ID3D11RenderTargetView* renderTarget;
 
 
 	// Swapchain rendering mechanism
-	std::unique_ptr<IDXGISwapChain>			swapChain;
+	IDXGISwapChain*			swapChain;
 
 	// Buffer Views (Allows access to the Swapchain for rendering the window.)
 	ID3D11Texture2D*		swapchain_backBuffer = nullptr;

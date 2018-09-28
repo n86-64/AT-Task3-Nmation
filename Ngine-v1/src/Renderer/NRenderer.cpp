@@ -1,5 +1,12 @@
 #include "NRenderer.h"
 
+NRenderer::~NRenderer()
+{
+	renderDevice->Release();
+	deviceContext->Release();
+	swapChain->Release();
+}
+
 bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 {
 	// First Create the swapchain system.
@@ -7,6 +14,15 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 	// Third - Setup the pipeline stages.
 	// Forth - Setup the renderloop.
 	// Fifth - Clear the render target and present.
+
+	bool result;
+	result = setupDeviceAndSwapchain(windowHadle, parameters);
+
+	return result;
+}
+
+bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererInit parameters)
+{
 	HRESULT  hr = 0;
 	UINT deviceFlags;
 
@@ -19,7 +35,7 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 	D3D_FEATURE_LEVEL*  actualfeatureLevels = nullptr;
 
 	deviceFlags = D3D11_CREATE_DEVICE_SINGLETHREADED; // TODO - Check if needed.
-	if (parameters.debugMode) 
+	if (parameters.debugMode)
 	{
 		deviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 	}
@@ -43,10 +59,6 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 	swapchainDiscription.BufferDesc.RefreshRate.Numerator = 60;
 	swapchainDiscription.BufferDesc.RefreshRate.Denominator = 1;
 
-	IDXGISwapChain* sc = swapChain.get();
-	ID3D11Device* d = renderDevice.get();
-	ID3D11DeviceContext* dc = deviceContext.get();
-	
 	hr = D3D11CreateDeviceAndSwapChain(
 		NULL,
 		D3D_DRIVER_TYPE_HARDWARE,
@@ -56,19 +68,17 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 		3,
 		D3D11_SDK_VERSION,
 		&swapchainDiscription,
-		&sc,
-		&d,
+		&swapChain,
+		&renderDevice,
 		actualfeatureLevels,
-		&dc
-		);
+		&deviceContext
+	);
 
-	if (FAILED(hr)) 
+	if (FAILED(hr))
 	{
 		MessageBox(windowHadle, "Failed to create the device and swapchain.", "NGine Direct3D Error", MB_ICONERROR | MB_OK);
 		return false;
 	}
-
-
 
 	return true;
 }
