@@ -94,6 +94,10 @@ int WINAPI WinMain(
 			}
 		}
 	}
+	else 
+	{
+		return 1; // TODO - Impliment error codes.
+	}
 
 	return (int)msg.lParam;
 }

@@ -3,7 +3,7 @@
 bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 {
 	// First Create the swapchain system.
-	// Second - Create the device and the swapchain seperatly.
+	// Second - Create the device and the swapchain (DONE)
 	// Third - Setup the pipeline stages.
 	// Forth - Setup the renderloop.
 	// Fifth - Clear the render target and present.
@@ -64,10 +64,9 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 
 	if (FAILED(hr)) 
 	{
-		MessageBox(windowHadle, "NGine Direct3D Error", "Failed to create the device and swapchain." + _T(hr), MB_ICONERROR | MB_OK);
+		MessageBox(windowHadle, "Failed to create the device and swapchain.", "NGine Direct3D Error", MB_ICONERROR | MB_OK);
 		return false;
 	}
-
 
 
 
