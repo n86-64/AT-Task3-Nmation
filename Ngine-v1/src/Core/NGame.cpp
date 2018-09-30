@@ -30,6 +30,10 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 void NGame::Update()
 {
+	renderer.Clear(); // Clear the screen with a render target of some form.
+
+	// TODO - Add code to render the child objects.
+
 	renderer.Present(); // Render the images.
 }
 

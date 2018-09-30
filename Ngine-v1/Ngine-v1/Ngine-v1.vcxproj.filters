@@ -17,6 +17,9 @@
     <ClCompile Include="..\src\Renderer\NRendererDevice.cpp">
       <Filter>Core\Renderer\On Hold</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Helpers\NMath_Colour.cpp">
+      <Filter>Helpers\Maths</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -36,6 +39,9 @@
     </Filter>
     <Filter Include="Core\Renderer\On Hold">
       <UniqueIdentifier>{fd8b4ba4-b078-47f7-abd1-4a86c4a9851d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Maths">
+      <UniqueIdentifier>{5d8c6bf6-8b94-4e7f-9b93-b08f7f6af00b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,11 +66,14 @@
     <ClInclude Include="..\src\Helpers\Direct3D.h">
       <Filter>Helpers</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Helpers\NMaths.h">
-      <Filter>Helpers</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Renderer\NRendererDevice.h">
       <Filter>Core\Renderer\On Hold</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\NMaths.h">
+      <Filter>Helpers\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\NMath_Colour.h">
+      <Filter>Helpers\Maths</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

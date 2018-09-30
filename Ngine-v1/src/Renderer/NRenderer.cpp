@@ -1,12 +1,14 @@
 #include "NRenderer.h"
 
+#include "Helpers/NMath_Colour.h"
+
 constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
 
 NRenderer::~NRenderer()
 {
 	gameFrame->Release();
-	swapChain->Release();
+	swapChain->Release(); // TODO - Ensure swapchain changes are handled correctly to prevent errors upon closing the game.
 	renderDevice->Release();
 	deviceContext->Release();
 
@@ -31,18 +33,15 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 	return result;
 }
 
+void NRenderer::Clear()
+{
+	NMath::Colour  clearColour(1.0f, 0.0f, 0.0f, 1.0f);
+	deviceContext->ClearRenderTargetView(gameFrame, clearColour.getColourArray());
+}
+
 void NRenderer::Present()
 {
-	float colour[4];
-	colour[0] = 1.0f;
-	colour[1] = 0.0f;
-	colour[2] = 0.0f;
-	colour[3] = 1.0f;
-
-	deviceContext->ClearRenderTargetView(gameFrame, colour);
-
 	swapChain->Present(0, 0); // Draw The Screen.
-
 }
 
 bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererInit parameters)

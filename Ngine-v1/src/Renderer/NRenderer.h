@@ -9,6 +9,7 @@
 #include "Helpers/NMaths.h"
 
 // Renderer initialiser info
+// TODO - consider using this as a data structure for renderer settings.
 struct NRendererInit 
 {
 public:
@@ -29,6 +30,10 @@ public:
 	// Initialise the renderer.
 	bool init(NWindowHandle& windowHadle, NRendererInit parameters);
 
+	// Clears the render target (i.e. the backbuffer) ready for drawing. 
+	void Clear();
+
+	// Activate the swapchain and present the backbuffer frame to the screen. 
 	void Present();
 
 private:
