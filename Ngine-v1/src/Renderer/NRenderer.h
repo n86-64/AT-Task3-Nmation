@@ -16,7 +16,7 @@ public:
 	int width = 0;
 	int height = 0;
 
-	bool debugMode = false;
+	bool debugMode = true;
 };
 
 
@@ -41,6 +41,7 @@ private:
 	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererInit parameters);
 	bool setupRenderingPipelineRasterizer(NRendererInit& params);
 	bool setupRenderingPipelineOutputMerger(NRendererInit& params);
+	bool setupRenderingPipelineDepthStencil(NRendererInit& params);
 
 	// Represents the selected graphics adapter.
 	// NRenderDevice				graphicsAdapter;

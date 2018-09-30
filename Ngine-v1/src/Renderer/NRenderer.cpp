@@ -29,6 +29,7 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
 	result = setupDeviceAndSwapchain(windowHadle, parameters);
 	result = setupRenderingPipelineRasterizer(parameters);
 	result = setupRenderingPipelineOutputMerger(parameters);
+	result = setupRenderingPipelineDepthStencil(parameters);
 
 	return result;
 }
@@ -37,6 +38,7 @@ void NRenderer::Clear()
 {
 	NMath::Colour  clearColour(1.0f, 0.0f, 0.0f, 1.0f);
 	deviceContext->ClearRenderTargetView(gameFrame, clearColour.getColourArray());
+	deviceContext->ClearDepthStencilView(depthStencilConfiguration, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 0.0f, 0);
 }
 
 void NRenderer::Present()
@@ -183,8 +185,82 @@ bool NRenderer::setupRenderingPipelineOutputMerger(NRendererInit& params)
 		return false;
 	}
 
-	swapchain_backBuffer->Release();
-	swapchain_backBuffer = nullptr;
+	return true;
+}
 
+bool NRenderer::setupRenderingPipelineDepthStencil(NRendererInit& params)
+{
+	HRESULT hr = S_OK;
+
+	D3D11_TEXTURE2D_DESC  backbufferDesc;
+	D3D11_TEXTURE2D_DESC  dsTexDescription;
+	swapchain_backBuffer->GetDesc(&backbufferDesc);
+
+	dsTexDescription.Width = backbufferDesc.Width;
+	dsTexDescription.Height = backbufferDesc.Height;
+	dsTexDescription.MipLevels = 1;
+	dsTexDescription.ArraySize = 1;
+	dsTexDescription.Format = DXGI_FORMAT_D32_FLOAT_S8X24_UINT;
+	dsTexDescription.SampleDesc.Count = 1;
+	dsTexDescription.SampleDesc.Quality = 0;
+	dsTexDescription.Usage = D3D11_USAGE_DEFAULT;
+	dsTexDescription.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	dsTexDescription.CPUAccessFlags = 0;
+	dsTexDescription.MiscFlags = 0;
+
+	hr = renderDevice->CreateTexture2D(&dsTexDescription, NULL, &depthStencilTextureBuffer);
+
+	if (FAILED(hr))
+	{
+		MessageBox(NULL, "Failed to create valid DepthStencil Texture.", "NGine Direct3D Error", MB_ICONERROR | MB_OK);
+		return false;
+	}
+
+	// Now we have a texture to render the depth buffer to. 
+	// We can create and setup the depth-stencil state.
+	D3D11_DEPTH_STENCIL_DESC  dsDescription = {};
+	
+	// Depth Test Settings.
+	dsDescription.DepthEnable = true;
+	dsDescription.DepthFunc = D3D11_COMPARISON_LESS;
+	dsDescription.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+
+	// Stencil Test Settings
+	dsDescription.StencilEnable = true;
+	dsDescription.StencilReadMask = 0xFF;
+	dsDescription.StencilWriteMask = 0xFF;
+
+	// Configure operations in the test passes or fails.
+	// Applies to ppixels from polygons facing the camera.
+	dsDescription.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	dsDescription.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+	dsDescription.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	dsDescription.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	// Now the settings for backfacing pixels.
+	dsDescription.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	dsDescription.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+	dsDescription.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	dsDescription.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	renderDevice->CreateDepthStencilState(&dsDescription, &depthStencilState);
+	deviceContext->OMSetDepthStencilState(depthStencilState, 1);
+
+	D3D11_DEPTH_STENCIL_VIEW_DESC  DepthStencilViewDesc = {};
+	DepthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	DepthStencilViewDesc.Format = DXGI_FORMAT_D32_FLOAT_S8X24_UINT;
+	DepthStencilViewDesc.Texture2D.MipSlice = 0;
+
+	hr = renderDevice->CreateDepthStencilView(depthStencilTextureBuffer, &DepthStencilViewDesc, &depthStencilConfiguration);
+
+	if (FAILED(hr))
+	{
+		MessageBox(NULL, "Failed to create depth-stencil view.", "NGine Direct3D Error", MB_ICONERROR | MB_OK);
+		return false;
+	}
+	// Not needed by default as swapchain is already created and bound to the device.
+
+	deviceContext->OMSetRenderTargets(1, &gameFrame, depthStencilConfiguration); 
+	
 	return true;
 }

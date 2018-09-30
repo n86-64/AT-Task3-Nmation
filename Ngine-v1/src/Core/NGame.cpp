@@ -45,9 +45,10 @@ void NGame::ProcessWindowEvents(NWinEvent winEvent)
 	{
 	case WM_DESTROY:
 		ShutDown();
+		quit = true;
 		break;
 	case WM_SIZE:
-		OutputDebugString("The window has been resized");
+		OutputDebugString("The window has been resized \n");
 		break;
 	}
 }
@@ -61,5 +62,4 @@ void NGame::ShutDown()
 {
 	// Clean up the engine and then terminate cleanly.
 	gameWindow.CloseWindow();
-	quit = true;
 }
