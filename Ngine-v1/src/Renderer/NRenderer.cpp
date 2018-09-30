@@ -7,7 +7,14 @@ constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
 NRenderer::~NRenderer()
 {
+	depthStencilTextureBuffer->Release();
+	depthStencilConfiguration->Release();
+	depthStencilState->Release();
+
+	swapchain_backBuffer->Release();
+	
 	gameFrame->Release();
+	rasterizerState->Release();
 	swapChain->Release(); // TODO - Ensure swapchain changes are handled correctly to prevent errors upon closing the game.
 	renderDevice->Release();
 	deviceContext->Release();
@@ -15,7 +22,7 @@ NRenderer::~NRenderer()
 	// TODO - Clean up the pipeline stuff.
 }
 
-bool NRenderer::init(NWindowHandle& windowHadle, NRendererInit parameters)
+bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 {
 	// First Create the swapchain system.
 	// Second - Create the device and the swapchain (DONE)
@@ -46,7 +53,7 @@ void NRenderer::Present()
 	swapChain->Present(0, 0); // Draw The Screen.
 }
 
-bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererInit parameters)
+bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters)
 {
 	HRESULT  hr = 0;
 	UINT deviceFlags;
@@ -109,7 +116,7 @@ bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererIni
 	return true;
 }
 
-bool NRenderer::setupRenderingPipelineRasterizer(NRendererInit& params)
+bool NRenderer::setupRenderingPipelineRasterizer(NRendererConfig& params)
 {
 	HRESULT hr;
 
@@ -161,7 +168,7 @@ bool NRenderer::setupRenderingPipelineRasterizer(NRendererInit& params)
 	return true;
 }
 
-bool NRenderer::setupRenderingPipelineOutputMerger(NRendererInit& params)
+bool NRenderer::setupRenderingPipelineOutputMerger(NRendererConfig& params)
 {
 	HRESULT hr;
 	hr = swapChain->GetBuffer(SWAP_CHAIN_BACK_BUFFER, __uuidof(ID3D11Texture2D), (LPVOID*)&swapchain_backBuffer);
@@ -188,7 +195,7 @@ bool NRenderer::setupRenderingPipelineOutputMerger(NRendererInit& params)
 	return true;
 }
 
-bool NRenderer::setupRenderingPipelineDepthStencil(NRendererInit& params)
+bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 {
 	HRESULT hr = S_OK;
 

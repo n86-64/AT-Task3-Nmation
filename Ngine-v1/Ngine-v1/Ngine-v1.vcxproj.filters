@@ -43,6 +43,9 @@
     <Filter Include="Helpers\Maths">
       <UniqueIdentifier>{5d8c6bf6-8b94-4e7f-9b93-b08f7f6af00b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{a846587c-bafc-4d32-a135-df5e377e38dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -75,5 +78,13 @@
     <ClInclude Include="..\src\Helpers\NMath_Colour.h">
       <Filter>Helpers\Maths</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\src\Shaders\BasicVertex.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\src\Shaders\BasicPixel.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

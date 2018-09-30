@@ -9,10 +9,13 @@
 #include "Helpers/NMaths.h"
 
 // Renderer initialiser info
-// TODO - consider using this as a data structure for renderer settings.
-struct NRendererInit 
+// Defines a set of constants for rendering the images.
+struct NRendererConfig 
 {
 public:
+	NRendererConfig() {};
+	NRendererConfig(NInitSettings launchSettings) {}; // TODO - Impliment Renderer Setup based on launch parameters.
+
 	int width = 0;
 	int height = 0;
 
@@ -28,7 +31,7 @@ public:
 	~NRenderer();
 
 	// Initialise the renderer.
-	bool init(NWindowHandle& windowHadle, NRendererInit parameters);
+	bool init(NWindowHandle& windowHadle, NRendererConfig parameters);
 
 	// Clears the render target (i.e. the backbuffer) ready for drawing. 
 	void Clear();
@@ -38,10 +41,10 @@ public:
 
 private:
 	// Setup functions.
-	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererInit parameters);
-	bool setupRenderingPipelineRasterizer(NRendererInit& params);
-	bool setupRenderingPipelineOutputMerger(NRendererInit& params);
-	bool setupRenderingPipelineDepthStencil(NRendererInit& params);
+	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters);
+	bool setupRenderingPipelineRasterizer(NRendererConfig& params);
+	bool setupRenderingPipelineOutputMerger(NRendererConfig& params);
+	bool setupRenderingPipelineDepthStencil(NRendererConfig& params);
 
 	// Represents the selected graphics adapter.
 	// NRenderDevice				graphicsAdapter;

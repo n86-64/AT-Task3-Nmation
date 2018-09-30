@@ -99,7 +99,7 @@ int WINAPI WinMain(
 		return 1; // TODO - Impliment error codes.
 	}
 
-	return (int)msg.lParam;
+	return 0;
 }
 
 // Application callback function.

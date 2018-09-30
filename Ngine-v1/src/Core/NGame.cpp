@@ -13,7 +13,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	gameWindow.setAndSetupWindow(window, launchParams.nCmdShow);
 	gameWindow.setWindowTitle(launchParams.gameTitle);
 
-	NRendererInit initParams = {};
+	NRendererConfig initParams = {};
 	initParams.width = 1280;
 	initParams.height = 720;
 
@@ -33,6 +33,8 @@ void NGame::Update()
 	renderer.Clear(); // Clear the screen with a render target of some form.
 
 	// TODO - Add code to render the child objects.
+
+	// TEST ONLY - Get a Triangle Drawing.
 
 	renderer.Present(); // Render the images.
 }
