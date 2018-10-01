@@ -1,8 +1,54 @@
 #include "NRenderer.h"
 
+#include <fstream>
+
 #include "Helpers/NMath_Colour.h"
 
 constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
+
+#pragma region TEST DATA PLEASE REMOVE LATER
+// Test Verticies for the cube.
+VertexInput   verticies[] =
+{
+	DirectX::XMFLOAT3(-1.0f, -1.0f, 1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
+	DirectX::XMFLOAT3(1.0f, -1.0f, 1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
+	DirectX::XMFLOAT3(-1.0f, 1.0f, 1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
+	DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
+
+	DirectX::XMFLOAT3(-1.0f, -1.0f, -1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
+	DirectX::XMFLOAT3(1.0f, -1.0f, -1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
+	DirectX::XMFLOAT3(-1.0f, 1.0f, -1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
+	DirectX::XMFLOAT3(1.0f, 1.0f, -1.0f), DirectX::XMFLOAT4(0, 0, 1, 1)
+};
+
+unsigned int indicies[] =
+{
+			0, 1, 2,
+			0, 2, 3,
+
+			4, 5, 6,
+			4, 6, 7,
+
+			3, 2, 5,
+			3, 5, 4,
+
+			2, 1, 6,
+			2, 6, 5,
+
+			1, 7, 6,
+			1, 0, 7,
+
+			0, 3, 4,
+			0, 4, 7
+};
+
+D3D11_INPUT_ELEMENT_DESC layout[] =
+{
+	{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+	{"COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0}
+};
+
+#pragma endregion
 
 
 NRenderer::~NRenderer()
@@ -38,18 +84,21 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 	result = setupRenderingPipelineOutputMerger(parameters);
 	result = setupRenderingPipelineDepthStencil(parameters);
 
+	TestDrawSetup();
+
 	return result;
 }
 
 void NRenderer::Clear()
 {
-	NMath::Colour  clearColour(1.0f, 0.0f, 0.0f, 1.0f);
+	NMath::Colour  clearColour(0.0f, 0.0f, 0.0f, 1.0f);
 	deviceContext->ClearRenderTargetView(gameFrame, clearColour.getColourArray());
 	deviceContext->ClearDepthStencilView(depthStencilConfiguration, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 0.0f, 0);
 }
 
 void NRenderer::Present()
 {
+	deviceContext->DrawIndexed(ARRAYSIZE(indicies), 0, 0);
 	swapChain->Present(0, 0); // Draw The Screen.
 }
 
@@ -270,4 +319,121 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 	deviceContext->OMSetRenderTargets(1, &gameFrame, depthStencilConfiguration); 
 	
 	return true;
+}
+
+void NRenderer::TestDrawSetup()
+{
+	HRESULT hr;
+
+	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	std::fstream  shaderBin;
+	shaderBin.open("BasicVertex.cso", std::ios::in | std::ios::binary);
+
+	int vsSize = 0;
+	int psSize = 0;
+
+	char* vsData = nullptr;
+	char* psData = nullptr;
+
+	if (!shaderBin.fail()) 
+	{
+		// MEGA TODO - Create file reader classes to handle this functionality. 
+		shaderBin.seekg(0, shaderBin.end);
+		vsSize = shaderBin.tellg();
+		shaderBin.seekg(0, shaderBin.beg);
+		vsData = new char[vsSize];
+		shaderBin.read(vsData, vsSize);
+
+
+		hr = renderDevice->CreateVertexShader(vsData, vsSize, nullptr, &vertexShader);
+	}
+
+	shaderBin.open("BasicPixel.cso", std::ios::in | std::ios::binary);
+	if (!shaderBin.fail())
+	{
+		// MEGA TODO - Create file reader classes to handle this functionality. 
+		shaderBin.seekg(0, shaderBin.end);
+		psSize = shaderBin.tellg();
+		shaderBin.seekg(0, shaderBin.beg);
+		psData = new char[psSize];
+		shaderBin.read(psData, psSize);
+
+
+		hr = renderDevice->CreatePixelShader(psData, psSize, nullptr, &pixelShader);
+	}
+
+	deviceContext->VSSetShader(vertexShader, nullptr, 0);
+	deviceContext->PSSetShader(pixelShader, nullptr, 0);
+
+	// Create the Vertex Buffer.
+	D3D11_BUFFER_DESC  bufferDiscriptor; // The Buffer info
+	bufferDiscriptor.Usage = D3D11_USAGE_DEFAULT;
+	bufferDiscriptor.ByteWidth = sizeof(VertexInput) * ARRAYSIZE(verticies);
+	bufferDiscriptor.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+	bufferDiscriptor.CPUAccessFlags = 0;
+	bufferDiscriptor.MiscFlags = 0;
+	bufferDiscriptor.StructureByteStride = 0;
+	
+	D3D11_SUBRESOURCE_DATA  initData; // The buffer data.
+	initData.pSysMem = verticies;
+	initData.SysMemPitch = 0;
+	initData.SysMemSlicePitch = 0;
+
+	hr = renderDevice->CreateBuffer(&bufferDiscriptor, &initData, &vertexBuffer);
+
+	// Create the Index Buffer.
+	D3D11_BUFFER_DESC  bufferDiscriptor2; // The Buffer info
+	bufferDiscriptor2.Usage = D3D11_USAGE_DEFAULT;
+	bufferDiscriptor2.ByteWidth = sizeof(unsigned int) * ARRAYSIZE(indicies);
+	bufferDiscriptor2.BindFlags = D3D11_BIND_INDEX_BUFFER;
+	bufferDiscriptor2.CPUAccessFlags = 0;
+	bufferDiscriptor2.MiscFlags = 0;
+	bufferDiscriptor2.StructureByteStride = 0;
+
+	D3D11_SUBRESOURCE_DATA  initData2; // The buffer data.
+	initData2.pSysMem = indicies;
+	initData2.SysMemPitch = 0;
+	initData2.SysMemSlicePitch = 0;
+
+	hr = renderDevice->CreateBuffer(&bufferDiscriptor2, &initData2, &indexBuffer);
+
+	deviceContext->IASetIndexBuffer(indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+	
+	UINT stride = sizeof(VertexInput);
+	UINT offset = 0;
+	deviceContext->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);
+
+	hr = renderDevice->CreateInputLayout(layout, 2, vsData, vsSize, &inputLayout);
+	deviceContext->IASetInputLayout(inputLayout);
+
+	// Setup view and projection matracies.
+	DirectX::XMMATRIX view = DirectX::XMMatrixLookAtH(DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f), DirectX::XMVectorSet(1.0f, 0.0f, 0.0f, 1.0f), DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f));
+	DirectX::XMMATRIX proj = DirectX::XMMatrixPerspectiveRH(90.0f,60.0f, 1.0f, 100.0f);
+	
+	worldViewProjMatrix  worldInput;
+	DirectX::XMStoreFloat4x4(&worldInput.world, DirectX::XMMatrixIdentity());
+	DirectX::XMStoreFloat4x4(&worldInput.view, view);
+	DirectX::XMStoreFloat4x4(&worldInput.proj, proj);
+
+	D3D11_BUFFER_DESC constBufferDesc;
+	constBufferDesc.ByteWidth = sizeof(worldInput);
+	constBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	constBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	constBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	constBufferDesc.MiscFlags = 0;
+	constBufferDesc.StructureByteStride = 0;
+
+	D3D11_SUBRESOURCE_DATA constData;
+	constData.pSysMem = &worldInput;
+	constData.SysMemPitch = 0;
+	constData.SysMemSlicePitch = 0;
+
+	hr = renderDevice->CreateBuffer(&constBufferDesc, &constData, &constBuffer);
+	deviceContext->VSSetConstantBuffers(0, 1, &constBuffer);
+}
+
+void NRenderer::TestDraw()
+{
+
 }

@@ -22,6 +22,20 @@ public:
 	bool debugMode = true;
 };
 
+// Test Data structures.
+struct VertexInput 
+{
+	DirectX::XMFLOAT3  pos;
+	DirectX::XMFLOAT4  col;
+};
+
+struct worldViewProjMatrix 
+{
+	DirectX::XMFLOAT4X4  world;
+	DirectX::XMFLOAT4X4  view;
+	DirectX::XMFLOAT4X4  proj;
+};
+
 
 // Defines a Direct3D interface.
 class NRenderer 
@@ -45,6 +59,20 @@ private:
 	bool setupRenderingPipelineRasterizer(NRendererConfig& params);
 	bool setupRenderingPipelineOutputMerger(NRendererConfig& params);
 	bool setupRenderingPipelineDepthStencil(NRendererConfig& params);
+
+	// Test routienes for the renderer.
+	void TestDrawSetup();
+	void TestDraw();
+
+	// Test Drawing Stuff
+	ID3D11Buffer*   vertexBuffer = nullptr;
+	ID3D11Buffer*   indexBuffer = nullptr;
+	ID3D11Buffer*    constBuffer = nullptr;
+
+	ID3D11VertexShader*  vertexShader;
+	ID3D11PixelShader* pixelShader;
+
+	ID3D11InputLayout*  inputLayout;
 
 	// Represents the selected graphics adapter.
 	// NRenderDevice				graphicsAdapter;
