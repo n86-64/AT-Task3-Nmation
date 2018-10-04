@@ -10,7 +10,7 @@ struct VS_IN
 
 
 // 3D world matracies values.
-cbuffer MVPConstants
+cbuffer MVPConstants : register(b0)
 {
     float4x4 world;
     float4x4 view;
@@ -32,12 +32,17 @@ VS_OUT main(VS_IN input)
 
     float4 vert = float4(input.inVector, 1);
 
-    float4x4 viewProj = mul(view, projection);
-    viewProj = mul(world,  viewProj);
+    vert = mul(vert, world);
+    vert = mul(vert, view);
+    vert = mul(vert, projection);
 
-    output.pos = mul(vert, viewProj); // Vertex multiplied by the worldViewProjMatrix.
+    output.pos = vert;
 
-    output.outColour = float4(1.0f, 1.0f, 0.0f, 1.0f);
+    //float4x4 viewProj = mul(world, view);
+    //viewProj = mul(viewProj,  projection);
+    //output.pos = mul(vert, viewProj); // Vertex multiplied by the worldViewProjMatrix.
+
+    output.outColour = input.inColour;
 
     return output;
 }

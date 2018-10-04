@@ -10,36 +10,36 @@ constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 // Test Verticies for the cube.
 VertexInput   verticies[] =
 {
-	DirectX::XMFLOAT3(-1.0f, -1.0f, 1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
-	DirectX::XMFLOAT3(1.0f, -1.0f, 1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
-	DirectX::XMFLOAT3(-1.0f, 1.0f, 1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
-	DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
+	  { DirectX::XMFLOAT3(-1.0f,  1.0f, -1.0f), DirectX::XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
+		{ DirectX::XMFLOAT3(1.0f,  1.0f, -1.0f), DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
+		{ DirectX::XMFLOAT3(1.0f,  1.0f,  1.0f), DirectX::XMFLOAT4(0.0f, 1.0f, 1.0f, 1.0f) },
+		{ DirectX::XMFLOAT3(-1.0f,  1.0f,  1.0f), DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
+		{ DirectX::XMFLOAT3(-1.0f, -1.0f, -1.0f), DirectX::XMFLOAT4(1.0f, 0.0f, 1.0f, 1.0f) },
+		{ DirectX::XMFLOAT3(1.0f, -1.0f, -1.0f), DirectX::XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f) },
+		{ DirectX::XMFLOAT3(1.0f, -1.0f,  1.0f), DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) },
+		{ DirectX::XMFLOAT3(-1.0f, -1.0f,  1.0f), DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) },
 
-	DirectX::XMFLOAT3(-1.0f, -1.0f, -1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
-	DirectX::XMFLOAT3(1.0f, -1.0f, -1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
-	DirectX::XMFLOAT3(-1.0f, 1.0f, -1.0f), DirectX::XMFLOAT4(0, 0, 1, 1),
-	DirectX::XMFLOAT3(1.0f, 1.0f, -1.0f), DirectX::XMFLOAT4(0, 0, 1, 1)
 };
 
 unsigned int indicies[] =
 {
-			0, 1, 2,
-			0, 2, 3,
+	    3,1,0,
+		2,1,3,
 
-			4, 5, 6,
-			4, 6, 7,
+		0,5,4,
+		1,5,0,
 
-			3, 2, 5,
-			3, 5, 4,
+		3,4,7,
+		0,4,3,
 
-			2, 1, 6,
-			2, 6, 5,
+		1,6,5,
+		2,6,1,
 
-			1, 7, 6,
-			1, 0, 7,
+		2,7,6,
+		3,7,2,
 
-			0, 3, 4,
-			0, 4, 7
+		6,4,5,
+		7,4,6,
 };
 
 D3D11_INPUT_ELEMENT_DESC layout[] =
@@ -108,7 +108,6 @@ bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererCon
 	UINT deviceFlags;
 
 	const D3D_FEATURE_LEVEL d3dFeatures[] = {
-		D3D_FEATURE_LEVEL_11_1,
 		D3D_FEATURE_LEVEL_11_0,
 		D3D_FEATURE_LEVEL_10_1,
 		D3D_FEATURE_LEVEL_10_0
@@ -141,6 +140,7 @@ bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererCon
 	swapchainDiscription.BufferDesc.RefreshRate.Numerator = 60;
 	swapchainDiscription.BufferDesc.RefreshRate.Denominator = 1;
 
+
 	hr = D3D11CreateDeviceAndSwapChain(
 		NULL,
 		D3D_DRIVER_TYPE_HARDWARE,
@@ -167,10 +167,10 @@ bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererCon
 
 bool NRenderer::setupRenderingPipelineRasterizer(NRendererConfig& params)
 {
-	HRESULT hr;
+	HRESULT hr = S_OK;
 
 	// Set the renderer viewport and scisor rectangle.
-	D3D11_VIEWPORT         viewport;
+	D3D11_VIEWPORT  viewport;
 	viewport.Width = (float)params.width;
 	viewport.Height = (float)params.height;
 	viewport.MinDepth = 0;
@@ -191,7 +191,7 @@ bool NRenderer::setupRenderingPipelineRasterizer(NRendererConfig& params)
 	ZeroMemory(&rasterizerSetup, sizeof(rasterizerSetup));
 	rasterizerSetup.FillMode = D3D11_FILL_SOLID;
 	rasterizerSetup.CullMode = D3D11_CULL_FRONT;
-	rasterizerSetup.FrontCounterClockwise = true;
+	rasterizerSetup.FrontCounterClockwise = false;
 
 	// Setup for Depth and stencil rendering stages.
 	rasterizerSetup.DepthBias = false;
@@ -252,11 +252,12 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 	D3D11_TEXTURE2D_DESC  dsTexDescription;
 	swapchain_backBuffer->GetDesc(&backbufferDesc);
 
+	ZeroMemory(&dsTexDescription, sizeof(dsTexDescription));
 	dsTexDescription.Width = backbufferDesc.Width;
 	dsTexDescription.Height = backbufferDesc.Height;
 	dsTexDescription.MipLevels = 1;
 	dsTexDescription.ArraySize = 1;
-	dsTexDescription.Format = DXGI_FORMAT_D32_FLOAT_S8X24_UINT;
+	dsTexDescription.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 	dsTexDescription.SampleDesc.Count = 1;
 	dsTexDescription.SampleDesc.Quality = 0;
 	dsTexDescription.Usage = D3D11_USAGE_DEFAULT;
@@ -278,7 +279,7 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 	
 	// Depth Test Settings.
 	dsDescription.DepthEnable = true;
-	dsDescription.DepthFunc = D3D11_COMPARISON_LESS;
+	dsDescription.DepthFunc = D3D11_COMPARISON_FUNC::D3D11_COMPARISON_GREATER;
 	dsDescription.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
 
 	// Stencil Test Settings
@@ -304,7 +305,7 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 
 	D3D11_DEPTH_STENCIL_VIEW_DESC  DepthStencilViewDesc = {};
 	DepthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-	DepthStencilViewDesc.Format = DXGI_FORMAT_D32_FLOAT_S8X24_UINT;
+	DepthStencilViewDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 	DepthStencilViewDesc.Texture2D.MipSlice = 0;
 
 	hr = renderDevice->CreateDepthStencilView(depthStencilTextureBuffer, &DepthStencilViewDesc, &depthStencilConfiguration);
@@ -348,6 +349,8 @@ void NRenderer::TestDrawSetup()
 
 		hr = renderDevice->CreateVertexShader(vsData, vsSize, nullptr, &vertexShader);
 	}
+
+	shaderBin.close();
 
 	shaderBin.open("BasicPixel.cso", std::ios::in | std::ios::binary);
 	if (!shaderBin.fail())
@@ -408,11 +411,16 @@ void NRenderer::TestDrawSetup()
 	deviceContext->IASetInputLayout(inputLayout);
 
 	// Setup view and projection matracies.
-	DirectX::XMMATRIX view = DirectX::XMMatrixLookAtH(DirectX::XMVectorSet(0.0f, 0.0f, 0.0f, 1.0f), DirectX::XMVectorSet(1.0f, 0.0f, 0.0f, 1.0f), DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f));
-	DirectX::XMMATRIX proj = DirectX::XMMatrixPerspectiveRH(90.0f,60.0f, 1.0f, 100.0f);
+	DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
+	DirectX::XMMATRIX view = DirectX::XMMatrixLookAtLH(DirectX::XMVectorSet(0.0f, 1.0f, -5.0f, 1.0f), DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f), DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f));
+	DirectX::XMMATRIX proj = DirectX::XMMatrixPerspectiveFovLH(DirectX::XM_PIDIV2, 1280 / 720, 0.1f, 101.0f);
 	
+	world = DirectX::XMMatrixTranspose(world);
+	view = DirectX::XMMatrixTranspose(view);
+	proj = DirectX::XMMatrixTranspose(proj);
+
 	worldViewProjMatrix  worldInput;
-	DirectX::XMStoreFloat4x4(&worldInput.world, DirectX::XMMatrixIdentity());
+	DirectX::XMStoreFloat4x4(&worldInput.world, world);
 	DirectX::XMStoreFloat4x4(&worldInput.view, view);
 	DirectX::XMStoreFloat4x4(&worldInput.proj, proj);
 
