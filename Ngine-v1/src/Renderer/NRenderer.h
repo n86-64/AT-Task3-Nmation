@@ -96,4 +96,7 @@ private:
 	ID3D11Texture2D*		  depthStencilTextureBuffer = nullptr;
 	ID3D11DepthStencilView*   depthStencilConfiguration = nullptr;
 	ID3D11DepthStencilState*   depthStencilState = nullptr;
+
+
+	worldViewProjMatrix  worldInput;
 };

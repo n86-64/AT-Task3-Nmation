@@ -98,6 +98,10 @@ void NRenderer::Clear()
 
 void NRenderer::Present()
 {
+
+	DirectX::XMMATRIX newView = worldInput.view * DirectX::XMMatrixRotationAxis(DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f), 30.0f);
+
+
 	deviceContext->DrawIndexed(ARRAYSIZE(indicies), 0, 0);
 	swapChain->Present(0, 0); // Draw The Screen.
 }
@@ -190,13 +194,13 @@ bool NRenderer::setupRenderingPipelineRasterizer(NRendererConfig& params)
 	D3D11_RASTERIZER_DESC   rasterizerSetup;
 	ZeroMemory(&rasterizerSetup, sizeof(rasterizerSetup));
 	rasterizerSetup.FillMode = D3D11_FILL_SOLID;
-	rasterizerSetup.CullMode = D3D11_CULL_FRONT;
-	rasterizerSetup.FrontCounterClockwise = false;
+	rasterizerSetup.CullMode = D3D11_CULL_NONE;
+	rasterizerSetup.FrontCounterClockwise = true;
 
 	// Setup for Depth and stencil rendering stages.
 	rasterizerSetup.DepthBias = false;
 	rasterizerSetup.DepthBiasClamp = 0;
-	rasterizerSetup.DepthClipEnable = true;
+	rasterizerSetup.DepthClipEnable = false;
 	rasterizerSetup.SlopeScaledDepthBias = 0;
 
 	// Pipeline AntiAliasing and sampaling features
@@ -296,7 +300,7 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 
 	// Now the settings for backfacing pixels.
 	dsDescription.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
-	dsDescription.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+	dsDescription.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
 	dsDescription.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
 	dsDescription.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
@@ -412,14 +416,13 @@ void NRenderer::TestDrawSetup()
 
 	// Setup view and projection matracies.
 	DirectX::XMMATRIX world = DirectX::XMMatrixIdentity();
-	DirectX::XMMATRIX view = DirectX::XMMatrixLookAtLH(DirectX::XMVectorSet(0.0f, 1.0f, -5.0f, 1.0f), DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f), DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f));
-	DirectX::XMMATRIX proj = DirectX::XMMatrixPerspectiveFovLH(DirectX::XM_PIDIV2, 1280 / 720, 0.1f, 101.0f);
+	DirectX::XMMATRIX view = DirectX::XMMatrixLookAtLH(DirectX::XMVectorSet(10.0f, 0.0f, 0.0f, 1.0f), DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f), DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f));
+	DirectX::XMMATRIX proj = DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(90.0f), 1280 / 720, 0.1f, 101.0f);
 	
 	world = DirectX::XMMatrixTranspose(world);
 	view = DirectX::XMMatrixTranspose(view);
 	proj = DirectX::XMMatrixTranspose(proj);
 
-	worldViewProjMatrix  worldInput;
 	DirectX::XMStoreFloat4x4(&worldInput.world, world);
 	DirectX::XMStoreFloat4x4(&worldInput.view, view);
 	DirectX::XMStoreFloat4x4(&worldInput.proj, proj);
