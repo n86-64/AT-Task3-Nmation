@@ -1,17 +1,6 @@
 #pragma once
 
 // File - NMaths.h
-// Discription - Defines all math classes.
+// Discription - Brings all of the Math headers together in one.
 
-#include <DirectXMath.h>
-
-// TODO - In thefuture consider a better wrapper. 
-
-namespace NMath 
-{
-#ifdef _WIN32
-	using NVector = DirectX::XMVECTOR;
-#else 
-	// ITS A UNIX SYSTEM!!!
-#endif
-};
+#include "NMath_Colour.h"

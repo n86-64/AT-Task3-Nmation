@@ -4,17 +4,16 @@
 // Input to the Vertex shader
 struct VS_IN
 {
-    float4 inVector : POSITION;
+    float3 inVector : POSITION;
     float4 inColour : COLOR0;
 };
 
 
 // 3D world matracies values.
-cbuffer MVPConstants
+cbuffer MVPConstants : register(b0)
 {
-    float4x4 view;
-    float4x4 projection;
-    float4x4 world;
+    matrix mvMatrix;  // The model-view matrix. (model Matrix (psoition in the world) * view matrix (The cameras location))
+    matrix projection;
 };
 
 struct VS_OUT
@@ -30,11 +29,19 @@ VS_OUT main(VS_IN input)
 {
     VS_OUT output;
 
-    float4x4 viewProj = mul(projection, view);
-    viewProj = mul(viewProj, world);
-    output.pos = mul(viewProj, input.inVector);
+    float4 vert = float4(input.inVector, 1);
 
-    output.outColour = float4(1.0f, 1.0f, 0.0f, 1.0f);
+    // convert the points to 3D space.
+    vert = mul(vert, mvMatrix);
+    vert = mul(vert, projection);
+
+    output.pos = vert;
+
+    //float4x4 viewProj = mul(world, view);
+    //viewProj = mul(viewProj,  projection);
+    //output.pos = mul(vert, viewProj); // Vertex multiplied by the worldViewProjMatrix.
+
+    output.outColour = input.inColour;
 
     return output;
 }

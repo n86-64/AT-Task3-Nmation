@@ -90,7 +90,7 @@ int WINAPI WinMain(
 			else 
 			{
 				// tick the game here.
-				Application::game.Update();
+				Application::game.Tick();
 			}
 		}
 	}

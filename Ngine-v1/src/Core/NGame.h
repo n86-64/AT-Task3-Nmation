@@ -18,7 +18,7 @@ public:
 	bool init(NWindowHandle* window, NInitSettings launchParams);
 
 	// Update routienes
-	void Update();
+	void Tick();
 
 	// Retreive Window events from Windowing systems. 
 	void ProcessWindowEvents(NWinEvent winEvent);
