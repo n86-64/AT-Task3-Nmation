@@ -30,9 +30,29 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 void NGame::Tick()
 {
+	Update();
+	Render();
+}
+
+void NGame::Update()
+{
+	for (int i = 0; i < scene_objects.size(); ++i) 
+	{
+		// Update the objects.
+		scene_objects[i]->Update();
+	}
+}
+
+void NGame::Render()
+{
 	renderer.Clear(); // Clear the screen with a render target of some form.
 
 	// TODO - Add code to render the child objects.
+	for (int i = 0; i < scene_objects.size(); ++i)
+	{
+		// Update the objects.
+		scene_objects[i]->Render(&renderer);
+	}
 
 	// TEST ONLY - Get a Triangle Drawing.
 

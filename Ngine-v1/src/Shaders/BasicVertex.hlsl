@@ -4,7 +4,7 @@
 // Input to the Vertex shader
 struct VS_IN
 {
-    float3 inVector : POSITION;
+    float4 inVector : POSITION;
     float4 inColour : COLOR0;
 };
 
@@ -29,17 +29,13 @@ VS_OUT main(VS_IN input)
 {
     VS_OUT output;
 
-    float4 vert = float4(input.inVector, 1);
+    float4 vert = float4(0.0f, 0.0f, 0.0f, 0.0f);
 
     // convert the points to 3D space.
-    vert = mul(vert, mvMatrix);
+    vert = mul(input.inVector, mvMatrix);
     vert = mul(vert, projection);
 
     output.pos = vert;
-
-    //float4x4 viewProj = mul(world, view);
-    //viewProj = mul(viewProj,  projection);
-    //output.pos = mul(vert, viewProj); // Vertex multiplied by the worldViewProjMatrix.
 
     output.outColour = input.inColour;
 

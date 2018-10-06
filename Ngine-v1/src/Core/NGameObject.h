@@ -5,6 +5,8 @@
 
 #include "Helpers/NMaths.h"
 
+class NRenderer;
+
 class NGameObject 
 {
 public:
@@ -17,7 +19,7 @@ public:
 
 	// Renders the object on screen.
 	// TODO - Have renderer register components then draw.
-	virtual void Render() = 0;
+	virtual void Render(NRenderer* renderer) = 0;
 
 private:
 	
