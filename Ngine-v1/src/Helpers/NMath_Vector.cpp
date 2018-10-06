@@ -1,4 +1,4 @@
-#include "MMath_Vector.h"
+#include "NMath_Vector.h"
 
 NMath::Vector3::Vector3()
 	:vector(DirectX::XMVectorSet(0.0f,0.0f,0.0f,1.0f))
@@ -30,7 +30,7 @@ void NMath::Vector3::setz(float z)
 	vector = DirectX::XMVectorSetZ(vector, z);
 }
 
-DirectX::XMFLOAT4 NMath::Vector3::getVectorAsFloat()
+DirectX::XMFLOAT4 NMath::Vector3::getRawVectorAsFloat()
 {
 	DirectX::XMFLOAT4 vec;
 	vec.x = DirectX::XMVectorGetX(vector);

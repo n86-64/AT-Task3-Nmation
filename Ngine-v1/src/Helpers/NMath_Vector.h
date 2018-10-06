@@ -23,7 +23,7 @@ namespace NMath
 		void setY(float y);
 		void setz(float z);
 
-		DirectX::XMFLOAT4  getVectorAsFloat();
+		DirectX::XMFLOAT4  getRawVectorAsFloat();
 		DirectX::XMVECTOR  getRawVector();
 
 		// TODO - Add operator overloads for performing vector operations.

@@ -28,7 +28,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	return true;
 }
 
-void NGame::Update()
+void NGame::Tick()
 {
 	renderer.Clear(); // Clear the screen with a render target of some form.
 

@@ -20,6 +20,7 @@
     <ClCompile Include="..\src\Helpers\NMath_Colour.cpp">
       <Filter>Helpers\Maths</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Helpers\MMath_Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -45,6 +46,9 @@
     </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{a846587c-bafc-4d32-a135-df5e377e38dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects">
+      <UniqueIdentifier>{3adcb8b9-3e74-42a5-b439-79da60cdc268}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +81,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Helpers\NMath_Colour.h">
       <Filter>Helpers\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\MMath_Vector.h">
+      <Filter>Helpers\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\GameObject.h">
+      <Filter>Core\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

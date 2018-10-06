@@ -4,3 +4,6 @@
 // Discription - Brings all of the Math headers together in one.
 
 #include "NMath_Colour.h"
+#include "NMath_Vector.h"
+
+
