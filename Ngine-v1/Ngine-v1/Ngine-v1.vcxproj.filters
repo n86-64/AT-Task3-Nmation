@@ -20,7 +20,12 @@
     <ClCompile Include="..\src\Helpers\NMath_Colour.cpp">
       <Filter>Helpers\Maths</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Helpers\MMath_Vector.cpp" />
+    <ClCompile Include="..\src\Helpers\NMath_Vector.cpp">
+      <Filter>Helpers\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\GameObject.cpp">
+      <Filter>Core\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -82,11 +87,11 @@
     <ClInclude Include="..\src\Helpers\NMath_Colour.h">
       <Filter>Helpers\Maths</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Helpers\MMath_Vector.h">
-      <Filter>Helpers\Maths</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Core\GameObject.h">
       <Filter>Core\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\NMath_Vector.h">
+      <Filter>Helpers\Maths</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

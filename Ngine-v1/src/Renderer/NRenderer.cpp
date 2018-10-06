@@ -43,6 +43,8 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 
 void NRenderer::Clear()
 {
+	deviceContext->OMSetRenderTargets(1, &gameFrame, depthStencilConfiguration);
+
 	NMath::Colour  clearColour(1.0f, 0.0f, 0.0f, 1.0f);
 	deviceContext->ClearRenderTargetView(gameFrame, clearColour.getColourArray());
 	deviceContext->ClearDepthStencilView(depthStencilConfiguration, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 0.0f, 0);
@@ -59,7 +61,6 @@ bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererCon
 	UINT deviceFlags;
 
 	const D3D_FEATURE_LEVEL d3dFeatures[] = {
-		D3D_FEATURE_LEVEL_11_1,
 		D3D_FEATURE_LEVEL_11_0,
 		D3D_FEATURE_LEVEL_10_1,
 		D3D_FEATURE_LEVEL_10_0
@@ -91,6 +92,7 @@ bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererCon
 	swapchainDiscription.BufferDesc.Height = parameters.height;
 	swapchainDiscription.BufferDesc.RefreshRate.Numerator = 60;
 	swapchainDiscription.BufferDesc.RefreshRate.Denominator = 1;
+	swapchainDiscription.SwapEffect = DXGI_SWAP_EFFECT_DISCARD; // TODO - Consider changing to a double buffer model with flipping.
 
 	hr = D3D11CreateDeviceAndSwapChain(
 		NULL,
@@ -207,7 +209,7 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 	dsTexDescription.Height = backbufferDesc.Height;
 	dsTexDescription.MipLevels = 1;
 	dsTexDescription.ArraySize = 1;
-	dsTexDescription.Format = DXGI_FORMAT_D32_FLOAT_S8X24_UINT;
+	dsTexDescription.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
 	dsTexDescription.SampleDesc.Count = 1;
 	dsTexDescription.SampleDesc.Quality = 0;
 	dsTexDescription.Usage = D3D11_USAGE_DEFAULT;
@@ -225,6 +227,7 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 
 	// Now we have a texture to render the depth buffer to. 
 	// We can create and setup the depth-stencil state.
+	// TODO - Consider removing this.
 	D3D11_DEPTH_STENCIL_DESC  dsDescription = {};
 	
 	// Depth Test Settings.
@@ -255,7 +258,7 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 
 	D3D11_DEPTH_STENCIL_VIEW_DESC  DepthStencilViewDesc = {};
 	DepthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
-	DepthStencilViewDesc.Format = DXGI_FORMAT_D32_FLOAT_S8X24_UINT;
+	DepthStencilViewDesc.Format = dsTexDescription.Format;
 	DepthStencilViewDesc.Texture2D.MipSlice = 0;
 
 	hr = renderDevice->CreateDepthStencilView(depthStencilTextureBuffer, &DepthStencilViewDesc, &depthStencilConfiguration);
@@ -265,9 +268,6 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 		MessageBox(NULL, "Failed to create depth-stencil view.", "NGine Direct3D Error", MB_ICONERROR | MB_OK);
 		return false;
 	}
-	// Not needed by default as swapchain is already created and bound to the device.
 
-	deviceContext->OMSetRenderTargets(1, &gameFrame, depthStencilConfiguration); 
-	
 	return true;
 }
