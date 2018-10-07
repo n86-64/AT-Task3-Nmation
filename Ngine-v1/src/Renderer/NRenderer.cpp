@@ -55,6 +55,11 @@ void NRenderer::Present()
 	swapChain->Present(0, 0); // Draw The Screen.
 }
 
+void NRenderer::setMainCamera(NCamera* camera)
+{
+	mainCamera = camera;
+}
+
 bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters)
 {
 	HRESULT  hr = 0;

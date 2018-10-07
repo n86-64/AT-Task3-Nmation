@@ -8,6 +8,8 @@
 #include "Renderer/NRendererDevice.h"
 #include "Helpers/NMaths.h"
 
+class NCamera;
+
 // Renderer initialiser info
 // Defines a set of constants for rendering the images.
 struct NRendererConfig 
@@ -39,6 +41,12 @@ public:
 	// Activate the swapchain and present the backbuffer frame to the screen. 
 	void Present();
 
+	
+
+	// Renderer Interfacing
+	void setMainCamera(NCamera* camera);
+
+
 private:
 	// Setup functions.
 	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters);
@@ -68,4 +76,7 @@ private:
 	ID3D11Texture2D*		  depthStencilTextureBuffer = nullptr;
 	ID3D11DepthStencilView*   depthStencilConfiguration = nullptr;
 	ID3D11DepthStencilState*   depthStencilState = nullptr;
+
+private:
+	NCamera*				  mainCamera = nullptr;
 };

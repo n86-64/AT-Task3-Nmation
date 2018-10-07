@@ -1,6 +1,10 @@
 #include <string>
 #include "NGame.h"
 
+
+// Game Objects to put in the scene.
+#include "Camera.h"
+
 // DEPRECATED
 void NGame::init(NWindowHandle* window, std::string gameTitle)
 {
@@ -24,6 +28,13 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 		ShutDown();
 		return false;
 	}
+
+#pragma region TEST_SCENE_SETUP
+	// Here we set up a basic test scene.
+	scene_objects.push_back(std::make_unique<NCamera>());
+	renderer.setMainCamera((NCamera*)scene_objects[0].get());
+#pragma endregion
+
 
 	return true;
 }
