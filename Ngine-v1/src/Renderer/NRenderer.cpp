@@ -4,6 +4,8 @@
 
 #include "Renderer/NMaterial.h"
 
+#include "Core/Triangle.h"
+
 constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
 
@@ -80,6 +82,12 @@ NMaterial* NRenderer::createMaterial(std::string name)
 void NRenderer::setMainCamera(NCamera* camera)
 {
 	mainCamera = camera;
+}
+
+void NRenderer::setupTriangle(Triangle* resource)
+{
+	// Setup the triangle data buffers.
+
 }
 
 bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters)

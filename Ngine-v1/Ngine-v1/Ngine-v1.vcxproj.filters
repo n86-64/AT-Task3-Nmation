@@ -29,8 +29,15 @@
     <ClCompile Include="..\src\Core\Camera.cpp">
       <Filter>Core\GameObjects\Core Objects\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Renderer\NMaterial.cpp" />
-    <ClCompile Include="..\src\Helpers\FileReaderBinary.cpp" />
+    <ClCompile Include="..\src\Renderer\NMaterial.cpp">
+      <Filter>Core\Renderer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Helpers\FileReaderBinary.cpp">
+      <Filter>Helpers\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Triangle.cpp">
+      <Filter>Core\GameObjects\Core Objects\Test Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -74,6 +81,9 @@
     </Filter>
     <Filter Include="Core\GameObjects\Core Objects\Test Objects">
       <UniqueIdentifier>{193479be-fa28-4c17-83f6-6e29b48c8f0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Input">
+      <UniqueIdentifier>{1692d906-200d-4a91-8e29-de1a28a6dfc2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +131,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Helpers\FileReaderBinary.h">
       <Filter>Helpers\FileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Triangle.h">
+      <Filter>Core\GameObjects\Core Objects\Test Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\ShaderInput.h">
+      <Filter>Core\Renderer\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

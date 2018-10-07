@@ -5,15 +5,7 @@
 
 #include <string>
 #include "Helpers/Direct3D.h"
-#include "Helpers/NMaths.h"
 
-// The Data structure for inputs to a material.
-// TODO - Add support for textures and lighting. 
-struct VertexInput 
-{
-	DirectX::XMFLOAT4   pos;
-	DirectX::XMFLOAT4	col;
-};
 
 class NMaterial 
 {

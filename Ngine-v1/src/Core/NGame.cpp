@@ -3,6 +3,7 @@
 
 // Includes the game objects for the test scene.
 #include "Camera.h"
+#include "Triangle.h"
 
 // DEPRECATED
 void NGame::init(NWindowHandle* window, std::string gameTitle)
@@ -34,7 +35,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	renderer.setMainCamera((NCamera*)scene_objects[0].get());
 
 	NMaterial* testMat = renderer.createMaterial("Test");
-	if (testMat) { delete testMat; testMat = nullptr; }
+	Triangle* testTriangle = new Triangle(testMat);
 #pragma endregion
 
 

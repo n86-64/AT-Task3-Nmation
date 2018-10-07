@@ -10,6 +10,7 @@
 
 class NCamera;
 class NMaterial;
+class Triangle;
 
 // Renderer initialiser info
 // Defines a set of constants for rendering the images.
@@ -46,6 +47,9 @@ public:
 
 	// Renderer Interfacing
 	void setMainCamera(NCamera* camera);
+
+	// TODO - Create DrawTriangle afunction
+	void setupTriangle(Triangle* resource);
 
 private:
 	// Setup functions.
