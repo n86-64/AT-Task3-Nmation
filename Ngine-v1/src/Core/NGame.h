@@ -7,8 +7,8 @@
 #include "Core/NWinEvent.h"
 #include "Renderer/NRenderer.h"
 #include "Helpers/Platform.h"
-
 #include "NGameObject.h"
+
 
 class NGame 
 {

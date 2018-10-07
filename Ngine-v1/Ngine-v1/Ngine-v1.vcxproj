@@ -129,6 +129,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Core\Camera.cpp" />
     <ClCompile Include="..\src\Core\NGameObject.cpp" />
     <ClCompile Include="..\src\Core\NGame.cpp" />
     <ClCompile Include="..\src\Core\NWindow.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="..\src\Renderer\NRendererDevice.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\Core\Camera.h" />
     <ClInclude Include="..\src\Core\NGameObject.h" />
     <ClInclude Include="..\src\Core\NGame.h" />
     <ClInclude Include="..\src\Core\NWindow.h" />

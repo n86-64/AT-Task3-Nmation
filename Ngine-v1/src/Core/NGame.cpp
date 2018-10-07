@@ -1,8 +1,7 @@
 #include <string>
 #include "NGame.h"
 
-
-// Game Objects to put in the scene.
+// Includes the game objects for the test scene.
 #include "Camera.h"
 
 // DEPRECATED
