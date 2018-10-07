@@ -1,4 +1,5 @@
 #include "NMaterial.h"
+#include "Helpers/FileReaderBinary.h"
 
 NMaterial::NMaterial(std::string newMaterialName)
 	:materialName(newMaterialName)
@@ -23,19 +24,40 @@ ID3D11PixelShader* NMaterial::getFragmentShader()
 	return fragShader;
 }
 
-bool NMaterial::loadVertexShader(std::string name)
+bool NMaterial::loadVertexShader(std::string name, ID3D11Device* device)
 {
+	HRESULT hr = S_OK;
 	ReleaseMaterialResources(vertexShader);
-	loadShaders(name, vertexShader);
-	return vertexShader;
+	FileReaderBinary  file(name + ".cso");
+
+	if (file.openFile()) 
+	{
+		hr = device->CreateVertexShader((void*)file.getFileData(), file.getFileSize(), nullptr, &vertexShader);
+		return SUCCEEDED(hr);
+	}
+	else 
+	{
+		return false;
+	}
 }
 
-bool NMaterial::loadFragShader(std::string name)
+bool NMaterial::loadFragShader(std::string name, ID3D11Device* device)
 {
+	HRESULT hr = S_OK;
 	ReleaseMaterialResources(fragShader);
-	loadShaders(name, fragShader);
-	return fragShader;
+	FileReaderBinary  file(name + ".cso");
+
+	if (file.openFile())
+	{
+		hr = device->CreatePixelShader((void*)file.getFileData(), file.getFileSize(), nullptr, &fragShader);
+		return SUCCEEDED(hr);
+	}
+	else
+	{
+		return false;
+	}
 }
+
 
 void NMaterial::ReleaseMaterialResources(ID3D11DeviceChild * shaderResource)
 {
@@ -44,10 +66,5 @@ void NMaterial::ReleaseMaterialResources(ID3D11DeviceChild * shaderResource)
 		shaderResource->Release();
 		shaderResource = nullptr;
 	}
-}
-
-void NMaterial::loadShaders(std::string shaderName, ID3D11DeviceChild * shaderObject)
-{
-
 }
 

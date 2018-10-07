@@ -9,6 +9,7 @@
 #include "Helpers/NMaths.h"
 
 class NCamera;
+class NMaterial;
 
 // Renderer initialiser info
 // Defines a set of constants for rendering the images.
@@ -41,11 +42,10 @@ public:
 	// Activate the swapchain and present the backbuffer frame to the screen. 
 	void Present();
 
-	
+	NMaterial* createMaterial(std::string name);
 
 	// Renderer Interfacing
 	void setMainCamera(NCamera* camera);
-
 
 private:
 	// Setup functions.

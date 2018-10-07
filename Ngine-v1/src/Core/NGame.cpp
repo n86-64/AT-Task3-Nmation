@@ -29,9 +29,12 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	}
 
 #pragma region TEST_SCENE_SETUP
-	// Here we set up a basic test scene.
+	// Here we set up a basic test scene. (Will be deprecated)
 	scene_objects.push_back(std::make_unique<NCamera>());
 	renderer.setMainCamera((NCamera*)scene_objects[0].get());
+
+	NMaterial* testMat = renderer.createMaterial("Test");
+	if (testMat) { delete testMat; testMat = nullptr; }
 #pragma endregion
 
 

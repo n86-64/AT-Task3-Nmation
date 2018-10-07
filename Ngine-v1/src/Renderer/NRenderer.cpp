@@ -2,6 +2,8 @@
 
 #include "Helpers/NMath_Colour.h"
 
+#include "Renderer/NMaterial.h"
+
 constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
 
@@ -53,6 +55,26 @@ void NRenderer::Clear()
 void NRenderer::Present()
 {
 	swapChain->Present(0, 0); // Draw The Screen.
+}
+
+// TODO - Define a version of this which takes a file and uses that to create a material. 
+// Then Setup the shader.
+NMaterial* NRenderer::createMaterial(std::string name) 
+{
+	bool loadSuccessful = false;
+	NMaterial*  newMat = new NMaterial(name);
+
+	// Setup the Materials (TODO - Add the ability to set shaders.)
+	loadSuccessful = newMat->loadVertexShader("BasicVertex", renderDevice);
+	loadSuccessful = newMat->loadFragShader("BasicPixel", renderDevice);
+
+	if (!loadSuccessful) 
+	{ 
+		delete newMat;
+		newMat = nullptr;
+	}
+
+	return newMat;
 }
 
 void NRenderer::setMainCamera(NCamera* camera)
