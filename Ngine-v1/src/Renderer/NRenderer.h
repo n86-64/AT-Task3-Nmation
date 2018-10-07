@@ -49,7 +49,7 @@ public:
 	void setMainCamera(NCamera* camera);
 
 	// TODO - Create DrawTriangle afunction
-	void setupTriangle(Triangle* resource);
+	bool setupTriangle(Triangle* resource);
 
 private:
 	// Setup functions.
@@ -57,6 +57,7 @@ private:
 	bool setupRenderingPipelineRasterizer(NRendererConfig& params);
 	bool setupRenderingPipelineOutputMerger(NRendererConfig& params);
 	bool setupRenderingPipelineDepthStencil(NRendererConfig& params);
+	bool setupRenderingMatrix();
 
 	// Represents the selected graphics adapter.
 	// NRenderDevice				graphicsAdapter;
@@ -83,4 +84,11 @@ private:
 
 private:
 	NCamera*				  mainCamera = nullptr;
+
+private:
+	// Rendering constants
+
+
+private:
+	void UpdateRenderState();
 };

@@ -1,5 +1,7 @@
 #include "Triangle.h"
 
+#include "Renderer/NMaterial.h"
+
 Triangle::Triangle(NMaterial * material)
 	:mat(material)
 {
@@ -24,6 +26,27 @@ void Triangle::Render(NRenderer* renderer)
 
 }
 
+bool Triangle::SetupBuffers(ID3D11Device* device)
+{
+	HRESULT hr = S_OK;
+
+	hr = device->CreateBuffer(&vertexBufferDesc, &vdata, &vertexBuffer);
+	hr = device->CreateBuffer(&indexBufferDesc, &idata, &indexBuffer);
+
+	return SUCCEEDED(hr);
+}
+
+ID3D11Buffer* Triangle::getVertexBuffer()
+{
+	return vertexBuffer;
+}
+
+ID3D11Buffer* Triangle::getIndexBuffer()
+{
+	return indexBuffer;
+}
+
+
 void Triangle::createObjectDiscriptors()
 {
 	vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -47,5 +70,4 @@ void Triangle::createObjectDiscriptors()
 	idata.pSysMem = &indicies;
 	idata.SysMemPitch = 0;
 	idata.SysMemSlicePitch = 0;
-
 }

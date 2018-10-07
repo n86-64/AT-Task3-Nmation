@@ -20,6 +20,11 @@ public:
 	void Update() override;
 	void Render(NRenderer* renderer) override;
 
+	bool SetupBuffers(ID3D11Device* device);
+
+	ID3D11Buffer* getVertexBuffer();
+	ID3D11Buffer* getIndexBuffer(); 
+
 private:
 	void createObjectDiscriptors(); // Creates a vertex and index buffer for the object.
 

@@ -36,6 +36,15 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 	NMaterial* testMat = renderer.createMaterial("Test");
 	Triangle* testTriangle = new Triangle(testMat);
+
+	if (!renderer.setupTriangle(testTriangle)) 
+	{
+		ShutDown();
+		return false;
+	}
+
+	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle)); // TODO - Have scene manager automagiclly get renderer to setup drawables. 
+
 #pragma endregion
 
 
@@ -98,4 +107,5 @@ void NGame::ShutDown()
 {
 	// Clean up the engine and then terminate cleanly.
 	gameWindow.CloseWindow();
+	scene_objects.clear();
 }

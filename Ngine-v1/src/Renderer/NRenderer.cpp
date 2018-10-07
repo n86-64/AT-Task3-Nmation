@@ -41,6 +41,7 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 	result = setupRenderingPipelineRasterizer(parameters);
 	result = setupRenderingPipelineOutputMerger(parameters);
 	result = setupRenderingPipelineDepthStencil(parameters);
+	result = setupRenderingMatrix();
 
 	return result;
 }
@@ -52,6 +53,7 @@ void NRenderer::Clear()
 	NMath::Colour  clearColour(1.0f, 0.0f, 0.0f, 1.0f);
 	deviceContext->ClearRenderTargetView(gameFrame, clearColour.getColourArray());
 	deviceContext->ClearDepthStencilView(depthStencilConfiguration, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 0.0f, 0);
+	UpdateRenderState();
 }
 
 void NRenderer::Present()
@@ -84,10 +86,9 @@ void NRenderer::setMainCamera(NCamera* camera)
 	mainCamera = camera;
 }
 
-void NRenderer::setupTriangle(Triangle* resource)
+bool NRenderer::setupTriangle(Triangle* resource)
 {
-	// Setup the triangle data buffers.
-
+	return resource->SetupBuffers(renderDevice);
 }
 
 bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters)
@@ -298,6 +299,8 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 
 	hr = renderDevice->CreateDepthStencilView(depthStencilTextureBuffer, &DepthStencilViewDesc, &depthStencilConfiguration);
 
+	deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
 	if (FAILED(hr))
 	{
 		MessageBox(NULL, "Failed to create depth-stencil view.", "NGine Direct3D Error", MB_ICONERROR | MB_OK);
@@ -305,4 +308,15 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 	}
 
 	return true;
+}
+
+bool NRenderer::setupRenderingMatrix()
+{
+	return true;
+}
+
+void NRenderer::UpdateRenderState()
+{
+	// Updates constant buffers before allowing objects to draw and then present. 
+	// Base update on the assigned rendering camera.
 }
