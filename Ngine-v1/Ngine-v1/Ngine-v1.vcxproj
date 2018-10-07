@@ -137,6 +137,7 @@
     <ClCompile Include="..\src\Helpers\NMath_Colour.cpp" />
     <ClCompile Include="..\src\Helpers\NMath_Vector.cpp" />
     <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Renderer\NMaterial.cpp" />
     <ClCompile Include="..\src\Renderer\NRenderer.cpp" />
     <ClCompile Include="..\src\Renderer\NRendererDevice.cpp" />
   </ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="..\src\Helpers\NMath_Vector.h" />
     <ClInclude Include="..\src\Helpers\Platform.h" />
     <ClInclude Include="..\src\Helpers\Win32Ref.h" />
+    <ClInclude Include="..\src\Renderer\NMaterial.h" />
     <ClInclude Include="..\src\Renderer\NRenderer.h" />
     <ClInclude Include="..\src\Renderer\NRendererDevice.h" />
   </ItemGroup>

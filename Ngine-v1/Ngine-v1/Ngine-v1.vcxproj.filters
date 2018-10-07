@@ -29,6 +29,7 @@
     <ClCompile Include="..\src\Core\Camera.cpp">
       <Filter>Core\GameObjects\Core Objects\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Renderer\NMaterial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -70,6 +71,9 @@
     <Filter Include="Core\GameObjects\Core Objects\Camera">
       <UniqueIdentifier>{677a0724-e79d-4b9e-af11-6844d3ecd851}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\GameObjects\Core Objects\Test Objects">
+      <UniqueIdentifier>{193479be-fa28-4c17-83f6-6e29b48c8f0a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -110,6 +114,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\Camera.h">
       <Filter>Core\GameObjects\Core Objects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\NMaterial.h">
+      <Filter>Core\Renderer\Materials</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
