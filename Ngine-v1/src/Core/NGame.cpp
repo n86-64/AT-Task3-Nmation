@@ -44,7 +44,6 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	}
 
 	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle)); // TODO - Have scene manager automagiclly get renderer to setup drawables. 
-
 #pragma endregion
 
 

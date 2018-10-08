@@ -1,11 +1,13 @@
 #include "Triangle.h"
 
+#include "Renderer/NRenderer.h"
 #include "Renderer/NMaterial.h"
 
-Triangle::Triangle(NMaterial * material)
+Triangle::Triangle(NMaterial* material)
 	:mat(material)
 {
 	createObjectDiscriptors();
+	position = NMath::Vector3(1.0f, 1.0f, 1.0f);
 }
 
 Triangle::~Triangle()
@@ -23,7 +25,7 @@ void Triangle::Update()
 void Triangle::Render(NRenderer* renderer)
 {
 	// Here we draw the triangle. 
-
+	renderer->DrawTriangle(this);
 }
 
 bool Triangle::SetupBuffers(ID3D11Device* device)
@@ -46,6 +48,11 @@ ID3D11Buffer* Triangle::getIndexBuffer()
 	return indexBuffer;
 }
 
+NMaterial* Triangle::getMaterial()
+{
+	return mat;
+}
+
 
 void Triangle::createObjectDiscriptors()
 {
@@ -58,7 +65,7 @@ void Triangle::createObjectDiscriptors()
 
 	indexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
 	indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-	indexBufferDesc.ByteWidth = sizeof(unsigned short) * ARRAYSIZE(indicies);
+	indexBufferDesc.ByteWidth = sizeof(unsigned int) * ARRAYSIZE(indicies);
 	indexBufferDesc.StructureByteStride = 0;
 	indexBufferDesc.MiscFlags = 0;
 	indexBufferDesc.CPUAccessFlags = 0;

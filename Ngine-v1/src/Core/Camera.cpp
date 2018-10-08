@@ -2,6 +2,7 @@
 
 NCamera::NCamera()
 {
+	position = NMath::Vector3(0.0f, 1.0f, -5.0f);
 }
 
 void NCamera::Update()

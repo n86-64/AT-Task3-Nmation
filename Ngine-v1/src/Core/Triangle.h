@@ -25,6 +25,10 @@ public:
 	ID3D11Buffer* getVertexBuffer();
 	ID3D11Buffer* getIndexBuffer(); 
 
+	NMaterial*   getMaterial();
+
+	int getIndexCount() { return ARRAYSIZE(indicies); }
+
 private:
 	void createObjectDiscriptors(); // Creates a vertex and index buffer for the object.
 
@@ -51,6 +55,6 @@ private:
 	{
 		{ DirectX::XMFLOAT4(-0.5f, -0.5f, 0.0f, 1.0f), DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f)},
 		{ DirectX::XMFLOAT4(0.0f,  0.5f, 0.0f, 1.0f),  DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f)},
-		{ DirectX::XMFLOAT4(0.0f,  0.5f, 0.0f, 1.0f),  DirectX::XMFLOAT4(0.0f, 0.0f, .0f, 1.0f)}
+		{ DirectX::XMFLOAT4(0.5f,  -0.5f, 0.0f, 1.0f),  DirectX::XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f)}
 	};
 };

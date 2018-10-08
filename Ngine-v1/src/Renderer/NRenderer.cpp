@@ -4,6 +4,7 @@
 
 #include "Renderer/NMaterial.h"
 
+#include "Core/Camera.h"
 #include "Core/Triangle.h"
 
 constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
@@ -11,6 +12,8 @@ constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
 NRenderer::~NRenderer()
 {
+	constBuffer->Release();
+
 	depthStencilTextureBuffer->Release();
 	depthStencilConfiguration->Release();
 	depthStencilState->Release();
@@ -50,9 +53,8 @@ void NRenderer::Clear()
 {
 	deviceContext->OMSetRenderTargets(1, &gameFrame, depthStencilConfiguration);
 
-	NMath::Colour  clearColour(1.0f, 0.0f, 0.0f, 1.0f);
 	deviceContext->ClearRenderTargetView(gameFrame, clearColour.getColourArray());
-	deviceContext->ClearDepthStencilView(depthStencilConfiguration, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 0.0f, 0);
+	deviceContext->ClearDepthStencilView(depthStencilConfiguration, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	UpdateRenderState();
 }
 
@@ -89,6 +91,33 @@ void NRenderer::setMainCamera(NCamera* camera)
 bool NRenderer::setupTriangle(Triangle* resource)
 {
 	return resource->SetupBuffers(renderDevice);
+}
+
+void NRenderer::DrawTriangle(Triangle* resource)
+{
+	// Here we set up our view matrix.
+	DirectX::XMMATRIX   model = DirectX::XMMatrixMultiply(DirectX::XMMatrixTranslationFromVector(resource->getPosition().getRawVector()), DirectX::XMMatrixIdentity());
+	mvpMatracies.mvMatrix = DirectX::XMMatrixMultiply(model, view);
+	mvpMatracies.mvMatrix = DirectX::XMMatrixTranspose(mvpMatracies.mvMatrix);
+	deviceContext->UpdateSubresource(constBuffer, 0, nullptr, &mvpMatracies, 0, 0);
+
+	deviceContext->IASetInputLayout(resource->getMaterial()->getInputLayout());
+
+	ID3D11Buffer* vBuffer = resource->getVertexBuffer(); // Allows an array of elements to be passed in.
+
+	// Set buffers
+	UINT stride = sizeof(VertexInput);
+	UINT offset = 0;
+	deviceContext->IASetVertexBuffers(0, 1, &vBuffer, &stride, &offset);
+	deviceContext->IASetIndexBuffer(resource->getIndexBuffer(), DXGI_FORMAT_R32_UINT, 0);
+
+	deviceContext->VSSetShader(resource->getMaterial()->getVertexShader(), nullptr, 0);
+	deviceContext->VSSetConstantBuffers(0, 1, &constBuffer);
+
+	deviceContext->PSSetShader(resource->getMaterial()->getFragmentShader(), nullptr, 0);
+
+	// DRAW! DRAW! DRAW!
+	deviceContext->DrawIndexed(resource->getIndexCount(), 0, 0);
 }
 
 bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters)
@@ -162,10 +191,10 @@ bool NRenderer::setupRenderingPipelineRasterizer(NRendererConfig& params)
 	D3D11_VIEWPORT         viewport;
 	viewport.Width = (float)params.width;
 	viewport.Height = (float)params.height;
-	viewport.MinDepth = 0;
-	viewport.MaxDepth = 1;
-	viewport.TopLeftX = 0;
-	viewport.TopLeftY = 0;
+	viewport.MinDepth = D3D11_MIN_DEPTH;
+	viewport.MaxDepth = D3D11_MAX_DEPTH;
+	viewport.TopLeftX = 0.0f;
+	viewport.TopLeftY = 0.0f;
 	deviceContext->RSSetViewports(1, &viewport);
 
 	D3D11_RECT  rect;
@@ -201,7 +230,7 @@ bool NRenderer::setupRenderingPipelineRasterizer(NRendererConfig& params)
 		return false;
 	}
 
-	deviceContext->RSSetState(rasterizerState);
+	//deviceContext->RSSetState(rasterizerState);
 
 	return true;
 }
@@ -290,7 +319,7 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 	dsDescription.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
 	renderDevice->CreateDepthStencilState(&dsDescription, &depthStencilState);
-	deviceContext->OMSetDepthStencilState(depthStencilState, 1);
+//	deviceContext->OMSetDepthStencilState(depthStencilState, 1);
 
 	D3D11_DEPTH_STENCIL_VIEW_DESC  DepthStencilViewDesc = {};
 	DepthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
@@ -312,11 +341,35 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 
 bool NRenderer::setupRenderingMatrix()
 {
-	return true;
+	HRESULT  hr = S_OK;
+
+	D3D11_BUFFER_DESC   constBufferDesc = {0};
+	constBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	constBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	constBufferDesc.ByteWidth = sizeof(cBufferMatrix);
+	constBufferDesc.CPUAccessFlags = 0;
+	constBufferDesc.StructureByteStride = 0;
+	constBufferDesc.MiscFlags = 0;
+
+	hr = renderDevice->CreateBuffer(&constBufferDesc, nullptr, &constBuffer);
+
+	return SUCCEEDED(hr);
 }
 
 void NRenderer::UpdateRenderState()
 {
 	// Updates constant buffers before allowing objects to draw and then present. 
 	// Base update on the assigned rendering camera.
+
+	// Setup Main camera and construct matrix.
+	view = DirectX::XMMatrixLookAtLH(
+		mainCamera->getPosition().getRawVector(),
+		DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f),
+		DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f)
+	);
+
+	mvpMatracies.projMatrix = DirectX::XMMatrixTranspose
+	(
+		DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToDegrees(90.0f), 1280 / 720, mainCamera->getCameraNearZ(), mainCamera->getCameraFarZ())
+	);
 }

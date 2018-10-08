@@ -5,6 +5,8 @@
 
 #include "Helpers/NMaths.h"
 
+#include "Helpers/Direct3D.h"
+
 // The Data structure for inputs to a material.
 // TODO - Add support for textures and lighting. 
 struct VertexInput

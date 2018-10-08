@@ -8,6 +8,8 @@
 #include "Renderer/NRendererDevice.h"
 #include "Helpers/NMaths.h"
 
+#include "ShaderInput.h"
+
 class NCamera;
 class NMaterial;
 class Triangle;
@@ -51,7 +53,12 @@ public:
 	// TODO - Create DrawTriangle afunction
 	bool setupTriangle(Triangle* resource);
 
+	void DrawTriangle(Triangle* resource); // Inefficent but ensures that the rendering is correct. 
+
 private:
+	NMath::Colour    clearColour = NMath::Colour(0.0f, 0.0f, 0.0f, 1.0f);
+
+
 	// Setup functions.
 	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters);
 	bool setupRenderingPipelineRasterizer(NRendererConfig& params);
@@ -87,7 +94,11 @@ private:
 
 private:
 	// Rendering constants
+	ID3D11Buffer*			  constBuffer = nullptr;
 
+	// The MVP Matrix.
+	cBufferMatrix			  mvpMatracies;
+	DirectX::XMMATRIX		  view;
 
 private:
 	void UpdateRenderState();

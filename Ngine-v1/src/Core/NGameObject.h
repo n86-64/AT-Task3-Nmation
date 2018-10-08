@@ -21,7 +21,9 @@ public:
 	// TODO - Have renderer register components then draw.
 	virtual void Render(NRenderer* renderer) = 0;
 
-private:
+	NMath::Vector3  getPosition();
+
+protected:
 	
 	/* 3D Object Transforms. (Allows us to render these objects.) */
 	NMath::Vector3  position; // The position of the object in 3D space. 

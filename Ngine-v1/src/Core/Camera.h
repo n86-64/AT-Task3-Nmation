@@ -21,6 +21,6 @@ public:
 private:
 	NMath::Vector3    cameraViewport;
 
-	float nearZ = 0.1f, farZ = 101.0f;  // Camera bounding volumes
+	float nearZ = 0.1f, farZ = 110.0f;  // Camera bounding volumes
 	float fov;
 };
