@@ -1,10 +1,14 @@
 #pragma once
 
-// The NGame class will go here.
 
+#include <vector>
+
+// The NGame class will go here.
 #include "Core/NWinEvent.h"
-#include "Core/NWindow.h"
+#include "Renderer/NRenderer.h"
 #include "Helpers/Platform.h"
+#include "NGameObject.h"
+
 
 class NGame 
 {
@@ -17,6 +21,11 @@ public:
 	// Initialises the engine.
 	bool init(NWindowHandle* window, NInitSettings launchParams);
 
+	// Update routienes
+	void Tick();
+	void Update();
+	void Render();
+
 	// Retreive Window events from Windowing systems. 
 	void ProcessWindowEvents(NWinEvent winEvent);
 
@@ -24,9 +33,12 @@ public:
 
 private:
 	// Here we will store the games components.
-	NWindow  gameWindow;
+	NWindow     gameWindow;
+	NRenderer   renderer;
+
+	// Temporary Scene Manager - TODO: Build a scene manager
+	std::vector<std::unique_ptr<NGameObject>>	scene_objects;
 
 	void ShutDown();
-
 	bool quit = false;
 };

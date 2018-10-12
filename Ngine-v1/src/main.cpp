@@ -56,8 +56,8 @@ int WINAPI WinMain(
 		WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
-		800,
-		600,
+		200,
+		400,
 		NULL,
 		NULL,
 		hInstance,
@@ -90,12 +90,16 @@ int WINAPI WinMain(
 			else 
 			{
 				// tick the game here.
-
+				Application::game.Tick();
 			}
 		}
 	}
+	else 
+	{
+		return 1; // TODO - Impliment error codes.
+	}
 
-	return (int)msg.lParam;
+	return 0;
 }
 
 // Application callback function.

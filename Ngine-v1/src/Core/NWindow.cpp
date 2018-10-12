@@ -29,6 +29,18 @@ void NWindow::setWindowTitle(std::string newWindowTitle)
 	SetWindowText(*windowObject, newWindowTitle.c_str());
 }
 
+void NWindow::setWindowSize(int width, int height)
+{
+	RECT newRect = {};
+	GetWindowRect(*windowObject, &newRect);
+
+	newRect.right = width;
+	newRect.bottom = height;
+
+	AdjustWindowRect(&newRect, WS_OVERLAPPEDWINDOW, FALSE);
+	SetWindowPos(*windowObject, HWND_TOP, newRect.left, newRect.top, newRect.right, newRect.bottom, SWP_SHOWWINDOW);
+}
+
 void NWindow::CloseWindow()
 {
 	if (windowObject) 

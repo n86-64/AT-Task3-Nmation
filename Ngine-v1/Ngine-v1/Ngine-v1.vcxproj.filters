@@ -11,6 +11,33 @@
     <ClCompile Include="..\src\Core\NGame.cpp">
       <Filter>Core\Game</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Renderer\NRenderer.cpp">
+      <Filter>Core\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\NRendererDevice.cpp">
+      <Filter>Core\Renderer\On Hold</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Helpers\NMath_Colour.cpp">
+      <Filter>Helpers\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Helpers\NMath_Vector.cpp">
+      <Filter>Helpers\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NGameObject.cpp">
+      <Filter>Core\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Camera.cpp">
+      <Filter>Core\GameObjects\Core Objects\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\NMaterial.cpp">
+      <Filter>Core\Renderer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Helpers\FileReaderBinary.cpp">
+      <Filter>Helpers\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Triangle.cpp">
+      <Filter>Core\GameObjects\Core Objects\Test Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -24,6 +51,39 @@
     </Filter>
     <Filter Include="Core\Game">
       <UniqueIdentifier>{e7a13d4f-9a13-485f-8d02-88d334045f32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer">
+      <UniqueIdentifier>{3f57e9a1-f66a-4403-8ab4-d81e66d8dbe0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\On Hold">
+      <UniqueIdentifier>{fd8b4ba4-b078-47f7-abd1-4a86c4a9851d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Maths">
+      <UniqueIdentifier>{5d8c6bf6-8b94-4e7f-9b93-b08f7f6af00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{a846587c-bafc-4d32-a135-df5e377e38dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects">
+      <UniqueIdentifier>{3adcb8b9-3e74-42a5-b439-79da60cdc268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Materials">
+      <UniqueIdentifier>{45147e03-7fbc-4221-a55a-c6e72d668a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Core Objects">
+      <UniqueIdentifier>{98260894-6f47-40a7-82f1-6ac2d489ddc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\FileIO">
+      <UniqueIdentifier>{80b7b06e-89ce-4f1e-825e-f05a692c2c55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Core Objects\Camera">
+      <UniqueIdentifier>{677a0724-e79d-4b9e-af11-6844d3ecd851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Core Objects\Test Objects">
+      <UniqueIdentifier>{193479be-fa28-4c17-83f6-6e29b48c8f0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Input">
+      <UniqueIdentifier>{1692d906-200d-4a91-8e29-de1a28a6dfc2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,5 +102,49 @@
     <ClInclude Include="..\src\Helpers\Platform.h">
       <Filter>Helpers</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Renderer\NRenderer.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\Direct3D.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\NRendererDevice.h">
+      <Filter>Core\Renderer\On Hold</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\NMaths.h">
+      <Filter>Helpers\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\NMath_Colour.h">
+      <Filter>Helpers\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\NMath_Vector.h">
+      <Filter>Helpers\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NGameObject.h">
+      <Filter>Core\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Camera.h">
+      <Filter>Core\GameObjects\Core Objects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\NMaterial.h">
+      <Filter>Core\Renderer\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\FileReaderBinary.h">
+      <Filter>Helpers\FileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Triangle.h">
+      <Filter>Core\GameObjects\Core Objects\Test Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\ShaderInput.h">
+      <Filter>Core\Renderer\Input</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\src\Shaders\BasicVertex.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\src\Shaders\BasicPixel.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
