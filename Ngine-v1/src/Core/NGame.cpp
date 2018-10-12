@@ -54,6 +54,7 @@ void NGame::Tick()
 {
 	Update();
 	Render();
+	input.resetStates();
 }
 
 void NGame::Update()
@@ -62,6 +63,11 @@ void NGame::Update()
 	{
 		// Update the objects.
 		scene_objects[i]->Update();
+	}
+
+	if (input.getKeyDown(NKeyboardKeys::KEY_A)) 
+	{
+		OutputDebugString("LOL keys down \n");
 	}
 }
 
@@ -87,6 +93,12 @@ void NGame::ProcessWindowEvents(NWinEvent winEvent)
 
 	switch (message.message) 
 	{
+	case WM_KEYDOWN:
+	case WM_KEYUP:
+	case WM_SYSKEYUP:
+	case WM_SYSKEYDOWN:
+		input.updateKeyboardState(winEvent);
+		break;
 	case WM_DESTROY:
 		ShutDown();
 		quit = true;

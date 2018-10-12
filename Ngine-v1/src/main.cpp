@@ -112,6 +112,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	// These will be processed within the engine.
 	switch (message) 
 	{
+	case WM_KEYDOWN:
+	case WM_KEYUP:
+	case WM_SYSKEYUP:
+	case WM_SYSKEYDOWN:
 	case WM_DESTROY:
 	case WM_SIZE:
 		Application::game.ProcessWindowEvents(winEvent);

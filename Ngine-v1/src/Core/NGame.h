@@ -8,6 +8,7 @@
 #include "Renderer/NRenderer.h"
 #include "Helpers/Platform.h"
 #include "NGameObject.h"
+#include "InputHandler.h"
 
 
 class NGame 
@@ -33,8 +34,10 @@ public:
 
 private:
 	// Here we will store the games components.
-	NWindow     gameWindow;
-	NRenderer   renderer;
+	NWindow				gameWindow;
+	NRenderer			renderer;
+	NInputHandler		input;
+
 
 	// Temporary Scene Manager - TODO: Build a scene manager
 	std::vector<std::unique_ptr<NGameObject>>	scene_objects;
