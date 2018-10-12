@@ -29,6 +29,6 @@ private:
 	NKeyboardState			 keyboardState;
 	NKeyboardState			 prevKeyboardState;
 
-	NMouseButtonState		 mouseState;
-	NMouseButtonState		 prevMouseState;
+	NMouseState		 mouseState;
+	NMouseState		 prevMouseState;
 };

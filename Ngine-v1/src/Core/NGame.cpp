@@ -62,7 +62,7 @@ void NGame::Update()
 	for (int i = 0; i < scene_objects.size(); ++i) 
 	{
 		// Update the objects.
-		scene_objects[i]->Update();
+		scene_objects[i]->Update(&input);
 	}
 
 	if (input.getKeyDown(NKeyboardKeys::KEY_A)) 

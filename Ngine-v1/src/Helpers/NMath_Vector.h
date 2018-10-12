@@ -21,7 +21,7 @@ namespace NMath
 		void setVectorValues(float x, float y, float z);
 		void setX(float x);
 		void setY(float y);
-		void setz(float z);
+		void setZ(float z);
 
 		DirectX::XMFLOAT4  getRawVectorAsFloat();
 		DirectX::XMVECTOR  getRawVector();

@@ -10,6 +10,21 @@ NMath::Vector3::Vector3(float x, float y, float z)
 {
 }
 
+float NMath::Vector3::x()
+{
+	return DirectX::XMVectorGetX(vector);
+}
+
+float NMath::Vector3::y()
+{
+	return DirectX::XMVectorGetY(vector);
+}
+
+float NMath::Vector3::z()
+{
+	return DirectX::XMVectorGetZ(vector);
+}
+
 void NMath::Vector3::setVectorValues(float x, float y, float z)
 {
 	vector = DirectX::XMVectorSet(x, y, z, 1.0f);
@@ -25,7 +40,7 @@ void NMath::Vector3::setY(float y)
 	vector = DirectX::XMVectorSetY(vector, y);
 }
 
-void NMath::Vector3::setz(float z)
+void NMath::Vector3::setZ(float z)
 {
 	vector = DirectX::XMVectorSetZ(vector, z);
 }
