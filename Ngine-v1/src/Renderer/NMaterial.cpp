@@ -25,7 +25,7 @@ ID3D11PixelShader* NMaterial::getFragmentShader()
 	return fragShader;
 }
 
-ID3D11InputLayout * NMaterial::getInputLayout()
+ID3D11InputLayout* NMaterial::getInputLayout()
 {
 	return matInput;
 }
@@ -63,6 +63,11 @@ bool NMaterial::loadFragShader(std::string name, ID3D11Device* device)
 	{
 		return false;
 	}
+}
+
+bool NMaterial::createInputLayout(ID3D11Device * device)
+{
+	return false;
 }
 
 

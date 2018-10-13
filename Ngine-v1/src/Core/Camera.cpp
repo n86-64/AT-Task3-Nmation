@@ -5,9 +5,13 @@ NCamera::NCamera()
 	position = NMath::Vector3(0.0f, 1.0f, -5.0f);
 }
 
-void NCamera::Update()
+void NCamera::Update(NInputHandler* input)
 {
-
+	if (input->getKeyDown(NKeyboardKeys::KEY_A)) 
+	{
+		testX += 0.1f;
+		position.setX(position.x() + sin(testX));
+	}
 }
 
 void NCamera::Render(NRenderer* renderer)

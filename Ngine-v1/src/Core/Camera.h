@@ -10,7 +10,7 @@ class NCamera : public NGameObject
 public:
 	NCamera();
 
-	void Update() override;
+	void Update(NInputHandler* input) override;
 	void Render(NRenderer* renderer) override;
 
 	float getCameraNearZ();
@@ -23,4 +23,6 @@ private:
 
 	float nearZ = 0.1f, farZ = 110.0f;  // Camera bounding volumes
 	float fov;
+
+	float testX = 0.0f;
 };

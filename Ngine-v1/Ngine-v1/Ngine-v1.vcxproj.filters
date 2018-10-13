@@ -38,6 +38,9 @@
     <ClCompile Include="..\src\Core\Triangle.cpp">
       <Filter>Core\GameObjects\Core Objects\Test Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\InputHandler.cpp">
+      <Filter>Core\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -84,6 +87,9 @@
     </Filter>
     <Filter Include="Core\Renderer\Input">
       <UniqueIdentifier>{1692d906-200d-4a91-8e29-de1a28a6dfc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Input">
+      <UniqueIdentifier>{0588713e-f6eb-45f3-a66b-b606dc510d90}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +143,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Renderer\ShaderInput.h">
       <Filter>Core\Renderer\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\InputHandler.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\InputState.h">
+      <Filter>Core\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

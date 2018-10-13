@@ -41,10 +41,14 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 
 	bool result;
 	result = setupDeviceAndSwapchain(windowHadle, parameters);
-	result = setupRenderingPipelineRasterizer(parameters);
-	result = setupRenderingPipelineOutputMerger(parameters);
-	result = setupRenderingPipelineDepthStencil(parameters);
-	result = setupRenderingMatrix();
+
+	if (result) 
+	{
+		result = setupRenderingPipelineRasterizer(parameters);
+		result = setupRenderingPipelineOutputMerger(parameters);
+		result = setupRenderingPipelineDepthStencil(parameters);
+		result = setupRenderingMatrix();
+	}
 
 	return result;
 }

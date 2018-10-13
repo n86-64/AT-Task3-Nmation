@@ -17,7 +17,7 @@ Triangle::~Triangle()
 	if (indexBuffer) { indexBuffer->Release(); }
 }
 
-void Triangle::Update()
+void Triangle::Update(NInputHandler * input)
 {
 	return;
 }

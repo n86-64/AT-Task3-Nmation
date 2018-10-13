@@ -21,6 +21,8 @@ public:
 	bool loadVertexShader(std::string name, ID3D11Device* device);
 	bool loadFragShader(std::string name, ID3D11Device* device);
 
+	bool createInputLayout(ID3D11Device* device);
+
 private:
 	std::string  materialName;
 

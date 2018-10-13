@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Helpers/NMaths.h"
+#include "InputHandler.h"
 
 class NRenderer;
 
@@ -15,7 +16,7 @@ public:
 	// Consider adding a pre-tick and post tick.
 	// TODO - Implimenting Timing values.
 	// Updates the engine each frame.
-	virtual void Update() = 0;
+	virtual void Update(NInputHandler* input) = 0;
 
 	// Renders the object on screen.
 	// TODO - Have renderer register components then draw.
