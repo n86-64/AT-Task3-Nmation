@@ -72,16 +72,26 @@ void NRenderer::Present()
 NMaterial* NRenderer::createMaterial(std::string name) 
 {
 	bool loadSuccessful = false;
-	NMaterial*  newMat = new NMaterial(name);
+	NMaterial*  newMat = nullptr;
 
-	// Setup the Materials (TODO - Add the ability to set shaders.)
-	loadSuccessful = newMat->loadVertexShader("BasicVertex", renderDevice);
-	loadSuccessful = newMat->loadFragShader("BasicPixel", renderDevice);
+	newMat = searchMaterials(name);
 
-	if (!loadSuccessful) 
-	{ 
-		delete newMat;
-		newMat = nullptr;
+	if (!newMat) 
+	{
+		newMat = new NMaterial(name);
+		// Setup the Materials (TODO - Add the ability to set shaders.)
+		loadSuccessful = newMat->loadVertexShader("BasicVertex", renderDevice);
+		loadSuccessful = newMat->loadFragShader("BasicPixel", renderDevice);
+
+		if (!loadSuccessful)
+		{
+			delete newMat;
+			newMat = nullptr;
+		}
+		else 
+		{
+			materialBuffer.push_back(std::unique_ptr<NMaterial>(newMat));
+		}
 	}
 
 	return newMat;
@@ -162,6 +172,7 @@ bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererCon
 	swapchainDiscription.BufferDesc.RefreshRate.Numerator = 60;
 	swapchainDiscription.BufferDesc.RefreshRate.Denominator = 1;
 	swapchainDiscription.SwapEffect = DXGI_SWAP_EFFECT_DISCARD; // TODO - Consider changing to a double buffer model with flipping.
+	swapchainDiscription.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
 	hr = D3D11CreateDeviceAndSwapChain(
 		NULL,
@@ -234,7 +245,7 @@ bool NRenderer::setupRenderingPipelineRasterizer(NRendererConfig& params)
 		return false;
 	}
 
-	//deviceContext->RSSetState(rasterizerState);
+	deviceContext->RSSetState(rasterizerState);
 
 	return true;
 }
@@ -377,4 +388,17 @@ void NRenderer::UpdateRenderState()
 	(
 		DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToDegrees(90.0f), 1280 / 720, mainCamera->getCameraNearZ(), mainCamera->getCameraFarZ())
 	);
+}
+
+NMaterial* NRenderer::searchMaterials(std::string name)
+{
+	for (int i = 0; i < materialBuffer.size(); i++) 
+	{
+		if (materialBuffer[i]->getShaderName() == name) 
+		{
+			return materialBuffer[i].get();
+		}
+	}
+
+	return nullptr;
 }

@@ -6,6 +6,7 @@ NMaterial::NMaterial(std::string newMaterialName)
 {
 	// TODO - Add routiene to load a material which states what shader to load.
 	// Shaders to load will be determined by a file. This is provided to the system.
+
 }
 
 NMaterial::~NMaterial()
@@ -23,6 +24,11 @@ ID3D11VertexShader* NMaterial::getVertexShader()
 ID3D11PixelShader* NMaterial::getFragmentShader()
 {
 	return fragShader;
+}
+
+ID3D11GeometryShader * NMaterial::getGeometryShader()
+{
+	return nullptr;
 }
 
 ID3D11InputLayout* NMaterial::getInputLayout()
@@ -65,9 +71,20 @@ bool NMaterial::loadFragShader(std::string name, ID3D11Device* device)
 	}
 }
 
-bool NMaterial::createInputLayout(ID3D11Device * device)
+bool NMaterial::createInputLayout(ID3D11Device* device)
 {
 	return false;
+}
+
+bool NMaterial::loadShaders()
+{
+
+	return false;
+}
+
+std::string NMaterial::getShaderName() const
+{
+	return materialName;
 }
 
 
@@ -78,5 +95,10 @@ void NMaterial::ReleaseMaterialResources(ID3D11DeviceChild * shaderResource)
 		shaderResource->Release();
 		shaderResource = nullptr;
 	}
+}
+
+void NMaterial::ReleaseShaders()
+{
+
 }
 

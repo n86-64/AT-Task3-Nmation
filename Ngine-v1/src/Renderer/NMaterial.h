@@ -4,8 +4,10 @@
 #pragma once
 
 #include <string>
+#include <map>
 #include "Helpers/Direct3D.h"
 
+const int NMAT_SHADER_TYPE_COUNT = 3;
 
 class NMaterial 
 {
@@ -16,6 +18,7 @@ public:
 	// Retrieve the shaders for the Direct3D pipeline. 
 	ID3D11VertexShader*  getVertexShader();
 	ID3D11PixelShader*   getFragmentShader();
+	ID3D11GeometryShader* getGeometryShader();
 	ID3D11InputLayout*   getInputLayout();
 
 	bool loadVertexShader(std::string name, ID3D11Device* device);
@@ -23,14 +26,15 @@ public:
 
 	bool createInputLayout(ID3D11Device* device);
 
+	bool loadShaders();
+
+	std::string getShaderName() const; 
+
 private:
 	std::string  materialName;
 
 	void ReleaseMaterialResources(ID3D11DeviceChild*  shaderResource);
-
-	// Depricated.
-	std::string vertexShaderName;
-	std::string fragShaderName;
+	void ReleaseShaders();
 
 	// Shaders
 	ID3D11VertexShader*   vertexShader = nullptr;
@@ -46,4 +50,7 @@ private:
 	};
 
 	ID3D11InputLayout*    matInput = nullptr;
+
+	// Shaders stored in an array.
+	ID3D11DeviceChild*    materialShaders[NMAT_SHADER_TYPE_COUNT] = {nullptr, nullptr, nullptr};
 };

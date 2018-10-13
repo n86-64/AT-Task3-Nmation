@@ -36,7 +36,10 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	renderer.setMainCamera((NCamera*)scene_objects[0].get());
 
 	NMaterial* testMat = renderer.createMaterial("Test");
+	NMaterial* testMat2 = renderer.createMaterial("Test");
+
 	Triangle* testTriangle = new Triangle(testMat);
+	Triangle* testTriangle2 = new Triangle(testMat2);
 	testTriangle->addComponent(new TestComp());
 
 	if (!renderer.setupTriangle(testTriangle)) 
@@ -45,7 +48,8 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 		return false;
 	}
 
-	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle)); // TODO - Have scene manager automagiclly get renderer to setup drawables. 
+	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle));
+	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle2));// TODO - Have scene manager automagiclly get renderer to setup drawables. 
 #pragma endregion
 
 

@@ -2,6 +2,8 @@
 
 // File - NRenderer.h
 // Discription - Defines the renderer that the engine will use.
+#include <vector>
+
 
 #include "Core/NWindow.h"
 #include "Helpers/Direct3D.h"
@@ -9,9 +11,9 @@
 #include "Helpers/NMaths.h"
 
 #include "ShaderInput.h"
+#include "NMaterial.h"
 
 class NCamera;
-class NMaterial;
 class Triangle;
 
 // Renderer initialiser info
@@ -58,7 +60,6 @@ public:
 private:
 	NMath::Colour    clearColour = NMath::Colour(0.0f, 0.0f, 0.0f, 1.0f);
 
-
 	// Setup functions.
 	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters);
 	bool setupRenderingPipelineRasterizer(NRendererConfig& params);
@@ -102,4 +103,8 @@ private:
 
 private:
 	void UpdateRenderState();
+
+private:
+	std::vector<std::unique_ptr<NMaterial>>  materialBuffer; // Allows Materials of a set name to be loaded from a cache. 
+	NMaterial*   searchMaterials(std::string name);
 };
