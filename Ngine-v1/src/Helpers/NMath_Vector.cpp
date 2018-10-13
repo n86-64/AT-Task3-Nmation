@@ -60,3 +60,14 @@ DirectX::XMVECTOR NMath::Vector3::getRawVector()
 {
 	return vector;
 }
+
+NMath::Vector3 NMath::Vector3::operator+(NMath::Vector3 vec)
+{
+	// Adds the vectors together so that w = 1.
+	return NMath::Vector3(this->x() + vec.x(), this->y() + vec.y(), this->z() + vec.z());
+}
+
+NMath::Vector3 NMath::Vector3::operator-(NMath::Vector3 vec)
+{
+	return NMath::Vector3(this->x() - vec.x(), this->y() - vec.y(), this->z() - vec.z());
+}

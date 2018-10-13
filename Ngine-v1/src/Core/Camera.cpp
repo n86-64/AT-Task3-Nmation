@@ -34,3 +34,15 @@ void NCamera::setCameraBoundsZ(float nearPos, float farPos)
 	nearZ = nearPos;
 	farZ = farPos;
 }
+
+NMath::Vector3 NCamera::getCameraLookAt()
+{
+	if (cameraTarget) 
+	{
+		return cameraTarget->getPosition();
+	}
+	else 
+	{
+		return position + cameraForward;
+	}
+}

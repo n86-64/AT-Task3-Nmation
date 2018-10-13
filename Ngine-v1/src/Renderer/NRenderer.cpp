@@ -366,9 +366,10 @@ void NRenderer::UpdateRenderState()
 	// Base update on the assigned rendering camera.
 
 	// Setup Main camera and construct matrix.
+
 	view = DirectX::XMMatrixLookAtLH(
 		mainCamera->getPosition().getRawVector(),
-		DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f),
+		mainCamera->getCameraLookAt().getRawVector(),
 		DirectX::XMVectorSet(0.0f, 1.0f, 0.0f, 1.0f)
 	);
 

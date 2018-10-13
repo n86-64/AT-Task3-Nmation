@@ -27,6 +27,8 @@ namespace NMath
 		DirectX::XMVECTOR  getRawVector();
 
 		// TODO - Add operator overloads for performing vector operations.
+		NMath::Vector3 operator+(NMath::Vector3 vec);
+		NMath::Vector3 operator-(NMath::Vector3 vec);
 
 		// public vector constants.
 
