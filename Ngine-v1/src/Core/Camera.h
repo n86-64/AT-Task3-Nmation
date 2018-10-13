@@ -23,4 +23,6 @@ private:
 
 	float nearZ = 0.1f, farZ = 110.0f;  // Camera bounding volumes
 	float fov;
+
+	float testX = 0.0f;
 };

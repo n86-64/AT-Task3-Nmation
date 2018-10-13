@@ -54,7 +54,7 @@ void NGame::Tick()
 {
 	Update();
 	Render();
-	input.resetStates();
+	input.updateStates();
 }
 
 void NGame::Update()
@@ -65,9 +65,11 @@ void NGame::Update()
 		scene_objects[i]->Update(&input);
 	}
 
-	if (input.getKeyDown(NKeyboardKeys::KEY_A)) 
+	// TEMPORARY, do not keep
+	if (input.getKeyDown(KEY_ESCAPE)) 
 	{
-		OutputDebugString("LOL keys down \n");
+		ShutDown();
+		quit = true;
 	}
 }
 
@@ -98,6 +100,20 @@ void NGame::ProcessWindowEvents(NWinEvent winEvent)
 	case WM_SYSKEYUP:
 	case WM_SYSKEYDOWN:
 		input.updateKeyboardState(winEvent);
+		break;
+	case WM_INPUT:
+	case WM_MOUSEMOVE:
+	case WM_LBUTTONDOWN:
+	case WM_LBUTTONUP:
+	case WM_RBUTTONDOWN:
+	case WM_RBUTTONUP:
+	case WM_MBUTTONDOWN:
+	case WM_MBUTTONUP:
+	case WM_MOUSEWHEEL:
+	case WM_XBUTTONDOWN:
+	case WM_XBUTTONUP:
+	case WM_MOUSEHOVER:
+		input.updateMouseState(winEvent);
 		break;
 	case WM_DESTROY:
 		ShutDown();

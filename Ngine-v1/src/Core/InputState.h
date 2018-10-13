@@ -22,6 +22,12 @@ enum NKeyboardKeys
 // Defines each mouse key.
 enum NMouseButtons 
 {
+	BUTTON_LEFT = 0x01,
+	BUTTON_RIGHT = 0x02,
+	BUTTON_MBUTTON = 0x04,
+
+	BUTTON_1 = 0x05,
+	BUTTON_2 = 0x06
 };
 
 // Stores the state of the keyboard.
@@ -35,7 +41,7 @@ struct NKeyboardState
 struct NMouseState
 {
 	bool		buttonStates[NINPUT_NUMBER_OF_BUTTONS];
-	float		buttonXPos = 0.0f;
-	float		buttonYPos = 0.0f;
+	float		xPos = 0.0f;
+	float		yPos = 0.0f;
 	float		mouseWheel = 0.0f;
 };

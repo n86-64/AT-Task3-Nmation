@@ -21,8 +21,8 @@ public:
 	// retrieve key down state.
 	bool getKeyDown(NKeyboardKeys key);
 
+	void updateStates();
 
-	void resetStates();
 private:
 	// Double buffer allows for new types of input checks.
 	// Useful for text input etc.

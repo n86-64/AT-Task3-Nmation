@@ -9,7 +9,8 @@ void NCamera::Update(NInputHandler* input)
 {
 	if (input->getKeyDown(NKeyboardKeys::KEY_A)) 
 	{
-		position.setX(position.x() + 1.0f);
+		testX += 0.1f;
+		position.setX(position.x() + sin(testX));
 	}
 }
 
