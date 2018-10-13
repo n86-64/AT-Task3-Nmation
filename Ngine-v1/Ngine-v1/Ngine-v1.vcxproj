@@ -135,6 +135,7 @@
     <ClCompile Include="..\src\Core\NGame.cpp" />
     <ClCompile Include="..\src\Core\NWindow.cpp" />
     <ClCompile Include="..\src\Core\NWinEvent.cpp" />
+    <ClCompile Include="..\src\Core\TestComp.cpp" />
     <ClCompile Include="..\src\Core\Triangle.cpp" />
     <ClCompile Include="..\src\Helpers\FileReaderBinary.cpp" />
     <ClCompile Include="..\src\Helpers\NMath_Colour.cpp" />
@@ -148,10 +149,13 @@
     <ClInclude Include="..\src\Core\Camera.h" />
     <ClInclude Include="..\src\Core\InputHandler.h" />
     <ClInclude Include="..\src\Core\InputState.h" />
+    <ClInclude Include="..\src\Core\NComponent.h" />
     <ClInclude Include="..\src\Core\NGameObject.h" />
     <ClInclude Include="..\src\Core\NGame.h" />
+    <ClInclude Include="..\src\Core\NInitProperties.h" />
     <ClInclude Include="..\src\Core\NWindow.h" />
     <ClInclude Include="..\src\Core\NWinEvent.h" />
+    <ClInclude Include="..\src\Core\TestComp.h" />
     <ClInclude Include="..\src\Core\Triangle.h" />
     <ClInclude Include="..\src\Helpers\Direct3D.h" />
     <ClInclude Include="..\src\Helpers\FileReaderBinary.h" />

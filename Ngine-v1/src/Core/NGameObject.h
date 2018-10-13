@@ -3,8 +3,12 @@
 
 #pragma once
 
+#include <vector>
+
 #include "Helpers/NMaths.h"
-#include "InputHandler.h"
+#include "Core/InputHandler.h"
+
+#include "NComponent.h"
 
 class NRenderer;
 
@@ -16,16 +20,20 @@ public:
 	// Consider adding a pre-tick and post tick.
 	// TODO - Implimenting Timing values.
 	// Updates the engine each frame.
-	virtual void Update(NInputHandler* input) = 0;
+	virtual void Update(NInputHandler* input);
 
 	// Renders the object on screen.
 	// TODO - Have renderer register components then draw.
-	virtual void Render(NRenderer* renderer) = 0;
+	virtual void Render(NRenderer* renderer);
 
 	NMath::Vector3  getPosition();
 
+	// Add a component to the list.
+	void addComponent(NComponent* newComp);
+
 protected:
-	
+	std::vector<std::unique_ptr<NComponent>> objectComponents;
+
 	/* 3D Object Transforms. (Allows us to render these objects.) */
 	NMath::Vector3  position; // The position of the object in 3D space. 
 	NMath::Vector3	rotation; // The rotation of the object (represented via quaternions.)

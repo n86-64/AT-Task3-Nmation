@@ -4,6 +4,7 @@
 // Includes the game objects for the test scene.
 #include "Camera.h"
 #include "Triangle.h"
+#include "TestComp.h"
 
 // DEPRECATED
 void NGame::init(NWindowHandle* window, std::string gameTitle)
@@ -36,6 +37,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 	NMaterial* testMat = renderer.createMaterial("Test");
 	Triangle* testTriangle = new Triangle(testMat);
+	testTriangle->addComponent(new TestComp());
 
 	if (!renderer.setupTriangle(testTriangle)) 
 	{
@@ -55,6 +57,12 @@ void NGame::Tick()
 	Update();
 	Render();
 	input.updateStates();
+
+	// If quit is true we shutdown before exiting.
+	if (quit) 
+	{
+		ShutDown(); 
+	}
 }
 
 void NGame::Update()
@@ -68,7 +76,6 @@ void NGame::Update()
 	// TEMPORARY, do not keep
 	if (input.getKeyDown(KEY_ESCAPE)) 
 	{
-		ShutDown();
 		quit = true;
 	}
 }

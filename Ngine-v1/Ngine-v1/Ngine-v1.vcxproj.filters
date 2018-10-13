@@ -41,6 +41,9 @@
     <ClCompile Include="..\src\Core\InputHandler.cpp">
       <Filter>Core\Input</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\TestComp.cpp">
+      <Filter>Core\Components\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -90,6 +93,15 @@
     </Filter>
     <Filter Include="Core\Input">
       <UniqueIdentifier>{0588713e-f6eb-45f3-a66b-b606dc510d90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components">
+      <UniqueIdentifier>{6122d02d-2aec-4b6e-b6cc-64dfa28ebc17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Init">
+      <UniqueIdentifier>{f9244677-889b-4f82-ad80-60776d643db3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components\Test">
+      <UniqueIdentifier>{f2c3eb02-c48e-4457-8740-33f0208450d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +161,15 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\InputState.h">
       <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NComponent.h">
+      <Filter>Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NInitProperties.h">
+      <Filter>Core\GameObjects\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\TestComp.h">
+      <Filter>Core\Components\Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

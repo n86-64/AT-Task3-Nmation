@@ -19,6 +19,7 @@ Triangle::~Triangle()
 
 void Triangle::Update(NInputHandler * input)
 {
+	NGameObject::Update(input);
 	return;
 }
 
@@ -26,6 +27,7 @@ void Triangle::Render(NRenderer* renderer)
 {
 	// Here we draw the triangle. 
 	renderer->DrawTriangle(this);
+	NGameObject::Render(renderer); 
 }
 
 bool Triangle::SetupBuffers(ID3D11Device* device)
