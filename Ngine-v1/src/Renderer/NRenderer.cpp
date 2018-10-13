@@ -323,7 +323,7 @@ bool NRenderer::setupRenderingPipelineDepthStencil(NRendererConfig& params)
 	dsDescription.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
 	renderDevice->CreateDepthStencilState(&dsDescription, &depthStencilState);
-//	deviceContext->OMSetDepthStencilState(depthStencilState, 1);
+	deviceContext->OMSetDepthStencilState(depthStencilState, 1);
 
 	D3D11_DEPTH_STENCIL_VIEW_DESC  DepthStencilViewDesc = {};
 	DepthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
