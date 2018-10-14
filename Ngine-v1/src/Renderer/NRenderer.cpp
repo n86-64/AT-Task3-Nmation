@@ -78,12 +78,10 @@ NMaterial* NRenderer::createMaterial(std::string name)
 
 	if (!newMat) 
 	{
-		newMat = new NMaterial(name);
+		newMat = new NMaterial(name, renderDevice);
 		// Setup the Materials (TODO - Add the ability to set shaders.)
-		loadSuccessful = newMat->loadVertexShader("BasicVertex", renderDevice);
-		loadSuccessful = newMat->loadFragShader("BasicPixel", renderDevice);
 
-		if (!loadSuccessful)
+		if (!newMat->materialLoaded())
 		{
 			delete newMat;
 			newMat = nullptr;

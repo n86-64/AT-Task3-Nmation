@@ -35,8 +35,8 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	scene_objects.push_back(std::make_unique<NCamera>());
 	renderer.setMainCamera((NCamera*)scene_objects[0].get());
 
-	NMaterial* testMat = renderer.createMaterial("Test");
-	NMaterial* testMat2 = renderer.createMaterial("Test");
+	NMaterial* testMat = renderer.createMaterial("test");
+	NMaterial* testMat2 = renderer.createMaterial("test");
 
 	Triangle* testTriangle = new Triangle(testMat);
 	Triangle* testTriangle2 = new Triangle(testMat2);
