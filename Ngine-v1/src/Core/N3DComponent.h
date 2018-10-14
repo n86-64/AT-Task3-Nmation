@@ -21,6 +21,6 @@ public:
 	virtual void Render(NRenderer* renderer) override;
 
 private:
-	N3DMesh*    meshObject;
-	NMaterial*  meshMaterial;
+	N3DMesh*    meshObject = nullptr;
+	NMaterial*  meshMaterial = nullptr;
 };

@@ -127,6 +127,11 @@ void NRenderer::DrawTriangle(Triangle* resource)
 	deviceContext->DrawIndexed(resource->getIndexCount(), 0, 0);
 }
 
+void NRenderer::setMaterial()
+{
+
+}
+
 bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters)
 {
 	HRESULT  hr = 0;

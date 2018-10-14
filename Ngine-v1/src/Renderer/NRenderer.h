@@ -52,7 +52,6 @@ public:
 
 	NMaterial* createMaterial(std::string name);
 
-
 	// Renderer Interfacing
 	void setMainCamera(NCamera* camera);
 
@@ -60,6 +59,11 @@ public:
 	bool setupTriangle(Triangle* resource);
 
 	void DrawTriangle(Triangle* resource); // Inefficent but ensures that the rendering is correct. 
+
+public:
+	// Here are the public drawing functions.
+	void setMaterial();
+
 
 private:
 	NMath::Colour    clearColour = NMath::Colour(0.0f, 0.0f, 0.0f, 1.0f);

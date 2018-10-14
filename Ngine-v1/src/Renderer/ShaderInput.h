@@ -13,6 +13,7 @@ struct VertexInput
 {
 	DirectX::XMFLOAT4   pos;
 	DirectX::XMFLOAT4	col;
+	DirectX::XMFLOAT2	uv;
 };
 
 // Definitions for 3D projection. 
