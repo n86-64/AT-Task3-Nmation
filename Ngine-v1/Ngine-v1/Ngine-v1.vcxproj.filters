@@ -47,6 +47,7 @@
     <ClCompile Include="..\src\Helpers\JSONFileReader.cpp">
       <Filter>Helpers\FileIO\JSON</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\N3DMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -108,6 +109,12 @@
     </Filter>
     <Filter Include="Helpers\FileIO\JSON">
       <UniqueIdentifier>{e09e9be8-4269-4a11-aa12-dee97ed2fedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Objects">
+      <UniqueIdentifier>{343c32d0-8dc2-4e59-99a3-f092a1a08498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components\3D">
+      <UniqueIdentifier>{a20b1985-dbbb-43b0-99cc-343181fe47d0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +186,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Helpers\JSONFileReader.h">
       <Filter>Helpers\FileIO\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\N3DMesh.h">
+      <Filter>Core\Renderer\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\N3DComponent.h">
+      <Filter>Core\Components\3D</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -56,7 +56,6 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 void NRenderer::Clear()
 {
 	deviceContext->OMSetRenderTargets(1, &gameFrame, depthStencilConfiguration);
-
 	deviceContext->ClearRenderTargetView(gameFrame, clearColour.getColourArray());
 	deviceContext->ClearDepthStencilView(depthStencilConfiguration, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	UpdateRenderState();
@@ -71,9 +70,7 @@ void NRenderer::Present()
 // Then Setup the shader.
 NMaterial* NRenderer::createMaterial(std::string name) 
 {
-	bool loadSuccessful = false;
 	NMaterial*  newMat = nullptr;
-
 	newMat = searchMaterials(name);
 
 	if (!newMat) 

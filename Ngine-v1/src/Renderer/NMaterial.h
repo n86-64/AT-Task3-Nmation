@@ -16,15 +16,12 @@ enum NMaterialShaderTypes
 	SHADER_TYPE_GEOMETRY = 2
 };
 
+// TODO - Decouple so that shaders and material properties are seperate.
 class NMaterial 
 {
 public:
 	// Constructs the shader from a file.
 	NMaterial(std::string newMaterialName, ID3D11Device* device);
-	
-	// Depricated.
-	NMaterial(std::string newMaterialName);
-	
 	~NMaterial();
 
 	// Retrieve the shaders for the Direct3D pipeline. 
@@ -34,7 +31,6 @@ public:
 	ID3D11InputLayout*   getInputLayout();
 
 	std::string getShaderName() const; 
-
 	bool materialLoaded() const;
 
 private:
@@ -44,7 +40,6 @@ private:
 	void ReleaseMaterialResources(ID3D11DeviceChild*  shaderResource);
 
 	bool shadersLoaded = false;
-
 
 	bool loadVertexShader(std::string name, ID3D11Device* device);
 	bool loadFragShader(std::string name, ID3D11Device* device);

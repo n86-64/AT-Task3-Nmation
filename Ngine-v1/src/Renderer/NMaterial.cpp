@@ -32,13 +32,6 @@ NMaterial::NMaterial(std::string newMaterialName, ID3D11Device* device)
 	}
 }
 
-NMaterial::NMaterial(std::string newMaterialName)
-	:materialName(newMaterialName)
-{
-	// TODO - Add routiene to load a material which states what shader to load.
-	// Shaders to load will be determined by a file. This is provided to the system.
-}
-
 NMaterial::~NMaterial()
 {
 	ReleaseMaterialResources(matInput);

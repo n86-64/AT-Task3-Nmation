@@ -12,4 +12,4 @@ Three types of shaders identified via a number
 	- Frgament = 1,
 	- geometry = 2
 
-Properties are assigned sewperatly. (These will be )
+Properties are assigned seperatly. (These will be Material properties. )

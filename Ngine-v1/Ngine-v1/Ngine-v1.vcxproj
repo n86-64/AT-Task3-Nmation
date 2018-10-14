@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\Core\Camera.cpp" />
     <ClCompile Include="..\src\Core\InputHandler.cpp" />
+    <ClCompile Include="..\src\Core\N3DMesh.cpp" />
     <ClCompile Include="..\src\Core\NGameObject.cpp" />
     <ClCompile Include="..\src\Core\NGame.cpp" />
     <ClCompile Include="..\src\Core\NWindow.cpp" />
@@ -158,6 +159,8 @@
     <ClInclude Include="..\src\Core\Camera.h" />
     <ClInclude Include="..\src\Core\InputHandler.h" />
     <ClInclude Include="..\src\Core\InputState.h" />
+    <ClInclude Include="..\src\Core\N3DComponent.h" />
+    <ClInclude Include="..\src\Core\N3DMesh.h" />
     <ClInclude Include="..\src\Core\NComponent.h" />
     <ClInclude Include="..\src\Core\NGameObject.h" />
     <ClInclude Include="..\src\Core\NGame.h" />
