@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\Core\Camera.cpp" />
     <ClCompile Include="..\src\Core\InputHandler.cpp" />
+    <ClCompile Include="..\src\Core\N3DComponent.cpp" />
     <ClCompile Include="..\src\Core\N3DMesh.cpp" />
     <ClCompile Include="..\src\Core\NGameObject.cpp" />
     <ClCompile Include="..\src\Core\NGame.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="..\src\Helpers\NMaths.h" />
     <ClInclude Include="..\src\Helpers\NMath_Colour.h" />
     <ClInclude Include="..\src\Helpers\NMath_Vector.h" />
+    <ClInclude Include="..\src\Helpers\OBJ_Loader.h" />
     <ClInclude Include="..\src\Helpers\Platform.h" />
     <ClInclude Include="..\src\Helpers\Win32Ref.h" />
     <ClInclude Include="..\src\Renderer\NMaterial.h" />

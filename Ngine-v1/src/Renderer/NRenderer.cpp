@@ -68,6 +68,8 @@ void NRenderer::Present()
 // Then Setup the shader.
 NMaterial* NRenderer::createMaterial(std::string name) 
 {
+	N3DMesh mesh("bunny", renderDevice);
+
 	NMaterial*  newMat = nullptr;
 	newMat = searchMaterials(name);
 

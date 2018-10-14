@@ -50,6 +50,9 @@
     <ClCompile Include="..\src\Core\N3DMesh.cpp">
       <Filter>Core\Renderer\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\N3DComponent.cpp">
+      <Filter>Core\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -117,6 +120,9 @@
     </Filter>
     <Filter Include="Core\Components\3D">
       <UniqueIdentifier>{a20b1985-dbbb-43b0-99cc-343181fe47d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\FileIO\OBJLoader">
+      <UniqueIdentifier>{11ef84f3-c0ff-4ac5-bfbd-ef57945a8807}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -194,6 +200,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\N3DComponent.h">
       <Filter>Core\Components\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\OBJ_Loader.h">
+      <Filter>Helpers\FileIO\OBJLoader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
