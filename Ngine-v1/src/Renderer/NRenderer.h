@@ -11,7 +11,10 @@
 #include "Helpers/NMaths.h"
 
 #include "ShaderInput.h"
+
+// Resource Objects
 #include "NMaterial.h"
+#include "Core/N3DMesh.h"
 
 class NCamera;
 class Triangle;
@@ -48,6 +51,7 @@ public:
 	void Present();
 
 	NMaterial* createMaterial(std::string name);
+
 
 	// Renderer Interfacing
 	void setMainCamera(NCamera* camera);
@@ -106,5 +110,8 @@ private:
 
 private:
 	std::vector<std::unique_ptr<NMaterial>>  materialBuffer; // Allows Materials of a set name to be loaded from a cache. 
+	std::vector<std::unique_ptr<N3DMesh>>   meshBuffer;
+
 	NMaterial*   searchMaterials(std::string name);
+	N3DMesh*	 searchMesh(std::string name);
 };

@@ -6,6 +6,7 @@ struct VS_IN
 {
     float4 inVector : POSITION;
     float4 inColour : COLOR0;
+	float2 inUV     : TEXCOORD0;
 };
 
 
@@ -20,6 +21,7 @@ struct VS_OUT
 {
     float4 pos : SV_POSITION;
     float4 outColour : COLOR0;
+	float2 outUV : TEXCOORD0;
 };
 
 

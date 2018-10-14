@@ -54,10 +54,11 @@ private:
 	// Hence why define it per class.
 		// Definition for shader input layout
 	// Impliment custom input layouts on the
-	D3D11_INPUT_ELEMENT_DESC  shaderInput[2] =
+	D3D11_INPUT_ELEMENT_DESC  shaderInput[3] =
 	{
 		{"POSITION", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
 		{"COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 16, D3D11_INPUT_PER_VERTEX_DATA, 0},
+		{"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 32, D3D11_INPUT_PER_VERTEX_DATA, 0}
 	};
 
 	ID3D11InputLayout*    matInput = nullptr;

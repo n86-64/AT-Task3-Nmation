@@ -47,7 +47,9 @@
     <ClCompile Include="..\src\Helpers\JSONFileReader.cpp">
       <Filter>Helpers\FileIO\JSON</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Core\N3DMesh.cpp" />
+    <ClCompile Include="..\src\Core\N3DMesh.cpp">
+      <Filter>Core\Renderer\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">

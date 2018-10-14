@@ -1,9 +1,7 @@
 #include "NRenderer.h"
 
 #include "Helpers/NMath_Colour.h"
-
 #include "Renderer/NMaterial.h"
-
 #include "Core/Camera.h"
 #include "Core/Triangle.h"
 
@@ -392,6 +390,19 @@ NMaterial* NRenderer::searchMaterials(std::string name)
 		if (materialBuffer[i]->getShaderName() == name) 
 		{
 			return materialBuffer[i].get();
+		}
+	}
+
+	return nullptr;
+}
+
+N3DMesh* NRenderer::searchMesh(std::string name)
+{
+	for (int i = 0; i < meshBuffer.size(); i++)
+	{
+		if (meshBuffer[i]->getName() == name)
+		{
+			return meshBuffer[i].get();
 		}
 	}
 

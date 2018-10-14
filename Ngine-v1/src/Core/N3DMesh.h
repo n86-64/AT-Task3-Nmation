@@ -15,6 +15,8 @@ public:
 	// TODO - Add code to retreive model, vertex, uv data etc.
 	void loadMesh();
 
+	std::string getName() const;
+
 	DirectX::XMFLOAT4   getPositionVertex(int index);
 	DirectX::XMFLOAT4   getColourVertex(int index);
 	DirectX::XMFLOAT2   getTextureUVVertex(int index);
