@@ -28,4 +28,5 @@ private:
 	std::vector<DirectX::XMFLOAT2>    uv;
 	std::vector<DirectX::XMFLOAT4>   pos;
 	std::vector<DirectX::XMFLOAT4>   col;
+	std::vector<unsigned int>		 indicies;
 };
