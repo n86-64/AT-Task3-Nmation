@@ -1,6 +1,19 @@
 #include "NMaterial.h"
 #include "Helpers/FileReaderBinary.h"
 
+#include "Helpers/JSONFileReader.h"
+
+NMaterial::NMaterial(std::string newMaterialName, ID3D11Device* device)
+{
+	// Here we parse a file for creating the shader.
+	// Utalise my JSONFileParser here :).
+
+	JSONFileReader  matFile;
+	matFile.setFilePath("resources/materials/" + newMaterialName + ".nmat"); // Open up the material file.
+
+
+}
+
 NMaterial::NMaterial(std::string newMaterialName)
 	:materialName(newMaterialName)
 {

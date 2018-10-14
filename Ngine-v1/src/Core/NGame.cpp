@@ -41,6 +41,8 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	Triangle* testTriangle = new Triangle(testMat);
 	Triangle* testTriangle2 = new Triangle(testMat2);
 	testTriangle->addComponent(new TestComp());
+	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
+	testTriangle2->setPosition(NMath::Vector3(1.0f, 1.0f, 0.0f));
 
 	if (!renderer.setupTriangle(testTriangle)) 
 	{

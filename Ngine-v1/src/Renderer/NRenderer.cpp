@@ -386,7 +386,7 @@ void NRenderer::UpdateRenderState()
 
 	mvpMatracies.projMatrix = DirectX::XMMatrixTranspose
 	(
-		DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToDegrees(90.0f), 1280 / 720, mainCamera->getCameraNearZ(), mainCamera->getCameraFarZ())
+		DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(90.0f), 1280 / 720, mainCamera->getCameraNearZ(), mainCamera->getCameraFarZ())
 	);
 }
 

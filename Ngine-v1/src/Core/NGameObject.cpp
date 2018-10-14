@@ -21,6 +21,11 @@ NMath::Vector3 NGameObject::getPosition()
 	return position;
 }
 
+void NGameObject::setPosition(NMath::Vector3 newPos)
+{
+	position = newPos;
+}
+
 void NGameObject::addComponent(NComponent* newComp)
 {
 	objectComponents.push_back(std::unique_ptr<NComponent>(newComp));

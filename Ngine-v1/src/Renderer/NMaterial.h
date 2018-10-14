@@ -12,6 +12,7 @@ const int NMAT_SHADER_TYPE_COUNT = 3;
 class NMaterial 
 {
 public:
+	NMaterial(std::string newMaterialName, ID3D11Device* device); // Construct the shader here. 
 	NMaterial(std::string newMaterialName);
 	~NMaterial();
 

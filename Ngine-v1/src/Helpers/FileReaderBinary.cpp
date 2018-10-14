@@ -40,10 +40,12 @@ bool FileReaderBinary::openFile()
 		file = new char[size];
 		fileHandle.read(file, size); // Read the data into the buffer
 
+		fileHandle.close();
 		return true;
 	}
 	else
 	{
+		fileHandle.close();
 		return false;
 	}
 

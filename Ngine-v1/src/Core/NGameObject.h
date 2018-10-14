@@ -27,6 +27,7 @@ public:
 	virtual void Render(NRenderer* renderer);
 
 	NMath::Vector3  getPosition();
+	void		    setPosition(NMath::Vector3 newPos);
 
 	// Add a component to the list.
 	void addComponent(NComponent* newComp);
