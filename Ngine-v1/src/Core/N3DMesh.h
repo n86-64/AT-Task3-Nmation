@@ -21,6 +21,8 @@ public:
 	ID3D11Buffer*  getVertexBuffer();
 	ID3D11Buffer*  getIndexBuffer();
 
+	int			   getIndexCount() const;
+
 private:
 	std::string meshName = "Null mesh";
 

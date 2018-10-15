@@ -26,7 +26,7 @@ void Triangle::Update(NInputHandler * input)
 void Triangle::Render(NRenderer* renderer)
 {
 	// Here we draw the triangle. 
-	renderer->DrawTriangle(this);
+//	renderer->DrawTriangle(this);
 	NGameObject::Render(renderer); 
 }
 

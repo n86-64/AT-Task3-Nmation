@@ -51,6 +51,9 @@
       <Filter>Core\Renderer\Objects</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Core\N3DComponent.cpp">
+      <Filter>Core\Components\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NComponent.cpp">
       <Filter>Core\Components</Filter>
     </ClCompile>
   </ItemGroup>

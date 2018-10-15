@@ -6,6 +6,8 @@
 #include "Triangle.h"
 #include "TestComp.h"
 
+#include "N3DComponent.h"
+
 // DEPRECATED
 void NGame::init(NWindowHandle* window, std::string gameTitle)
 {
@@ -41,6 +43,13 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	Triangle* testTriangle = new Triangle(testMat);
 	Triangle* testTriangle2 = new Triangle(testMat2);
 	testTriangle->addComponent(new TestComp());
+
+	N3DComponent* comp = new N3DComponent();
+	comp->setGameObject(testTriangle);
+	comp->setMaterial(renderer.createMaterial("test"));
+	comp->setMesh(renderer.createMesh("bunny"));
+	testTriangle->addComponent(comp);
+
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
 	testTriangle2->setPosition(NMath::Vector3(1.0f, 1.0f, 0.0f));
 
@@ -55,6 +64,8 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 		ShutDown();
 		return false;
 	}
+
+
 
 	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle));
 	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle2));// TODO - Have scene manager automagiclly get renderer to setup drawables. 

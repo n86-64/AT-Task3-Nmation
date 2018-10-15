@@ -32,11 +32,13 @@ public:
 	// Add a component to the list.
 	void addComponent(NComponent* newComp);
 
+	NMath::Vector3   getTransformValue();
+
 protected:
 	std::vector<std::unique_ptr<NComponent>> objectComponents;
 
 	/* 3D Object Transforms. (Allows us to render these objects.) */
 	NMath::Vector3  position; // The position of the object in 3D space. 
 	NMath::Vector3	rotation; // The rotation of the object (represented via quaternions.)
-	NMath::Vector3  scale; // The scale of the object in 3D space. (By Default Set to 1)
+	NMath::Vector3  scale = NMath::Vector3(5.0f,5.0f,5.0f); // The scale of the object in 3D space. (By Default Set to 1)
 };

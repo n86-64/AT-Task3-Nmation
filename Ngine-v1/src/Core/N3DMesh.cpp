@@ -24,6 +24,11 @@ ID3D11Buffer * N3DMesh::getIndexBuffer()
 	return iBuffer;
 }
 
+int N3DMesh::getIndexCount() const
+{
+	return indicies.size();
+}
+
 void N3DMesh::loadMesh(std::string name)
 {
 	// Here we load the mesh (Currently only supports OBJ but can be expanded later.)
@@ -41,7 +46,7 @@ void N3DMesh::loadMesh(std::string name)
 		for (objl::Vertex v : object.LoadedMeshes[0].Vertices) 
 		{
 			pos = DirectX::XMFLOAT4(v.Position.X, v.Position.Y, v.Position.Z, 1.0f);
-			col = DirectX::XMFLOAT4(v.Normal.X, v.Normal.Y, v.Normal.Z, 1.0f);
+			col = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
 			uv = DirectX::XMFLOAT2(v.TextureCoordinate.X, v.TextureCoordinate.Y);
 
 			verticies[i] = VertexInput{ pos, col, uv };

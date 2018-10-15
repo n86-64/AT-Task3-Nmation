@@ -30,3 +30,8 @@ void NGameObject::addComponent(NComponent* newComp)
 {
 	objectComponents.push_back(std::unique_ptr<NComponent>(newComp));
 }
+
+NMath::Vector3 NGameObject::getTransformValue()
+{
+	return position * scale;
+}

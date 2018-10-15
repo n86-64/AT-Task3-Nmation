@@ -4,7 +4,6 @@
 // Discription - Defines the renderer that the engine will use.
 #include <vector>
 
-
 #include "Core/NWindow.h"
 #include "Helpers/Direct3D.h"
 #include "Renderer/NRendererDevice.h"
@@ -16,6 +15,7 @@
 #include "NMaterial.h"
 #include "Core/N3DMesh.h"
 
+class N3DComponent;
 class NCamera;
 class Triangle;
 
@@ -51,6 +51,7 @@ public:
 	void Present();
 
 	NMaterial* createMaterial(std::string name);
+	N3DMesh*   createMesh(std::string name);
 
 	// Renderer Interfacing
 	void setMainCamera(NCamera* camera);
@@ -59,6 +60,8 @@ public:
 	bool setupTriangle(Triangle* resource);
 
 	void DrawTriangle(Triangle* resource); // Inefficent but ensures that the rendering is correct. 
+
+	void DrawObject(N3DComponent* component);
 
 public:
 	// Here are the public drawing functions.

@@ -5,6 +5,8 @@
 #include "Core/Camera.h"
 #include "Core/Triangle.h"
 
+#include "Core/N3DComponent.h"
+
 constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
 
@@ -68,8 +70,6 @@ void NRenderer::Present()
 // Then Setup the shader.
 NMaterial* NRenderer::createMaterial(std::string name) 
 {
-	N3DMesh mesh("bunny", renderDevice);
-
 	NMaterial*  newMat = nullptr;
 	newMat = searchMaterials(name);
 
@@ -92,6 +92,14 @@ NMaterial* NRenderer::createMaterial(std::string name)
 	return newMat;
 }
 
+N3DMesh* NRenderer::createMesh(std::string name)
+{
+	// TODO - Add checks and buffering to prevent exessive reads and writes. 
+	N3DMesh* mesh = new N3DMesh(name, renderDevice);
+	meshBuffer.push_back(std::unique_ptr<N3DMesh>(mesh));
+	return mesh;
+}
+
 void NRenderer::setMainCamera(NCamera* camera)
 {
 	mainCamera = camera;
@@ -100,6 +108,34 @@ void NRenderer::setMainCamera(NCamera* camera)
 bool NRenderer::setupTriangle(Triangle* resource)
 {
 	return resource->SetupBuffers(renderDevice);
+}
+
+void NRenderer::DrawObject(N3DComponent* component) 
+{
+	NGameObject*    componentObject = component->getGameObject();
+	DirectX::XMMATRIX   model = DirectX::XMMatrixMultiply(DirectX::XMMatrixTranslationFromVector(componentObject->getTransformValue().getRawVector()), DirectX::XMMatrixIdentity());
+	mvpMatracies.mvMatrix = DirectX::XMMatrixMultiply(model, view);
+	mvpMatracies.mvMatrix = DirectX::XMMatrixTranspose(mvpMatracies.mvMatrix);
+
+	deviceContext->UpdateSubresource(constBuffer, 0, nullptr, &mvpMatracies, 0, 0);
+
+	deviceContext->IASetInputLayout(component->getMaterial()->getInputLayout());
+
+	ID3D11Buffer* vBuffer = component->getMesh()->getVertexBuffer(); // Allows an array of elements to be passed in.
+
+	// Set buffers
+	UINT stride = sizeof(VertexInput);
+	UINT offset = 0;
+	deviceContext->IASetVertexBuffers(0, 1, &vBuffer, &stride, &offset);
+	deviceContext->IASetIndexBuffer(component->getMesh()->getIndexBuffer(), DXGI_FORMAT_R32_UINT, 0);
+
+	deviceContext->VSSetShader(component->getMaterial()->getVertexShader(), nullptr, 0);
+	deviceContext->VSSetConstantBuffers(0, 1, &constBuffer);
+
+	deviceContext->PSSetShader(component->getMaterial()->getFragmentShader(), nullptr, 0);
+
+	// DRAW! DRAW! DRAW!
+	deviceContext->DrawIndexed(component->getMesh()->getIndexCount(), 0, 0);
 }
 
 void NRenderer::DrawTriangle(Triangle* resource)

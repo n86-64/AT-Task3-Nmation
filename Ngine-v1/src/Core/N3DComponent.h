@@ -20,6 +20,12 @@ public:
 	virtual void Update() override;
 	virtual void Render(NRenderer* renderer) override;
 
+	void setMesh(N3DMesh* newMesh);
+	void setMaterial(NMaterial* newMat);
+
+	N3DMesh*	getMesh();
+	NMaterial*  getMaterial();
+
 private:
 	N3DMesh*    meshObject = nullptr;
 	NMaterial*  meshMaterial = nullptr;

@@ -161,6 +161,7 @@
     <ClCompile Include="..\src\Core\InputHandler.cpp" />
     <ClCompile Include="..\src\Core\N3DComponent.cpp" />
     <ClCompile Include="..\src\Core\N3DMesh.cpp" />
+    <ClCompile Include="..\src\Core\NComponent.cpp" />
     <ClCompile Include="..\src\Core\NGameObject.cpp" />
     <ClCompile Include="..\src\Core\NGame.cpp" />
     <ClCompile Include="..\src\Core\NWindow.cpp" />
