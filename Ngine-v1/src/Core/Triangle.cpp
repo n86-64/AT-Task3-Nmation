@@ -7,7 +7,7 @@ Triangle::Triangle(NMaterial* material)
 	:mat(material)
 {
 	createObjectDiscriptors();
-	position = NMath::Vector3(1.0f, 1.0f, 1.0f);
+	// position = NMath::Vector3(1.0f, 1.0f, 1.0f);
 }
 
 Triangle::~Triangle()
@@ -19,6 +19,10 @@ Triangle::~Triangle()
 
 void Triangle::Update(NInputHandler * input)
 {
+	float speed = 0.000000001f;
+	rotation = rotation + NMath::Vector3(0.0f, 0.0f, -speed);
+	position = NMath::Vector3(DirectX::XMVector3Rotate(position.getRawVector(), DirectX::XMQuaternionRotationRollPitchYawFromVector(rotation.getRawVector())));
+
 	NGameObject::Update(input);
 	return;
 }

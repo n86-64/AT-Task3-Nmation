@@ -7,11 +7,13 @@ NCamera::NCamera()
 
 void NCamera::Update(NInputHandler* input)
 {
-	if (input->getKeyDown(NKeyboardKeys::KEY_A)) 
-	{
-		testX += 0.1f;
-		position.setX(position.x() + sin(testX));
-	}
+	float speed = 0.0001f;
+
+	position.setZ(position.z() + (speed * input->getKeyDown(NKeyboardKeys::KEY_A)));
+	position.setZ(position.z() - (speed * input->getKeyDown(NKeyboardKeys::KEY_D)));
+
+	position.setX(position.x() + (speed * input->getKeyDown(NKeyboardKeys::KEY_W)));
+	position.setX(position.x() - (speed * input->getKeyDown(NKeyboardKeys::KEY_S)));
 }
 
 void NCamera::Render(NRenderer* renderer)

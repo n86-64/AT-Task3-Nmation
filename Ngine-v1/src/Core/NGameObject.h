@@ -40,5 +40,5 @@ protected:
 	/* 3D Object Transforms. (Allows us to render these objects.) */
 	NMath::Vector3  position; // The position of the object in 3D space. 
 	NMath::Vector3	rotation; // The rotation of the object (represented via quaternions.)
-	NMath::Vector3  scale = NMath::Vector3(5.0f,5.0f,5.0f); // The scale of the object in 3D space. (By Default Set to 1)
+	NMath::Vector3  scale = NMath::Vector3(1.0f, 1.0f, 1.0f); // The scale of the object in 3D space. (By Default Set to 1)
 };

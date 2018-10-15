@@ -50,22 +50,14 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	comp->setMesh(renderer.createMesh("bunny"));
 	testTriangle->addComponent(comp);
 
+	N3DComponent* comp2 = new N3DComponent();
+	comp2->setGameObject(testTriangle2);
+	comp2->setMaterial(renderer.createMaterial("test"));
+	comp2->setMesh(renderer.createMesh("suzanne"));
+	testTriangle->addComponent(comp2);
+
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
-	testTriangle2->setPosition(NMath::Vector3(1.0f, 1.0f, 0.0f));
-
-	if (!renderer.setupTriangle(testTriangle)) 
-	{
-		ShutDown();
-		return false;
-	}
-
-	if (!renderer.setupTriangle(testTriangle2))
-	{
-		ShutDown();
-		return false;
-	}
-
-
+	testTriangle2->setPosition(NMath::Vector3(1.0f, 2.0f, 0.0f));
 
 	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle));
 	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle2));// TODO - Have scene manager automagiclly get renderer to setup drawables. 
