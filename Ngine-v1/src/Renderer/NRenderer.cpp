@@ -138,6 +138,7 @@ void NRenderer::DrawObject(N3DComponent* component)
 	deviceContext->DrawIndexed(component->getMesh()->getIndexCount(), 0, 0);
 }
 
+// DEPRICATED!!!
 void NRenderer::DrawTriangle(Triangle* resource)
 {
 	// Here we set up our view matrix.
@@ -422,7 +423,7 @@ void NRenderer::UpdateRenderState()
 
 	mvpMatracies.projMatrix = DirectX::XMMatrixTranspose
 	(
-		DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(90.0f), 1280 / 720, mainCamera->getCameraNearZ(), mainCamera->getCameraFarZ())
+		DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(mainCamera->getCameraFov()), 1280 / 720, mainCamera->getCameraNearZ(), mainCamera->getCameraFarZ())
 	);
 }
 

@@ -47,7 +47,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	N3DComponent* comp = new N3DComponent();
 	comp->setGameObject(testTriangle);
 	comp->setMaterial(renderer.createMaterial("test"));
-	comp->setMesh(renderer.createMesh("bunny"));
+	comp->setMesh(renderer.createMesh("teapot"));
 	testTriangle->addComponent(comp);
 
 	N3DComponent* comp2 = new N3DComponent();

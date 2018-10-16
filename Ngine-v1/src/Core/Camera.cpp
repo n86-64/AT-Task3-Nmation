@@ -7,13 +7,14 @@ NCamera::NCamera()
 
 void NCamera::Update(NInputHandler* input)
 {
+	// fov += 0.01f;
 	float speed = 0.0001f;
 
-	position.setZ(position.z() + (speed * input->getKeyDown(NKeyboardKeys::KEY_A)));
-	position.setZ(position.z() - (speed * input->getKeyDown(NKeyboardKeys::KEY_D)));
+	position.setZ(position.z() + (speed * input->getKeyDown(NKeyboardKeys::KEY_W)));
+	position.setZ(position.z() - (speed * input->getKeyDown(NKeyboardKeys::KEY_S)));
 
-	position.setX(position.x() + (speed * input->getKeyDown(NKeyboardKeys::KEY_W)));
-	position.setX(position.x() - (speed * input->getKeyDown(NKeyboardKeys::KEY_S)));
+	position.setX(position.x() + (speed * input->getKeyDown(NKeyboardKeys::KEY_D)));
+	position.setX(position.x() - (speed * input->getKeyDown(NKeyboardKeys::KEY_A)));
 }
 
 void NCamera::Render(NRenderer* renderer)
@@ -29,6 +30,11 @@ float NCamera::getCameraNearZ()
 float NCamera::getCameraFarZ()
 {
 	return farZ;
+}
+
+float NCamera::getCameraFov()
+{
+	return fov;
 }
 
 void NCamera::setCameraBoundsZ(float nearPos, float farPos)
