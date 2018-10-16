@@ -9,6 +9,7 @@
 #include "Helpers/Platform.h"
 #include "NGameObject.h"
 #include "InputHandler.h"
+#include "time.h"
 
 
 class NGame 
@@ -37,6 +38,7 @@ private:
 	NWindow				gameWindow;
 	NRenderer			renderer;
 	NInputHandler		input;
+	Time				gameTime;
 
 
 	// Temporary Scene Manager - TODO: Build a scene manager
@@ -44,4 +46,6 @@ private:
 
 	void ShutDown();
 	bool quit = false;
+
+	float timetest = 0.0f;
 };

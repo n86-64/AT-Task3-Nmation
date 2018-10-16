@@ -69,6 +69,8 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 void NGame::Tick()
 {
+	gameTime.Tick();
+
 	Update();
 	Render();
 	input.updateStates();
@@ -82,11 +84,20 @@ void NGame::Tick()
 
 void NGame::Update()
 {
+	float test = gameTime.getDeltaTime().count();
+
+	OutputDebugString(std::to_string(test).c_str());
+	
 	for (int i = 0; i < scene_objects.size(); ++i) 
 	{
 		// Update the objects.
 		scene_objects[i]->Update(&input);
 	}
+
+	//if (timetest >= 5000.0f) 
+	//{
+	//	quit = true;
+	//}
 
 	// TEMPORARY, do not keep
 	if (input.getKeyDown(KEY_ESCAPE)) 

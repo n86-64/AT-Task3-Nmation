@@ -56,6 +56,9 @@
     <ClCompile Include="..\src\Core\NComponent.cpp">
       <Filter>Core\Components</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\time.cpp">
+      <Filter>Core\Time</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -126,6 +129,9 @@
     </Filter>
     <Filter Include="Helpers\FileIO\OBJLoader">
       <UniqueIdentifier>{11ef84f3-c0ff-4ac5-bfbd-ef57945a8807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Time">
+      <UniqueIdentifier>{e68593fe-ae38-460a-9395-31ddf60c90a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +212,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Helpers\OBJ_Loader.h">
       <Filter>Helpers\FileIO\OBJLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\time.h">
+      <Filter>Core\Time</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

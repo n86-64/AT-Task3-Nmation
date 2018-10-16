@@ -22,6 +22,8 @@ public:
 	NMath::Vector3   getCameraLookAt(); 
 
 private:
+	float			 movementvelocity;
+
 	NMath::Vector3    cameraViewport;
 
 	// LookAt TODO
