@@ -5,20 +5,20 @@
 
 #include <chrono>
 
-class Time 
+class NTimer 
 {
 public:
-	Time() = default;
+	NTimer() = default;
 
 	// calculate the timing information for rendering on screen. 
-	void Tick(); 
+	void tick(); 
 
 	// Rtrieve the time since the last tick. 
-	std::chrono::milliseconds getDeltaTime() const;
+	float getDeltaTime() const;
 
 private:
 
-	std::chrono::milliseconds  deltaTime;
-	std::chrono::system_clock::time_point prevTime = std::chrono::system_clock::now();
-	std::chrono::system_clock::time_point currentTime = std::chrono::system_clock::now();
+	float  deltaTime = 0.0f;
+	std::chrono::steady_clock::time_point prevTime = std::chrono::steady_clock::now();
+	std::chrono::steady_clock::time_point currentTime = std::chrono::steady_clock::now();
 };

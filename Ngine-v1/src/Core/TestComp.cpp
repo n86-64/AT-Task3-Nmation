@@ -8,7 +8,7 @@ void TestComp::Construct(EngineStateData engineState, NConstructorValues constru
 
 void TestComp::Update()
 {
-	OutputDebugString("LOL im updating \n");
+
 }
 
 void TestComp::Render(NRenderer* renderer)

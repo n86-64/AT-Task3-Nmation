@@ -63,13 +63,12 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle2));// TODO - Have scene manager automagiclly get renderer to setup drawables. 
 #pragma endregion
 
-
 	return true;
 }
 
 void NGame::Tick()
 {
-	gameTime.Tick();
+	gameTime.tick();
 
 	Update();
 	Render();
@@ -84,9 +83,9 @@ void NGame::Tick()
 
 void NGame::Update()
 {
-	float test = gameTime.getDeltaTime().count();
-
-	OutputDebugString(std::to_string(test).c_str());
+	float test = gameTime.getDeltaTime();
+	std::string testString = std::to_string(test) + "\n";
+	OutputDebugString(testString.c_str());
 	
 	for (int i = 0; i < scene_objects.size(); ++i) 
 	{

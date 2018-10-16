@@ -1,13 +1,16 @@
 #include "time.h"
 
-void Time::Tick()
+// Used for aquiring the delta time.
+constexpr float NTIME_NS_IN_MS = 1000000.0f;
+
+void NTimer::tick()
 {
+	currentTime = std::chrono::steady_clock::now();
+	deltaTime = (currentTime - prevTime).count() / NTIME_NS_IN_MS;
 	prevTime = currentTime;
-	currentTime = std::chrono::system_clock::now();
-	deltaTime = std::chrono::duration_cast<std::chrono::milliseconds>(prevTime - currentTime);
 }
 
-std::chrono::milliseconds Time::getDeltaTime() const
+float NTimer::getDeltaTime() const
 {
 	return deltaTime;
 }

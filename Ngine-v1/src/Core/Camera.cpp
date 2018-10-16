@@ -7,7 +7,7 @@ NCamera::NCamera()
 
 void NCamera::Update(NInputHandler* input)
 {
-	// fov += 0.01f;
+
 	float speed = 0.0001f;
 
 	position.setZ(position.z() + (speed * input->getKeyDown(NKeyboardKeys::KEY_W)));

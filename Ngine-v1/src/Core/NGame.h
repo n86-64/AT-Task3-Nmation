@@ -38,7 +38,7 @@ private:
 	NWindow				gameWindow;
 	NRenderer			renderer;
 	NInputHandler		input;
-	Time				gameTime;
+	NTimer				gameTime;
 
 
 	// Temporary Scene Manager - TODO: Build a scene manager
