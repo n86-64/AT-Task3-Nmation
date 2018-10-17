@@ -36,6 +36,16 @@ void NGameObject::setRotation(NMath::Vector3 newPos)
 	rotation = NMath::Vector3(DirectX::XMQuaternionRotationRollPitchYawFromVector(newPos.getRawVector()));
 }
 
+NMath::Vector3 NGameObject::getScale()
+{
+	return scale;
+}
+
+void NGameObject::setScale(NMath::Vector3 newScale)
+{
+	scale = newScale;
+}
+
 void NGameObject::addComponent(NComponent* newComp)
 {
 	objectComponents.push_back(std::unique_ptr<NComponent>(newComp));

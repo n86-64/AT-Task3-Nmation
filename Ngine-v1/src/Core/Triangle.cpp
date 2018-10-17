@@ -19,10 +19,8 @@ Triangle::~Triangle()
 void Triangle::Update(GameStateData& gameData)
 {
 	// TODO - Apply transforms (roatation and scale at draw time not runtime.)
-
-	float speed = 1.0f * gameData.timeData->getDeltaTime();
-	setRotation(rotation + NMath::Vector3(0.0f, 0.0f, -speed));
-	position = DirectX::XMVector3Rotate(position.getRawVector(), rotation.getRawVector());
+	timeTotal += gameData.timeData->getDeltaTime() / 1000.0f;
+	setScale(NMath::Vector3(1.0f,sin(timeTotal), 1.0f));
 
 	NGameObject::Update(gameData);
 	return;

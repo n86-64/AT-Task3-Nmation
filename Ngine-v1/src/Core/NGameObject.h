@@ -33,7 +33,10 @@ public:
 	void		    setPosition(NMath::Vector3 newPos);
 
 	NMath::Vector3  getRotation();
-	void			setRotation(NMath::Vector3  newPos);
+	void			setRotation(NMath::Vector3  newRot);
+
+	NMath::Vector3  getScale();
+	void			setScale(NMath::Vector3 newScale);
 
 	// Add a component to the list.
 	void addComponent(NComponent* newComp);

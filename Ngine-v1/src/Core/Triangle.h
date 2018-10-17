@@ -30,6 +30,9 @@ public:
 	int getIndexCount() { return ARRAYSIZE(indicies); }
 
 private:
+	float    timeTotal = 0.0f;
+
+
 	void createObjectDiscriptors(); // Creates a vertex and index buffer for the object.
 
 	// The object material.
