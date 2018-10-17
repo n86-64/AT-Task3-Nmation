@@ -18,9 +18,11 @@ Triangle::~Triangle()
 
 void Triangle::Update(GameStateData& gameData)
 {
-	float speed = 0.0000001f;
-	rotation = rotation + NMath::Vector3(0.0f, 0.0f, -speed);
-	position = NMath::Vector3(DirectX::XMVector3Rotate(position.getRawVector(), DirectX::XMQuaternionRotationRollPitchYawFromVector(rotation.getRawVector())));
+	// TODO - Apply transforms (roatation and scale at draw time not runtime.)
+
+	float speed = 1.0f * gameData.timeData->getDeltaTime();
+	setRotation(rotation + NMath::Vector3(0.0f, 0.0f, -speed));
+	position = DirectX::XMVector3Rotate(position.getRawVector(), rotation.getRawVector());
 
 	NGameObject::Update(gameData);
 	return;
