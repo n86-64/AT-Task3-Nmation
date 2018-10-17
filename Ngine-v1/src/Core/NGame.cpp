@@ -47,13 +47,13 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	N3DComponent* comp = new N3DComponent();
 	comp->setGameObject(testTriangle);
 	comp->setMaterial(renderer.createMaterial("test"));
-	comp->setMesh(renderer.createMesh("teapot"));
+	comp->setMesh(renderer.createMesh("bunny"));
 	testTriangle->addComponent(comp);
 
 	N3DComponent* comp2 = new N3DComponent();
 	comp2->setGameObject(testTriangle2);
 	comp2->setMaterial(renderer.createMaterial("test"));
-	comp2->setMesh(renderer.createMesh("suzanne"));
+	comp2->setMesh(renderer.createMesh("bunny"));
 	testTriangle->addComponent(comp2);
 
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
