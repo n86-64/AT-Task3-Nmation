@@ -82,21 +82,12 @@ void NGame::Tick()
 }
 
 void NGame::Update()
-{
-	float test = gameTime.getDeltaTime();
-	std::string testString = std::to_string(test) + "\n";
-	OutputDebugString(testString.c_str());
-	
+{	
 	for (int i = 0; i < scene_objects.size(); ++i) 
 	{
 		// Update the objects.
 		scene_objects[i]->Update(gameData);
 	}
-
-	//if (timetest >= 5000.0f) 
-	//{
-	//	quit = true;
-	//}
 
 	// TEMPORARY, do not keep
 	if (input.getKeyDown(KEY_ESCAPE)) 
