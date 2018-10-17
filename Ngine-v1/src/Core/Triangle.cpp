@@ -17,13 +17,13 @@ Triangle::~Triangle()
 	if (indexBuffer) { indexBuffer->Release(); }
 }
 
-void Triangle::Update(NInputHandler * input)
+void Triangle::Update(GameStateData& gameData)
 {
 	float speed = 0.000000001f;
 	rotation = rotation + NMath::Vector3(0.0f, 0.0f, -speed);
 	position = NMath::Vector3(DirectX::XMVector3Rotate(position.getRawVector(), DirectX::XMQuaternionRotationRollPitchYawFromVector(rotation.getRawVector())));
 
-	NGameObject::Update(input);
+	NGameObject::Update(gameData);
 	return;
 }
 

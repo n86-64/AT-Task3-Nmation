@@ -10,7 +10,7 @@ class NCamera : public NGameObject
 public:
 	NCamera();
 
-	void Update(NInputHandler* input) override;
+	void Update(GameStateData& input) override;
 	void Render(NRenderer* renderer) override;
 
 	float getCameraNearZ();

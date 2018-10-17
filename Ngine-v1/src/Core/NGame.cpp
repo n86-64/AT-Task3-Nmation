@@ -90,7 +90,7 @@ void NGame::Update()
 	for (int i = 0; i < scene_objects.size(); ++i) 
 	{
 		// Update the objects.
-		scene_objects[i]->Update(&input);
+		scene_objects[i]->Update(gameData);
 	}
 
 	//if (timetest >= 5000.0f) 

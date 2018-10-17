@@ -39,6 +39,7 @@ private:
 	NRenderer			renderer;
 	NInputHandler		input;
 	NTimer				gameTime;
+	GameStateData		gameData = { &gameTime, &input };
 
 
 	// Temporary Scene Manager - TODO: Build a scene manager

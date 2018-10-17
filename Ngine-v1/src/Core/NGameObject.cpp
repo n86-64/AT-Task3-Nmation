@@ -1,6 +1,6 @@
 #include "NGameObject.h"
 
-void NGameObject::Update(NInputHandler* input)
+void NGameObject::Update(GameStateData& gameData)
 {
 	for (int i = 0; i < objectComponents.size(); i++) 
 	{

@@ -17,7 +17,7 @@ public:
 	~Triangle();
 
 	// Inherited via NGameObject
-	void Update(NInputHandler* input) override;
+	void Update(GameStateData& input) override;
 	void Render(NRenderer* renderer) override;
 
 	bool SetupBuffers(ID3D11Device* device);

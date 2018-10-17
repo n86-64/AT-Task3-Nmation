@@ -5,16 +5,15 @@ NCamera::NCamera()
 	position = NMath::Vector3(0.0f, 1.0f, -5.0f);
 }
 
-void NCamera::Update(NInputHandler* input)
+void NCamera::Update(GameStateData& gameData)
 {
+	float speed = 20.0f * (gameData.timeData->getDeltaTime() / 1000.0f);
 
-	float speed = 0.0001f;
+	position.setZ(position.z() + (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_W)));
+	position.setZ(position.z() - (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_S)));
 
-	position.setZ(position.z() + (speed * input->getKeyDown(NKeyboardKeys::KEY_W)));
-	position.setZ(position.z() - (speed * input->getKeyDown(NKeyboardKeys::KEY_S)));
-
-	position.setX(position.x() + (speed * input->getKeyDown(NKeyboardKeys::KEY_D)));
-	position.setX(position.x() - (speed * input->getKeyDown(NKeyboardKeys::KEY_A)));
+	position.setX(position.x() + (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_D)));
+	position.setX(position.x() - (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_A)));
 }
 
 void NCamera::Render(NRenderer* renderer)

@@ -187,7 +187,7 @@
     <ClInclude Include="..\src\Core\NComponent.h" />
     <ClInclude Include="..\src\Core\NGameObject.h" />
     <ClInclude Include="..\src\Core\NGame.h" />
-    <ClInclude Include="..\src\Core\NInitProperties.h" />
+    <ClInclude Include="..\src\Core\NDataStructures.h" />
     <ClInclude Include="..\src\Core\NWindow.h" />
     <ClInclude Include="..\src\Core\NWinEvent.h" />
     <ClInclude Include="..\src\Core\TestComp.h" />

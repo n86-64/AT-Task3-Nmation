@@ -195,9 +195,6 @@
     <ClInclude Include="..\src\Core\NComponent.h">
       <Filter>Core\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Core\NInitProperties.h">
-      <Filter>Core\GameObjects\Init</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Core\TestComp.h">
       <Filter>Core\Components\Test</Filter>
     </ClInclude>
@@ -215,6 +212,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\time.h">
       <Filter>Core\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NDataStructures.h">
+      <Filter>Core\GameObjects\Init</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

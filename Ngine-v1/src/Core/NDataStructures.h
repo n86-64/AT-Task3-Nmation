@@ -1,11 +1,14 @@
-// File - NInitProperties.h
-// Description - Allows an arbatry set of properties to be specified. All properties stored as a string then converted. 
+// File - NDataStructuresh
+// Description - Describes a set of useful data structures/containers etc which can be used to create
 
 #pragma once
 
 #include <map>
 
 class NRenderer;
+
+class NTimer;
+class NInputHandler;
 
 class NConstructorValues 
 {
@@ -23,4 +26,10 @@ private:
 struct EngineStateData 
 {
 	NRenderer*  renderer;
+};
+
+struct GameStateData 
+{
+	NTimer* timeData;
+	NInputHandler*  input;
 };

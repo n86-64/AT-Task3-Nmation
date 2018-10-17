@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "NInitProperties.h"
+#include "NDataStructures.h"
 
 class NGameObject;
 

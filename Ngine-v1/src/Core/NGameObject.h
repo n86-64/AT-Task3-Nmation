@@ -6,7 +6,10 @@
 #include <vector>
 
 #include "Helpers/NMaths.h"
+
+#include "Core/NDataStructures.h"
 #include "Core/InputHandler.h"
+#include "Core/time.h"
 
 #include "NComponent.h"
 
@@ -20,7 +23,7 @@ public:
 	// Consider adding a pre-tick and post tick.
 	// TODO - Implimenting Timing values.
 	// Updates the engine each frame.
-	virtual void Update(NInputHandler* input);
+	virtual void Update(GameStateData& gameData);
 
 	// Renders the object on screen.
 	// TODO - Have renderer register components then draw.
