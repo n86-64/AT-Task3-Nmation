@@ -44,6 +44,22 @@
     <ClCompile Include="..\src\Core\TestComp.cpp">
       <Filter>Core\Components\Test</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Helpers\JSONFileReader.cpp">
+      <Filter>Helpers\FileIO\JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\N3DMesh.cpp">
+      <Filter>Core\Renderer\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\N3DComponent.cpp">
+      <Filter>Core\Components\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NComponent.cpp">
+      <Filter>Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\time.cpp">
+      <Filter>Core\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\NMaterialProperites.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -102,6 +118,24 @@
     </Filter>
     <Filter Include="Core\Components\Test">
       <UniqueIdentifier>{f2c3eb02-c48e-4457-8740-33f0208450d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\FileIO\JSON">
+      <UniqueIdentifier>{e09e9be8-4269-4a11-aa12-dee97ed2fedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Objects">
+      <UniqueIdentifier>{343c32d0-8dc2-4e59-99a3-f092a1a08498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components\3D">
+      <UniqueIdentifier>{a20b1985-dbbb-43b0-99cc-343181fe47d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\FileIO\OBJLoader">
+      <UniqueIdentifier>{11ef84f3-c0ff-4ac5-bfbd-ef57945a8807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Time">
+      <UniqueIdentifier>{e68593fe-ae38-460a-9395-31ddf60c90a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Materials\Material Properties">
+      <UniqueIdentifier>{50be47d7-1f9d-417b-9e27-4edc8bb42cb0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -165,11 +199,29 @@
     <ClInclude Include="..\src\Core\NComponent.h">
       <Filter>Core\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Core\NInitProperties.h">
-      <Filter>Core\GameObjects\Init</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Core\TestComp.h">
       <Filter>Core\Components\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\JSONFileReader.h">
+      <Filter>Helpers\FileIO\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\N3DMesh.h">
+      <Filter>Core\Renderer\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\N3DComponent.h">
+      <Filter>Core\Components\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\OBJ_Loader.h">
+      <Filter>Helpers\FileIO\OBJLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\time.h">
+      <Filter>Core\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NDataStructures.h">
+      <Filter>Core\GameObjects\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\NMaterialProperites.h">
+      <Filter>Core\Renderer\Materials\Material Properties</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,5 +231,8 @@
     <FxCompile Include="..\src\Shaders\BasicPixel.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

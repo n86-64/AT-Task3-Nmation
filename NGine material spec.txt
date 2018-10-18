@@ -1,0 +1,15 @@
+NGine Material file:
+
+Purpose - A file for defining a material. 
+
+This is comprised of:
+- the shaders that the system will use to draw the object.
+- the properties of the material such as textures and variables.
+
+Shaders:
+Three types of shaders identified via a number
+	- Vertex = 0,
+	- Frgament = 1,
+	- geometry = 2
+
+Properties are assigned seperatly. (These will be Material properties. )

@@ -17,6 +17,9 @@ enum NKeyboardKeys
 
 	// Letter Keys
 	KEY_A = 0x41,
+	KEY_D = 0x44,
+	KEY_S = 0x53,
+	KEY_W = 0x57,
 };
 
 // Defines each mouse key.

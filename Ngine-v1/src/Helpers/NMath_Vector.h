@@ -13,6 +13,7 @@ namespace NMath
 	public:
 		Vector3();
 		Vector3(float x, float y, float z);
+		Vector3(DirectX::XMVECTOR newVector);
 
 		float x();
 		float y();
@@ -29,6 +30,7 @@ namespace NMath
 		// TODO - Add operator overloads for performing vector operations.
 		NMath::Vector3 operator+(NMath::Vector3 vec);
 		NMath::Vector3 operator-(NMath::Vector3 vec);
+		NMath::Vector3 operator*(NMath::Vector3 vec);
 
 		// public vector constants.
 

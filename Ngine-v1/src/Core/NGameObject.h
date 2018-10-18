@@ -6,7 +6,10 @@
 #include <vector>
 
 #include "Helpers/NMaths.h"
+
+#include "Core/NDataStructures.h"
 #include "Core/InputHandler.h"
+#include "Core/time.h"
 
 #include "NComponent.h"
 
@@ -20,16 +23,24 @@ public:
 	// Consider adding a pre-tick and post tick.
 	// TODO - Implimenting Timing values.
 	// Updates the engine each frame.
-	virtual void Update(NInputHandler* input);
+	virtual void Update(GameStateData& gameData);
 
 	// Renders the object on screen.
 	// TODO - Have renderer register components then draw.
 	virtual void Render(NRenderer* renderer);
 
 	NMath::Vector3  getPosition();
+	void		    setPosition(NMath::Vector3 newPos);
+	NMath::Vector3  getRotation();
+	void			setRotation(NMath::Vector3  newRot);
+	NMath::Vector3  getScale();
+	void			setScale(NMath::Vector3 newScale);
 
 	// Add a component to the list.
 	void addComponent(NComponent* newComp);
+
+	// DEPRICATED!!!!
+	NMath::Vector3   getTransformValue();
 
 protected:
 	std::vector<std::unique_ptr<NComponent>> objectComponents;
@@ -37,5 +48,5 @@ protected:
 	/* 3D Object Transforms. (Allows us to render these objects.) */
 	NMath::Vector3  position; // The position of the object in 3D space. 
 	NMath::Vector3	rotation; // The rotation of the object (represented via quaternions.)
-	NMath::Vector3  scale; // The scale of the object in 3D space. (By Default Set to 1)
+	NMath::Vector3  scale = NMath::Vector3(1.0f, 1.0f, 1.0f); // The scale of the object in 3D space. (By Default Set to 1)
 };

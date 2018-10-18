@@ -7,7 +7,6 @@ Triangle::Triangle(NMaterial* material)
 	:mat(material)
 {
 	createObjectDiscriptors();
-	position = NMath::Vector3(1.0f, 1.0f, 1.0f);
 }
 
 Triangle::~Triangle()
@@ -17,16 +16,20 @@ Triangle::~Triangle()
 	if (indexBuffer) { indexBuffer->Release(); }
 }
 
-void Triangle::Update(NInputHandler * input)
+void Triangle::Update(GameStateData& gameData)
 {
-	NGameObject::Update(input);
+	// TODO - Apply transforms (roatation and scale at draw time not runtime.)
+	timeTotal += gameData.timeData->getDeltaTime() / 1000.0f;
+	setScale(NMath::Vector3(1.0f,sin(timeTotal), 1.0f));
+
+	NGameObject::Update(gameData);
 	return;
 }
 
 void Triangle::Render(NRenderer* renderer)
 {
 	// Here we draw the triangle. 
-	renderer->DrawTriangle(this);
+//	renderer->DrawTriangle(this);
 	NGameObject::Render(renderer); 
 }
 

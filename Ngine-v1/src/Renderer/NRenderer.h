@@ -2,6 +2,7 @@
 
 // File - NRenderer.h
 // Discription - Defines the renderer that the engine will use.
+#include <vector>
 
 #include "Core/NWindow.h"
 #include "Helpers/Direct3D.h"
@@ -10,8 +11,12 @@
 
 #include "ShaderInput.h"
 
+// Resource Objects
+#include "NMaterial.h"
+#include "Core/N3DMesh.h"
+
+class N3DComponent;
 class NCamera;
-class NMaterial;
 class Triangle;
 
 // Renderer initialiser info
@@ -46,6 +51,7 @@ public:
 	void Present();
 
 	NMaterial* createMaterial(std::string name);
+	N3DMesh*   createMesh(std::string name);
 
 	// Renderer Interfacing
 	void setMainCamera(NCamera* camera);
@@ -55,9 +61,15 @@ public:
 
 	void DrawTriangle(Triangle* resource); // Inefficent but ensures that the rendering is correct. 
 
+	void DrawObject(N3DComponent* component);
+
+public:
+	// Here are the public drawing functions.
+	void setMaterial();
+
+
 private:
 	NMath::Colour    clearColour = NMath::Colour(0.0f, 0.0f, 0.0f, 1.0f);
-
 
 	// Setup functions.
 	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters);
@@ -102,4 +114,11 @@ private:
 
 private:
 	void UpdateRenderState();
+
+private:
+	std::vector<std::unique_ptr<NMaterial>>  materialBuffer; // Allows Materials of a set name to be loaded from a cache. 
+	std::vector<std::unique_ptr<N3DMesh>>   meshBuffer;
+
+	NMaterial*   searchMaterials(std::string name);
+	N3DMesh*	 searchMesh(std::string name);
 };

@@ -3,7 +3,9 @@
 
 #pragma once
 
-#include "NInitProperties.h"
+#include "NDataStructures.h"
+
+class NGameObject;
 
 class NComponent 
 {
@@ -18,4 +20,10 @@ public:
 	// Update and render the components.
 	virtual void Update() = 0;
 	virtual void Render(NRenderer* renderer) = 0;
+
+	NGameObject* getGameObject();
+	void		 setGameObject(NGameObject* obj);
+
+protected:
+	NGameObject* parentObject = nullptr;
 };

@@ -1,14 +1,13 @@
 #include "NRenderer.h"
 
 #include "Helpers/NMath_Colour.h"
-
 #include "Renderer/NMaterial.h"
-
 #include "Core/Camera.h"
 #include "Core/Triangle.h"
 
-constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
+#include "Core/N3DComponent.h"
 
+constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
 NRenderer::~NRenderer()
 {
@@ -56,7 +55,6 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 void NRenderer::Clear()
 {
 	deviceContext->OMSetRenderTargets(1, &gameFrame, depthStencilConfiguration);
-
 	deviceContext->ClearRenderTargetView(gameFrame, clearColour.getColourArray());
 	deviceContext->ClearDepthStencilView(depthStencilConfiguration, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	UpdateRenderState();
@@ -71,20 +69,34 @@ void NRenderer::Present()
 // Then Setup the shader.
 NMaterial* NRenderer::createMaterial(std::string name) 
 {
-	bool loadSuccessful = false;
-	NMaterial*  newMat = new NMaterial(name);
+	NMaterial*  newMat = nullptr;
+	newMat = searchMaterials(name);
 
-	// Setup the Materials (TODO - Add the ability to set shaders.)
-	loadSuccessful = newMat->loadVertexShader("BasicVertex", renderDevice);
-	loadSuccessful = newMat->loadFragShader("BasicPixel", renderDevice);
+	if (!newMat) 
+	{
+		newMat = new NMaterial(name, renderDevice);
+		// Setup the Materials (TODO - Add the ability to set shaders.)
 
-	if (!loadSuccessful) 
-	{ 
-		delete newMat;
-		newMat = nullptr;
+		if (!newMat->materialLoaded())
+		{
+			delete newMat;
+			newMat = nullptr;
+		}
+		else 
+		{
+			materialBuffer.push_back(std::unique_ptr<NMaterial>(newMat));
+		}
 	}
 
 	return newMat;
+}
+
+N3DMesh* NRenderer::createMesh(std::string name)
+{
+	// TODO - Add checks and buffering to prevent exessive reads and writes. 
+	N3DMesh* mesh = new N3DMesh(name, renderDevice);
+	meshBuffer.push_back(std::unique_ptr<N3DMesh>(mesh));
+	return mesh;
 }
 
 void NRenderer::setMainCamera(NCamera* camera)
@@ -97,6 +109,38 @@ bool NRenderer::setupTriangle(Triangle* resource)
 	return resource->SetupBuffers(renderDevice);
 }
 
+void NRenderer::DrawObject(N3DComponent* component) 
+{
+	NGameObject*    componentObject = component->getGameObject();
+	DirectX::XMMATRIX   model = DirectX::XMMatrixMultiply(DirectX::XMMatrixIdentity(), DirectX::XMMatrixTranslationFromVector(componentObject->getTransformValue().getRawVector()));
+	
+	model = model * DirectX::XMMatrixRotationQuaternion(componentObject->getRotation().getRawVector()) * DirectX::XMMatrixScalingFromVector(componentObject->getScale().getRawVector());
+
+	mvpMatracies.mvMatrix = DirectX::XMMatrixMultiply(model, view);
+	mvpMatracies.mvMatrix = DirectX::XMMatrixTranspose(mvpMatracies.mvMatrix);
+
+	deviceContext->UpdateSubresource(constBuffer, 0, nullptr, &mvpMatracies, 0, 0);
+
+	deviceContext->IASetInputLayout(component->getMaterial()->getInputLayout());
+
+	ID3D11Buffer* vBuffer = component->getMesh()->getVertexBuffer(); // Allows an array of elements to be passed in.
+
+	// Set buffers
+	UINT stride = sizeof(VertexInput);
+	UINT offset = 0;
+	deviceContext->IASetVertexBuffers(0, 1, &vBuffer, &stride, &offset);
+	deviceContext->IASetIndexBuffer(component->getMesh()->getIndexBuffer(), DXGI_FORMAT_R32_UINT, 0);
+
+	deviceContext->VSSetShader(component->getMaterial()->getVertexShader(), nullptr, 0);
+	deviceContext->VSSetConstantBuffers(0, 1, &constBuffer);
+
+	deviceContext->PSSetShader(component->getMaterial()->getFragmentShader(), nullptr, 0);
+
+	// DRAW! DRAW! DRAW!
+	deviceContext->DrawIndexed(component->getMesh()->getIndexCount(), 0, 0);
+}
+
+// DEPRICATED!!!
 void NRenderer::DrawTriangle(Triangle* resource)
 {
 	// Here we set up our view matrix.
@@ -122,6 +166,11 @@ void NRenderer::DrawTriangle(Triangle* resource)
 
 	// DRAW! DRAW! DRAW!
 	deviceContext->DrawIndexed(resource->getIndexCount(), 0, 0);
+}
+
+void NRenderer::setMaterial()
+{
+
 }
 
 bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters)
@@ -162,6 +211,7 @@ bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererCon
 	swapchainDiscription.BufferDesc.RefreshRate.Numerator = 60;
 	swapchainDiscription.BufferDesc.RefreshRate.Denominator = 1;
 	swapchainDiscription.SwapEffect = DXGI_SWAP_EFFECT_DISCARD; // TODO - Consider changing to a double buffer model with flipping.
+	swapchainDiscription.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
 	hr = D3D11CreateDeviceAndSwapChain(
 		NULL,
@@ -180,7 +230,7 @@ bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererCon
 
 	if (FAILED(hr))
 	{
-		MessageBox(windowHadle, "Failed to create the device and swapchain.", "NGine Direct3D Error", MB_ICONERROR | MB_OK);
+		MessageBox(windowHadle, "Failed to create the device and swapchain." , "NGine Direct3D Error", MB_ICONERROR | MB_OK);
 		return false;
 	}
 
@@ -234,7 +284,7 @@ bool NRenderer::setupRenderingPipelineRasterizer(NRendererConfig& params)
 		return false;
 	}
 
-	//deviceContext->RSSetState(rasterizerState);
+	deviceContext->RSSetState(rasterizerState);
 
 	return true;
 }
@@ -375,6 +425,32 @@ void NRenderer::UpdateRenderState()
 
 	mvpMatracies.projMatrix = DirectX::XMMatrixTranspose
 	(
-		DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToDegrees(90.0f), 1280 / 720, mainCamera->getCameraNearZ(), mainCamera->getCameraFarZ())
+		DirectX::XMMatrixPerspectiveFovLH(DirectX::XMConvertToRadians(mainCamera->getCameraFov()), 1280 / 720, mainCamera->getCameraNearZ(), mainCamera->getCameraFarZ())
 	);
+}
+
+NMaterial* NRenderer::searchMaterials(std::string name)
+{
+	for (int i = 0; i < materialBuffer.size(); i++) 
+	{
+		if (materialBuffer[i]->getShaderName() == name) 
+		{
+			return materialBuffer[i].get();
+		}
+	}
+
+	return nullptr;
+}
+
+N3DMesh* NRenderer::searchMesh(std::string name)
+{
+	for (int i = 0; i < meshBuffer.size(); i++)
+	{
+		if (meshBuffer[i]->getName() == name)
+		{
+			return meshBuffer[i].get();
+		}
+	}
+
+	return nullptr;
 }

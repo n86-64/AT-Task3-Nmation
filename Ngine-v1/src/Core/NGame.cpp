@@ -6,6 +6,8 @@
 #include "Triangle.h"
 #include "TestComp.h"
 
+#include "N3DComponent.h"
+
 // DEPRECATED
 void NGame::init(NWindowHandle* window, std::string gameTitle)
 {
@@ -35,25 +37,39 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	scene_objects.push_back(std::make_unique<NCamera>());
 	renderer.setMainCamera((NCamera*)scene_objects[0].get());
 
-	NMaterial* testMat = renderer.createMaterial("Test");
+	NMaterial* testMat = renderer.createMaterial("test");
+	NMaterial* testMat2 = renderer.createMaterial("test");
+
 	Triangle* testTriangle = new Triangle(testMat);
+	Triangle* testTriangle2 = new Triangle(testMat2);
 	testTriangle->addComponent(new TestComp());
 
-	if (!renderer.setupTriangle(testTriangle)) 
-	{
-		ShutDown();
-		return false;
-	}
+	N3DComponent* comp = new N3DComponent();
+	comp->setGameObject(testTriangle);
+	comp->setMaterial(renderer.createMaterial("test"));
+	comp->setMesh(renderer.createMesh("teapot"));
+	testTriangle->addComponent(comp);
 
-	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle)); // TODO - Have scene manager automagiclly get renderer to setup drawables. 
+	N3DComponent* comp2 = new N3DComponent();
+	comp2->setGameObject(testTriangle2);
+	comp2->setMaterial(renderer.createMaterial("test"));
+	comp2->setMesh(renderer.createMesh("bunny"));
+	testTriangle->addComponent(comp2);
+
+	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
+	testTriangle2->setPosition(NMath::Vector3(1.0f, 2.0f, 0.0f));
+
+	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle));
+	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle2));// TODO - Have scene manager automagiclly get renderer to setup drawables. 
 #pragma endregion
-
 
 	return true;
 }
 
 void NGame::Tick()
 {
+	gameTime.tick();
+
 	Update();
 	Render();
 	input.updateStates();
@@ -66,11 +82,11 @@ void NGame::Tick()
 }
 
 void NGame::Update()
-{
+{	
 	for (int i = 0; i < scene_objects.size(); ++i) 
 	{
 		// Update the objects.
-		scene_objects[i]->Update(&input);
+		scene_objects[i]->Update(gameData);
 	}
 
 	// TEMPORARY, do not keep

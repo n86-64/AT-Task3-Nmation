@@ -10,17 +10,20 @@ class NCamera : public NGameObject
 public:
 	NCamera();
 
-	void Update(NInputHandler* input) override;
+	void Update(GameStateData& input) override;
 	void Render(NRenderer* renderer) override;
 
 	float getCameraNearZ();
 	float getCameraFarZ();
+	float getCameraFov();
 
 	void setCameraBoundsZ(float nearPos, float farPos);
 
 	NMath::Vector3   getCameraLookAt(); 
 
 private:
+	float			 movementvelocity;
+
 	NMath::Vector3    cameraViewport;
 
 	// LookAt TODO
@@ -33,7 +36,7 @@ private:
 	NGameObject*      cameraTarget = nullptr;
 
 	float nearZ = 0.1f, farZ = 110.0f;  // Camera bounding volumes
-	float fov;
+	float fov = 90.0f; // The field of view in degrees. 
 
 	float testX = 0.0f;
 };

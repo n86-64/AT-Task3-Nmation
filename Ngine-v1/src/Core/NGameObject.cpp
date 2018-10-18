@@ -1,6 +1,6 @@
 #include "NGameObject.h"
 
-void NGameObject::Update(NInputHandler* input)
+void NGameObject::Update(GameStateData& gameData)
 {
 	for (int i = 0; i < objectComponents.size(); i++) 
 	{
@@ -21,7 +21,37 @@ NMath::Vector3 NGameObject::getPosition()
 	return position;
 }
 
+void NGameObject::setPosition(NMath::Vector3 newPos)
+{
+	position = newPos;
+}
+
+NMath::Vector3 NGameObject::getRotation()
+{
+	return rotation;
+}
+
+void NGameObject::setRotation(NMath::Vector3 newPos)
+{
+	rotation = NMath::Vector3(DirectX::XMQuaternionRotationRollPitchYawFromVector(newPos.getRawVector()));
+}
+
+NMath::Vector3 NGameObject::getScale()
+{
+	return scale;
+}
+
+void NGameObject::setScale(NMath::Vector3 newScale)
+{
+	scale = newScale;
+}
+
 void NGameObject::addComponent(NComponent* newComp)
 {
 	objectComponents.push_back(std::unique_ptr<NComponent>(newComp));
+}
+
+NMath::Vector3 NGameObject::getTransformValue()
+{
+	return position * scale;
 }

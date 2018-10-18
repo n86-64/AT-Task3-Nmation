@@ -17,7 +17,7 @@ public:
 	~Triangle();
 
 	// Inherited via NGameObject
-	void Update(NInputHandler* input) override;
+	void Update(GameStateData& input) override;
 	void Render(NRenderer* renderer) override;
 
 	bool SetupBuffers(ID3D11Device* device);
@@ -30,6 +30,9 @@ public:
 	int getIndexCount() { return ARRAYSIZE(indicies); }
 
 private:
+	float    timeTotal = 0.0f;
+
+
 	void createObjectDiscriptors(); // Creates a vertex and index buffer for the object.
 
 	// The object material.
@@ -46,15 +49,36 @@ private:
 	D3D11_SUBRESOURCE_DATA idata = { 0 };
 
 	// The data itself.
-	unsigned int indicies[3] = 
+	unsigned int indicies[36] = 
 	{
-		0, 1, 2
+			3,1,0,
+			2,1,3,
+
+			0,5,4,
+			1,5,0,
+
+			3,4,7,
+			0,4,3,
+
+			1,6,5,
+			2,6,1,
+
+			2,7,6,
+			3,7,2,
+
+			6,4,5,
+			7,4,6,
 	};
 
-	VertexInput  verticies[3] = 
+	VertexInput  verticies[8] = 
 	{
-		{ DirectX::XMFLOAT4(-0.5f, -0.5f, 0.0f, 1.0f), DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f)},
-		{ DirectX::XMFLOAT4(0.0f,  0.5f, 0.0f, 1.0f),  DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f)},
-		{ DirectX::XMFLOAT4(0.5f,  -0.5f, 0.0f, 1.0f),  DirectX::XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f)}
+		{ DirectX::XMFLOAT4(-1.0f,  1.0f, -1.0f , 1.0f), DirectX::XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f), DirectX::XMFLOAT2(1.0f, 1.0f) },
+		{ DirectX::XMFLOAT4(1.0f,  1.0f, -1.0f, 1.0f), DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f), DirectX::XMFLOAT2(1.0f, 1.0f) },
+		{ DirectX::XMFLOAT4(1.0f,  1.0f,  1.0f, 1.0f), DirectX::XMFLOAT4(0.0f, 1.0f, 1.0f, 1.0f), DirectX::XMFLOAT2(1.0f, 1.0f) },
+		{ DirectX::XMFLOAT4(-1.0f,  1.0f,  1.0f, 1.0f), DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f), DirectX::XMFLOAT2(1.0f, 1.0f) },
+		{ DirectX::XMFLOAT4(-1.0f, -1.0f, -1.0f, 1.0f), DirectX::XMFLOAT4(1.0f, 0.0f, 1.0f, 1.0f), DirectX::XMFLOAT2(1.0f, 1.0f) },
+		{ DirectX::XMFLOAT4(1.0f, -1.0f, -1.0f, 1.0f), DirectX::XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f), DirectX::XMFLOAT2(1.0f, 1.0f) },
+		{ DirectX::XMFLOAT4(1.0f, -1.0f,  1.0f, 1.0f), DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), DirectX::XMFLOAT2(1.0f, 1.0f) },
+		{ DirectX::XMFLOAT4(-1.0f, -1.0f, 1.0f, 1.0f), DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f), DirectX::XMFLOAT2(1.0f, 1.0f) },
 	};
 };

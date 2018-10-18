@@ -10,6 +10,12 @@ NMath::Vector3::Vector3(float x, float y, float z)
 {
 }
 
+NMath::Vector3::Vector3(DirectX::XMVECTOR newVector)
+	:vector(newVector)
+{
+
+}
+
 float NMath::Vector3::x()
 {
 	return DirectX::XMVectorGetX(vector);
@@ -70,4 +76,9 @@ NMath::Vector3 NMath::Vector3::operator+(NMath::Vector3 vec)
 NMath::Vector3 NMath::Vector3::operator-(NMath::Vector3 vec)
 {
 	return NMath::Vector3(this->x() - vec.x(), this->y() - vec.y(), this->z() - vec.z());
+}
+
+NMath::Vector3 NMath::Vector3::operator*(NMath::Vector3 vec)
+{
+	return NMath::Vector3(DirectX::XMVectorMultiply(this->vector, vec.getRawVector()));
 }
