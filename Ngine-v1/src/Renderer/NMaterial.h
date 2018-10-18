@@ -7,6 +7,8 @@
 #include <map>
 #include "Helpers/Direct3D.h"
 
+#include "NMaterialProperites.h"
+
 const int NMAT_SHADER_TYPE_COUNT = 3;
 
 enum NMaterialShaderTypes 

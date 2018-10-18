@@ -34,9 +34,9 @@ NMaterial::NMaterial(std::string newMaterialName, ID3D11Device* device)
 
 NMaterial::~NMaterial()
 {
-	ReleaseMaterialResources(matInput);
-	ReleaseMaterialResources(vertexShader);
-	ReleaseMaterialResources(fragShader); 
+	NMATERIAL_RELEASE(vertexShader);
+	NMATERIAL_RELEASE(fragShader);
+	NMATERIAL_RELEASE(geometryShader);
 }
 
 ID3D11VertexShader* NMaterial::getVertexShader()

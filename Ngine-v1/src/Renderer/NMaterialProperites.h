@@ -9,11 +9,10 @@
 #include "Helpers/Direct3D.h"
 
 // TODO - Add this into materials to show textures.
-
 // Store textures seperatly.
-inline void NMATERIAL_RELEASE(ID3D11DeviceChild* device) 
+inline void NMATERIAL_RELEASE(ID3D11DeviceChild* device)
 {
-	if (device) 
+	if (device)
 	{
 		device->Release();
 		device = nullptr;
