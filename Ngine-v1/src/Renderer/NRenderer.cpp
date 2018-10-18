@@ -9,7 +9,6 @@
 
 constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
-
 NRenderer::~NRenderer()
 {
 	constBuffer->Release();
@@ -231,7 +230,7 @@ bool NRenderer::setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererCon
 
 	if (FAILED(hr))
 	{
-		MessageBox(windowHadle, "Failed to create the device and swapchain.", "NGine Direct3D Error", MB_ICONERROR | MB_OK);
+		MessageBox(windowHadle, "Failed to create the device and swapchain." , "NGine Direct3D Error", MB_ICONERROR | MB_OK);
 		return false;
 	}
 

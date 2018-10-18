@@ -133,6 +133,9 @@
     <Filter Include="Core\Time">
       <UniqueIdentifier>{e68593fe-ae38-460a-9395-31ddf60c90a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Renderer\Materials\Material Properties">
+      <UniqueIdentifier>{50be47d7-1f9d-417b-9e27-4edc8bb42cb0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -216,6 +219,9 @@
     <ClInclude Include="..\src\Core\NDataStructures.h">
       <Filter>Core\GameObjects\Init</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\Renderer\NMaterialProperites.h">
+      <Filter>Core\Renderer\Materials\Material Properties</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\src\Shaders\BasicVertex.hlsl">
@@ -224,5 +230,8 @@
     <FxCompile Include="..\src\Shaders\BasicPixel.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
