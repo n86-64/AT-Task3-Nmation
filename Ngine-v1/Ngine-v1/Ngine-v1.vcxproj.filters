@@ -137,6 +137,9 @@
     <Filter Include="Core\Renderer\Materials\Material Properties">
       <UniqueIdentifier>{50be47d7-1f9d-417b-9e27-4edc8bb42cb0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Scenes">
+      <UniqueIdentifier>{a3e909c2-f15e-413e-9b6e-e5d9a170c62a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -222,6 +225,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Renderer\NMaterialProperites.h">
       <Filter>Core\Renderer\Materials\Material Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\SceneManager.h">
+      <Filter>Core\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

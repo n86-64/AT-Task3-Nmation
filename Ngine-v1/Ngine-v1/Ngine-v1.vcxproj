@@ -191,6 +191,7 @@
     <ClInclude Include="..\src\Core\NDataStructures.h" />
     <ClInclude Include="..\src\Core\NWindow.h" />
     <ClInclude Include="..\src\Core\NWinEvent.h" />
+    <ClInclude Include="..\src\Core\SceneManager.h" />
     <ClInclude Include="..\src\Core\TestComp.h" />
     <ClInclude Include="..\src\Core\time.h" />
     <ClInclude Include="..\src\Core\Triangle.h" />
