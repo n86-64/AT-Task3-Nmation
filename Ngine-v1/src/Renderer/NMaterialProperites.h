@@ -8,9 +8,10 @@
 
 #include "Helpers/Direct3D.h"
 
+// TODO - Add this into materials to show textures.
+
 // Store textures seperatly.
-template<class T : ID3D11DeviceChild*>
-inline void NMATERIAL_RELEASE(T device) 
+inline void NMATERIAL_RELEASE(ID3D11DeviceChild* device) 
 {
 	if (device) 
 	{
@@ -67,7 +68,9 @@ struct NMaterialTexture
 
 	~NMaterialTexture() 
 	{
-
+		NMATERIAL_RELEASE(textureData);
+		NMATERIAL_RELEASE(textureSRV);
+		NMATERIAL_RELEASE(samplerState); 
 	}
 };
 
@@ -76,6 +79,8 @@ class NMaterialProperties
 public:
 	NMaterialProperties() = default;
 	~NMaterialProperties();
+
+	void				 setDevice(ID3D11Device* device);
 
 	NMaterialProperty*   getProperty(int index);
 	int					 getNumberOfProperties();
@@ -91,4 +96,6 @@ private:
 	// The properties read from the material. 
 	std::vector<std::unique_ptr<NMaterialProperty>>   properties;
 	std::vector<std::unique_ptr<NMaterialTexture>>	  textures;
+
+	ID3D11Device*		device;
 };

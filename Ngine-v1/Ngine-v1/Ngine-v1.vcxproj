@@ -175,6 +175,7 @@
     <ClCompile Include="..\src\Helpers\NMath_Vector.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Renderer\NMaterial.cpp" />
+    <ClCompile Include="..\src\Renderer\NMaterialProperites.cpp" />
     <ClCompile Include="..\src\Renderer\NRenderer.cpp" />
     <ClCompile Include="..\src\Renderer\NRendererDevice.cpp" />
   </ItemGroup>

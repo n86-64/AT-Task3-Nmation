@@ -62,4 +62,6 @@ private:
 	};
 
 	ID3D11InputLayout*    matInput = nullptr;
+
+	
 };

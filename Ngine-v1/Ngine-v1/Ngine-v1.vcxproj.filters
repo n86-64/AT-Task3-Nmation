@@ -59,6 +59,7 @@
     <ClCompile Include="..\src\Core\time.cpp">
       <Filter>Core\Time</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Renderer\NMaterialProperites.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
