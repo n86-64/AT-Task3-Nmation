@@ -71,7 +71,9 @@
     <ClCompile Include="..\src\Core\NColliderAABB.cpp">
       <Filter>Core\Physics\Colliders</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Core\NPhysicsResolver.cpp" />
+    <ClCompile Include="..\src\Core\NPhysicsResolver.cpp">
+      <Filter>Core\Physics\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
