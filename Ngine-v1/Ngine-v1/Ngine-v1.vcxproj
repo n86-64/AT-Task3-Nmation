@@ -166,6 +166,7 @@
     <ClCompile Include="..\src\Core\NGame.cpp" />
     <ClCompile Include="..\src\Core\NWindow.cpp" />
     <ClCompile Include="..\src\Core\NWinEvent.cpp" />
+    <ClCompile Include="..\src\Core\SceneManager.cpp" />
     <ClCompile Include="..\src\Core\TestComp.cpp" />
     <ClCompile Include="..\src\Core\time.cpp" />
     <ClCompile Include="..\src\Core\Triangle.cpp" />

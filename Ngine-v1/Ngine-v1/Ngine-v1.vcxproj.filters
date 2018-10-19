@@ -59,7 +59,12 @@
     <ClCompile Include="..\src\Core\time.cpp">
       <Filter>Core\Time</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Renderer\NMaterialProperites.cpp" />
+    <ClCompile Include="..\src\Renderer\NMaterialProperites.cpp">
+      <Filter>Core\Renderer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\SceneManager.cpp">
+      <Filter>Core\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
