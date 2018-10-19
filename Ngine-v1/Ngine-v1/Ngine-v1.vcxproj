@@ -161,9 +161,12 @@
     <ClCompile Include="..\src\Core\InputHandler.cpp" />
     <ClCompile Include="..\src\Core\N3DComponent.cpp" />
     <ClCompile Include="..\src\Core\N3DMesh.cpp" />
+    <ClCompile Include="..\src\Core\NColliderAABB.cpp" />
     <ClCompile Include="..\src\Core\NComponent.cpp" />
     <ClCompile Include="..\src\Core\NGameObject.cpp" />
     <ClCompile Include="..\src\Core\NGame.cpp" />
+    <ClCompile Include="..\src\Core\NPhysicsComponent.cpp" />
+    <ClCompile Include="..\src\Core\NPhysicsResolver.cpp" />
     <ClCompile Include="..\src\Core\NWindow.cpp" />
     <ClCompile Include="..\src\Core\NWinEvent.cpp" />
     <ClCompile Include="..\src\Core\SceneManager.cpp" />
@@ -191,6 +194,8 @@
     <ClInclude Include="..\src\Core\NGameObject.h" />
     <ClInclude Include="..\src\Core\NGame.h" />
     <ClInclude Include="..\src\Core\NDataStructures.h" />
+    <ClInclude Include="..\src\Core\NPhysicsComponent.h" />
+    <ClInclude Include="..\src\Core\NPhysicsResolver.h" />
     <ClInclude Include="..\src\Core\NWindow.h" />
     <ClInclude Include="..\src\Core\NWinEvent.h" />
     <ClInclude Include="..\src\Core\SceneManager.h" />

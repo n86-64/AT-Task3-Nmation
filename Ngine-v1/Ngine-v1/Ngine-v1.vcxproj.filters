@@ -65,6 +65,13 @@
     <ClCompile Include="..\src\Core\SceneManager.cpp">
       <Filter>Core\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\NPhysicsComponent.cpp">
+      <Filter>Core\Components\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NColliderAABB.cpp">
+      <Filter>Core\Physics\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NPhysicsResolver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -150,6 +157,12 @@
     </Filter>
     <Filter Include="Core\Physics\Colliders">
       <UniqueIdentifier>{5df17b57-dd69-4d01-8407-ccef94558df1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components\Physics">
+      <UniqueIdentifier>{748bb503-c58c-42bd-94c9-33a719b5e412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Manager">
+      <UniqueIdentifier>{0f7b9a89-d1cc-42d5-83ea-1b72f7fd2804}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -242,6 +255,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NColliderAABB.h">
       <Filter>Core\Physics\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NPhysicsComponent.h">
+      <Filter>Core\Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NPhysicsResolver.h">
+      <Filter>Core\Physics\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

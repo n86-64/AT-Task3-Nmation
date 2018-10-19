@@ -42,6 +42,9 @@ public:
 	// DEPRICATED!!!!
 	NMath::Vector3   getTransformValue();
 
+	NComponent*       getComponent(int i);
+	int				  getComponentCount(); 
+
 protected:
 	std::vector<std::unique_ptr<NComponent>> objectComponents;
 

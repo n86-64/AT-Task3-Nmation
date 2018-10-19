@@ -48,10 +48,28 @@ void NGameObject::setScale(NMath::Vector3 newScale)
 
 void NGameObject::addComponent(NComponent* newComp)
 {
+	newComp->setGameObject(this);
 	objectComponents.push_back(std::unique_ptr<NComponent>(newComp));
 }
 
 NMath::Vector3 NGameObject::getTransformValue()
 {
 	return position * scale;
+}
+
+NComponent* NGameObject::getComponent(int i)
+{
+	if (i < objectComponents.size()) 
+	{
+		return objectComponents[i].get();
+	}
+	else 
+	{
+		return nullptr;
+	}
+}
+
+int NGameObject::getComponentCount()
+{
+	return objectComponents.size();
 }

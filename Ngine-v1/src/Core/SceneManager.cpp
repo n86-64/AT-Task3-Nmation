@@ -1,5 +1,8 @@
 #include "Renderer/NRenderer.h"
 
+// Individual components for setup.
+#include "NPhysicsComponent.h"
+
 #include "SceneManager.h"
 
 bool NScene::init(NRenderer* renderer, GameStateData* gameState)
@@ -30,6 +33,19 @@ void NScene::Render()
 void NScene::addObjectToScene(NGameObject* newObject)
 {
 	// Here we will add objects to the scene/scene-manager. 
+	NComponent* component = nullptr;
+
+	for (int i = 0; i < newObject->getComponentCount(); i++) 
+	{
+		component = newObject->getComponent(i);
+
+
+		// Here we can set up each component individually. 
+		if (dynamic_cast<NPhysicsComponent*>(component)) 
+		{
+			physicsSystem.RegisterObject(((NPhysicsComponent*)component));
+		}
+	}
 
 	// Here we will perform some object setup. 
 	scene_objects.push_back(std::unique_ptr<NGameObject>(newObject));
