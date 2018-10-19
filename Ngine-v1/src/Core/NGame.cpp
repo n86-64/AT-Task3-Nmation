@@ -17,6 +17,7 @@ void NGame::init(NWindowHandle* window, std::string gameTitle)
 
 bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 {
+	bool initialised = false;
 	gameWindow.setAndSetupWindow(window, launchParams.nCmdShow);
 	gameWindow.setWindowTitle(launchParams.gameTitle);
 
@@ -26,11 +27,14 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 	gameWindow.setWindowSize(initParams.width, initParams.height); // Set the window rectangle to match the resolution.
 	
-	if (!renderer.init(*gameWindow.getWindowHandle(), initParams)) 
+	initialised = renderer.init(*gameWindow.getWindowHandle(), initParams);
+	initialised = gameSceneManager.init(&renderer, &gameData);
+
+	if (!initialised)
 	{
 		ShutDown();
-		return false;
 	}
+
 
 #pragma region TEST_SCENE_SETUP
 	// Here we set up a basic test scene. (Will be deprecated)
@@ -63,7 +67,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle2));// TODO - Have scene manager automagiclly get renderer to setup drawables. 
 #pragma endregion
 
-	return true;
+	return initialised;
 }
 
 void NGame::Tick()

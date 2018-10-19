@@ -166,6 +166,7 @@
     <ClCompile Include="..\src\Core\NGame.cpp" />
     <ClCompile Include="..\src\Core\NWindow.cpp" />
     <ClCompile Include="..\src\Core\NWinEvent.cpp" />
+    <ClCompile Include="..\src\Core\SceneManager.cpp" />
     <ClCompile Include="..\src\Core\TestComp.cpp" />
     <ClCompile Include="..\src\Core\time.cpp" />
     <ClCompile Include="..\src\Core\Triangle.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="..\src\Core\NDataStructures.h" />
     <ClInclude Include="..\src\Core\NWindow.h" />
     <ClInclude Include="..\src\Core\NWinEvent.h" />
+    <ClInclude Include="..\src\Core\SceneManager.h" />
     <ClInclude Include="..\src\Core\TestComp.h" />
     <ClInclude Include="..\src\Core\time.h" />
     <ClInclude Include="..\src\Core\Triangle.h" />

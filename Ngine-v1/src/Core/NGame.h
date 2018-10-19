@@ -10,7 +10,7 @@
 #include "NGameObject.h"
 #include "InputHandler.h"
 #include "time.h"
-
+#include "SceneManager.h"
 
 class NGame 
 {
@@ -40,6 +40,8 @@ private:
 	NInputHandler		input;
 	NTimer				gameTime;
 	GameStateData		gameData = { &gameTime, &input };
+
+	NScene				gameSceneManager; 
 
 
 	// Temporary Scene Manager - TODO: Build a scene manager
