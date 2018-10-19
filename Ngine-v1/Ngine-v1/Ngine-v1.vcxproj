@@ -186,6 +186,7 @@
     <ClInclude Include="..\src\Core\InputState.h" />
     <ClInclude Include="..\src\Core\N3DComponent.h" />
     <ClInclude Include="..\src\Core\N3DMesh.h" />
+    <ClInclude Include="..\src\Core\NColliderAABB.h" />
     <ClInclude Include="..\src\Core\NComponent.h" />
     <ClInclude Include="..\src\Core\NGameObject.h" />
     <ClInclude Include="..\src\Core\NGame.h" />

@@ -145,6 +145,12 @@
     <Filter Include="Core\Scenes">
       <UniqueIdentifier>{a3e909c2-f15e-413e-9b6e-e5d9a170c62a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Physics">
+      <UniqueIdentifier>{99549fac-f88b-49d8-a169-4ddf86ff311b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Colliders">
+      <UniqueIdentifier>{5df17b57-dd69-4d01-8407-ccef94558df1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -233,6 +239,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\SceneManager.h">
       <Filter>Core\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NColliderAABB.h">
+      <Filter>Core\Physics\Colliders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
