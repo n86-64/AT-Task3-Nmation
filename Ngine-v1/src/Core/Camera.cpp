@@ -7,7 +7,7 @@ NCamera::NCamera()
 
 void NCamera::Update(GameStateData& gameData)
 {
-	float speed = 20.0f * (gameData.timeData->getDeltaTime() / 1000.0f);
+	float speed = 10.0f * gameData.timeData->getDeltaTimeInSeconds();
 
 	position.setZ(position.z() + (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_W)));
 	position.setZ(position.z() - (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_S)));

@@ -53,7 +53,7 @@ int WINAPI WinMain(
 	windowHandle = CreateWindow(
 		strWindowClass,
 		strWindowTitle,
-		WS_OVERLAPPEDWINDOW,
+		WS_OVERLAPPED | WS_MINIMIZEBOX | WS_SYSMENU,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
 		200,

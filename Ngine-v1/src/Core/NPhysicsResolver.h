@@ -15,7 +15,12 @@ public:
 
 	void RegisterObject(NPhysicsComponent* newComp);
 
-private:
+	// Update the physics in the game world.
+	void tickPhysics();
 
-	std::vector<NPhysicsComponent*>      physics_resolver;
+private:
+	std::vector<NPhysicsComponent*>      physics_objects;
+
+	// The gravity in cm/s
+	NMath::Vector3						 gravity = NMath::Vector3(0.0f, -980.0f, 0.0f);
 };

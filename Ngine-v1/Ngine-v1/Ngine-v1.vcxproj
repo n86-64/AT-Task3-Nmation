@@ -195,6 +195,7 @@
     <ClInclude Include="..\src\Core\NGame.h" />
     <ClInclude Include="..\src\Core\NDataStructures.h" />
     <ClInclude Include="..\src\Core\NPhysicsComponent.h" />
+    <ClInclude Include="..\src\Core\NPhysicsData.h" />
     <ClInclude Include="..\src\Core\NPhysicsResolver.h" />
     <ClInclude Include="..\src\Core\NWindow.h" />
     <ClInclude Include="..\src\Core\NWinEvent.h" />

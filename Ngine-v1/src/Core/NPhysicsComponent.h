@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <functional>
+
 #include "NComponent.h"
 #include "NColliderAABB.h"
 
@@ -20,8 +22,21 @@ public:
 	virtual void Update() override;
 	virtual void Render(NRenderer* renderer) override;
 
+	// Function called by the 
+	void onCollision();
+
+	std::function<void(NPhysicsComponent*)> getCollisionEventHandle();
+
+	void registerCollisionEvent(std::function<void(NPhysicsComponent*)> col_function);
+
 private:
 	NColliderAABB		collider;
 
-	// TODO - Consider Collider parent class so a veriaty of collisions can be simulated. 
+	// Function ptr that is called to perform testing.
+	std::function<void(NPhysicsComponent*)>   function_ptr = nullptr;
+
+private:
+	// The Mass of the object in kg.
+	float			mass = 1.0f;
+	bool			is_kinematic = false;
 };
