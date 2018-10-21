@@ -19,9 +19,9 @@ Triangle::~Triangle()
 void Triangle::Update(GameStateData& gameData)
 {
 	// TODO - Apply transforms (roatation and scale at draw time not runtime.)
-	timeTotal++;
+	//timeTotal++;
 
-	setRotation(NMath::Vector3(0.0f,timeTotal,timeTotal));
+	//setRotation(NMath::Vector3(0.0f,0.0f,0.0f));
 
 	NGameObject::Update(gameData);
 	return;
@@ -30,7 +30,6 @@ void Triangle::Update(GameStateData& gameData)
 void Triangle::Render(NRenderer* renderer)
 {
 	// Here we draw the triangle. 
-//	renderer->DrawTriangle(this);
 	NGameObject::Render(renderer); 
 }
 

@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "NRenderer.h"
 
 #include "Helpers/NMath_Colour.h"
@@ -94,8 +96,17 @@ NMaterial* NRenderer::createMaterial(std::string name)
 N3DMesh* NRenderer::createMesh(std::string name)
 {
 	// TODO - Add checks and buffering to prevent exessive reads and writes. 
-	N3DMesh* mesh = new N3DMesh(name, renderDevice);
-	meshBuffer.push_back(std::unique_ptr<N3DMesh>(mesh));
+	N3DMesh* mesh = nullptr;
+
+	mesh = searchMesh(name);
+
+	if (!mesh)
+	{
+		mesh = new N3DMesh(name, renderDevice);
+		// Setup the Materials (TODO - Add the ability to set shaders.)
+		meshBuffer.push_back(std::unique_ptr<N3DMesh>(mesh));
+	}
+
 	return mesh;
 }
 
