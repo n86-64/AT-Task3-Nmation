@@ -97,7 +97,6 @@ N3DMesh* NRenderer::createMesh(std::string name)
 {
 	// TODO - Add checks and buffering to prevent exessive reads and writes. 
 	N3DMesh* mesh = nullptr;
-
 	mesh = searchMesh(name);
 
 	if (!mesh)

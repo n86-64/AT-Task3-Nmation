@@ -4,7 +4,9 @@
 // Includes the game objects for the test scene.
 #include "Camera.h"
 #include "Triangle.h"
+#include "Player.h"
 
+#include "NPhysicsComponent.h"
 #include "N3DComponent.h"
 
 // DEPRECATED
@@ -36,7 +38,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 #pragma region TEST_SCENE_SETUP
 	// Here we set up a basic test scene. (Will be deprecated)
-	gameSceneManager.addObjectToScene(new NCamera());
+	NCamera* newCam = new NCamera();
 
 	NMaterial* testMat = renderer.createMaterial("test");
 	NMaterial* testMat2 = renderer.createMaterial("test");
@@ -47,7 +49,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	N3DComponent* comp = new N3DComponent();
 	comp->setGameObject(testTriangle);
 	comp->setMaterial(renderer.createMaterial("test"));
-	comp->setMesh(renderer.createMesh("teapot"));
+	comp->setMesh(renderer.createMesh("cube"));
 	testTriangle->addComponent(comp);
 
 	N3DComponent* comp2 = new N3DComponent();
@@ -56,11 +58,25 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	comp2->setMesh(renderer.createMesh("teapot"));
 	testTriangle2->addComponent(comp2);
 
+	NPhysicsComponent*  physComp = new NPhysicsComponent();
+	physComp->registerCollisionEvent(std::bind(&Triangle::colTest, testTriangle, std::placeholders::_1));
+	testTriangle->addComponent(physComp);
+
+	NPlayer* player = new NPlayer();
+	N3DComponent* playerMesh = new N3DComponent();
+	playerMesh->setMesh(renderer.createMesh("suzanne"));
+	playerMesh->setMaterial(renderer.createMaterial("test"));
+	player->addComponent(playerMesh);
+
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
-	testTriangle2->setPosition(NMath::Vector3(3.0f, 2.0f, 0.0f));
+	//testTriangle2->setPosition(NMath::Vector3(3.0f, 0.0f, 0.0f));
+	player->setPosition(NMath::Vector3(5.0f, 0.0f, 0.0f));
 
 	gameSceneManager.addObjectToScene(testTriangle);
-	gameSceneManager.addObjectToScene(testTriangle2);
+//	gameSceneManager.addObjectToScene(testTriangle2);
+	gameSceneManager.addObjectToScene(newCam);
+	gameSceneManager.addObjectToScene(player);
+
 #pragma endregion
 
 	return initialised;

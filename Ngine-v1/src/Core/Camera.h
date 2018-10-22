@@ -20,6 +20,8 @@ public:
 	void setCameraBoundsZ(float nearPos, float farPos);
 
 	NMath::Vector3   getCameraLookAt(); 
+	void			 setCameraLookAt(NGameObject* target);
+	void			 clearCameraTarget();
 
 private:
 	float			 movementvelocity;

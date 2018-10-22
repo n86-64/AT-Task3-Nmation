@@ -74,6 +74,9 @@
     <ClCompile Include="..\src\Core\NPhysicsResolver.cpp">
       <Filter>Core\Physics\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\Player.cpp">
+      <Filter>Core\GameObjects\Core Objects\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -168,6 +171,9 @@
     </Filter>
     <Filter Include="Core\Physics\Data">
       <UniqueIdentifier>{8e08a553-be63-4478-826b-ab87e11da4d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Core Objects\Player">
+      <UniqueIdentifier>{1c6bcffd-9e43-4263-badc-0008093e0b72}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NPhysicsData.h">
       <Filter>Core\Physics\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Player.h">
+      <Filter>Core\GameObjects\Core Objects\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

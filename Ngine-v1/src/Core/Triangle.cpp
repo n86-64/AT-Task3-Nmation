@@ -19,10 +19,6 @@ Triangle::~Triangle()
 void Triangle::Update(GameStateData& gameData)
 {
 	// TODO - Apply transforms (roatation and scale at draw time not runtime.)
-	//timeTotal++;
-
-	//setRotation(NMath::Vector3(0.0f,0.0f,0.0f));
-
 	NGameObject::Update(gameData);
 	return;
 }
@@ -56,6 +52,11 @@ ID3D11Buffer* Triangle::getIndexBuffer()
 NMaterial* Triangle::getMaterial()
 {
 	return mat;
+}
+
+void Triangle::colTest(NPhysicsComponent* comp)
+{
+	OutputDebugString("LOL he's wrong there is no collision \n");
 }
 
 

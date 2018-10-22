@@ -7,13 +7,7 @@ NCamera::NCamera()
 
 void NCamera::Update(GameStateData& gameData)
 {
-	float speed = 10.0f * gameData.timeData->getDeltaTimeInSeconds();
 
-	position.setZ(position.z() + (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_W)));
-	position.setZ(position.z() - (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_S)));
-
-	position.setX(position.x() + (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_D)));
-	position.setX(position.x() - (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_A)));
 }
 
 void NCamera::Render(NRenderer* renderer)
@@ -52,4 +46,14 @@ NMath::Vector3 NCamera::getCameraLookAt()
 	{
 		return position + cameraForward;
 	}
+}
+
+void NCamera::setCameraLookAt(NGameObject* target)
+{
+	cameraTarget = target;
+}
+
+void NCamera::clearCameraTarget()
+{
+	cameraTarget = nullptr;
 }

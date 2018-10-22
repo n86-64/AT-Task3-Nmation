@@ -15,7 +15,7 @@ bool NScene::init(NRenderer* renderer, GameStateData* gameState)
 
 void NScene::Update()
 {
-	physicsSystem.tickPhysics();
+	physicsSystem.tickPhysics(*gameStateData);
 
 	for (int i = 0; i < scene_objects.size(); ++i)
 	{

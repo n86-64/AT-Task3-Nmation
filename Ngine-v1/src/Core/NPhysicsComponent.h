@@ -23,11 +23,14 @@ public:
 	virtual void Render(NRenderer* renderer) override;
 
 	// Function called by the 
-	void onCollision();
+	void onCollision(NPhysicsComponent* comp);
+
+	bool isKinematic() { return is_kinematic; }
 
 	std::function<void(NPhysicsComponent*)> getCollisionEventHandle();
-
 	void registerCollisionEvent(std::function<void(NPhysicsComponent*)> col_function);
+
+	NColliderAABB& getCollider() { return collider; };
 
 private:
 	NColliderAABB		collider;
@@ -36,7 +39,7 @@ private:
 	std::function<void(NPhysicsComponent*)>   function_ptr = nullptr;
 
 private:
-	// The Mass of the object in kg.
+	// The Mass of the object in 3D Space.
 	float			mass = 1.0f;
-	bool			is_kinematic = false;
+	bool			is_kinematic = true;
 };

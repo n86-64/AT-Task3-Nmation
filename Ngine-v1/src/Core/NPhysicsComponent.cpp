@@ -13,6 +13,8 @@ void NPhysicsComponent::Construct(EngineStateData engineState, NConstructorValue
 
 void NPhysicsComponent::Update()
 {
+	// Apply the speed changes here.
+
 	return;
 }
 
@@ -21,8 +23,12 @@ void NPhysicsComponent::Render(NRenderer* renderer)
 	return;
 }
 
-void NPhysicsComponent::onCollision()
+void NPhysicsComponent::onCollision(NPhysicsComponent* comp)
 {
+	if (function_ptr) 
+	{
+		function_ptr(comp);
+	}
 
 	return;
 }
