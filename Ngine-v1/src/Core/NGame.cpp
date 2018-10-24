@@ -55,7 +55,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	N3DComponent* comp2 = new N3DComponent();
 	comp2->setGameObject(testTriangle2);
 	comp2->setMaterial(renderer.createMaterial("test"));
-	comp2->setMesh(renderer.createMesh("rabbit"));
+	comp2->setMesh(renderer.createMesh("bunny"));
 	testTriangle2->addComponent(comp2);
 
 	NPhysicsComponent*  physComp = new NPhysicsComponent();
@@ -64,7 +64,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 	NPlayer* player = new NPlayer();
 	N3DComponent* playerMesh = new N3DComponent();
-	playerMesh->setMesh(renderer.createMesh("suzanne"));
+	playerMesh->setMesh(renderer.createMesh("Teapot"));
 	playerMesh->setMaterial(renderer.createMaterial("test"));
 	player->addComponent(playerMesh);
 
