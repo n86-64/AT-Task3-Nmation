@@ -124,7 +124,7 @@ void NRenderer::DrawObject(N3DComponent* component)
 	NGameObject*    componentObject = component->getGameObject();
 	DirectX::XMMATRIX   model = DirectX::XMMatrixMultiply(DirectX::XMMatrixIdentity(), DirectX::XMMatrixTranslationFromVector(componentObject->getTransformValue().getRawVector()));
 	
-	model = model * DirectX::XMMatrixRotationQuaternion(componentObject->getRotation().getRawVector()) * DirectX::XMMatrixScalingFromVector(componentObject->getScale().getRawVector());
+	model = DirectX::XMMatrixScalingFromVector(componentObject->getScale().getRawVector()) * DirectX::XMMatrixRotationQuaternion(DirectX::XMQuaternionRotationRollPitchYawFromVector(componentObject->getRotation().getRawVector())) *  model;
 
 	mvpMatracies.mvMatrix = DirectX::XMMatrixMultiply(model, view);
 	mvpMatracies.mvMatrix = DirectX::XMMatrixTranspose(mvpMatracies.mvMatrix);

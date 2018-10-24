@@ -33,7 +33,8 @@ NMath::Vector3 NGameObject::getRotation()
 
 void NGameObject::setRotation(NMath::Vector3 newPos)
 {
-	rotation = NMath::Vector3(DirectX::XMQuaternionRotationRollPitchYawFromVector(newPos.getRawVector()));
+	rotation = newPos;
+	//rotation = NMath::Vector3(DirectX::XMQuaternionRotationRollPitchYawFromVector(newPos.getRawVector()));
 }
 
 NMath::Vector3 NGameObject::getScale()

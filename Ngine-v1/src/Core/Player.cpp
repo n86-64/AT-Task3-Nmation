@@ -11,13 +11,15 @@ NPlayer::NPlayer()
 
 void NPlayer::Update(GameStateData& gameData)
 {
-	float speed = 10.0f * gameData.timeData->getDeltaTimeInSeconds();
+	float speed = 1.0f * gameData.timeData->getDeltaTimeInSeconds();
 
 	position.setZ(position.z() + (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_W)));
 	position.setZ(position.z() - (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_S)));
 
 	position.setX(position.x() + (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_D)));
 	position.setX(position.x() - (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_A)));
+
+	rotation = rotation + NMath::Vector3(0.0f, (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_Q)) + (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_E)), 0.0f);
 
 	NGameObject::Update(gameData);
 }

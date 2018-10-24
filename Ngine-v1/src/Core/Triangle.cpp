@@ -18,7 +18,6 @@ Triangle::~Triangle()
 
 void Triangle::Update(GameStateData& gameData)
 {
-	// TODO - Apply transforms (roatation and scale at draw time not runtime.)
 	NGameObject::Update(gameData);
 	return;
 }

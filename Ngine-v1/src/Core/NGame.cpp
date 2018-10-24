@@ -55,7 +55,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	N3DComponent* comp2 = new N3DComponent();
 	comp2->setGameObject(testTriangle2);
 	comp2->setMaterial(renderer.createMaterial("test"));
-	comp2->setMesh(renderer.createMesh("teapot"));
+	comp2->setMesh(renderer.createMesh("rabbit"));
 	testTriangle2->addComponent(comp2);
 
 	NPhysicsComponent*  physComp = new NPhysicsComponent();
