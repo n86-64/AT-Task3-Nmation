@@ -1,7 +1,18 @@
+#include <algorithm>
+
 #include "Renderer/NMaterialProperites.h"
 
 #include "Helpers/OBJ_Loader.h"
 #include "N3DMesh.h"
+
+inline float clamp(float value, float min, float max) 
+{
+	float return_value = value;
+	if (value < min) { return_value = min; }
+	else if (value > max) { return_value = max; }
+
+	return return_value;
+}
 
 N3DMesh::N3DMesh(std::string name, ID3D11Device* device)
 	:meshName(name)
@@ -54,7 +65,7 @@ void N3DMesh::loadMesh(std::string name)
 		for (objl::Vertex v : object.LoadedMeshes[0].Vertices) 
 		{
 			pos = DirectX::XMFLOAT4(v.Position.X, v.Position.Y, v.Position.Z, 1.0f);
-			col = DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+			col = DirectX::XMFLOAT4(clamp(v.Position.X, 0.0f, 0.2f), clamp(v.Position.Y, 0.2f, 0.5f), clamp(v.Position.Z, 0.f, 1.0f), 1.0f);
 			uv = DirectX::XMFLOAT2(v.TextureCoordinate.X, v.TextureCoordinate.Y);
 
 			verticies[i] = VertexInput{ pos, col, uv };
