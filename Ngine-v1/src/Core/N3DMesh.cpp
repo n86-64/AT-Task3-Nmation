@@ -1,3 +1,5 @@
+#include "Renderer/NMaterialProperites.h"
+
 #include "Helpers/OBJ_Loader.h"
 #include "N3DMesh.h"
 
@@ -7,6 +9,12 @@ N3DMesh::N3DMesh(std::string name, ID3D11Device* device)
 	// Load the mesh and then render. 
 	loadMesh(name);
 	setupMesh(device);
+}
+
+N3DMesh::~N3DMesh()
+{
+	NMATERIAL_RELEASE(vBuffer);
+	NMATERIAL_RELEASE(iBuffer);
 }
 
 std::string N3DMesh::getName() const

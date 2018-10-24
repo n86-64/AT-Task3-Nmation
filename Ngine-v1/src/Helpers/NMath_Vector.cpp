@@ -82,3 +82,13 @@ NMath::Vector3 NMath::Vector3::operator*(NMath::Vector3 vec)
 {
 	return NMath::Vector3(DirectX::XMVectorMultiply(this->vector, vec.getRawVector()));
 }
+
+NMath::Vector3 NMath::Vector3::operator/(float scalier)
+{
+	return NMath::Vector3(this->x() / scalier, this->y() /scalier, this->z() / scalier);
+}
+
+NMath::Vector3 NMath::Vector3::operator*(float scalier)
+{
+	return NMath::Vector3(this->x() * scalier, this->y() * scalier, this->z() * scalier);
+}

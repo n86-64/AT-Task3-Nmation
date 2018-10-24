@@ -65,6 +65,18 @@
     <ClCompile Include="..\src\Core\SceneManager.cpp">
       <Filter>Core\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\NPhysicsComponent.cpp">
+      <Filter>Core\Components\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NColliderAABB.cpp">
+      <Filter>Core\Physics\Colliders</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NPhysicsResolver.cpp">
+      <Filter>Core\Physics\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Player.cpp">
+      <Filter>Core\GameObjects\Core Objects\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -144,6 +156,24 @@
     </Filter>
     <Filter Include="Core\Scenes">
       <UniqueIdentifier>{a3e909c2-f15e-413e-9b6e-e5d9a170c62a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics">
+      <UniqueIdentifier>{99549fac-f88b-49d8-a169-4ddf86ff311b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Colliders">
+      <UniqueIdentifier>{5df17b57-dd69-4d01-8407-ccef94558df1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components\Physics">
+      <UniqueIdentifier>{748bb503-c58c-42bd-94c9-33a719b5e412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Manager">
+      <UniqueIdentifier>{0f7b9a89-d1cc-42d5-83ea-1b72f7fd2804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Data">
+      <UniqueIdentifier>{8e08a553-be63-4478-826b-ab87e11da4d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Core Objects\Player">
+      <UniqueIdentifier>{1c6bcffd-9e43-4263-badc-0008093e0b72}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +263,21 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\SceneManager.h">
       <Filter>Core\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NColliderAABB.h">
+      <Filter>Core\Physics\Colliders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NPhysicsComponent.h">
+      <Filter>Core\Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NPhysicsResolver.h">
+      <Filter>Core\Physics\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NPhysicsData.h">
+      <Filter>Core\Physics\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Player.h">
+      <Filter>Core\GameObjects\Core Objects\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

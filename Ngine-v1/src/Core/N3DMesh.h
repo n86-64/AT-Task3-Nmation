@@ -14,6 +14,7 @@ class N3DMesh
 {
 public:
 	N3DMesh(std::string name, ID3D11Device* device); 
+	~N3DMesh();
 
 	std::string getName() const;
 

@@ -4,8 +4,9 @@
 // Includes the game objects for the test scene.
 #include "Camera.h"
 #include "Triangle.h"
-#include "TestComp.h"
+#include "Player.h"
 
+#include "NPhysicsComponent.h"
 #include "N3DComponent.h"
 
 // DEPRECATED
@@ -35,36 +36,47 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 		ShutDown();
 	}
 
-
 #pragma region TEST_SCENE_SETUP
 	// Here we set up a basic test scene. (Will be deprecated)
-	scene_objects.push_back(std::make_unique<NCamera>());
-	renderer.setMainCamera((NCamera*)scene_objects[0].get());
+	NCamera* newCam = new NCamera();
 
 	NMaterial* testMat = renderer.createMaterial("test");
 	NMaterial* testMat2 = renderer.createMaterial("test");
 
 	Triangle* testTriangle = new Triangle(testMat);
 	Triangle* testTriangle2 = new Triangle(testMat2);
-	testTriangle->addComponent(new TestComp());
 
 	N3DComponent* comp = new N3DComponent();
 	comp->setGameObject(testTriangle);
 	comp->setMaterial(renderer.createMaterial("test"));
-	comp->setMesh(renderer.createMesh("teapot"));
+	comp->setMesh(renderer.createMesh("cube"));
 	testTriangle->addComponent(comp);
 
 	N3DComponent* comp2 = new N3DComponent();
 	comp2->setGameObject(testTriangle2);
 	comp2->setMaterial(renderer.createMaterial("test"));
-	comp2->setMesh(renderer.createMesh("bunny"));
-	testTriangle->addComponent(comp2);
+	comp2->setMesh(renderer.createMesh("teapot"));
+	testTriangle2->addComponent(comp2);
+
+	NPhysicsComponent*  physComp = new NPhysicsComponent();
+	physComp->registerCollisionEvent(std::bind(&Triangle::colTest, testTriangle, std::placeholders::_1));
+	testTriangle->addComponent(physComp);
+
+	NPlayer* player = new NPlayer();
+	N3DComponent* playerMesh = new N3DComponent();
+	playerMesh->setMesh(renderer.createMesh("suzanne"));
+	playerMesh->setMaterial(renderer.createMaterial("test"));
+	player->addComponent(playerMesh);
 
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
-	testTriangle2->setPosition(NMath::Vector3(1.0f, 2.0f, 0.0f));
+	//testTriangle2->setPosition(NMath::Vector3(3.0f, 0.0f, 0.0f));
+	player->setPosition(NMath::Vector3(5.0f, 0.0f, 0.0f));
 
-	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle));
-	scene_objects.push_back(std::unique_ptr<Triangle>(testTriangle2));// TODO - Have scene manager automagiclly get renderer to setup drawables. 
+	gameSceneManager.addObjectToScene(testTriangle);
+//	gameSceneManager.addObjectToScene(testTriangle2);
+	gameSceneManager.addObjectToScene(newCam);
+	gameSceneManager.addObjectToScene(player);
+
 #pragma endregion
 
 	return initialised;
@@ -87,11 +99,7 @@ void NGame::Tick()
 
 void NGame::Update()
 {	
-	for (int i = 0; i < scene_objects.size(); ++i) 
-	{
-		// Update the objects.
-		scene_objects[i]->Update(gameData);
-	}
+	gameSceneManager.Update();
 
 	// TEMPORARY, do not keep
 	if (input.getKeyDown(KEY_ESCAPE)) 
@@ -103,16 +111,7 @@ void NGame::Update()
 void NGame::Render()
 {
 	renderer.Clear(); // Clear the screen with a render target of some form.
-
-	// TODO - Add code to render the child objects.
-	for (int i = 0; i < scene_objects.size(); ++i)
-	{
-		// Update the objects.
-		scene_objects[i]->Render(&renderer);
-	}
-
-	// TEST ONLY - Get a Triangle Drawing.
-
+	gameSceneManager.Render();
 	renderer.Present(); // Render the images.
 }
 
@@ -161,5 +160,4 @@ void NGame::ShutDown()
 {
 	// Clean up the engine and then terminate cleanly.
 	gameWindow.CloseWindow();
-	scene_objects.clear();
 }

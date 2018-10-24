@@ -20,6 +20,8 @@ public:
 	void setCameraBoundsZ(float nearPos, float farPos);
 
 	NMath::Vector3   getCameraLookAt(); 
+	void			 setCameraLookAt(NGameObject* target);
+	void			 clearCameraTarget();
 
 private:
 	float			 movementvelocity;
@@ -30,7 +32,7 @@ private:
 	// Set lookAt to be forward of the camera by default unless a gameobject target is assigned.
 	// In these cases lookat should be set to that objects position.
 	// Camera rotations should also be applied to these objects.
-	NMath::Vector3	  cameraForward = NMath::Vector3(0.0f, 0.0f, 5.0f); // TODO - Replace with calculated forward vector instead of hardcoded position. 
+	NMath::Vector3	  cameraForward = NMath::Vector3(0.0f, 0.0f, 1.0f); // TODO - Replace with calculated forward vector instead of hardcoded position. 
 	
 	// The position the camera should be looking at.
 	NGameObject*      cameraTarget = nullptr;

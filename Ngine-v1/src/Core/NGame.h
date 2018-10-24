@@ -43,12 +43,6 @@ private:
 
 	NScene				gameSceneManager; 
 
-
-	// Temporary Scene Manager - TODO: Build a scene manager
-	std::vector<std::unique_ptr<NGameObject>>	scene_objects;
-
 	void ShutDown();
 	bool quit = false;
-
-	float timetest = 0.0f;
 };

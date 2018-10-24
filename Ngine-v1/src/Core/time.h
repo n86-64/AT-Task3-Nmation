@@ -19,6 +19,8 @@ public:
 	// Rtrieve the time since the last tick. 
 	float getDeltaTime() const;
 
+	float getDeltaTimeInSeconds() const;
+
 private:
 
 	float  deltaTime = 0.0f;

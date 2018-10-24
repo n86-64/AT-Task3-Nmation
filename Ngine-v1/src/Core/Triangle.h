@@ -8,6 +8,8 @@
 #include "Renderer/ShaderInput.h"
 #include "Helpers/Direct3D.h"
 
+#include "NPhysicsComponent.h"
+
 class NMaterial;
 
 class Triangle : public NGameObject 
@@ -28,6 +30,8 @@ public:
 	NMaterial*   getMaterial();
 
 	int getIndexCount() { return ARRAYSIZE(indicies); }
+
+	void colTest(NPhysicsComponent* comp);
 
 private:
 	float    timeTotal = 0.0f;

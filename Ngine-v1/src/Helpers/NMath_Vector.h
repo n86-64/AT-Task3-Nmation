@@ -31,6 +31,9 @@ namespace NMath
 		NMath::Vector3 operator+(NMath::Vector3 vec);
 		NMath::Vector3 operator-(NMath::Vector3 vec);
 		NMath::Vector3 operator*(NMath::Vector3 vec);
+		NMath::Vector3 operator/(float scalier);
+		NMath::Vector3 operator*(float scalier);
+		
 
 		// public vector constants.
 

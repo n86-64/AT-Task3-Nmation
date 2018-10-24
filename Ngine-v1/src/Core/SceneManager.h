@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "NPhysicsResolver.h"
 #include "NGameObject.h"
 
 struct GameStateData;
@@ -29,4 +30,6 @@ private:
 	std::vector<std::unique_ptr<NGameObject>>	scene_objects;
 	GameStateData*								gameStateData = nullptr;
 	NRenderer*									gameRenderer = nullptr;
+
+	NPhysicsResolver							physicsSystem;
 };

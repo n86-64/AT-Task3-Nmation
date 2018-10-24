@@ -20,6 +20,8 @@ class NGameObject
 public:
 	NGameObject() {};
 
+	virtual void init(EngineStateData& engineSetup) {};
+
 	// Consider adding a pre-tick and post tick.
 	// TODO - Implimenting Timing values.
 	// Updates the engine each frame.
@@ -41,6 +43,9 @@ public:
 
 	// DEPRICATED!!!!
 	NMath::Vector3   getTransformValue();
+
+	NComponent*       getComponent(int i);
+	int				  getComponentCount(); 
 
 protected:
 	std::vector<std::unique_ptr<NComponent>> objectComponents;
