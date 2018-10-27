@@ -6,6 +6,7 @@ NPlayer::NPlayer()
 	using namespace std::placeholders;
 	NPhysicsComponent* physicsComponent = new NPhysicsComponent();
 	physicsComponent->registerCollisionEvent(std::bind(&NPlayer::onCollision, this, _1));
+	physicsComponent->setGameObject(this);
 	this->addComponent(physicsComponent);
 }
 

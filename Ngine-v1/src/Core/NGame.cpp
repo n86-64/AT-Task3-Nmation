@@ -60,6 +60,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 	NPhysicsComponent*  physComp = new NPhysicsComponent();
 	physComp->registerCollisionEvent(std::bind(&Triangle::colTest, testTriangle, std::placeholders::_1));
+	physComp->setGameObject(testTriangle);
 	testTriangle->addComponent(physComp);
 
 	NPlayer* player = new NPlayer();

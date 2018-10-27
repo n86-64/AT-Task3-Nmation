@@ -15,13 +15,13 @@ bool NScene::init(NRenderer* renderer, GameStateData* gameState)
 
 void NScene::Update()
 {
-	physicsSystem.tickPhysics(*gameStateData);
-
 	for (int i = 0; i < scene_objects.size(); ++i)
 	{
 		// Update the objects.
 		scene_objects[i]->Update(*gameStateData);
 	}
+	
+	physicsSystem.tickPhysics(*gameStateData);
 }
 
 void NScene::Render()
