@@ -14,14 +14,19 @@ NPlayer::NPlayer()
 void NPlayer::Update(GameStateData& gameData)
 {
 	float speed = 1.0f * gameData.timeData->getDeltaTimeInSeconds();
+	NMath::Vector3   motion;
 
-	position.setZ(position.z() + (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_W)));
-	position.setZ(position.z() - (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_S)));
+	motion = motion + (realForward * (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_W)));
+    motion = motion + (realForward * (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_S)));
 
-	position.setX(position.x() + (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_D)));
-	position.setX(position.x() - (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_A)));
+	motion = motion + (realRight * (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_D)));
+	motion = motion + (realRight * (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_A)));
 
-	rotation = rotation + NMath::Vector3(0.0f, (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_Q)) + (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_E)), 0.0f);
+	position = position + motion;
+	rotation = rotation + NMath::Vector3(0.0f, (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_E)) + (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_Q)), 0.0f);
+
+	realForward = DirectX::XMVector3Transform(forward.getRawVector(), DirectX::XMMatrixRotationRollPitchYawFromVector(rotation.getRawVector()));
+	realRight   = DirectX::XMVector3Transform(right.getRawVector(), DirectX::XMMatrixRotationRollPitchYawFromVector(rotation.getRawVector()));
 
 	if (playerCamera) 
 	{
@@ -60,4 +65,6 @@ void NPlayer::updateCameraPosition(float speed, NInputHandler* input)
 	playerCamera->setPosition(
 		playerCamera->getPosition() + motion
 	);
+
+	playerCamera->setRotation(rotation);
 }

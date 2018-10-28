@@ -34,7 +34,6 @@ NMath::Vector3 NGameObject::getRotation()
 void NGameObject::setRotation(NMath::Vector3 newPos)
 {
 	rotation = newPos;
-	//rotation = NMath::Vector3(DirectX::XMQuaternionRotationRollPitchYawFromVector(newPos.getRawVector()));
 }
 
 NMath::Vector3 NGameObject::getScale()
@@ -73,4 +72,9 @@ NComponent* NGameObject::getComponent(int i)
 int NGameObject::getComponentCount()
 {
 	return objectComponents.size();
+}
+
+DirectX::XMMATRIX NGameObject::getModelMatrix()
+{
+	return DirectX::XMMatrixScalingFromVector(scale.getRawVector()) * DirectX::XMMatrixRotationQuaternion(DirectX::XMQuaternionRotationRollPitchYawFromVector(rotation.getRawVector())) *  DirectX::XMMatrixTranslationFromVector(position.getRawVector()) * DirectX::XMMatrixIdentity();
 }

@@ -24,4 +24,6 @@ private:
 
 private:
 	NCamera*   playerCamera = nullptr;
+	NMath::Vector3  realForward = forward;
+	NMath::Vector3  realRight = right;
 };

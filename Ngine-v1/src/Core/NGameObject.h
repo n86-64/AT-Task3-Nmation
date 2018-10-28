@@ -44,8 +44,10 @@ public:
 	// DEPRICATED!!!!
 	NMath::Vector3   getTransformValue();
 
-	NComponent*       getComponent(int i);
-	int				  getComponentCount(); 
+	NComponent*			getComponent(int i);
+	int					getComponentCount(); 
+
+	DirectX::XMMATRIX   getModelMatrix();
 
 protected:
 	std::vector<std::unique_ptr<NComponent>> objectComponents;
@@ -54,4 +56,10 @@ protected:
 	NMath::Vector3  position; // The position of the object in 3D space. 
 	NMath::Vector3	rotation; // The rotation of the object (represented via quaternions.)
 	NMath::Vector3  scale = NMath::Vector3(1.0f, 1.0f, 1.0f); // The scale of the object in 3D space. (By Default Set to 1)
+
+protected:
+	// Object Directions.
+	const NMath::Vector3  forward = NMath::Vector3(0.0f, 0.0f, 1.0f);
+	const NMath::Vector3  right   = NMath::Vector3(1.0f, 0.0f, 0.0f);
+	const NMath::Vector3  up      = NMath::Vector3(0.0f, 1.0f, 0.0f);
 };

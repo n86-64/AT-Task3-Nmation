@@ -68,7 +68,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	playerMesh->setMesh(renderer.createMesh("suzanne"));
 	playerMesh->setMaterial(renderer.createMaterial("test"));
 	player->addComponent(playerMesh);
-//	player->setCamera(newCam);
+	// player->setCamera(newCam);
 	newCam->setPosition(NMath::Vector3(5.0f, 2.0f, -5.0f));
 	player->setScale(NMath::Vector3(0.5f, 0.5f, 0.5f));
 
