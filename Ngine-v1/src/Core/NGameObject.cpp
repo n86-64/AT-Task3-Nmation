@@ -55,7 +55,7 @@ void NGameObject::addComponent(NComponent* newComp)
 
 NMath::Vector3 NGameObject::getTransformValue()
 {
-	return position * scale;
+	return position;
 }
 
 NComponent* NGameObject::getComponent(int i)

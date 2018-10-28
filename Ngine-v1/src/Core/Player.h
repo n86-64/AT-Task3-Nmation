@@ -5,6 +5,8 @@
 
 #include "NGameObject.h"
 
+class NCamera;
+
 class NPlayer : public NGameObject 
 {
 public:
@@ -15,6 +17,11 @@ public:
 
 	void onCollision(NPhysicsComponent* component);
 
-private:
+	void setCamera(NCamera* camera);
 
+private:
+	void updateCameraPosition(float speed, NInputHandler* input);
+
+private:
+	NCamera*   playerCamera = nullptr;
 };

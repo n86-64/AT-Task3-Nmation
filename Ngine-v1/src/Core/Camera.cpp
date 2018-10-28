@@ -7,11 +7,16 @@ NCamera::NCamera()
 
 void NCamera::Update(GameStateData& gameData)
 {
+	float speed = 1.0f * gameData.timeData->getDeltaTimeInSeconds();
+	rotation = rotation + NMath::Vector3(0.0f, (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_X)) + (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_Z)), 0.0f);
 
+	realCameraForward = DirectX::XMVector3Transform(cameraForward.getRawVector(), DirectX::XMMatrixRotationQuaternion(DirectX::XMQuaternionRotationRollPitchYawFromVector(rotation.getRawVector())));
+	NGameObject::Update(gameData);
 }
 
 void NCamera::Render(NRenderer* renderer)
 {
+	NGameObject::Render(renderer);
 	return;
 }
 
@@ -44,7 +49,7 @@ NMath::Vector3 NCamera::getCameraLookAt()
 	}
 	else 
 	{
-		return position + cameraForward;
+		return position + realCameraForward;
 	}
 }
 

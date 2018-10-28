@@ -62,7 +62,7 @@ DirectX::XMFLOAT4 NMath::Vector3::getRawVectorAsFloat()
 	return vec;
 }
 
-DirectX::XMVECTOR NMath::Vector3::getRawVector()
+DirectX::XMVECTOR NMath::Vector3::getRawVector() const
 {
 	return vector;
 }

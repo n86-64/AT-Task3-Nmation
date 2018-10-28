@@ -122,7 +122,7 @@ bool NRenderer::setupTriangle(Triangle* resource)
 void NRenderer::DrawObject(N3DComponent* component) 
 {
 	NGameObject*    componentObject = component->getGameObject();
-	DirectX::XMMATRIX   model = DirectX::XMMatrixMultiply(DirectX::XMMatrixIdentity(), DirectX::XMMatrixTranslationFromVector(componentObject->getTransformValue().getRawVector()));
+	DirectX::XMMATRIX   model = DirectX::XMMatrixTranslationFromVector(componentObject->getTransformValue().getRawVector()) * DirectX::XMMatrixIdentity();
 	
 	model = DirectX::XMMatrixScalingFromVector(componentObject->getScale().getRawVector()) * DirectX::XMMatrixRotationQuaternion(DirectX::XMQuaternionRotationRollPitchYawFromVector(componentObject->getRotation().getRawVector())) *  model;
 

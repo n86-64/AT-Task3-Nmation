@@ -65,9 +65,12 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 	NPlayer* player = new NPlayer();
 	N3DComponent* playerMesh = new N3DComponent();
-	playerMesh->setMesh(renderer.createMesh("Teapot"));
+	playerMesh->setMesh(renderer.createMesh("suzanne"));
 	playerMesh->setMaterial(renderer.createMaterial("test"));
 	player->addComponent(playerMesh);
+//	player->setCamera(newCam);
+	newCam->setPosition(NMath::Vector3(5.0f, 2.0f, -5.0f));
+	player->setScale(NMath::Vector3(0.5f, 0.5f, 0.5f));
 
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
 	//testTriangle2->setPosition(NMath::Vector3(3.0f, 0.0f, 0.0f));
