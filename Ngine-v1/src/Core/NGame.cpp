@@ -61,6 +61,8 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	NPhysicsComponent*  physComp = new NPhysicsComponent();
 	physComp->registerCollisionEvent(std::bind(&Triangle::colTest, testTriangle, std::placeholders::_1));
 	physComp->setGameObject(testTriangle);
+	physComp->isKinematic(true);
+	physComp->getCollider().setColliderDimenstions(NMath::Vector3(10.0f, 1.0f, 10.0f));
 	testTriangle->addComponent(physComp);
 
 	NPlayer* player = new NPlayer();
@@ -68,13 +70,14 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	playerMesh->setMesh(renderer.createMesh("suzanne"));
 	playerMesh->setMaterial(renderer.createMaterial("test"));
 	player->addComponent(playerMesh);
-	// player->setCamera(newCam);
-	newCam->setPosition(NMath::Vector3(5.0f, 2.0f, -5.0f));
+	player->setCamera(newCam);
+	newCam->setPosition(NMath::Vector3(0.0f, 10.0f, -5.0f));
 	player->setScale(NMath::Vector3(0.5f, 0.5f, 0.5f));
 
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
+	testTriangle->setScale(NMath::Vector3(10.0f, 1.0f, 10.0f));
 	//testTriangle2->setPosition(NMath::Vector3(3.0f, 0.0f, 0.0f));
-	player->setPosition(NMath::Vector3(5.0f, 0.0f, 0.0f));
+	player->setPosition(NMath::Vector3(0.0f, 10.0f, 0.0f));
 
 	gameSceneManager.addObjectToScene(testTriangle);
 //	gameSceneManager.addObjectToScene(testTriangle2);

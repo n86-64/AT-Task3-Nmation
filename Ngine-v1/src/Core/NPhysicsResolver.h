@@ -22,6 +22,8 @@ private:
 	void testCollision(NPhysicsComponent* a);
 	bool isObjectColliding(NPhysicsComponent* a, NPhysicsComponent* b);
 
+	void resolveCollision(NPhysicsComponent* a, NPhysicsComponent* b);
+
 	std::vector<NPhysicsComponent*>      physics_objects;
 
 	// The gravity in cm/s

@@ -26,6 +26,7 @@ public:
 	void onCollision(NPhysicsComponent* comp);
 
 	bool isKinematic() { return is_kinematic; }
+	void isKinematic(bool status) { is_kinematic = status; }
 
 	std::function<void(NPhysicsComponent*)> getCollisionEventHandle();
 	void registerCollisionEvent(std::function<void(NPhysicsComponent*)> col_function);
@@ -41,5 +42,5 @@ private:
 private:
 	// The Mass of the object in 3D Space.
 	float			mass = 1.0f;
-	bool			is_kinematic = true;
+	bool			is_kinematic = false;
 };
