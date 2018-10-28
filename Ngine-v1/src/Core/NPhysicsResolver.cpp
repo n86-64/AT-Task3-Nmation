@@ -29,6 +29,7 @@ void NPhysicsResolver::testCollision(NPhysicsComponent* a)
 		{
 			if (isObjectColliding(a, object)) 
 			{
+				// Here we will perform the responce. Adding forces etc.
 				// Trigger collision event.
 				a->onCollision(object);
 				object->onCollision(a);

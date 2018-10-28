@@ -162,6 +162,7 @@
     <ClCompile Include="..\src\Core\N3DComponent.cpp" />
     <ClCompile Include="..\src\Core\N3DMesh.cpp" />
     <ClCompile Include="..\src\Core\NColliderAABB.cpp" />
+    <ClCompile Include="..\src\Core\NColliderOBB.cpp" />
     <ClCompile Include="..\src\Core\NComponent.cpp" />
     <ClCompile Include="..\src\Core\NGameObject.cpp" />
     <ClCompile Include="..\src\Core\NGame.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="..\src\Core\N3DComponent.h" />
     <ClInclude Include="..\src\Core\N3DMesh.h" />
     <ClInclude Include="..\src\Core\NColliderAABB.h" />
+    <ClInclude Include="..\src\Core\NColliderOBB.h" />
     <ClInclude Include="..\src\Core\NComponent.h" />
     <ClInclude Include="..\src\Core\NGameObject.h" />
     <ClInclude Include="..\src\Core\NGame.h" />
