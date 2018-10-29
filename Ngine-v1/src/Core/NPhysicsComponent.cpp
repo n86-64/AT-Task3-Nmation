@@ -16,12 +16,8 @@ void NPhysicsComponent::Update(GameStateData& gameData)
 {
 	// Apply the speed changes here.
 	velocity = velocity + (acceleration * gameData.timeData->getDeltaTimeInSeconds());
-	this->getGameObject()->setPosition(this->getGameObject()->getPosition() + velocity);
-	
-	
+	this->getGameObject()->setPosition(this->getGameObject()->getPosition() + (velocity * gameData.timeData->getDeltaTimeInSeconds()));
 	acceleration = NMath::Vector3(0.0f, 0.0f, 0.0f);
-
-
 
 	return;
 }
