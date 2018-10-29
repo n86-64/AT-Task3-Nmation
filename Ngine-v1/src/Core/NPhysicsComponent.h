@@ -19,7 +19,7 @@ public:
 
 	// Inherited via NComponent
 	virtual void Construct(EngineStateData engineState, NConstructorValues constructorData) override;
-	virtual void Update() override;
+	virtual void Update(GameStateData& gameData) override;
 	virtual void Render(NRenderer* renderer) override;
 
 	// Function called by the 
@@ -28,10 +28,16 @@ public:
 	bool isKinematic() { return is_kinematic; }
 	void isKinematic(bool status) { is_kinematic = status; }
 
+	float getMass() const { return mass; }
+	void  setMass(float newMass) { mass = newMass; }
+
 	std::function<void(NPhysicsComponent*)> getCollisionEventHandle();
 	void registerCollisionEvent(std::function<void(NPhysicsComponent*)> col_function);
 
 	NColliderAABB& getCollider() { return collider; };
+
+	void incrementAcceleration(NMath::Vector3 accelerate);
+	NMath::Vector3  getAcceleration() const;
 
 private:
 	NColliderAABB		collider;

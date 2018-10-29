@@ -14,7 +14,8 @@ void NPhysicsResolver::tickPhysics(GameStateData gameData)
 		// Apply global constants.
 		if (!object->isKinematic()) 
 		{
-			object->getGameObject()->setPosition((object->getGameObject()->getPosition() + (gravity * gameData.timeData->getDeltaTimeInSeconds())));
+			object->incrementAcceleration(gravity);
+		//	object->getGameObject()->setPosition((object->getGameObject()->getPosition() + (gravity * gameData.timeData->getDeltaTimeInSeconds())));
 		}
 
 		testCollision(object);
@@ -78,5 +79,7 @@ void NPhysicsResolver::resolveCollision(NPhysicsComponent* a, NPhysicsComponent*
 	collisionNormal = ((a->getGameObject()->getPosition() - (b->getGameObject()->getPosition()))) - bColliderDim;
 	// collisionNormal = NMath::Vector3(0.0f, 1.0f, 0.0f);
 
-	a->getGameObject()->setPosition(a->getGameObject()->getPosition() + (NMath::Vector3(DirectX::XMVector3Normalize(collisionNormal.getRawVector()))));
+	//a->getGameObject()->setPosition(a->getGameObject()->getPosition() + (NMath::Vector3(DirectX::XMVector3Normalize(collisionNormal.getRawVector()))));
+
+	a->incrementAcceleration((a->getAcceleration() * a->getMass()) * collisionNormal);
 }

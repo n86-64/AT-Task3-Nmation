@@ -4,7 +4,7 @@ void NGameObject::Update(GameStateData& gameData)
 {
 	for (int i = 0; i < objectComponents.size(); i++) 
 	{
-		objectComponents[i]->Update();
+		objectComponents[i]->Update(gameData);
 	}
 }
 
