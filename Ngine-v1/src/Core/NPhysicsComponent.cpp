@@ -15,8 +15,14 @@ void NPhysicsComponent::Construct(EngineStateData engineState, NConstructorValue
 void NPhysicsComponent::Update(GameStateData& gameData)
 {
 	// Apply the speed changes here.
-	this->getGameObject()->setPosition(this->getGameObject()->getPosition() + (acceleration * gameData.timeData->getDeltaTimeInSeconds()));
+	velocity = velocity + (acceleration * gameData.timeData->getDeltaTimeInSeconds());
+	this->getGameObject()->setPosition(this->getGameObject()->getPosition() + velocity);
+	
+	
 	acceleration = NMath::Vector3(0.0f, 0.0f, 0.0f);
+
+
+
 	return;
 }
 
@@ -53,4 +59,9 @@ void NPhysicsComponent::incrementAcceleration(NMath::Vector3 accelerate)
 NMath::Vector3 NPhysicsComponent::getAcceleration() const
 {
 	return acceleration;
+}
+
+void NPhysicsComponent::incrementVelocity(NMath::Vector3 newVel)
+{
+	velocity = velocity + newVel;
 }

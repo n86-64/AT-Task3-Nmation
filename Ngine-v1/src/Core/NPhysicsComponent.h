@@ -39,6 +39,8 @@ public:
 	void incrementAcceleration(NMath::Vector3 accelerate);
 	NMath::Vector3  getAcceleration() const;
 
+	void incrementVelocity(NMath::Vector3 newVel);
+
 private:
 	NColliderAABB		collider;
 
@@ -49,6 +51,7 @@ private:
 	// The Mass of the object in 3D Space.
 	float			mass = 1.0f;
 	NMath::Vector3  acceleration = NMath::Vector3(0.0f, 0.0f, 0.0f);
+	NMath::Vector3  velocity = NMath::Vector3(0.0f, 0.0f, 0.0f);
 
 	bool			is_kinematic = false;
 };

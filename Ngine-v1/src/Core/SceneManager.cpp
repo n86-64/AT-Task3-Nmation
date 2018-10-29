@@ -20,7 +20,6 @@ void NScene::Update()
 		// Update the objects.
 		scene_objects[i]->Update(*gameStateData);
 	}
-	
 	physicsSystem.tickPhysics(*gameStateData);
 }
 
