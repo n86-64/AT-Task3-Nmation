@@ -76,7 +76,7 @@ void NPhysicsResolver::resolveCollision(NPhysicsComponent* a, NPhysicsComponent*
 	NMath::Vector3  aColliderDim = a->getCollider().getColliderDimenstions() / 2;
 	NMath::Vector3  bColliderDim = b->getCollider().getColliderDimenstions() / 2;
 
-	collisionNormal = ((a->getGameObject()->getPosition() - (b->getGameObject()->getPosition()))) - bColliderDim;
+	collisionNormal = ((a->getGameObject()->getPosition() - (b->getGameObject()->getPosition()))) - bColliderDim - aColliderDim;
 	// collisionNormal = NMath::Vector3(0.0f, 1.0f, 0.0f);
 
 	//a->getGameObject()->setPosition(a->getGameObject()->getPosition() + (NMath::Vector3(DirectX::XMVector3Normalize(collisionNormal.getRawVector()))));
