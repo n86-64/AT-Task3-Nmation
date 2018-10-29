@@ -14,6 +14,7 @@ void NPhysicsComponent::Construct(EngineStateData engineState, NConstructorValue
 void NPhysicsComponent::Update()
 {
 	// Apply the speed changes here.
+	
 
 	return;
 }

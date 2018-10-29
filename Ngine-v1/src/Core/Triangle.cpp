@@ -55,7 +55,6 @@ NMaterial* Triangle::getMaterial()
 
 void Triangle::colTest(NPhysicsComponent* comp)
 {
-	OutputDebugString("LOL he's wrong there is no collision \n");
 }
 
 

@@ -19,18 +19,18 @@ void NPlayer::Update(GameStateData& gameData)
 	motion = motion + (realForward * (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_W)));
     motion = motion + (realForward * (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_S)));
 
-	motion = motion + (realRight * (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_D)));
-	motion = motion + (realRight * (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_A)));
+	//motion = motion + (realRight * (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_D)));
+	//motion = motion + (realRight * (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_A)));
 
 	position = position + motion;
-	rotation = rotation + NMath::Vector3(0.0f, (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_E)) + (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_Q)), 0.0f);
+	rotation = rotation + NMath::Vector3(0.0f, (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_D)) + (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_A)), 0.0f);
 
 	realForward = DirectX::XMVector3Transform(forward.getRawVector(), DirectX::XMMatrixRotationRollPitchYawFromVector(rotation.getRawVector()));
 	realRight   = DirectX::XMVector3Transform(right.getRawVector(), DirectX::XMMatrixRotationRollPitchYawFromVector(rotation.getRawVector()));
 
 	if (playerCamera) 
 	{
-		updateCameraPosition(speed, gameData.input);
+	//	updateCameraPosition(speed, gameData.input);
 	}
 
 	NGameObject::Update(gameData);
@@ -43,7 +43,7 @@ void NPlayer::Render(NRenderer * renderer)
 
 void NPlayer::onCollision(NPhysicsComponent* component)
 {
-	OutputDebugString("A collision was detected. \n");
+
 }
 
 void NPlayer::setCamera(NCamera* camera)
@@ -66,5 +66,5 @@ void NPlayer::updateCameraPosition(float speed, NInputHandler* input)
 		playerCamera->getPosition() + motion
 	);
 
-	playerCamera->setRotation(rotation);
+	// playerCamera->setRotation(rotation);
 }

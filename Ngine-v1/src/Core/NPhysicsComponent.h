@@ -42,5 +42,7 @@ private:
 private:
 	// The Mass of the object in 3D Space.
 	float			mass = 1.0f;
+	NMath::Vector3  acceleration = NMath::Vector3(0.0f, 0.0f, 0.0f);
+
 	bool			is_kinematic = false;
 };
