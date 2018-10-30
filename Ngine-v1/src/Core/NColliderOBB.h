@@ -31,7 +31,7 @@ struct NColliderCollisionData
 class NColliderOBB 
 {
 public:
-	NColliderOBB() = default;
+	NColliderOBB();
 
 	// Set and update the position in global space. Hence this is updated each frame.
 	void setPosition(NMath::Vector3  position);
@@ -41,6 +41,7 @@ public:
 	// TODO - Add information to get position and direction.
 
 	NMath::Vector3  getaxes(int i) { return axes[i]; }
+	NMath::Vector3  getDimenstions() { return dimenstions; }
 
 	// Get information to perform SAT check.
 

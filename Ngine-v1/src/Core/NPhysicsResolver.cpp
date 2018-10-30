@@ -46,6 +46,9 @@ void NPhysicsResolver::testCollision(NPhysicsComponent* a)
 
 bool NPhysicsResolver::isObjectColliding(NPhysicsComponent* a, NPhysicsComponent* b)
 {
+	a->getOBBCollider().isObjectColliding(a, b);
+
+
 	NColliderAABB& aCol = a->getCollider();
 	NColliderAABB& bCol = b->getCollider();
 

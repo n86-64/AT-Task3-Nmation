@@ -3,6 +3,13 @@
 
 constexpr float ELIPSION = 1e-8;
 
+NColliderOBB::NColliderOBB()
+{
+	axes[0] = NMath::Vector3(1.0f, 0.0f, 0.0f);
+	axes[1] = NMath::Vector3(0.0f, 1.0f, 0.0f);
+	axes[2] = NMath::Vector3(0.0f, 0.0f, 1.0f);
+}
+
 void NColliderOBB::setPosition(NMath::Vector3 position)
 {
 	// Here we will set the position of the collider points.
@@ -24,10 +31,10 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 	
 	// Here we perform the check.
 	float rA, rB; // Distances to edge on each axis.
-	DirectX::XMMATRIX   rotation, AbsRotation;
+	DirectX::XMMATRIX   tRotation; // rotate the object into our space.
 
 	// Here we compute the orientation of the boxes. 
-	rotation = DirectX::XMMatrixSet
+	tRotation = DirectX::XMMatrixSet
 	(
 		DirectX::XMVectorGetX(DirectX::XMVector3Dot(axes[0].getRawVector(), OBB.axes[0].getRawVector())), DirectX::XMVectorGetX(DirectX::XMVector3Dot(axes[0].getRawVector(), OBB.axes[1].getRawVector())), DirectX::XMVectorGetX(DirectX::XMVector3Dot(axes[0].getRawVector(), OBB.axes[2].getRawVector())), 0.0f,
 		DirectX::XMVectorGetX(DirectX::XMVector3Dot(axes[1].getRawVector(), OBB.axes[0].getRawVector())), DirectX::XMVectorGetX(DirectX::XMVector3Dot(axes[1].getRawVector(), OBB.axes[1].getRawVector())), DirectX::XMVectorGetX(DirectX::XMVector3Dot(axes[1].getRawVector(), OBB.axes[2].getRawVector())), 0.0f,
@@ -35,19 +42,18 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 		0.0f, 0.0f, 0.0f, 0.0f
 	);
 	
-	DirectX::XMFLOAT3X3  matricies;
-	DirectX::XMStoreFloat3x3(&matricies, rotation);
+	DirectX::XMFLOAT3X3  Rotation;
+	DirectX::XMStoreFloat3x3(&Rotation, tRotation);
+	DirectX::XMFLOAT3X3  AbsRotation = Rotation;
 
-	// Transforms the object into local space.
-	matricies._11 = abs(matricies._11) + ELIPSION;
-	matricies._12 = abs(matricies._12) + ELIPSION;
-	matricies._13 = abs(matricies._13) + ELIPSION;
-	matricies._21 = abs(matricies._21) + ELIPSION;
-	matricies._22 = abs(matricies._22) + ELIPSION;
-	matricies._23 = abs(matricies._23) + ELIPSION;
-	matricies._31 = abs(matricies._31) + ELIPSION;
-	matricies._32 = abs(matricies._32) + ELIPSION;
-	matricies._33 = abs(matricies._33) + ELIPSION;
+	// provides an absolute rotation matrix.
+	for (int i = 0; i < 3; i++) 
+	{
+		for (int j = 0; j < 3; j++) 
+		{
+			AbsRotation(i, j) = abs(AbsRotation(i, j));
+		}
+	}
 
 	NMath::Vector3  t = OBB.position - this->position;
 	t = NMath::Vector3(
@@ -55,10 +61,22 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 		DirectX::XMVectorGetX(DirectX::XMVector3Dot(t.getRawVector(), this->axes[2].getRawVector())),
 		DirectX::XMVectorGetX(DirectX::XMVector3Dot(t.getRawVector(), this->axes[2].getRawVector()))
 	);
-
-
-
 	
+	for (int i = 0; i < 3; i++) 
+	{
+		rA = dimenstions.value(i);
+		rB = (OBB.getDimenstions().value(0) * AbsRotation(i, 0)) + (OBB.getDimenstions().value(1) * AbsRotation(i, 1)) + (OBB.getDimenstions().value(2) * AbsRotation(i, 2));
+		if (abs(t.value(i) > rA + rB)) { data.intersection = false; return data; }
+	}
+
+	for (int i = 0; i < 3; i++)
+	{
+		rA = (dimenstions.value(0) * AbsRotation(0, i)) + (dimenstions.value(1) * AbsRotation(1, i)) + (dimenstions.value(2) * AbsRotation(2, i));
+		rB = OBB.getDimenstions().value(i);
+		if (abs(t.value(0) * Rotation(0, i) + t.value(1) * Rotation(1,i) + t.value(2) * Rotation(2, i)) > rA + rB) { data.intersection = false; return data; }
+	}
+
+
 	return data;
 }
 

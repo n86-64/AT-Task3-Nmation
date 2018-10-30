@@ -36,7 +36,7 @@ namespace NMath
 		
 
 		// public vector constants.
-
+		float value(int i) { return DirectX::XMVectorGetByIndex(vector, i); }
 
 
 	private:
