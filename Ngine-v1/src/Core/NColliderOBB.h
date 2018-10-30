@@ -40,7 +40,7 @@ public:
 	NColliderCollisionData isObjectColliding(NPhysicsComponent* thisComp, NPhysicsComponent* b);
 	// TODO - Add information to get position and direction.
 
-	NMath::Vector3  getaxes(int i) { return axes[i]; }
+	NMath::Vector3  getAxes(int i) { return axes[i]; }
 	NMath::Vector3  getDimenstions() { return dimenstions; }
 
 	// Get information to perform SAT check.

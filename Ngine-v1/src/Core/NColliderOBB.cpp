@@ -76,7 +76,51 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 		if (abs(t.value(0) * Rotation(0, i) + t.value(1) * Rotation(1,i) + t.value(2) * Rotation(2, i)) > rA + rB) { data.intersection = false; return data; }
 	}
 
+	rA = (dimenstions.value(1) * AbsRotation(2, 0)) + (dimenstions.value(2) * AbsRotation(1, 0));
+	rB = (OBB.getDimenstions.value(1) * AbsRotation(0, 2)) + (dimenstions.value(2) * AbsRotation(0, 1));
+	if (abs(t.value(2) * Rotation(1, 0) - t.value(1) * Rotation(2, 0)) > rA + rB) { data.intersection = false; return data; }
 
+	rA = (dimenstions.value(1) * AbsRotation(2, 1)) + (dimenstions.value(2) * AbsRotation(1, 1));
+	rB = (OBB.getDimenstions.value(0) * AbsRotation(0, 2)) + (dimenstions.value(2) * AbsRotation(0, 0));
+	if (abs(t.value(2) * Rotation(1, 1) - t.value(1) * Rotation(2, 1)) > rA + rB) { data.intersection = false; return data; }
+
+	rA = (dimenstions.value(1) * AbsRotation(2, 2)) + (dimenstions.value(2) * AbsRotation(1, 2));
+	rB = (OBB.getDimenstions.value(0) * AbsRotation(0, 1)) + (dimenstions.value(1) * AbsRotation(0, 0));
+	if (abs(t.value(2) * Rotation(1, 2) - t.value(1) * Rotation(2, 2)) > rA + rB) { data.intersection = false; return data; }
+
+	rA = (dimenstions.value(0) * AbsRotation(2, 0)) + (dimenstions.value(2) * AbsRotation(0, 0));
+	rB = (OBB.getDimenstions.value(1) * AbsRotation(1, 2)) + (dimenstions.value(2) * AbsRotation(1, 1));
+	if (abs(t.value(0) * Rotation(2, 1) - t.value(2) * Rotation(0, 0)) > rA + rB) { data.intersection = false; return data; }
+
+
+	rA = (dimenstions.value(0) * AbsRotation(2, 1)) + (dimenstions.value(2) * AbsRotation(0, 1));
+	rB = (OBB.getDimenstions.value(0) * AbsRotation(1, 2)) + (dimenstions.value(2) * AbsRotation(1, 0));
+	if (abs(t.value(0) * Rotation(2, 1) - t.value(2) * Rotation(0, 1)) > rA + rB) { data.intersection = false; return data; }
+
+
+
+	rA = (dimenstions.value(0) * AbsRotation(2, 2)) + (dimenstions.value(2) * AbsRotation(0, 2));
+	rB = (OBB.getDimenstions.value(0) * AbsRotation(1, 1)) + (dimenstions.value(1) * AbsRotation(1, 0));
+	if (abs(t.value(0) * Rotation(2, 2) - t.value(2) * Rotation(0, 2)) > rA + rB) { data.intersection = false; return data; }
+
+
+
+
+	rA = (dimenstions.value(0) * AbsRotation(1, 0)) + (dimenstions.value(1) * AbsRotation(0, 0));
+	rB = (OBB.getDimenstions.value(1) * AbsRotation(2, 2)) + (dimenstions.value(2) * AbsRotation(2, 1));
+	if (abs(t.value(1) * Rotation(0, 0) - t.value(0) * Rotation(1, 0)) > rA + rB) { data.intersection = false; return data; }
+
+
+	rA = (dimenstions.value(0) * AbsRotation(1, 1)) + (dimenstions.value(1) * AbsRotation(0, 1));
+	rB = (OBB.getDimenstions.value(0) * AbsRotation(2, 2)) + (dimenstions.value(2) * AbsRotation(2, 0));
+	if (abs(t.value(1) * Rotation(0, 1) - t.value(0) * Rotation(1, 1)) > rA + rB) { data.intersection = false; return data; }
+
+
+	rA = (dimenstions.value(0) * AbsRotation(1, 2)) + (dimenstions.value(1) * AbsRotation(0, 2));
+	rB = (OBB.getDimenstions.value(0) * AbsRotation(2, 1)) + (dimenstions.value(1) * AbsRotation(2, 0));
+	if (abs(t.value(1) * Rotation(0, 2) - t.value(0) * Rotation(1, 2)) > rA + rB) { data.intersection = false; return data; }
+
+	data.intersection = true;
 	return data;
 }
 
