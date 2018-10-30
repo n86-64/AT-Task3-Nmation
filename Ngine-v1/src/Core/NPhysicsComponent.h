@@ -7,6 +7,7 @@
 
 #include "NComponent.h"
 #include "NColliderAABB.h"
+#include "NColliderOBB.h"
 
 // TODO - Consider changing the name of the object.
 class NPhysicsComponent  : public NComponent
@@ -35,14 +36,17 @@ public:
 	void registerCollisionEvent(std::function<void(NPhysicsComponent*)> col_function);
 
 	NColliderAABB& getCollider() { return collider; };
+	NColliderOBB& getOBBCollider() { return colliderOBB; };
 
 	void incrementAcceleration(NMath::Vector3 accelerate);
 	NMath::Vector3  getAcceleration() const;
 
 	void incrementVelocity(NMath::Vector3 newVel);
+	NMath::Vector3  getVelocity() const { return velocity; };
 
 private:
 	NColliderAABB		collider;
+	NColliderOBB		colliderOBB;
 
 	// Function ptr that is called to perform testing.
 	std::function<void(NPhysicsComponent*)>   function_ptr = nullptr;

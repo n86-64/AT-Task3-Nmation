@@ -22,10 +22,10 @@ struct NColliderOBBProjection
 	float max;
 };
 
-struct NColliderOBBCollision 
+struct NColliderCollisionData 
 {
-	bool intersection;
-	NMath::Vector3 mtv; // Minimum translation vector. (Use for physics calculations.)
+	bool intersection = false;
+	NMath::Vector3 mtv = NMath::Vector3(0.0f, 0.0f, 0.0f); // Minimum translation vector. (Use for physics calculations.)
 };
 
 class NColliderOBB 
@@ -37,14 +37,16 @@ public:
 	void setPosition(NMath::Vector3  position);
 	void setSize(NMath::Vector3  newSize);
 
-	NColliderOBBCollision isObjectColliding(NPhysicsComponent* a, NPhysicsComponent* b);
+	NColliderCollisionData isObjectColliding(NPhysicsComponent* thisComp, NPhysicsComponent* b);
 	// TODO - Add information to get position and direction.
+
+	NMath::Vector3  getaxes(int i) { return axes[i]; }
 
 	// Get information to perform SAT check.
 
 private:
 	NMath::Vector3   position; // The centre point of the box.
-	NMath::Vector3   dimenstions; // The dimenstions of the box (Defines the width of the box on each axis.)
+	NMath::Vector3   dimenstions = NMath::Vector3(1.0f, 1.0f, 1.0f); // The dimenstions of the box (Defines the width of the box on each axis.)
 	NMath::Vector3   axes[NUMBER_OF_AXES];  // the axes values for the forward vectors.
 	
 #pragma region DEPRECATED_STUFF
