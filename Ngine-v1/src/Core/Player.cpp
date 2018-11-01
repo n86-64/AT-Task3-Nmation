@@ -45,7 +45,7 @@ void NPlayer::Render(NRenderer * renderer)
 
 void NPlayer::onCollision(NPhysicsComponent* component)
 {
-
+	OutputDebugString("Lol collision.");
 }
 
 void NPlayer::setCamera(NCamera* camera)

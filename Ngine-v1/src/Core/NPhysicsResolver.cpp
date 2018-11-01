@@ -48,27 +48,27 @@ bool NPhysicsResolver::isObjectColliding(NPhysicsComponent* a, NPhysicsComponent
 {
 	a->getOBBCollider().isObjectColliding(a, b);
 
-	NColliderAABB& aCol = a->getCollider();
-	NColliderAABB& bCol = b->getCollider();
+	//NColliderAABB& aCol = a->getCollider();
+	//NColliderAABB& bCol = b->getCollider();
 
-	NMath::Vector3 aMax = a->getGameObject()->getPosition() + aCol.getColliderDimenstions();
-	NMath::Vector3 aMin = a->getGameObject()->getPosition() - aCol.getColliderDimenstions();
+	//NMath::Vector3 aMax = a->getGameObject()->getPosition() + aCol.getColliderDimenstions();
+	//NMath::Vector3 aMin = a->getGameObject()->getPosition() - aCol.getColliderDimenstions();
 
-	NMath::Vector3 bMax = b->getGameObject()->getPosition() + bCol.getColliderDimenstions();
-	NMath::Vector3 bMin = b->getGameObject()->getPosition() - bCol.getColliderDimenstions();
+	//NMath::Vector3 bMax = b->getGameObject()->getPosition() + bCol.getColliderDimenstions();
+	//NMath::Vector3 bMin = b->getGameObject()->getPosition() - bCol.getColliderDimenstions();
 
-	if (aMax.x() > bMin.x() && aMin.x() < bMax.x()) 
-	{
-		if (aMax.y() > bMin.y() && aMin.y() < bMax.y())
-		{
-			if (aMax.z() > bMin.z() && aMin.z() < bMax.z())
-			{
-				return true;
-			}
-		}
-	}
+	//if (aMax.x() > bMin.x() && aMin.x() < bMax.x()) 
+	//{
+	//	if (aMax.y() > bMin.y() && aMin.y() < bMax.y())
+	//	{
+	//		if (aMax.z() > bMin.z() && aMin.z() < bMax.z())
+	//		{
+	//			return true;
+	//		}
+	//	}
+	//}
 
-	return false;
+	return a->getOBBCollider().isObjectColliding(a, b).intersection;
 }
 
 void NPhysicsResolver::resolveCollision(NPhysicsComponent* a, NPhysicsComponent* b)
