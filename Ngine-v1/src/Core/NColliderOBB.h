@@ -34,8 +34,10 @@ public:
 	NColliderOBB();
 
 	// Set and update the position in global space. Hence this is updated each frame.
-	void setPosition(NMath::Vector3  position);
+	void setPosition(NMath::Vector3  pos);
 	void setSize(NMath::Vector3  newSize);
+
+	void SetRotation(NMath::Vector3 objectOrientation);
 
 	NColliderCollisionData isObjectColliding(NPhysicsComponent* thisComp, NPhysicsComponent* b);
 	// TODO - Add information to get position and direction.
@@ -50,6 +52,10 @@ private:
 	NMath::Vector3   dimenstions = NMath::Vector3(1.0f, 1.0f, 1.0f); // The dimenstions of the box (Defines the width of the box on each axis.)
 	NMath::Vector3   axes[NUMBER_OF_AXES];  // the axes values for the forward vectors.
 	
+	const NMath::Vector3   forward = NMath::Vector3(1.0f, 0.0f, 0.0f);
+	const NMath::Vector3   up = NMath::Vector3(0.0f, 1.0f, 0.0f);
+	const NMath::Vector3   right = NMath::Vector3(0.0f, 0.0f, 1.0f);
+
 #pragma region DEPRECATED_STUFF
 	NMath::Vector3	 edgeNormals[NUMBER_OF_SEPERATING_AXES_PER_BOX];
 	NMath::Vector3   points[NUMBER_OF_POINTS]; // Positions in global space.

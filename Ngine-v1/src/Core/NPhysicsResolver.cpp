@@ -34,7 +34,7 @@ void NPhysicsResolver::testCollision(NPhysicsComponent* a)
 				// Trigger collision event.
     			if (!a->isKinematic()) 
 				{
-					resolveCollision(a, object);
+				//	resolveCollision(a, object);
 				}
 
 				a->onCollision(object);
@@ -47,7 +47,6 @@ void NPhysicsResolver::testCollision(NPhysicsComponent* a)
 bool NPhysicsResolver::isObjectColliding(NPhysicsComponent* a, NPhysicsComponent* b)
 {
 	a->getOBBCollider().isObjectColliding(a, b);
-
 
 	NColliderAABB& aCol = a->getCollider();
 	NColliderAABB& bCol = b->getCollider();
@@ -83,6 +82,6 @@ void NPhysicsResolver::resolveCollision(NPhysicsComponent* a, NPhysicsComponent*
 	// collisionNormal = NMath::Vector3(0.0f, 1.0f, 0.0f);
 
 	//a->getGameObject()->setPosition(a->getGameObject()->getPosition() + (NMath::Vector3(DirectX::XMVector3Normalize(collisionNormal.getRawVector()))));
-	a->incrementVelocity((a->getAcceleration() * a->getMass()) * (collisionNormal));
+	a->incrementVelocity(a->getVelocity() * (collisionNormal));
 	//a->incrementVelocity(a->getVelocity() * (collisionNormal));
 }

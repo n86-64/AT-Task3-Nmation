@@ -28,5 +28,5 @@ private:
 	std::vector<NPhysicsComponent*>      physics_objects;
 
 	// The gravity in cm/s
-	NMath::Vector3						 gravity = NMath::Vector3(0.0f, -0.981f, 0.0f);
+	NMath::Vector3						 gravity = NMath::Vector3(-0.0f, -0.0f, -0.981f);
 };
