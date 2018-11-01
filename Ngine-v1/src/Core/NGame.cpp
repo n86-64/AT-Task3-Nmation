@@ -63,6 +63,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	physComp->setGameObject(testTriangle);
 	physComp->isKinematic(true);
 	physComp->getCollider().setColliderDimenstions(NMath::Vector3(10.0f, 1.0f, 10.0f));
+	physComp->getOBBCollider().setSize(NMath::Vector3(10.0f, 1.0f, 10.0f));
 	testTriangle->addComponent(physComp);
 
 	NPlayer* player = new NPlayer();

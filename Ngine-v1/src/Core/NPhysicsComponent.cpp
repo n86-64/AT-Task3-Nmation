@@ -15,7 +15,7 @@ void NPhysicsComponent::Construct(EngineStateData engineState, NConstructorValue
 void NPhysicsComponent::Update(GameStateData& gameData)
 {
 	// Set orientation of OBB here.
-	//colliderOBB.SetRotation(DirectX::XMQuaternionRotationRollPitchYawFromVector(this->getGameObject()->getRotation().getRawVector()));
+	colliderOBB.SetRotation(DirectX::XMQuaternionRotationRollPitchYawFromVector(this->getGameObject()->getRotation().getRawVector()));
 	colliderOBB.setPosition(this->getGameObject()->getPosition());
 
 	// Apply the speed changes here.

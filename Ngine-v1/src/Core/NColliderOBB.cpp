@@ -22,7 +22,7 @@ void NColliderOBB::setPosition(NMath::Vector3 pos)
 void NColliderOBB::setSize(NMath::Vector3 newSize)
 {
 	// Here we will resize the box and recalculate the points.
-
+	dimenstions = newSize;
 }
 
 void NColliderOBB::SetRotation(NMath::Vector3 objectOrientation)
@@ -79,6 +79,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 	for (int i = 0; i < 3; i++)
 	{
+		// Its failing here.
 		rA = (dimenstions.value(0) * AbsRotation(0, i)) + (dimenstions.value(1) * AbsRotation(1, i)) + (dimenstions.value(2) * AbsRotation(2, i));
 		rB = OBB.getDimenstions().value(i);
 		if (abs(t.value(0) * Rotation(0, i) + t.value(1) * Rotation(1,i) + t.value(2) * Rotation(2, i)) > rA + rB) { data.intersection = false; return data; }
@@ -126,7 +127,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 	rB = (OBB.getDimenstions().value(0) * AbsRotation(2, 1)) + (dimenstions.value(1) * AbsRotation(2, 0));
 	if (abs(t.value(1) * Rotation(0, 2) - t.value(0) * Rotation(1, 2)) > rA + rB) { data.intersection = false; return data; }
 
-	data.intersection = true;
+    data.intersection = true;
 	return data;
 }
 
