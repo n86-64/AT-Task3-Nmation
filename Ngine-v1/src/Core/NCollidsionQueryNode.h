@@ -8,7 +8,7 @@
 #include "NPhysicsComponent.h"
 
 constexpr int CHILDNODE_COUNT = 8;
-constexpr int OBJECT_COUNT_THRESHOLD = 2;
+constexpr int OBJECT_COUNT_THRESHOLD = 1;
 
 class NGameObject;
 
@@ -38,4 +38,6 @@ private:
 
 	// For each node in the tree we then check the objects against eachother.
 	// Providing they are not kinematic (That is they do not rispond to motion.)
+private:
+	void addObjectToChild();
 };
