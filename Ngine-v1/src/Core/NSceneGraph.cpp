@@ -3,6 +3,7 @@
 void NSceneGraph::generateGraph(std::vector<NPhysicsComponent*>& sceneContents)
 {
 	// Generate the scene graph here. 
+	root.clear();
 	root.setBoundingBox(retrieveMinimalSceneBox(sceneContents));
 	
 	// Add the objects to the nodes. 

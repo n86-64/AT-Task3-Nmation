@@ -23,10 +23,12 @@ public:
 
 	void addObjectToNode(NPhysicsComponent* newObject);
 
+	void clear();
+
 private:
 	// The child Nodes.
 	NCollisionQueryNode* parentNode = nullptr;
-	std::vector<NCollisionQueryNode>  childNodes = std::vector<NCollisionQueryNode>();
+	std::vector<NCollisionQueryNode>  childNodes;
 
 	// The Node Bounding Box. Used for collision calculations.
 	NColliderBV_AABB   boundingBox; 

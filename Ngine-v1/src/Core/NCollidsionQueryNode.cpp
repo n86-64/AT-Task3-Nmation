@@ -44,3 +44,9 @@ void NCollisionQueryNode::addObjectToNode(NPhysicsComponent * newObject)
 		this->generateChildNodes();
 	}
 }
+
+void NCollisionQueryNode::clear()
+{
+	gameObjects.clear();
+	childNodes.clear();
+}

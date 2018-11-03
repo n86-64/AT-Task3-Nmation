@@ -33,6 +33,8 @@ private:
 // This should be done when generating each node. 
 
 // Testing:
-// Just move down the tree and test objects with any children.
-// (Would spacial hashing have been better.)
+// Add objects to the tree and subdivide the space at the same time.
+// If a collision with a node is detected then we test.
+// Test only with other nodes in the same frame.
+
 
