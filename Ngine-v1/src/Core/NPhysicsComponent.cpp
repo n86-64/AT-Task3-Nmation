@@ -1,3 +1,4 @@
+#include "NGameObject.h"
 #include "NPhysicsComponent.h"
 
 bool NPhysicsComponent::isObjectColliding(NPhysicsComponent& componentToTest)
@@ -11,9 +12,16 @@ void NPhysicsComponent::Construct(EngineStateData engineState, NConstructorValue
 	return;
 }
 
-void NPhysicsComponent::Update()
+void NPhysicsComponent::Update(GameStateData& gameData)
 {
+	// Set orientation of OBB here.
+	colliderOBB.SetRotation(DirectX::XMQuaternionRotationRollPitchYawFromVector(this->getGameObject()->getRotation().getRawVector()));
+	colliderOBB.setPosition(this->getGameObject()->getPosition());
+
 	// Apply the speed changes here.
+	velocity = velocity + (acceleration * gameData.timeData->getDeltaTimeInSeconds());
+	this->getGameObject()->setPosition(this->getGameObject()->getPosition() + (velocity * gameData.timeData->getDeltaTimeInSeconds()));
+	acceleration = NMath::Vector3(0.0f, 0.0f, 0.0f);
 
 	return;
 }
@@ -41,4 +49,19 @@ std::function<void(NPhysicsComponent*)> NPhysicsComponent::getCollisionEventHand
 void NPhysicsComponent::registerCollisionEvent(std::function<void(NPhysicsComponent*)> colFunction)
 {
 	function_ptr = colFunction;
+}
+
+void NPhysicsComponent::incrementAcceleration(NMath::Vector3 accelerate)
+{
+	acceleration = acceleration + accelerate;
+}
+
+NMath::Vector3 NPhysicsComponent::getAcceleration() const
+{
+	return acceleration;
+}
+
+void NPhysicsComponent::incrementVelocity(NMath::Vector3 newVel)
+{
+	velocity = velocity + newVel;
 }

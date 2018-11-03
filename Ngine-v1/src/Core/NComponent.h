@@ -18,7 +18,7 @@ public:
 	virtual void Construct(EngineStateData engineState, NConstructorValues constructorData) = 0;
 
 	// Update and render the components.
-	virtual void Update() = 0;
+	virtual void Update(GameStateData& gameData) = 0;
 	virtual void Render(NRenderer* renderer) = 0;
 
 	NGameObject* getGameObject();

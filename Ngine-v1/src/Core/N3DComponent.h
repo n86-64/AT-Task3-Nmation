@@ -17,7 +17,7 @@ public:
 	virtual void Construct(EngineStateData engineState, NConstructorValues constructorData) override;
 
 	// Update and render the components.
-	virtual void Update() override;
+	virtual void Update(GameStateData& gameData) override;
 	virtual void Render(NRenderer* renderer) override;
 
 	void setMesh(N3DMesh* newMesh);

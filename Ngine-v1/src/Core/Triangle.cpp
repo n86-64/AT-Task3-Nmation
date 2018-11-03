@@ -18,7 +18,6 @@ Triangle::~Triangle()
 
 void Triangle::Update(GameStateData& gameData)
 {
-	// TODO - Apply transforms (roatation and scale at draw time not runtime.)
 	NGameObject::Update(gameData);
 	return;
 }
@@ -56,7 +55,6 @@ NMaterial* Triangle::getMaterial()
 
 void Triangle::colTest(NPhysicsComponent* comp)
 {
-	OutputDebugString("LOL he's wrong there is no collision \n");
 }
 
 

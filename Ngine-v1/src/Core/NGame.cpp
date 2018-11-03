@@ -55,22 +55,31 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	N3DComponent* comp2 = new N3DComponent();
 	comp2->setGameObject(testTriangle2);
 	comp2->setMaterial(renderer.createMaterial("test"));
-	comp2->setMesh(renderer.createMesh("teapot"));
+	comp2->setMesh(renderer.createMesh("bunny"));
 	testTriangle2->addComponent(comp2);
 
 	NPhysicsComponent*  physComp = new NPhysicsComponent();
 	physComp->registerCollisionEvent(std::bind(&Triangle::colTest, testTriangle, std::placeholders::_1));
+	physComp->setGameObject(testTriangle);
+	physComp->isKinematic(true);
+	physComp->getCollider().setColliderDimenstions(NMath::Vector3(10.0f, 1.0f, 10.0f));
+	physComp->getOBBCollider().setSize(NMath::Vector3(10.0f, 1.0f, 10.0f));
 	testTriangle->addComponent(physComp);
 
 	NPlayer* player = new NPlayer();
 	N3DComponent* playerMesh = new N3DComponent();
-	playerMesh->setMesh(renderer.createMesh("suzanne"));
+	playerMesh->setMesh(renderer.createMesh("cube"));
 	playerMesh->setMaterial(renderer.createMaterial("test"));
 	player->addComponent(playerMesh);
+	player->setCamera(newCam);
+	newCam->setPosition(NMath::Vector3(5.0f, 10.0f, -5.0f));
+	player->setScale(NMath::Vector3(1.0f, 1.0f, 1.0f));
 
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
+	testTriangle->setScale(NMath::Vector3(10.0f, 1.0f, 10.0f));
 	//testTriangle2->setPosition(NMath::Vector3(3.0f, 0.0f, 0.0f));
-	player->setPosition(NMath::Vector3(5.0f, 0.0f, 0.0f));
+	player->setPosition(NMath::Vector3(0.0f, 00.0f, 20.0f));
+	//player->setRotation(NMath::Vector3(0.0f, 90.0f, 0.0f));
 
 	gameSceneManager.addObjectToScene(testTriangle);
 //	gameSceneManager.addObjectToScene(testTriangle2);

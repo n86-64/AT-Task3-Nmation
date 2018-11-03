@@ -68,14 +68,17 @@
     <ClCompile Include="..\src\Core\NPhysicsComponent.cpp">
       <Filter>Core\Components\Physics</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Core\NColliderAABB.cpp">
-      <Filter>Core\Physics\Colliders</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Core\NPhysicsResolver.cpp">
       <Filter>Core\Physics\Manager</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Core\Player.cpp">
       <Filter>Core\GameObjects\Core Objects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NColliderAABB.cpp">
+      <Filter>Core\Physics\Colliders\AABB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NColliderOBB.cpp">
+      <Filter>Core\Physics\Colliders\OBB</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +178,12 @@
     <Filter Include="Core\GameObjects\Core Objects\Player">
       <UniqueIdentifier>{1c6bcffd-9e43-4263-badc-0008093e0b72}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Physics\Colliders\AABB">
+      <UniqueIdentifier>{f10b22ed-c930-4088-89c3-9490d107e3ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Colliders\OBB">
+      <UniqueIdentifier>{554ddbe1-bc52-46b8-beee-e3fe44aa742a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -264,9 +273,6 @@
     <ClInclude Include="..\src\Core\SceneManager.h">
       <Filter>Core\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Core\NColliderAABB.h">
-      <Filter>Core\Physics\Colliders</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Core\NPhysicsComponent.h">
       <Filter>Core\Components\Physics</Filter>
     </ClInclude>
@@ -278,6 +284,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\Player.h">
       <Filter>Core\GameObjects\Core Objects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NColliderAABB.h">
+      <Filter>Core\Physics\Colliders\AABB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NColliderOBB.h">
+      <Filter>Core\Physics\Colliders\OBB</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

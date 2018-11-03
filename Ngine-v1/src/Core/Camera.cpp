@@ -7,11 +7,13 @@ NCamera::NCamera()
 
 void NCamera::Update(GameStateData& gameData)
 {
-
+	cameraForward = DirectX::XMVector3Transform(forward.getRawVector(), DirectX::XMMatrixRotationQuaternion(DirectX::XMQuaternionRotationRollPitchYawFromVector(rotation.getRawVector())));
+	NGameObject::Update(gameData);
 }
 
 void NCamera::Render(NRenderer* renderer)
 {
+	NGameObject::Render(renderer);
 	return;
 }
 
@@ -40,7 +42,7 @@ NMath::Vector3 NCamera::getCameraLookAt()
 {
 	if (cameraTarget) 
 	{
-		return cameraTarget->getPosition();
+		return cameraTarget->getPosition() + cameraForward;
 	}
 	else 
 	{

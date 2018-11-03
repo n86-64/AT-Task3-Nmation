@@ -6,9 +6,8 @@ void TestComp::Construct(EngineStateData engineState, NConstructorValues constru
 	return;
 }
 
-void TestComp::Update()
+void TestComp::Update(GameStateData& gameData)
 {
-
 }
 
 void TestComp::Render(NRenderer* renderer)

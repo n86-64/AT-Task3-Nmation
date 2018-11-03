@@ -13,6 +13,6 @@ public:
 
 	// Inherited via NComponent
 	virtual void Construct(EngineStateData engineState, NConstructorValues constructorData) override;
-	virtual void Update() override;
+	virtual void Update(GameStateData& gameData) override;
 	virtual void Render(NRenderer * renderer) override;
 };

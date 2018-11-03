@@ -4,7 +4,7 @@ void NGameObject::Update(GameStateData& gameData)
 {
 	for (int i = 0; i < objectComponents.size(); i++) 
 	{
-		objectComponents[i]->Update();
+		objectComponents[i]->Update(gameData);
 	}
 }
 
@@ -33,7 +33,7 @@ NMath::Vector3 NGameObject::getRotation()
 
 void NGameObject::setRotation(NMath::Vector3 newPos)
 {
-	rotation = NMath::Vector3(DirectX::XMQuaternionRotationRollPitchYawFromVector(newPos.getRawVector()));
+	rotation = newPos;
 }
 
 NMath::Vector3 NGameObject::getScale()
@@ -54,7 +54,7 @@ void NGameObject::addComponent(NComponent* newComp)
 
 NMath::Vector3 NGameObject::getTransformValue()
 {
-	return position * scale;
+	return position;
 }
 
 NComponent* NGameObject::getComponent(int i)
@@ -72,4 +72,9 @@ NComponent* NGameObject::getComponent(int i)
 int NGameObject::getComponentCount()
 {
 	return objectComponents.size();
+}
+
+DirectX::XMMATRIX NGameObject::getModelMatrix()
+{
+	return DirectX::XMMatrixScalingFromVector(scale.getRawVector()) * DirectX::XMMatrixRotationQuaternion(DirectX::XMQuaternionRotationRollPitchYawFromVector(rotation.getRawVector())) *  DirectX::XMMatrixTranslationFromVector(position.getRawVector()) * DirectX::XMMatrixIdentity();
 }

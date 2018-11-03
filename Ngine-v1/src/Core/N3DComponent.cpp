@@ -6,7 +6,7 @@ void N3DComponent::Construct(EngineStateData engineState, NConstructorValues con
 	return;
 }
 
-void N3DComponent::Update()
+void N3DComponent::Update(GameStateData & gameData)
 {
 	return;
 }
