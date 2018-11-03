@@ -157,17 +157,20 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Core\BVAABB.cpp" />
     <ClCompile Include="..\src\Core\Camera.cpp" />
     <ClCompile Include="..\src\Core\InputHandler.cpp" />
     <ClCompile Include="..\src\Core\N3DComponent.cpp" />
     <ClCompile Include="..\src\Core\N3DMesh.cpp" />
     <ClCompile Include="..\src\Core\NColliderAABB.cpp" />
     <ClCompile Include="..\src\Core\NColliderOBB.cpp" />
+    <ClCompile Include="..\src\Core\NCollidsionQueryNode.cpp" />
     <ClCompile Include="..\src\Core\NComponent.cpp" />
     <ClCompile Include="..\src\Core\NGameObject.cpp" />
     <ClCompile Include="..\src\Core\NGame.cpp" />
     <ClCompile Include="..\src\Core\NPhysicsComponent.cpp" />
     <ClCompile Include="..\src\Core\NPhysicsResolver.cpp" />
+    <ClCompile Include="..\src\Core\NSceneGraph.cpp" />
     <ClCompile Include="..\src\Core\NWindow.cpp" />
     <ClCompile Include="..\src\Core\NWinEvent.cpp" />
     <ClCompile Include="..\src\Core\Player.cpp" />
@@ -186,6 +189,7 @@
     <ClCompile Include="..\src\Renderer\NRendererDevice.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\Core\BVAABB.h" />
     <ClInclude Include="..\src\Core\Camera.h" />
     <ClInclude Include="..\src\Core\InputHandler.h" />
     <ClInclude Include="..\src\Core\InputState.h" />
@@ -193,6 +197,7 @@
     <ClInclude Include="..\src\Core\N3DMesh.h" />
     <ClInclude Include="..\src\Core\NColliderAABB.h" />
     <ClInclude Include="..\src\Core\NColliderOBB.h" />
+    <ClInclude Include="..\src\Core\NCollidsionQueryNode.h" />
     <ClInclude Include="..\src\Core\NComponent.h" />
     <ClInclude Include="..\src\Core\NGameObject.h" />
     <ClInclude Include="..\src\Core\NGame.h" />
@@ -200,6 +205,7 @@
     <ClInclude Include="..\src\Core\NPhysicsComponent.h" />
     <ClInclude Include="..\src\Core\NPhysicsData.h" />
     <ClInclude Include="..\src\Core\NPhysicsResolver.h" />
+    <ClInclude Include="..\src\Core\NSceneGraph.h" />
     <ClInclude Include="..\src\Core\NWindow.h" />
     <ClInclude Include="..\src\Core\NWinEvent.h" />
     <ClInclude Include="..\src\Core\Player.h" />

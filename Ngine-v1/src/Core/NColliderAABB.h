@@ -11,15 +11,17 @@ public:
 	NColliderAABB() = default;
 	~NColliderAABB() = default;
 
+	void setPosition(NMath::Vector3  pos) { position = pos; };
+
 	NMath::Vector3   getColliderDimenstions() const; 
 	void setColliderDimenstions(NMath::Vector3  dim); 
 
-	// Depricate.
-	NMath::Vector3   getColliderMinPoint() const;
-	NMath::Vector3   getColliderMaxPoint() const;
-
+	// Used for the Bounding Volume.
+	NMath::Vector3   getColliderMinPoint();
+	NMath::Vector3   getColliderMaxPoint();
 
 private:
+	NMath::Vector3    position;
 	NMath::Vector3    dimenstions = NMath::Vector3(1.0f, 1.0f, 1.0f);
 	
 	// Depricate.

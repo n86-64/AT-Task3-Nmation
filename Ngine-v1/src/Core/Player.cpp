@@ -8,7 +8,7 @@ NPlayer::NPlayer()
 	NPhysicsComponent* physicsComponent = new NPhysicsComponent();
 	physicsComponent->registerCollisionEvent(std::bind(&NPlayer::onCollision, this, _1));
 	physicsComponent->setGameObject(this);
-	physicsComponent->isKinematic(true);
+	physicsComponent->isKinematic(false);
 	physicsComponent->setMass(0.1f);
 	this->addComponent(physicsComponent);
 }

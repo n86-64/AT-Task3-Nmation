@@ -8,6 +8,7 @@ void NPhysicsResolver::RegisterObject(NPhysicsComponent* newComp)
 
 void NPhysicsResolver::tickPhysics(GameStateData gameData)
 {
+	sceneOctree.generateGraph(physics_objects);
 	// Here we will update the position of the object.
 	for (NPhysicsComponent* object : physics_objects) 
 	{
@@ -34,7 +35,8 @@ void NPhysicsResolver::testCollision(NPhysicsComponent* a)
 				// Trigger collision event.
     			if (!a->isKinematic()) 
 				{
-				//	resolveCollision(a, object);
+					// TODO - Resolve collision according to the objects properties.
+					resolveCollision(a, object);
 				}
 
 				a->onCollision(object);

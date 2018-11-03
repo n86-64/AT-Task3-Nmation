@@ -5,7 +5,7 @@
 
 
 #include <vector>
-#include "NPhysicsComponent.h"
+#include "NSceneGraph.h"
 
 class NPhysicsResolver 
 {
@@ -27,6 +27,8 @@ private:
 
 	std::vector<NPhysicsComponent*>      physics_objects;
 
+	NSceneGraph							 sceneOctree; // Used for collision testing.
+
 	// The gravity in cm/s
-	NMath::Vector3						 gravity = NMath::Vector3(-0.0f, -0.0f, -0.981f);
+	NMath::Vector3						 gravity = NMath::Vector3(-0.0f, -0.981f, -0.0f);
 };

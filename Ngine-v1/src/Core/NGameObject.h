@@ -11,6 +11,8 @@
 #include "Core/InputHandler.h"
 #include "Core/time.h"
 
+#include "NColliderAABB.h"
+
 #include "NComponent.h"
 
 class NRenderer;

@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "NSceneGraph.h"
 #include "NPhysicsResolver.h"
 #include "NGameObject.h"
 

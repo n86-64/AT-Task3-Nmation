@@ -80,6 +80,15 @@
     <ClCompile Include="..\src\Core\NColliderOBB.cpp">
       <Filter>Core\Physics\Colliders\OBB</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\BVAABB.cpp">
+      <Filter>Core\Physics\Colliders\BV-AABB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NSceneGraph.cpp">
+      <Filter>Core\Physics\Spacial Data Structures\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NCollidsionQueryNode.cpp">
+      <Filter>Core\Physics\Spacial Data Structures\Nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -183,6 +192,18 @@
     </Filter>
     <Filter Include="Core\Physics\Colliders\OBB">
       <UniqueIdentifier>{554ddbe1-bc52-46b8-beee-e3fe44aa742a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Colliders\BV-AABB">
+      <UniqueIdentifier>{4f518018-c143-4833-90ad-40a16d322e12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Spacial Data Structures">
+      <UniqueIdentifier>{aee58bc1-ffb0-4a01-9528-4d3dbdfb2358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Spacial Data Structures\Nodes">
+      <UniqueIdentifier>{a4279dfa-8d58-4a69-9c30-be2cbbccf533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Spacial Data Structures\SceneGraph">
+      <UniqueIdentifier>{597fba35-e8ba-4c77-ba0c-6c9cafc42722}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -290,6 +311,15 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NColliderOBB.h">
       <Filter>Core\Physics\Colliders\OBB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\BVAABB.h">
+      <Filter>Core\Physics\Colliders\BV-AABB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NCollidsionQueryNode.h">
+      <Filter>Core\Physics\Spacial Data Structures\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NSceneGraph.h">
+      <Filter>Core\Physics\Spacial Data Structures\SceneGraph</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -78,7 +78,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
 	testTriangle->setScale(NMath::Vector3(10.0f, 1.0f, 10.0f));
 	//testTriangle2->setPosition(NMath::Vector3(3.0f, 0.0f, 0.0f));
-	player->setPosition(NMath::Vector3(0.0f, 00.0f, 20.0f));
+	player->setPosition(NMath::Vector3(0.0f, 20.0f, 0.0f));
 	//player->setRotation(NMath::Vector3(0.0f, 90.0f, 0.0f));
 
 	gameSceneManager.addObjectToScene(testTriangle);

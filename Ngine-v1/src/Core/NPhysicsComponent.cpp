@@ -14,6 +14,9 @@ void NPhysicsComponent::Construct(EngineStateData engineState, NConstructorValue
 
 void NPhysicsComponent::Update(GameStateData& gameData)
 {
+	// Used for volume bounding calculations.
+	collider.setPosition(this->getGameObject()->getPosition());
+
 	// Set orientation of OBB here.
 	colliderOBB.SetRotation(DirectX::XMQuaternionRotationRollPitchYawFromVector(this->getGameObject()->getRotation().getRawVector()));
 	colliderOBB.setPosition(this->getGameObject()->getPosition());

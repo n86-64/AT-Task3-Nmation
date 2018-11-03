@@ -10,12 +10,12 @@ void NColliderAABB::setColliderDimenstions(NMath::Vector3 dim)
 	dimenstions = dim; 
 }
 
-NMath::Vector3 NColliderAABB::getColliderMinPoint() const
+NMath::Vector3 NColliderAABB::getColliderMinPoint()
 {
-	return minPoint;
+	return position - dimenstions;
 }
 
-NMath::Vector3 NColliderAABB::getColliderMaxPoint() const
+NMath::Vector3 NColliderAABB::getColliderMaxPoint()
 {
-	return maxPoint;
+	return position + dimenstions;
 }

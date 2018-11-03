@@ -33,6 +33,8 @@ namespace NMath
 		NMath::Vector3 operator*(NMath::Vector3 vec);
 		NMath::Vector3 operator/(float scalier);
 		NMath::Vector3 operator*(float scalier);
+
+		float getMagnitude() { return DirectX::XMVectorGetX(DirectX::XMVector3Length(vector)); };
 		
 
 		// public vector constants.
