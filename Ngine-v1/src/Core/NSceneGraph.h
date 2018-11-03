@@ -16,9 +16,9 @@ public:
 
 private:
 	NColliderBV_AABB retrieveMinimalSceneBox(std::vector<NPhysicsComponent*>&  sceneContents);
-
+			
 private:
-	NCollisionQueryNode  root; // Root node for the scene. Set based on the 
+	NCollisionQueryNode  root; // Root node for the scene. Set based on the bounds of all the objects in the scene.
 };
 
 
@@ -31,4 +31,8 @@ private:
 //   Stop and perform checks.
 //
 // This should be done when generating each node. 
+
+// Testing:
+// Just move down the tree and test objects with any children.
+// (Would spacial hashing have been better.)
 

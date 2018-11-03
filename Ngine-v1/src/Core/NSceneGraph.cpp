@@ -4,7 +4,12 @@ void NSceneGraph::generateGraph(std::vector<NPhysicsComponent*>& sceneContents)
 {
 	// Generate the scene graph here. 
 	root.setBoundingBox(retrieveMinimalSceneBox(sceneContents));
-
+	
+	// Add the objects to the nodes. 
+	for (auto object : sceneContents) 
+	{
+		root.addObjectToNode(object);
+	}
 }
 
 NColliderBV_AABB NSceneGraph::retrieveMinimalSceneBox(std::vector<NPhysicsComponent*>&  sceneContents)

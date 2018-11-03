@@ -8,22 +8,25 @@
 #include "NPhysicsComponent.h"
 
 constexpr int CHILDNODE_COUNT = 8;
+constexpr int OBJECT_COUNT_THRESHOLD = 2;
 
 class NGameObject;
-
 
 class NCollisionQueryNode 
 {
 public: 
-	NCollisionQueryNode() = default;
+	NCollisionQueryNode();
+	NCollisionQueryNode(NColliderBV_AABB newBox, NCollisionQueryNode* parent);
 
 	void setBoundingBox(NColliderBV_AABB  volumeBox);
-	bool objectCollideWithNode(NPhysicsComponent* a);
+	void generateChildNodes();
 
+	void addObjectToNode(NPhysicsComponent* newObject);
 
 private:
 	// The child Nodes.
-	NCollisionQueryNode* ChildNodes[CHILDNODE_COUNT];
+	NCollisionQueryNode* parentNode = nullptr;
+	std::vector<NCollisionQueryNode>  childNodes = std::vector<NCollisionQueryNode>();
 
 	// The Node Bounding Box. Used for collision calculations.
 	NColliderBV_AABB   boundingBox; 
