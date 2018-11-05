@@ -6,6 +6,8 @@
 #include <memory>
 #include "NCollidsionQueryNode.h"
 
+// Collision Data structure
+
 class NSceneGraph 
 {
 public:
@@ -13,6 +15,8 @@ public:
 
 	// Generate the scene graph from the objects in the scene. 
 	void generateGraph(std::vector<NPhysicsComponent*>&  sceneContents);
+
+	std::vector<NColliderCollisionData> testCollisions(); // Check for collisions in the tree and stores confirmed collisions into an array.
 
 private:
 	NColliderBV_AABB retrieveMinimalSceneBox(std::vector<NPhysicsComponent*>&  sceneContents);

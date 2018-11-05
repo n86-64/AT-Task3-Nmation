@@ -24,6 +24,8 @@ struct NColliderOBBProjection
 
 struct NColliderCollisionData 
 {
+	NPhysicsComponent*   primary;
+	NPhysicsComponent*   secondary;
 	bool intersection = false;
 	NMath::Vector3 mtv = NMath::Vector3(0.0f, 0.0f, 0.0f); // Minimum translation vector. (Use for physics calculations.)
 };

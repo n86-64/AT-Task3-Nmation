@@ -25,7 +25,7 @@ void NCollisionQueryNode::generateChildNodes()
 	childNodes[2] = NCollisionQueryNode(NColliderBV_AABB(NMath::Vector3(boundingBox.centre.x(), boundingBox.min.y(), boundingBox.min.z()),  NMath::Vector3(boundingBox.max.x(), boundingBox.centre.y(), boundingBox.centre.z())), this);
 	childNodes[3] = NCollisionQueryNode(NColliderBV_AABB(NMath::Vector3(boundingBox.centre.x(), boundingBox.min.y(), boundingBox.centre.z()), NMath::Vector3(boundingBox.max.x(), boundingBox.centre.y(), boundingBox.max.z())), this);
 	childNodes[4] = NCollisionQueryNode(NColliderBV_AABB(NMath::Vector3(boundingBox.min.x(), boundingBox.min.y(), boundingBox.centre.z()), NMath::Vector3(boundingBox.centre.x(), boundingBox.centre.y(), boundingBox.max.z())), this);
-	childNodes[5] = NCollisionQueryNode(NColliderBV_AABB(NMath::Vector3(boundingBox.min.x(), boundingBox.centre.y(), boundingBox.min.z()), NMath::Vector3(boundingBox.centre.x(), boundingBox.max.y(), boundingBox.centre.z())), this);
+	childNodes[5] = NCollisionQueryNode(NColliderBV_AABB(NMath::Vector3(boundingBox.min.x(), boundingBox.centre.y(), boundingBox.min.z()), NMath::Vector3(boundingBox.centre.x(), boundingBox.max.y(), boundingBox.centre.z())), this); 
 	childNodes[6] = NCollisionQueryNode(NColliderBV_AABB(NMath::Vector3(boundingBox.centre.x(), boundingBox.centre.y(), boundingBox.min.z()), NMath::Vector3(boundingBox.max.x(), boundingBox.max.y(), boundingBox.centre.z())), this);
 	childNodes[7] = NCollisionQueryNode(NColliderBV_AABB(NMath::Vector3(boundingBox.min.x(), boundingBox.centre.y(), boundingBox.centre.z()), NMath::Vector3(boundingBox.centre.x(), boundingBox.max.y(), boundingBox.max.z())), this);
 
@@ -64,10 +64,61 @@ void NCollisionQueryNode::addObjectToNode(NPhysicsComponent* newObject)
 	// If there are child nodes then we add an object refrence to it.
 }
 
+void NCollisionQueryNode::runCollisionTest(std::vector<NColliderCollisionData>& collisionInfo)
+{
+	if (childNodes.size() != 0) 
+	{
+		for (auto& child : childNodes) 
+		{
+			child.runCollisionTest(collisionInfo);
+		}
+	}
+	else if(gameObjects.size() > 1)
+	{
+		NPhysicsComponent* component;
+		// Here we test the objects in the node.
+		for (auto object : gameObjects) 
+		{
+			// Here we test each of the objects.
+			evaluateCollision(object, collisionInfo);
+		}
+	}
+
+	return;
+}
+
 void NCollisionQueryNode::clear()
 {
 	gameObjects.clear();
 	childNodes.clear();
+}
+
+int NCollisionQueryNode::getChildNodeCount() const
+{
+	return childNodes.size();
+}
+
+int NCollisionQueryNode::getGameObjectCount() const
+{
+	return gameObjects.size();
+}
+
+void NCollisionQueryNode::evaluateCollision(NPhysicsComponent* comp, std::vector<NColliderCollisionData>& collisionInfo)
+{
+	NColliderCollisionData  data;
+	for (auto object : gameObjects) 
+	{
+		if (object != comp) 
+		{
+			data = comp->getOBBCollider().isObjectColliding(comp, object);
+			if (data.intersection) 
+			{
+				data.primary = comp;
+				data.secondary = object;
+				collisionInfo.push_back(data);
+			}
+		}
+	}
 }
 
 void NCollisionQueryNode::addObjectToChild()

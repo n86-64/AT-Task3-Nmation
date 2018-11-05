@@ -13,6 +13,13 @@ void NSceneGraph::generateGraph(std::vector<NPhysicsComponent*>& sceneContents)
 	}
 }
 
+std::vector<NColliderCollisionData> NSceneGraph::testCollisions()
+{
+	std::vector<NColliderCollisionData> collisions;
+	root.runCollisionTest(collisions);
+	return collisions;
+}
+
 NColliderBV_AABB NSceneGraph::retrieveMinimalSceneBox(std::vector<NPhysicsComponent*>&  sceneContents)
 {
 	NMath::Vector3    min = NMath::Vector3(-FLT_MAX, -FLT_MAX, -FLT_MAX);

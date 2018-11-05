@@ -8,7 +8,7 @@
 #include "NPhysicsComponent.h"
 
 constexpr int CHILDNODE_COUNT = 8;
-constexpr int OBJECT_COUNT_THRESHOLD = 1;
+constexpr int OBJECT_COUNT_THRESHOLD = 2;
 
 class NGameObject;
 
@@ -23,7 +23,14 @@ public:
 
 	void addObjectToNode(NPhysicsComponent* newObject);
 
+	void runCollisionTest(std::vector<NColliderCollisionData>& collisionInfo);
+
 	void clear();
+
+	int getChildNodeCount() const;
+	int getGameObjectCount() const;
+
+	void   evaluateCollision(NPhysicsComponent* comp, std::vector<NColliderCollisionData>& collisionInfo);
 
 private:
 	// The child Nodes.
