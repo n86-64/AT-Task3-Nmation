@@ -54,7 +54,7 @@ void NPhysicsResolver::testCollision(NPhysicsComponent* a)
 
 bool NPhysicsResolver::isObjectColliding(NPhysicsComponent* a, NPhysicsComponent* b)
 {
-	a->getOBBCollider().isObjectColliding(a, b);
+	//a->getOBBCollider().isObjectColliding(a, b);
 
 	//NColliderAABB& aCol = a->getCollider();
 	//NColliderAABB& bCol = b->getCollider();
@@ -91,7 +91,9 @@ void NPhysicsResolver::resolveCollision(NPhysicsComponent* a, NPhysicsComponent*
 	collisionNormal = data.mtv;
 	//a->incrementAcceleration(collisionNormal * -1.0f);
 
+	assert(data.mtv.y() != 0.0f);
+
 	//a->getGameObject()->setPosition(a->getGameObject()->getPosition() + (NMath::Vector3(DirectX::XMVector3Normalize(collisionNormal.getRawVector()))));
-	a->incrementVelocity(a->getVelocity() + (collisionNormal));
+	a->incrementVelocity(a->getVelocity() * (collisionNormal));
 	//a->incrementVelocity(a->getVelocity() * (collisionNormal));
 }

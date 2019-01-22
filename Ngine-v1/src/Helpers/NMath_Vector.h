@@ -36,7 +36,6 @@ namespace NMath
 
 		float getMagnitude() { return DirectX::XMVectorGetX(DirectX::XMVector3Length(vector)); }
 		NMath::Vector3 normalise() { return DirectX::XMVector3Normalize(vector); }
-		
 
 		// public vector constants.
 		float value(int i) { return DirectX::XMVectorGetByIndex(vector, i); }
@@ -46,8 +45,5 @@ namespace NMath
 	};
 
 	// Perform a cross product.
-	Vector3 Cross(Vector3 a, Vector3 b) 
-	{
-		return DirectX::XMVector3Cross(a.getRawVector(), b.getRawVector());
-	}
+	Vector3 Cross(Vector3 a, Vector3 b);
 }

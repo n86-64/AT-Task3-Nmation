@@ -92,3 +92,8 @@ NMath::Vector3 NMath::Vector3::operator*(float scalier)
 {
 	return NMath::Vector3(this->x() * scalier, this->y() * scalier, this->z() * scalier);
 }
+
+NMath::Vector3 NMath::Cross(NMath::Vector3 a, NMath::Vector3 b)
+{
+		return DirectX::XMVector3Cross(a.getRawVector(), b.getRawVector());
+}
