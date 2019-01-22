@@ -92,6 +92,6 @@ void NPhysicsResolver::resolveCollision(NPhysicsComponent* a, NPhysicsComponent*
 	//a->incrementAcceleration(collisionNormal * -1.0f);
 
 	//a->getGameObject()->setPosition(a->getGameObject()->getPosition() + (NMath::Vector3(DirectX::XMVector3Normalize(collisionNormal.getRawVector()))));
-	a->incrementVelocity(a->getVelocity() * (collisionNormal.normalise()));
+	a->incrementVelocity(a->getVelocity() + (collisionNormal));
 	//a->incrementVelocity(a->getVelocity() * (collisionNormal));
 }

@@ -96,7 +96,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 		if (mag < T)
 		{
-			data.mtv = axes[i];
+			data.mtv = b->getOBBCollider().getAxes(i);
 			T = mag;
 		}
 	}
@@ -108,7 +108,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 	if (mag < T)
 	{
-		data.mtv = axes[0];
+		data.mtv = NMath::Cross(axes[0], b->getOBBCollider().getAxes(0));
 		T = mag;
 	}
 
@@ -119,7 +119,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 	if (mag < T)
 	{
-		data.mtv = axes[1];
+		data.mtv = NMath::Cross(axes[0], b->getOBBCollider().getAxes(1));
 		T = mag;
 	}
 
@@ -130,7 +130,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 	if (mag < T)
 	{
-		data.mtv = axes[2];
+		data.mtv = NMath::Cross(axes[0], b->getOBBCollider().getAxes(2));
 		T = mag;
 	}
 
@@ -141,7 +141,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 	if (mag < T)
 	{
-		data.mtv = axes[0];
+		data.mtv = NMath::Cross(axes[1], b->getOBBCollider().getAxes(0));
 		T = mag;
 	}
 
@@ -152,7 +152,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 	if (mag < T)
 	{
-		data.mtv = axes[1];
+		data.mtv = NMath::Cross(axes[1], b->getOBBCollider().getAxes(1));
 		T = mag;
 	}
 
@@ -163,7 +163,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 	if (mag < T)
 	{
-		data.mtv = axes[2];
+		data.mtv = NMath::Cross(axes[1], b->getOBBCollider().getAxes(2));
 		T = mag;
 	}
 
@@ -174,7 +174,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 	if (mag < T)
 	{
-		data.mtv = axes[0];
+		data.mtv = NMath::Cross(axes[2], b->getOBBCollider().getAxes(0));
 		T = mag;
 	}
 
@@ -185,7 +185,7 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 	if (mag < T)
 	{
-		data.mtv = axes[1];
+		data.mtv = NMath::Cross(axes[2], b->getOBBCollider().getAxes(1));
 		T = mag;
 	}
 
@@ -196,14 +196,12 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 
 	if (mag < T)
 	{
-		data.mtv = axes[2];
+		data.mtv = NMath::Cross(axes[2], b->getOBBCollider().getAxes(2));
 		T = mag;
 	}
 
-
     data.intersection = true;
 	data.mtv = data.mtv * T;
-
 
 	return data;
 }

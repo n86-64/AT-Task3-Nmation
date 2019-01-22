@@ -41,8 +41,13 @@ namespace NMath
 		// public vector constants.
 		float value(int i) { return DirectX::XMVectorGetByIndex(vector, i); }
 
-
 	private:
 		DirectX::XMVECTOR  vector;
 	};
+
+	// Perform a cross product.
+	Vector3 Cross(Vector3 a, Vector3 b) 
+	{
+		return DirectX::XMVector3Cross(a.getRawVector(), b.getRawVector());
+	}
 }
