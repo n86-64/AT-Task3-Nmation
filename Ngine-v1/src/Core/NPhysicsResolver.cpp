@@ -24,7 +24,7 @@ void NPhysicsResolver::tickPhysics(GameStateData gameData)
 
 	for (auto& collision : sceneOctree.testCollisions()) 
 	{
-		resolveCollision(collision.primary, collision.secondary);
+		resolveCollision(collision.primary, collision.secondary, collision);
 	}
 }
 
@@ -79,17 +79,19 @@ bool NPhysicsResolver::isObjectColliding(NPhysicsComponent* a, NPhysicsComponent
 	return a->getOBBCollider().isObjectColliding(a, b).intersection;
 }
 
-void NPhysicsResolver::resolveCollision(NPhysicsComponent* a, NPhysicsComponent* b)
+void NPhysicsResolver::resolveCollision(NPhysicsComponent* a, NPhysicsComponent* b, NColliderCollisionData& data)
 {
 	NMath::Vector3 collisionNormal;
 
 	NMath::Vector3  aColliderDim = a->getCollider().getColliderDimenstions();
 	NMath::Vector3  bColliderDim = b->getCollider().getColliderDimenstions();
 
-	collisionNormal = ((a->getGameObject()->getPosition() - (b->getGameObject()->getPosition()))) - bColliderDim - aColliderDim;
+	//collisionNormal = ((a->getGameObject()->getPosition() - (b->getGameObject()->getPosition()))) - bColliderDim - aColliderDim;
 	// collisionNormal = NMath::Vector3(0.0f, 1.0f, 0.0f);
+	collisionNormal = data.mtv;
+	//a->incrementAcceleration(collisionNormal * -1.0f);
 
 	//a->getGameObject()->setPosition(a->getGameObject()->getPosition() + (NMath::Vector3(DirectX::XMVector3Normalize(collisionNormal.getRawVector()))));
-	a->incrementVelocity(a->getVelocity() * (collisionNormal));
+	a->incrementVelocity(a->getVelocity() * (collisionNormal.normalise()));
 	//a->incrementVelocity(a->getVelocity() * (collisionNormal));
 }

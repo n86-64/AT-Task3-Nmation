@@ -39,8 +39,10 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 	
 	// Here we perform the check.
 	float rA, rB; // Distances to edge on each axis.
+	float T = INFINITY; // the distance along a perticular axis.
+	float mag = 0.0f;
 	DirectX::XMMATRIX   tRotation; // rotate the object into our space.
-
+	
 	// Here we compute the orientation of the boxes. 
 	tRotation = DirectX::XMMatrixSet
 	(
@@ -75,6 +77,13 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 		rA = dimenstions.value(i);
 		rB = (OBB.getDimenstions().value(0) * AbsRotation(i, 0)) + (OBB.getDimenstions().value(1) * AbsRotation(i, 1)) + (OBB.getDimenstions().value(2) * AbsRotation(i, 2));
 		if (abs(t.value(i) > rA + rB)) { data.intersection = false; return data; }
+		else { mag = t.value(i); }
+
+		if (mag < T) 
+		{
+			data.mtv = axes[i];
+			T = mag;
+		}
 	}
 
 	for (int i = 0; i < 3; i++)
@@ -83,51 +92,119 @@ NColliderCollisionData NColliderOBB::isObjectColliding(NPhysicsComponent* thisCo
 		rA = (dimenstions.value(0) * AbsRotation(0, i)) + (dimenstions.value(1) * AbsRotation(1, i)) + (dimenstions.value(2) * AbsRotation(2, i));
 		rB = OBB.getDimenstions().value(i);
 		if (abs(t.value(0) * Rotation(0, i) + t.value(1) * Rotation(1,i) + t.value(2) * Rotation(2, i)) > rA + rB) { data.intersection = false; return data; }
+		else { mag = t.value(0) * Rotation(0, i) + t.value(1) * Rotation(1, i) + t.value(2) * Rotation(2, i); }
+
+		if (mag < T)
+		{
+			data.mtv = axes[i];
+			T = mag;
+		}
 	}
 
 	rA = (dimenstions.value(1) * AbsRotation(2, 0)) + (dimenstions.value(2) * AbsRotation(1, 0));
 	rB = (OBB.getDimenstions().value(1) * AbsRotation(0, 2)) + (dimenstions.value(2) * AbsRotation(0, 1));
 	if (abs(t.value(2) * Rotation(1, 0) - t.value(1) * Rotation(2, 0)) > rA + rB) { data.intersection = false; return data; }
+	else { mag = t.value(2) * Rotation(1, 0) - t.value(1) * Rotation(2, 0); }
+
+	if (mag < T)
+	{
+		data.mtv = axes[0];
+		T = mag;
+	}
 
 	rA = (dimenstions.value(1) * AbsRotation(2, 1)) + (dimenstions.value(2) * AbsRotation(1, 1));
 	rB = (OBB.getDimenstions().value(0) * AbsRotation(0, 2)) + (dimenstions.value(2) * AbsRotation(0, 0));
 	if (abs(t.value(2) * Rotation(1, 1) - t.value(1) * Rotation(2, 1)) > rA + rB) { data.intersection = false; return data; }
+	else { mag = t.value(2) * Rotation(1, 1) - t.value(1) * Rotation(2, 1); }
+
+	if (mag < T)
+	{
+		data.mtv = axes[1];
+		T = mag;
+	}
 
 	rA = (dimenstions.value(1) * AbsRotation(2, 2)) + (dimenstions.value(2) * AbsRotation(1, 2));
 	rB = (OBB.getDimenstions().value(0) * AbsRotation(0, 1)) + (dimenstions.value(1) * AbsRotation(0, 0));
 	if (abs(t.value(2) * Rotation(1, 2) - t.value(1) * Rotation(2, 2)) > rA + rB) { data.intersection = false; return data; }
+	else { mag = t.value(2) * Rotation(1, 2) - t.value(1) * Rotation(2, 2); }
+
+	if (mag < T)
+	{
+		data.mtv = axes[2];
+		T = mag;
+	}
 
 	rA = (dimenstions.value(0) * AbsRotation(2, 0)) + (dimenstions.value(2) * AbsRotation(0, 0));
 	rB = (OBB.getDimenstions().value(1) * AbsRotation(1, 2)) + (dimenstions.value(2) * AbsRotation(1, 1));
 	if (abs(t.value(0) * Rotation(2, 1) - t.value(2) * Rotation(0, 0)) > rA + rB) { data.intersection = false; return data; }
+	else { mag = t.value(0) * Rotation(2, 1) - t.value(2) * Rotation(0, 0); }
 
+	if (mag < T)
+	{
+		data.mtv = axes[0];
+		T = mag;
+	}
 
 	rA = (dimenstions.value(0) * AbsRotation(2, 1)) + (dimenstions.value(2) * AbsRotation(0, 1));
 	rB = (OBB.getDimenstions().value(0) * AbsRotation(1, 2)) + (dimenstions.value(2) * AbsRotation(1, 0));
 	if (abs(t.value(0) * Rotation(2, 1) - t.value(2) * Rotation(0, 1)) > rA + rB) { data.intersection = false; return data; }
+	else { mag = t.value(0) * Rotation(2, 1) - t.value(2) * Rotation(0, 1); }
 
-
+	if (mag < T)
+	{
+		data.mtv = axes[1];
+		T = mag;
+	}
 
 	rA = (dimenstions.value(0) * AbsRotation(2, 2)) + (dimenstions.value(2) * AbsRotation(0, 2));
 	rB = (OBB.getDimenstions().value(0) * AbsRotation(1, 1)) + (dimenstions.value(1) * AbsRotation(1, 0));
 	if (abs(t.value(0) * Rotation(2, 2) - t.value(2) * Rotation(0, 2)) > rA + rB) { data.intersection = false; return data; }
+	else { mag = t.value(0) * Rotation(2, 2) - t.value(2) * Rotation(0, 2); }
 
+	if (mag < T)
+	{
+		data.mtv = axes[2];
+		T = mag;
+	}
 
 	rA = (dimenstions.value(0) * AbsRotation(1, 0)) + (dimenstions.value(1) * AbsRotation(0, 0));
 	rB = (OBB.getDimenstions().value(1) * AbsRotation(2, 2)) + (dimenstions.value(2) * AbsRotation(2, 1));
 	if (abs(t.value(1) * Rotation(0, 0) - t.value(0) * Rotation(1, 0)) > rA + rB) { data.intersection = false; return data; }
+	else { mag = t.value(1) * Rotation(0, 0) - t.value(0) * Rotation(1, 0); }
 
+	if (mag < T)
+	{
+		data.mtv = axes[0];
+		T = mag;
+	}
 
 	rA = (dimenstions.value(0) * AbsRotation(1, 1)) + (dimenstions.value(1) * AbsRotation(0, 1));
 	rB = (OBB.getDimenstions().value(0) * AbsRotation(2, 2)) + (dimenstions.value(2) * AbsRotation(2, 0));
 	if (abs(t.value(1) * Rotation(0, 1) - t.value(0) * Rotation(1, 1)) > rA + rB) { data.intersection = false; return data; }
+	else { mag = t.value(1) * Rotation(0, 1) - t.value(0) * Rotation(1, 1); }
 
+	if (mag < T)
+	{
+		data.mtv = axes[1];
+		T = mag;
+	}
 
 	rA = (dimenstions.value(0) * AbsRotation(1, 2)) + (dimenstions.value(1) * AbsRotation(0, 2));
 	rB = (OBB.getDimenstions().value(0) * AbsRotation(2, 1)) + (dimenstions.value(1) * AbsRotation(2, 0));
 	if (abs(t.value(1) * Rotation(0, 2) - t.value(0) * Rotation(1, 2)) > rA + rB) { data.intersection = false; return data; }
+	else { mag = t.value(1) * Rotation(0, 2) - t.value(0) * Rotation(1, 2); }
+
+	if (mag < T)
+	{
+		data.mtv = axes[2];
+		T = mag;
+	}
+
 
     data.intersection = true;
+	data.mtv = data.mtv * T;
+
+
 	return data;
 }
 

@@ -23,7 +23,7 @@ private:
 
 	bool isObjectColliding(NPhysicsComponent* a, NPhysicsComponent* b);
 
-	void resolveCollision(NPhysicsComponent* a, NPhysicsComponent* b);
+	void resolveCollision(NPhysicsComponent* a, NPhysicsComponent* b, NColliderCollisionData& data);
 
 	std::vector<NPhysicsComponent*>      physics_objects;
 
