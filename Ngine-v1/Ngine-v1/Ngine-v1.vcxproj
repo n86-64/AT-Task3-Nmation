@@ -99,13 +99,15 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)dependancies;$(SolutionDir)dependancies\jsoncons\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)dependancies;$(SolutionDir)dependancies\jsoncons\include;$(SolutionDir)dependancies\Assimp\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc140-mt.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependancies\Assimp\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)resources\*" "$(OutDir)resources\" /F /R /Y /I /S</Command>
+      <Command>xcopy "$(SolutionDir)resources\*" "$(OutDir)resources\" /F /R /Y /I /S
+xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y /I /S</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -142,11 +144,13 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)dependancies;$(SolutionDir)dependancies\jsoncons\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)dependancies;$(SolutionDir)dependancies\jsoncons\include;$(SolutionDir)dependancies\Assimp\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependancies\Assimp\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)resources\*" "$(OutDir)resources\" /F /R /Y /I /S</Command>
