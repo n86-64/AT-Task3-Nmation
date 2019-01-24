@@ -1,5 +1,3 @@
-#include <Assimp/Importer.hpp>
-
 #include <string>
 #include "NGame.h"
 
@@ -14,8 +12,6 @@
 // DEPRECATED
 void NGame::init(NWindowHandle* window, std::string gameTitle)
 {
-	Assimp::Importer imports;
-
 	gameWindow.setAndSetupNWindow(window);
 	gameWindow.setWindowTitle(gameTitle);
 }

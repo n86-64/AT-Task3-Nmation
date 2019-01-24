@@ -10,10 +10,14 @@
 #include "Helpers/Direct3D.h"
 #include "Renderer/ShaderInput.h"
 
+
+struct aiMesh;
+
 class N3DMesh 
 {
 public:
 	N3DMesh(std::string name, ID3D11Device* device); 
+	N3DMesh(ID3D11Device* device, aiMesh* meshObject);
 	~N3DMesh();
 
 	std::string getName() const;

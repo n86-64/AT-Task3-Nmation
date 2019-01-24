@@ -14,6 +14,7 @@
 // Resource Objects
 #include "NMaterial.h"
 #include "Core/N3DMesh.h"
+#include "Core/NAssetManager.h"
 
 class N3DComponent;
 class NCamera;
@@ -118,6 +119,8 @@ private:
 private:
 	std::vector<std::unique_ptr<NMaterial>>  materialBuffer; // Allows Materials of a set name to be loaded from a cache. 
 	std::vector<std::unique_ptr<N3DMesh>>   meshBuffer;
+
+	NAssetManager							assetBuffer;
 
 	NMaterial*   searchMaterials(std::string name);
 	N3DMesh*	 searchMesh(std::string name);

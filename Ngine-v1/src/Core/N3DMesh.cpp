@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <Assimp/mesh.h>
 
 #include "Renderer/NMaterialProperites.h"
 
@@ -20,6 +21,31 @@ N3DMesh::N3DMesh(std::string name, ID3D11Device* device)
 	// Load the mesh and then render. 
 	loadMesh(name);
 	setupMesh(device);
+}
+
+N3DMesh::N3DMesh(ID3D11Device* device, aiMesh* meshObject)
+{
+	VertexInput newInput;
+	verticies.reserve(meshObject->mNumVertices);
+
+	meshName = std::string(meshObject->mName.C_Str());
+	aiVector3D vec;
+
+	for (int i = 0; i < meshObject->mNumVertices; i++) 
+	{
+		vec = meshObject->mVertices[i];
+		newInput.pos = DirectX::XMFLOAT4(vec.x, vec.y, vec.z, 1.0f);
+
+		if (meshObject->mColors[0])
+		{
+			newInput.col = DirectX::XMFLOAT4((float)meshObject->mColors[0][i].r, (float)meshObject->mColors[0][i].g, (float)meshObject->mColors[0][i].b, (float)meshObject->mColors[0][i].a);
+		}
+
+		if (meshObject->mTextureCoords[0])
+		{
+			newInput.uv = DirectX::XMFLOAT2((float)meshObject->mTextureCoords[0][i].x, (float)meshObject->mTextureCoords[0][i].y);
+		}
+	}
 }
 
 N3DMesh::~N3DMesh()

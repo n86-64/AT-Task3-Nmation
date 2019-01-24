@@ -89,6 +89,9 @@
     <ClCompile Include="..\src\Core\NCollidsionQueryNode.cpp">
       <Filter>Core\Physics\Spacial Data Structures\Nodes</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\NAssetManager.cpp">
+      <Filter>Core\Assets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -205,6 +208,9 @@
     <Filter Include="Core\Physics\Spacial Data Structures\SceneGraph">
       <UniqueIdentifier>{597fba35-e8ba-4c77-ba0c-6c9cafc42722}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Assets">
+      <UniqueIdentifier>{358bde3e-d4cd-40fa-aedb-3b5fa4e47ea5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -320,6 +326,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NSceneGraph.h">
       <Filter>Core\Physics\Spacial Data Structures\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NAssetManager.h">
+      <Filter>Core\Assets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

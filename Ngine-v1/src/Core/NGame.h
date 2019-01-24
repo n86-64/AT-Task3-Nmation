@@ -42,6 +42,7 @@ private:
 	GameStateData		gameData = { &gameTime, &input };
 
 	NScene				gameSceneManager; 
+	
 
 	void ShutDown();
 	bool quit = false;

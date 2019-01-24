@@ -51,6 +51,9 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 		result = setupRenderingMatrix();
 	}
 
+	assetBuffer.setRenderDevice(renderDevice);
+	assetBuffer.loadAssets("meshes/cube.obj");
+
 	return result;
 }
 
