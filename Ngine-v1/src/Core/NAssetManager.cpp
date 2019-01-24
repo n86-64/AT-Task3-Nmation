@@ -30,10 +30,24 @@ void NAssetManager::loadAssets(std::string name)
 	else 
 	{
 		// Start the Loading process.
+		// If skeletal mesh we will load as a skeletal mesh.
 		LoadMeshRecursive(sceneObject);
 	}
 
 	
+}
+
+N3DMesh* NAssetManager::aquireMesh(std::string name)
+{
+	for (int i = 0; i < meshes.size(); i++)
+	{
+		if (meshes[i]->getName() == name) 
+		{
+			return meshes[i].get();
+		}
+	}
+
+	return nullptr;
 }
 
 void NAssetManager::LoadMeshRecursive(const aiScene* scene)

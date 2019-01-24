@@ -54,6 +54,9 @@ public:
 	NMaterial* createMaterial(std::string name);
 	N3DMesh*   createMesh(std::string name);
 
+	// Retrieves mesh from new manager.
+	N3DMesh*   aquireMeshAsset(std::string name);
+
 	// Renderer Interfacing
 	void setMainCamera(NCamera* camera);
 

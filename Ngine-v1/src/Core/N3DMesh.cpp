@@ -45,7 +45,19 @@ N3DMesh::N3DMesh(ID3D11Device* device, aiMesh* meshObject)
 		{
 			newInput.uv = DirectX::XMFLOAT2((float)meshObject->mTextureCoords[0][i].x, (float)meshObject->mTextureCoords[0][i].y);
 		}
+
+		verticies.emplace_back(newInput);
 	}
+
+	for (int j = 0; j < meshObject->mNumFaces; j++) 
+	{
+		for (int k = 0; k < meshObject->mFaces[j].mNumIndices; k++) 
+		{
+			indicies.emplace_back(meshObject->mFaces[j].mIndices[k]);
+		}
+	}
+
+	setupMesh(device);
 }
 
 N3DMesh::~N3DMesh()

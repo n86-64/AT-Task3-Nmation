@@ -24,6 +24,8 @@ public:
 
 	void loadAssets(std::string name);
 
+	N3DMesh* aquireMesh(std::string name);
+
 
 private:
 	void LoadMeshRecursive(const aiScene* scene);

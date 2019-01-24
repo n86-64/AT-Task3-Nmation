@@ -68,7 +68,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 	NPlayer* player = new NPlayer();
 	N3DComponent* playerMesh = new N3DComponent();
-	playerMesh->setMesh(renderer.createMesh("cube"));
+	playerMesh->setMesh(renderer.aquireMeshAsset("Cube"));
 	playerMesh->setMaterial(renderer.createMaterial("test"));
 	player->addComponent(playerMesh);
 	player->setCamera(newCam);

@@ -112,6 +112,11 @@ N3DMesh* NRenderer::createMesh(std::string name)
 	return mesh;
 }
 
+N3DMesh* NRenderer::aquireMeshAsset(std::string name)
+{
+	return assetBuffer.aquireMesh(name);
+}
+
 void NRenderer::setMainCamera(NCamera* camera)
 {
 	mainCamera = camera;
