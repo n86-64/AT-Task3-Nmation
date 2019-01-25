@@ -23,7 +23,6 @@ public:
 	void setRenderDevice(ID3D11Device* device);
 
 	void loadAssets(std::string name);
-
 	N3DMesh* aquireMesh(std::string name);
 
 

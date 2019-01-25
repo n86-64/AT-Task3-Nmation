@@ -1,3 +1,5 @@
+#include <queue>
+
 #include <Assimp/Importer.hpp>
 #include <Assimp/scene.h>
 #include <Assimp/postprocess.h>
@@ -33,8 +35,6 @@ void NAssetManager::loadAssets(std::string name)
 		// If skeletal mesh we will load as a skeletal mesh.
 		LoadMeshRecursive(sceneObject);
 	}
-
-	
 }
 
 N3DMesh* NAssetManager::aquireMesh(std::string name)
@@ -52,6 +52,7 @@ N3DMesh* NAssetManager::aquireMesh(std::string name)
 
 void NAssetManager::LoadMeshRecursive(const aiScene* scene)
 {
+	std::queue<aiNode*> nodes;
 	if (!scene->HasMeshes()) 
 	{
 		return;
@@ -64,13 +65,24 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene)
 		}
 	}
 
-	aiNode*  currentNode = scene->mRootNode;
+	aiNode*  currentNode;
+	nodes.emplace(scene->mRootNode);
+
 	int		 meshIndex = -1;
 	N3DMesh*  newMesh = nullptr;
 
-	for (int i = 0; i < currentNode->mNumMeshes; i++) 
+	while (!nodes.empty()) 
 	{
-		newMesh = new N3DMesh(renderDevice, scene->mMeshes[currentNode->mMeshes[i]]);
-		meshes.emplace_back(newMesh);
+		currentNode = nodes.front();
+		for (int i = 0; i < currentNode->mNumMeshes; i++)
+		{
+			newMesh = new N3DMesh(renderDevice, scene->mMeshes[currentNode->mMeshes[i]]);
+			meshes.emplace_back(newMesh);
+		}
+
+		for (int j = 0; j < currentNode->mNumChildren; j++) 
+		{
+			nodes.emplace(currentNode->mChildren[j]);
+		}
 	}
 }
