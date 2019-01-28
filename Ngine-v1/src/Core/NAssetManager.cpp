@@ -33,6 +33,7 @@ void NAssetManager::loadAssets(std::string name)
 	{
 		// Start the Loading process.
 		// If skeletal mesh we will load as a skeletal mesh.
+		// If not single mesh we load multiple meshes.
 		LoadMeshRecursive(sceneObject);
 	}
 }
@@ -84,5 +85,6 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene)
 		{
 			nodes.emplace(currentNode->mChildren[j]);
 		}
+		nodes.pop();
 	}
 }

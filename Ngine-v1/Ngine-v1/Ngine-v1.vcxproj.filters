@@ -47,9 +47,6 @@
     <ClCompile Include="..\src\Helpers\JSONFileReader.cpp">
       <Filter>Helpers\FileIO\JSON</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Core\N3DMesh.cpp">
-      <Filter>Core\Renderer\Objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Core\N3DComponent.cpp">
       <Filter>Core\Components\3D</Filter>
     </ClCompile>
@@ -92,6 +89,10 @@
     <ClCompile Include="..\src\Core\NAssetManager.cpp">
       <Filter>Core\Assets</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\N3DMesh.cpp">
+      <Filter>Core\Renderer\Resources\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NAnimationBones.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -154,9 +155,6 @@
     <Filter Include="Helpers\FileIO\JSON">
       <UniqueIdentifier>{e09e9be8-4269-4a11-aa12-dee97ed2fedb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Renderer\Objects">
-      <UniqueIdentifier>{343c32d0-8dc2-4e59-99a3-f092a1a08498}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Components\3D">
       <UniqueIdentifier>{a20b1985-dbbb-43b0-99cc-343181fe47d0}</UniqueIdentifier>
     </Filter>
@@ -210,6 +208,21 @@
     </Filter>
     <Filter Include="Core\Assets">
       <UniqueIdentifier>{358bde3e-d4cd-40fa-aedb-3b5fa4e47ea5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Resources">
+      <UniqueIdentifier>{343c32d0-8dc2-4e59-99a3-f092a1a08498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Resources\Meshes">
+      <UniqueIdentifier>{7142e3c6-057b-4e0d-b98b-54cd9b00960c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Resources\Skeletal Meshes">
+      <UniqueIdentifier>{83c0021a-1616-4aa0-b286-0b268dbab950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Animation">
+      <UniqueIdentifier>{0d120982-391d-47f8-be1b-bf9d02c28401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Resources\Skeletal Meshes\Bones">
+      <UniqueIdentifier>{49124589-63e9-4e4c-af74-dfa246057e8e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -279,9 +292,6 @@
     <ClInclude Include="..\src\Helpers\JSONFileReader.h">
       <Filter>Helpers\FileIO\JSON</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Core\N3DMesh.h">
-      <Filter>Core\Renderer\Objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Core\N3DComponent.h">
       <Filter>Core\Components\3D</Filter>
     </ClInclude>
@@ -329,6 +339,15 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NAssetManager.h">
       <Filter>Core\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\N3DMesh.h">
+      <Filter>Core\Renderer\Resources\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NSkeletalMesh.h">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NAnimationBones.h">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes\Bones</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
