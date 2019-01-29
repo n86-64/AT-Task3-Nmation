@@ -39,6 +39,11 @@ private:
 	void loadMesh(std::string name);
 	void setupMesh(ID3D11Device* device); 
 
+	// Transforms and parents.
+	DirectX::XMMATRIX	modelMatrix = DirectX::XMMatrixIdentity();
+
+
+
 private:
 	ID3D11Buffer*		vBuffer = nullptr;
 	ID3D11Buffer*		iBuffer = nullptr;

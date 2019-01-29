@@ -7,7 +7,7 @@
 #include <memory>
 #include <vector>
 
-#include "NSkeletalMesh.h"
+#include "NanimationBones.h"
 
 class N3DMesh;
 
@@ -16,8 +16,13 @@ class NSkeletalMesh
 public:
 	NSkeletalMesh() = default;
 
+	void addAnimationBone(NSkeletalBone* newBone);
+	void addanimationBoneAssimp(aiBone* newBone);
+
 private:
+
+
 	// The skeleton and mesh data.
 	std::vector<N3DMesh*>						  meshes;
-	std::vector<std::unique_ptr<NSkeletalMesh>> skeleton;
+	std::vector<std::unique_ptr<NSkeletalBone>> skeleton;
 };

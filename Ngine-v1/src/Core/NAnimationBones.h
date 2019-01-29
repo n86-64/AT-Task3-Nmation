@@ -7,7 +7,8 @@
 #include <string>
 
 #include "Helpers/NMaths.h"
-#include <Assimp/mesh.h>
+
+struct aiBone;
 
 struct NSkeletalBoneWeight 
 {
@@ -21,7 +22,7 @@ class NSkeletalBone
 public:
 	NSkeletalBone() = default;
 	~NSkeletalBone();
-	NSkeletalBone(const aiBone& animBone); // Construct a bone given from assimp.
+	NSkeletalBone(aiBone& animBone); // Construct a bone given from assimp.
 
 	// TODO - Add copy constructor for copy and deletion of bones.
 

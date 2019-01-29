@@ -93,6 +93,7 @@
       <Filter>Core\Renderer\Resources\Meshes</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Core\NAnimationBones.cpp" />
+    <ClCompile Include="..\src\Core\NSkeletalMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
