@@ -13,7 +13,7 @@
 
 // Forward Decleration.
 struct aiScene;
-
+struct aiNode;
 
 class NAssetManager 
 {
@@ -30,12 +30,11 @@ private:
 	void LoadMeshRecursive(const aiScene* scene);
 	
 	// Loading functions for various aspects of the model.
-	void LoadAnimationsRecursive(const aiScene scene);
-	void LoadBonesRecursive(const aiScene scene);
+	void LoadAnimationsRecursive(const aiScene* scene);
+	void LoadBonesRecursive(const aiNode* node);
 
 private:
 	ID3D11Device*							renderDevice = nullptr;
 
 	std::vector<std::unique_ptr<N3DMesh>>   meshes;
-
 };

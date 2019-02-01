@@ -92,7 +92,9 @@
     <ClCompile Include="..\src\Core\N3DMesh.cpp">
       <Filter>Core\Renderer\Resources\Meshes</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Core\NAnimationBones.cpp" />
+    <ClCompile Include="..\src\Core\NAnimationBones.cpp">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes\Bones</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -223,6 +225,9 @@
     </Filter>
     <Filter Include="Core\Renderer\Resources\Skeletal Meshes\Bones">
       <UniqueIdentifier>{49124589-63e9-4e4c-af74-dfa246057e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Animation\Data">
+      <UniqueIdentifier>{c924322a-7974-419c-9398-e048c0592192}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

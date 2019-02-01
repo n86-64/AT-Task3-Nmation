@@ -72,7 +72,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	playerMesh->setMaterial(renderer.createMaterial("test"));
 	player->addComponent(playerMesh);
 	player->setCamera(newCam);
-	newCam->setPosition(NMath::Vector3(5.0f, 10.0f, -5.0f));
+	newCam->setPosition(NMath::Vector3(0.0f, 30.0f, -15.0f));
 	player->setScale(NMath::Vector3(1.0f, 1.0f, 1.0f));
 
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));

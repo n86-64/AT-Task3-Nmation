@@ -7,7 +7,7 @@
 #include <memory>
 #include <vector>
 
-#include "NSkeletalMesh.h"
+#include "NAnimationBones.h"
 
 class N3DMesh;
 
@@ -17,7 +17,9 @@ public:
 	NSkeletalMesh() = default;
 
 private:
+	std::string name;
+
 	// The skeleton and mesh data.
 	std::vector<N3DMesh*>						  meshes;
-	std::vector<std::unique_ptr<NSkeletalMesh>> skeleton;
+	std::vector<std::unique_ptr<NSkeletalBone>> skeleton;
 };

@@ -25,6 +25,7 @@ public:
 
 	// TODO - Add copy constructor for copy and deletion of bones.
 
+
 private:
 	std::string name;
 

@@ -31,9 +31,9 @@ void NAssetManager::loadAssets(std::string name)
 	}
 	else 
 	{
-		// Start the Loading process.
-		// If skeletal mesh we will load as a skeletal mesh.
-		// If not single mesh we load multiple meshes.
+		// Load all assimp meshes as mesh collections with skeletons.
+		// Treat all objects as hierarchical meshes.
+		// simplifies the engine and gets it working.
 		LoadMeshRecursive(sceneObject);
 	}
 }
@@ -87,4 +87,9 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene)
 		}
 		nodes.pop();
 	}
+}
+
+void NAssetManager::LoadBonesRecursive(const aiNode* node)
+{
+	// Load the animation data for bones.
 }
