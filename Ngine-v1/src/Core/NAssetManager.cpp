@@ -4,6 +4,8 @@
 #include <Assimp/scene.h>
 #include <Assimp/postprocess.h>
 
+#include "NSkeletalMesh.h"
+
 #include "NAssetManager.h"
 
 void NAssetManager::setRenderDevice(ID3D11Device * device)
@@ -60,12 +62,19 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene)
 	}
 	else 
 	{
-		for (int i = 0; i < scene->mNumMeshes; i++)
+		if (scene->mNumMeshes == 1) 
 		{
-			meshes.emplace_back(new N3DMesh(renderDevice, scene->mMeshes[i]));
+			if (!scene->mMeshes[0]->HasBones()) 
+			{
+				meshes.emplace_back(new N3DMesh(renderDevice, scene->mMeshes[0]));
+				return;
+			}
 		}
 	}
 
+	NSkeletalMesh* skeletalMesh = new NSkeletalMesh();
+
+	// Its a skeletal mesh so it should be handled diffrently.
 	aiNode*  currentNode;
 	nodes.emplace(scene->mRootNode);
 
@@ -89,7 +98,20 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene)
 	}
 }
 
-void NAssetManager::LoadBonesRecursive(const aiNode* node)
+void NAssetManager::LoadAnimationsRecursive(const aiScene* scene)
+{
+	// Here we add the animation data.
+	for (int i = 0; i < scene->mNumAnimations; i++) 
+	{
+		
+	}
+}
+
+void NAssetManager::LoadBones(const aiMesh* node, NSkeletalMesh* mesh)
 {
 	// Load the animation data for bones.
+	for (int i = 0; i < node->mNumBones; i++) 
+	{
+		mesh->addanimationBoneAssimp(node->mBones[i]);
+	}
 }

@@ -177,6 +177,7 @@ xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y
     <ClCompile Include="..\src\Core\NPhysicsComponent.cpp" />
     <ClCompile Include="..\src\Core\NPhysicsResolver.cpp" />
     <ClCompile Include="..\src\Core\NSceneGraph.cpp" />
+    <ClCompile Include="..\src\Core\NSkeletalMesh.cpp" />
     <ClCompile Include="..\src\Core\NWindow.cpp" />
     <ClCompile Include="..\src\Core\NWinEvent.cpp" />
     <ClCompile Include="..\src\Core\Player.cpp" />

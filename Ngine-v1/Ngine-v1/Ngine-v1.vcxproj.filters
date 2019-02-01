@@ -95,6 +95,9 @@
     <ClCompile Include="..\src\Core\NAnimationBones.cpp">
       <Filter>Core\Renderer\Resources\Skeletal Meshes\Bones</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\NSkeletalMesh.cpp">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">

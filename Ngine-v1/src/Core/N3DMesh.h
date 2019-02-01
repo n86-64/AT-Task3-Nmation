@@ -28,6 +28,9 @@ public:
 
 	int			   getIndexCount() const;
 
+	DirectX::XMMATRIX getModelMatrix() { return modelMatrix; }
+	DirectX::XMMATRIX setModelMatrix(DirectX::XMMATRIX mat) { modelMatrix = mat; }
+
 private:
 	std::string meshName = "Null mesh";
 

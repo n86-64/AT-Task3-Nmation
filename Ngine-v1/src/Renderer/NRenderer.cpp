@@ -54,6 +54,7 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 	assetBuffer.setRenderDevice(renderDevice);
 	assetBuffer.loadAssets("meshes/cube.obj");
 	assetBuffer.loadAssets("meshes/Cycles.blend");
+	assetBuffer.loadAssets("meshes/Tux4.obj");
 
 	return result;
 }

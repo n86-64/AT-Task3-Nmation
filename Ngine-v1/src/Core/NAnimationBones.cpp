@@ -1,3 +1,4 @@
+#include <Assimp/mesh.h>
 #include "NAnimationBones.h"
 
 NSkeletalBone::~NSkeletalBone()
@@ -9,7 +10,7 @@ NSkeletalBone::~NSkeletalBone()
 	}
 }
 
-NSkeletalBone::NSkeletalBone(const aiBone& animBone)
+NSkeletalBone::NSkeletalBone(aiBone& animBone)
 {
 	// Construct from aiBone.
 	name = animBone.mName.C_Str();
