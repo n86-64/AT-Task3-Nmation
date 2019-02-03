@@ -1,4 +1,5 @@
 #include <Assimp/mesh.h>
+#include <Assimp/scene.h>
 
 #include "NSkeletalMesh.h"
 
@@ -34,7 +35,24 @@ NSkeletalBone* NSkeletalMesh::getBoneByName(std::string name)
 	}
 }
 
-void NSkeletalMesh::addMesh(N3DMesh * newMesh)
+NSkeletalNode* NSkeletalMesh::constructNode(aiNode* node, DirectX::XMMATRIX transform, int parent)
+{
+	DirectX::XMMATRIX model = transform * convertToMatrix(&node->mTransformation);
+
+	NSkeletalNode* newNode = new NSkeletalNode();
+	newNode->setParent(parent);
+	newNode->setModelMatrix(model);
+
+	newNode->setMeshSize(node->mNumMeshes);
+	for (int i = 0; i < node->mNumMeshes; i++) 
+	{
+		newNode->assignMeshes(node->mMeshes[i]);
+	}
+
+	return newNode;
+}
+
+void NSkeletalMesh::addMesh(N3DMesh* newMesh)
 {
 	meshes.emplace_back(newMesh);
 }

@@ -17,6 +17,7 @@ struct aiNode;
 
 class NSkeletalMesh;
 
+
 class NAssetManager 
 {
 public:
@@ -38,5 +39,6 @@ private:
 private:
 	ID3D11Device*							renderDevice = nullptr;
 
-	std::vector<std::unique_ptr<N3DMesh>>   meshes;
+	std::vector<std::unique_ptr<N3DMesh>>		  meshes;
+	std::vector<std::unique_ptr<NSkeletalMesh>>   skeletalMeshes;
 };

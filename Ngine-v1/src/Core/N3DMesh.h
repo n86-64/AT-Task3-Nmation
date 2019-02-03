@@ -12,6 +12,7 @@
 
 
 struct aiMesh;
+struct aiNode;
 
 class N3DMesh 
 {
@@ -28,8 +29,13 @@ public:
 
 	int			   getIndexCount() const;
 
+	// Transform functions. 
 	DirectX::XMMATRIX getModelMatrix() { return modelMatrix; }
-	DirectX::XMMATRIX setModelMatrix(DirectX::XMMATRIX mat) { modelMatrix = mat; }
+	void setModelMatrix(DirectX::XMMATRIX mat) { modelMatrix = mat; }
+	DirectX::XMMATRIX setModelMatrix(aiNode* node);
+
+	void assignParent(N3DMesh* newParent) { parent = newParent; }
+	void addChildren(N3DMesh* children, int size);
 
 private:
 	std::string meshName = "Null mesh";
@@ -43,6 +49,10 @@ private:
 	void setupMesh(ID3D11Device* device); 
 
 	DirectX::XMMATRIX   modelMatrix = DirectX::XMMatrixIdentity(); // The transform of the object in local space.
+
+	// Transform info.
+	N3DMesh*					parent;
+	N3DMesh**					children;
 
 private:
 	ID3D11Buffer*		vBuffer = nullptr;

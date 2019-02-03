@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <Assimp/mesh.h>
+#include <Assimp/scene.h>
 
 #include "Renderer/NMaterialProperites.h"
 
@@ -57,6 +58,7 @@ N3DMesh::N3DMesh(ID3D11Device* device, aiMesh* meshObject)
 		}
 	}
 
+
 	setupMesh(device);
 }
 
@@ -84,6 +86,16 @@ ID3D11Buffer * N3DMesh::getIndexBuffer()
 int N3DMesh::getIndexCount() const
 {
 	return indicies.size();
+}
+
+DirectX::XMMATRIX N3DMesh::setModelMatrix(aiNode* node)
+{
+	modelMatrix = convertToMatrix(&node->mTransformation);
+	return modelMatrix;
+}
+
+void N3DMesh::addChildren(N3DMesh * children, int size)
+{
 }
 
 void N3DMesh::loadMesh(std::string name)

@@ -3,11 +3,7 @@
 
 
 #pragma once
-
-#include <memory>
-#include <vector>
-
-#include "NAnimationBones.h"
+#include "NSkeletalNode.h"
 
 class N3DMesh;
 
@@ -22,7 +18,12 @@ public:
 
 	NSkeletalBone* getBoneByName(std::string name);
 
+	NSkeletalNode* constructNode(aiNode* node, DirectX::XMMATRIX transform, int parent = -1);
+
 	void addMesh(N3DMesh* newMesh);
+
+
+	void addMeshRecursive();
 	void setRootMesh();
 
 private:
@@ -30,7 +31,9 @@ private:
 
 	// The skeleton and mesh data.
 	std::vector<N3DMesh*>						  meshes;
-	std::vector<std::unique_ptr<NSkeletalBone>> skeleton;
+	std::vector<std::unique_ptr<NSkeletalBone>>   skeleton;
 
+
+	std::vector<std::unique_ptr<NSkeletalNode>>   nodes;
 	int skeletonSize = 0; 
 };

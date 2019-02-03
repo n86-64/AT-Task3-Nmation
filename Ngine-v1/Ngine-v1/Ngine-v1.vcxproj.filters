@@ -98,6 +98,9 @@
     <ClCompile Include="..\src\Core\NSkeletalMesh.cpp">
       <Filter>Core\Renderer\Resources\Skeletal Meshes</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\NSkeletalNode.cpp">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes\Nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -232,6 +235,9 @@
     <Filter Include="Core\Animation\Data">
       <UniqueIdentifier>{c924322a-7974-419c-9398-e048c0592192}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Renderer\Resources\Skeletal Meshes\Nodes">
+      <UniqueIdentifier>{556dac8f-c9eb-4d85-8d9e-f78a01238a05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -356,6 +362,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NAnimationBones.h">
       <Filter>Core\Renderer\Resources\Skeletal Meshes\Bones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NSkeletalNode.h">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes\Nodes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

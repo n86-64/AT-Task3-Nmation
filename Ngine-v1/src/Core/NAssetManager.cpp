@@ -37,6 +37,7 @@ void NAssetManager::loadAssets(std::string name)
 		// Treat all objects as hierarchical meshes.
 		// simplifies the engine and gets it working.
 		LoadMeshRecursive(sceneObject);
+		LoadAnimationsRecursive(sceneObject);
 	}
 }
 
@@ -62,40 +63,43 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene)
 	}
 	else 
 	{
-		if (scene->mNumMeshes == 1) 
+		if (scene->mNumMeshes == 1 &&
+			!scene->mMeshes[0]->HasBones())
 		{
-			if (!scene->mMeshes[0]->HasBones()) 
-			{
 				meshes.emplace_back(new N3DMesh(renderDevice, scene->mMeshes[0]));
 				return;
-			}
 		}
 	}
 
+	// Its a skeletal mesh so it should be handled diffrently.
 	NSkeletalMesh* skeletalMesh = new NSkeletalMesh();
 
-	// Its a skeletal mesh so it should be handled diffrently.
 	aiNode*  currentNode;
+	DirectX::XMMATRIX model;
 	nodes.emplace(scene->mRootNode);
 
-	int		 meshIndex = -1;
 	N3DMesh*  newMesh = nullptr;
+
+	for (int i = 0; i < scene->mNumMeshes; i++)
+	{
+		skeletalMesh->addMesh(new N3DMesh(renderDevice, scene->mMeshes[i]));
+	}
 
 	while (!nodes.empty()) 
 	{
 		currentNode = nodes.front();
-		for (int i = 0; i < currentNode->mNumMeshes; i++)
-		{
-			newMesh = new N3DMesh(renderDevice, scene->mMeshes[currentNode->mMeshes[i]]);
-			meshes.emplace_back(newMesh);
-		}
+
 
 		for (int j = 0; j < currentNode->mNumChildren; j++) 
 		{
 			nodes.emplace(currentNode->mChildren[j]);
 		}
+
 		nodes.pop();
 	}
+
+	// Assign the skeletal mesh to the list.
+	skeletalMeshes.emplace_back(skeletalMesh);
 }
 
 void NAssetManager::LoadAnimationsRecursive(const aiScene* scene)
