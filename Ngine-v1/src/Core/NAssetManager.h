@@ -10,12 +10,12 @@
 #include "Renderer/ShaderInput.h"
 #include "N3DMesh.h"
 #include "Helpers/Direct3D.h"
+#include "NSkeletalMesh.h"
 
 // Forward Decleration.
 struct aiScene;
 struct aiNode;
 
-class NSkeletalMesh;
 
 
 class NAssetManager 
@@ -30,6 +30,8 @@ public:
 
 
 private:
+	void createNodes(aiNode* node, DirectX::XMMATRIX transform, NSkeletalMesh* mesh);
+
 	void LoadMeshRecursive(const aiScene* scene);
 	
 	// Loading functions for various aspects of the model.

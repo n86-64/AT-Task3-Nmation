@@ -4,8 +4,6 @@
 #include <Assimp/scene.h>
 #include <Assimp/postprocess.h>
 
-#include "NSkeletalMesh.h"
-
 #include "NAssetManager.h"
 
 void NAssetManager::setRenderDevice(ID3D11Device * device)
@@ -54,9 +52,14 @@ N3DMesh* NAssetManager::aquireMesh(std::string name)
 	return nullptr;
 }
 
+void NAssetManager::createNodes(aiNode* node, DirectX::XMMATRIX transform, NSkeletalMesh* mesh)
+{
+
+}
+
 void NAssetManager::LoadMeshRecursive(const aiScene* scene)
 {
-	std::queue<aiNode*> nodes;
+	//std::queue<aiNode*> nodes;
 	if (!scene->HasMeshes()) 
 	{
 		return;
@@ -73,33 +76,18 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene)
 
 	// Its a skeletal mesh so it should be handled diffrently.
 	NSkeletalMesh* skeletalMesh = new NSkeletalMesh();
-
-	aiNode*  currentNode;
-	DirectX::XMMATRIX model;
-	nodes.emplace(scene->mRootNode);
-
-	N3DMesh*  newMesh = nullptr;
+	int parent = -1;
+	DirectX::XMMATRIX model = DirectX::XMMatrixIdentity();
 
 	for (int i = 0; i < scene->mNumMeshes; i++)
 	{
 		skeletalMesh->addMesh(new N3DMesh(renderDevice, scene->mMeshes[i]));
 	}
 
-	while (!nodes.empty()) 
-	{
-		currentNode = nodes.front();
-
-
-		for (int j = 0; j < currentNode->mNumChildren; j++) 
-		{
-			nodes.emplace(currentNode->mChildren[j]);
-		}
-
-		nodes.pop();
-	}
+	skeletalMesh->constructNode(scene->mRootNode, model, parent);
 
 	// Assign the skeletal mesh to the list.
-	skeletalMeshes.emplace_back(skeletalMesh);
+	skeletalMeshes.emplace_back(std::unique_ptr<NSkeletalMesh>(skeletalMesh));
 }
 
 void NAssetManager::LoadAnimationsRecursive(const aiScene* scene)

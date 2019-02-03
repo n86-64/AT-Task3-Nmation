@@ -35,7 +35,7 @@ NSkeletalBone* NSkeletalMesh::getBoneByName(std::string name)
 	}
 }
 
-NSkeletalNode* NSkeletalMesh::constructNode(aiNode* node, DirectX::XMMATRIX transform, int parent)
+int NSkeletalMesh::constructNode(aiNode* node, DirectX::XMMATRIX transform, int parent)
 {
 	DirectX::XMMATRIX model = transform * convertToMatrix(&node->mTransformation);
 
@@ -49,7 +49,20 @@ NSkeletalNode* NSkeletalMesh::constructNode(aiNode* node, DirectX::XMMATRIX tran
 		newNode->assignMeshes(node->mMeshes[i]);
 	}
 
-	return newNode;
+	nodes.emplace_back(newNode);
+	int index = nodes.size() - 1;
+
+	if (parent != -1) 
+	{ 
+		nodes[parent]->addChild(index); 
+	}
+
+	for (int j = 0; j < node->mNumChildren; j++) 
+	{
+		constructNode(node->mChildren[j], model, index);
+	}
+
+	return index;
 }
 
 void NSkeletalMesh::addMesh(N3DMesh* newMesh)

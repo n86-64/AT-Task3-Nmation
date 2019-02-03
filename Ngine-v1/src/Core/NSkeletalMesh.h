@@ -18,7 +18,7 @@ public:
 
 	NSkeletalBone* getBoneByName(std::string name);
 
-	NSkeletalNode* constructNode(aiNode* node, DirectX::XMMATRIX transform, int parent = -1);
+	int constructNode(aiNode* node, DirectX::XMMATRIX transform, int parent = -1);
 
 	void addMesh(N3DMesh* newMesh);
 
