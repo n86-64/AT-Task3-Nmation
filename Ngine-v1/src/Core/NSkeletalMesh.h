@@ -7,11 +7,14 @@
 
 class N3DMesh;
 
-class NSkeletalMesh 
+class NSkeletalMesh
 {
 public:
 	NSkeletalMesh() = default;
 	NSkeletalMesh(aiBone* bones, int size);
+
+	void setName(std::string newName) { name = newName; }
+	std::string getName() { return name; }
 
 	void addAnimationBone(NSkeletalBone* newBone);
 	void addanimationBoneAssimp(aiBone* newBone);
@@ -22,9 +25,8 @@ public:
 
 	void addMesh(N3DMesh* newMesh);
 
-
-	void addMeshRecursive();
-	void setRootMesh();
+	NSkeletalNode* retrieveNode(int nIndex) { return nodes[nIndex].get(); }
+	N3DMesh*	   getMesh(int mIndex) { return meshes[mIndex]; }
 
 private:
 	std::string name;
@@ -32,8 +34,7 @@ private:
 	// The skeleton and mesh data.
 	std::vector<N3DMesh*>						  meshes;
 	std::vector<std::unique_ptr<NSkeletalBone>>   skeleton;
-
+	int skeletonSize = 0;
 
 	std::vector<std::unique_ptr<NSkeletalNode>>   nodes;
-	int skeletonSize = 0; 
 };

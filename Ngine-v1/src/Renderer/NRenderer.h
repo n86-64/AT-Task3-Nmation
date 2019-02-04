@@ -16,6 +16,7 @@
 #include "Core/N3DMesh.h"
 #include "Core/NAssetManager.h"
 
+class NSkeletalMeshComponent;
 class N3DComponent;
 class NCamera;
 class Triangle;
@@ -63,9 +64,10 @@ public:
 	// TODO - Create DrawTriangle afunction
 	bool setupTriangle(Triangle* resource);
 
-	void DrawTriangle(Triangle* resource); // Inefficent but ensures that the rendering is correct. 
-
 	void DrawObject(N3DComponent* component);
+	void DrawObject(NSkeletalMeshComponent *mesh);
+
+	NSkeletalMesh* aquireSkeletalMesh(std::string meshName);
 
 public:
 	// Here are the public drawing functions.
@@ -73,7 +75,7 @@ public:
 
 
 private:
-	NMath::Colour    clearColour = NMath::Colour(0.0f, 0.0f, 0.0f, 1.0f);
+	NMath::Colour    clearColour = NMath::Colour(1.0f, 1.0f, 1.0f, 1.0f);
 
 	// Setup functions.
 	bool setupDeviceAndSwapchain(NWindowHandle& windowHadle, NRendererConfig parameters);

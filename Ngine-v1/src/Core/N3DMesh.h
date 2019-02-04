@@ -14,6 +14,8 @@
 struct aiMesh;
 struct aiNode;
 
+class NMaterial;
+
 class N3DMesh 
 {
 public:
@@ -34,8 +36,6 @@ public:
 	void setModelMatrix(DirectX::XMMATRIX mat) { modelMatrix = mat; }
 	DirectX::XMMATRIX setModelMatrix(aiNode* node);
 
-	void assignParent(N3DMesh* newParent) { parent = newParent; }
-	void addChildren(N3DMesh* children, int size);
 
 private:
 	std::string meshName = "Null mesh";
@@ -50,9 +50,7 @@ private:
 
 	DirectX::XMMATRIX   modelMatrix = DirectX::XMMatrixIdentity(); // The transform of the object in local space.
 
-	// Transform info.
-	N3DMesh*					parent;
-	N3DMesh**					children;
+	NMaterial*			material;
 
 private:
 	ID3D11Buffer*		vBuffer = nullptr;

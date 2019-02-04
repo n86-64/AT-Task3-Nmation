@@ -20,7 +20,8 @@ void NAssetManager::loadAssets(std::string name)
 		aiProcess_CalcTangentSpace |
 		aiProcess_Triangulate | 
 		aiProcess_JoinIdenticalVertices |
-		aiProcess_SortByPType
+		aiProcess_SortByPType |
+		aiProcess_ConvertToLeftHanded
 		);
 
 	if (!sceneObject) 
@@ -34,7 +35,7 @@ void NAssetManager::loadAssets(std::string name)
 		// Load all assimp meshes as mesh collections with skeletons.
 		// Treat all objects as hierarchical meshes.
 		// simplifies the engine and gets it working.
-		LoadMeshRecursive(sceneObject);
+		LoadMeshRecursive(sceneObject, name);
 		LoadAnimationsRecursive(sceneObject);
 	}
 }
@@ -52,12 +53,25 @@ N3DMesh* NAssetManager::aquireMesh(std::string name)
 	return nullptr;
 }
 
+NSkeletalMesh* NAssetManager::aquireSkeletalMesh(std::string name)
+{
+	for (int i = 0; i < skeletalMeshes.size(); i++)
+	{
+		if (skeletalMeshes[i]->getName() == name)
+		{
+			return skeletalMeshes[i].get();
+		}
+	}
+
+	return nullptr;
+}
+
 void NAssetManager::createNodes(aiNode* node, DirectX::XMMATRIX transform, NSkeletalMesh* mesh)
 {
 
 }
 
-void NAssetManager::LoadMeshRecursive(const aiScene* scene)
+void NAssetManager::LoadMeshRecursive(const aiScene* scene, std::string name)
 {
 	//std::queue<aiNode*> nodes;
 	if (!scene->HasMeshes()) 
@@ -76,6 +90,8 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene)
 
 	// Its a skeletal mesh so it should be handled diffrently.
 	NSkeletalMesh* skeletalMesh = new NSkeletalMesh();
+	skeletalMesh->setName(name);
+	
 	int parent = -1;
 	DirectX::XMMATRIX model = DirectX::XMMatrixIdentity();
 

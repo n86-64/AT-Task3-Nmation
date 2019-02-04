@@ -6,6 +6,7 @@
 #include "Triangle.h"
 #include "Player.h"
 
+#include "NSkeletalMeshComponent.h"
 #include "NPhysicsComponent.h"
 #include "N3DComponent.h"
 
@@ -52,12 +53,6 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	comp->setMesh(renderer.createMesh("cube"));
 	testTriangle->addComponent(comp);
 
-	N3DComponent* comp2 = new N3DComponent();
-	comp2->setGameObject(testTriangle2);
-	comp2->setMaterial(renderer.createMaterial("test"));
-	comp2->setMesh(renderer.createMesh("bunny"));
-	testTriangle2->addComponent(comp2);
-
 	NPhysicsComponent*  physComp = new NPhysicsComponent();
 	physComp->registerCollisionEvent(std::bind(&Triangle::colTest, testTriangle, std::placeholders::_1));
 	physComp->setGameObject(testTriangle);
@@ -67,12 +62,19 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	testTriangle->addComponent(physComp);
 
 	NPlayer* player = new NPlayer();
-	N3DComponent* playerMesh = new N3DComponent();
-	playerMesh->setMesh(renderer.aquireMeshAsset("Cube"));
+
+	//N3DComponent* playerMesh = new N3DComponent();
+	//playerMesh->setMesh(renderer.aquireMeshAsset("Cube"));
+	//playerMesh->setMaterial(renderer.createMaterial("test"));
+	//player->addComponent(playerMesh);
+
+	NSkeletalMeshComponent* playerMesh = new NSkeletalMeshComponent();
+	playerMesh->assignSkeletalMesh(renderer.aquireSkeletalMesh("meshes/fgc_skeleton.blend"));
 	playerMesh->setMaterial(renderer.createMaterial("test"));
 	player->addComponent(playerMesh);
+
 	player->setCamera(newCam);
-	newCam->setPosition(NMath::Vector3(0.0f, 30.0f, -15.0f));
+	newCam->setPosition(NMath::Vector3(0.0f, 50.0f, -45.0f));
 	player->setScale(NMath::Vector3(1.0f, 1.0f, 1.0f));
 
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));

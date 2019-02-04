@@ -5,12 +5,12 @@
 NPlayer::NPlayer()
 {
 	using namespace std::placeholders;
-	NPhysicsComponent* physicsComponent = new NPhysicsComponent();
-	physicsComponent->registerCollisionEvent(std::bind(&NPlayer::onCollision, this, _1));
-	physicsComponent->setGameObject(this);
-	physicsComponent->isKinematic(false);
-	physicsComponent->setMass(0.1f);
-	this->addComponent(physicsComponent);
+	//NPhysicsComponent* physicsComponent = new NPhysicsComponent();
+	//physicsComponent->registerCollisionEvent(std::bind(&NPlayer::onCollision, this, _1));
+	//physicsComponent->setGameObject(this);
+	//physicsComponent->isKinematic(false);
+	//physicsComponent->setMass(0.1f);
+	//this->addComponent(physicsComponent);
 }
 
 void NPlayer::Update(GameStateData& gameData)
@@ -25,7 +25,7 @@ void NPlayer::Update(GameStateData& gameData)
 	//motion = motion + (realRight * (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_A)));
 
 	position = position + motion;
-	rotation = rotation + NMath::Vector3(0.0f, (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_Q)) + (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_R)), 0.0f);
+	rotation = rotation + NMath::Vector3((speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_Q)) + (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_R)), 0.0f, 0.0f);
 
 	realForward = DirectX::XMVector3Transform(forward.getRawVector(), DirectX::XMMatrixRotationRollPitchYawFromVector(rotation.getRawVector()));
 	realRight   = DirectX::XMVector3Transform(right.getRawVector(), DirectX::XMMatrixRotationRollPitchYawFromVector(rotation.getRawVector()));

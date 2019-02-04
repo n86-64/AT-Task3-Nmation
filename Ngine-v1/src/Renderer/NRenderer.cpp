@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <queue>
 
 #include "NRenderer.h"
 
@@ -8,6 +9,7 @@
 #include "Core/Triangle.h"
 
 #include "Core/N3DComponent.h"
+#include "Core/NSkeletalMeshComponent.h"
 
 constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
@@ -54,7 +56,9 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 	assetBuffer.setRenderDevice(renderDevice);
 	assetBuffer.loadAssets("meshes/cube.obj");
 	assetBuffer.loadAssets("meshes/Cycles.blend");
-	assetBuffer.loadAssets("meshes/Tux4.obj");
+	assetBuffer.loadAssets("meshes/Tux4.blend");
+	assetBuffer.loadAssets("meshes/forest-monster-final.blend");
+	assetBuffer.loadAssets("meshes/fgc_skeleton.blend");
 
 	return result;
 }
@@ -157,32 +161,63 @@ void NRenderer::DrawObject(N3DComponent* component)
 	deviceContext->DrawIndexed(component->getMesh()->getIndexCount(), 0, 0);
 }
 
-// DEPRICATED!!!
-void NRenderer::DrawTriangle(Triangle* resource)
+void NRenderer::DrawObject(NSkeletalMeshComponent* component)
 {
-	// Here we set up our view matrix.
-	DirectX::XMMATRIX   model = DirectX::XMMatrixMultiply(DirectX::XMMatrixTranslationFromVector(resource->getPosition().getRawVector()), DirectX::XMMatrixIdentity());
-	mvpMatracies.mvMatrix = DirectX::XMMatrixMultiply(model, view);
-	mvpMatracies.mvMatrix = DirectX::XMMatrixTranspose(mvpMatracies.mvMatrix);
-	deviceContext->UpdateSubresource(constBuffer, 0, nullptr, &mvpMatracies, 0, 0);
+	NGameObject*     componentObject = component->getGameObject();
+	NSkeletalNode*   node = nullptr;
+	NSkeletalMesh*   mesh = component->getMesh();
+	N3DMesh*		 meshComponent = nullptr;
 
-	deviceContext->IASetInputLayout(resource->getMaterial()->getInputLayout());
+	std::queue<int> nodeToRender;
+	nodeToRender.emplace(0);
+	
+	while (!nodeToRender.empty()) 
+	{
+		node = mesh->retrieveNode(nodeToRender.front());
+		
+		// Render each mesh.
+		for (int mIndex : node->getModelIndicies()) 
+		{
+			meshComponent = mesh->getMesh(mIndex);
 
-	ID3D11Buffer* vBuffer = resource->getVertexBuffer(); // Allows an array of elements to be passed in.
+			mvpMatracies.mvMatrix = DirectX::XMMatrixMultiply(componentObject->getModelMatrix() * node->getModelMatrix(), view);
+			mvpMatracies.mvMatrix = DirectX::XMMatrixTranspose(mvpMatracies.mvMatrix);
 
-	// Set buffers
-	UINT stride = sizeof(VertexInput);
-	UINT offset = 0;
-	deviceContext->IASetVertexBuffers(0, 1, &vBuffer, &stride, &offset);
-	deviceContext->IASetIndexBuffer(resource->getIndexBuffer(), DXGI_FORMAT_R32_UINT, 0);
+			deviceContext->UpdateSubresource(constBuffer, 0, nullptr, &mvpMatracies, 0, 0);
 
-	deviceContext->VSSetShader(resource->getMaterial()->getVertexShader(), nullptr, 0);
-	deviceContext->VSSetConstantBuffers(0, 1, &constBuffer);
+			deviceContext->IASetInputLayout(component->getMaterial()->getInputLayout());
 
-	deviceContext->PSSetShader(resource->getMaterial()->getFragmentShader(), nullptr, 0);
+			ID3D11Buffer* vBuffer = meshComponent->getVertexBuffer(); // Allows an array of elements to be passed in.
 
-	// DRAW! DRAW! DRAW!
-	deviceContext->DrawIndexed(resource->getIndexCount(), 0, 0);
+			// Set buffers
+			UINT stride = sizeof(VertexInput);
+			UINT offset = 0;
+			deviceContext->IASetVertexBuffers(0, 1, &vBuffer, &stride, &offset);
+			deviceContext->IASetIndexBuffer(meshComponent->getIndexBuffer(), DXGI_FORMAT_R32_UINT, 0);
+
+			deviceContext->VSSetShader(component->getMaterial()->getVertexShader(), nullptr, 0);
+			deviceContext->VSSetConstantBuffers(0, 1, &constBuffer);
+
+			deviceContext->PSSetShader(component->getMaterial()->getFragmentShader(), nullptr, 0);
+
+			// DRAW! DRAW! DRAW!
+			deviceContext->DrawIndexed(meshComponent->getIndexCount(), 0, 0);
+		}
+
+		for (int nodesToAdd : node->getChildren()) 
+		{
+			nodeToRender.emplace(nodesToAdd);
+		}
+
+		nodeToRender.pop();
+		mvpMatracies.mvMatrix = DirectX::XMMatrixIdentity();
+	}
+
+}
+
+NSkeletalMesh* NRenderer::aquireSkeletalMesh(std::string meshName)
+{
+	return assetBuffer.aquireSkeletalMesh(meshName);
 }
 
 void NRenderer::setMaterial()

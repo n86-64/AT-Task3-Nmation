@@ -6,6 +6,8 @@
 
 #include "Helpers/OBJ_Loader.h"
 #include "N3DMesh.h"
+#include "Renderer/NMaterial.h"
+
 
 inline float clamp(float value, float min, float max) 
 {
@@ -92,10 +94,6 @@ DirectX::XMMATRIX N3DMesh::setModelMatrix(aiNode* node)
 {
 	modelMatrix = convertToMatrix(&node->mTransformation);
 	return modelMatrix;
-}
-
-void N3DMesh::addChildren(N3DMesh * children, int size)
-{
 }
 
 void N3DMesh::loadMesh(std::string name)

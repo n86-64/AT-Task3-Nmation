@@ -101,6 +101,9 @@
     <ClCompile Include="..\src\Core\NSkeletalNode.cpp">
       <Filter>Core\Renderer\Resources\Skeletal Meshes\Nodes</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\NSkeletalMeshComponent.cpp">
+      <Filter>Core\Components\3D\Skeletal Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -238,6 +241,9 @@
     <Filter Include="Core\Renderer\Resources\Skeletal Meshes\Nodes">
       <UniqueIdentifier>{556dac8f-c9eb-4d85-8d9e-f78a01238a05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Components\3D\Skeletal Mesh">
+      <UniqueIdentifier>{ec9cb952-0d6a-4fb3-82b9-4bb0a80d4485}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -365,6 +371,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NSkeletalNode.h">
       <Filter>Core\Renderer\Resources\Skeletal Meshes\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NSkeletalMeshComponent.h">
+      <Filter>Core\Components\3D\Skeletal Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
