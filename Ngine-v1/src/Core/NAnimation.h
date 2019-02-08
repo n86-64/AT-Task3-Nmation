@@ -20,4 +20,6 @@ private:
 	std::string animationName = "NewAnim";
 	float tickRate = 0.0f; // The 'tickrate' of the animation.
 	float duration = 0.0f; // duration in seconds. 
+
+	std::vector<NAnimationNode> animNodes;
 };
