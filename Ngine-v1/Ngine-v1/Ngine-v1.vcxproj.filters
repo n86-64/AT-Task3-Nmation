@@ -104,6 +104,12 @@
     <ClCompile Include="..\src\Core\NSkeletalMeshComponent.cpp">
       <Filter>Core\Components\3D\Skeletal Mesh</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\NAnimation.cpp">
+      <Filter>Core\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NAnimationNode.cpp">
+      <Filter>Core\Animation\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -374,6 +380,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NSkeletalMeshComponent.h">
       <Filter>Core\Components\3D\Skeletal Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NAnimation.h">
+      <Filter>Core\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NAnimationNode.h">
+      <Filter>Core\Animation\Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

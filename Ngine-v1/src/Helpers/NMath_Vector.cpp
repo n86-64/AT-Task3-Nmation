@@ -16,6 +16,17 @@ NMath::Vector3::Vector3(DirectX::XMVECTOR newVector)
 
 }
 
+NMath::Vector3::Vector3(aiVector3D newVector):
+	vector(DirectX::XMVectorSet(newVector.x, newVector.y, newVector.z, 1.0f))
+{
+}
+
+NMath::Vector3::Vector3(aiQuaternion newVector):
+	vector(DirectX::XMVectorSet(newVector.x, newVector.y, newVector.z, newVector.w))
+{
+	
+}
+
 float NMath::Vector3::x()
 {
 	return DirectX::XMVectorGetX(vector);

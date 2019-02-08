@@ -166,7 +166,9 @@ xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y
     <ClCompile Include="..\src\Core\InputHandler.cpp" />
     <ClCompile Include="..\src\Core\N3DComponent.cpp" />
     <ClCompile Include="..\src\Core\N3DMesh.cpp" />
+    <ClCompile Include="..\src\Core\NAnimation.cpp" />
     <ClCompile Include="..\src\Core\NAnimationBones.cpp" />
+    <ClCompile Include="..\src\Core\NAnimationNode.cpp" />
     <ClCompile Include="..\src\Core\NAssetManager.cpp" />
     <ClCompile Include="..\src\Core\NColliderAABB.cpp" />
     <ClCompile Include="..\src\Core\NColliderOBB.cpp" />
@@ -204,7 +206,9 @@ xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y
     <ClInclude Include="..\src\Core\InputState.h" />
     <ClInclude Include="..\src\Core\N3DComponent.h" />
     <ClInclude Include="..\src\Core\N3DMesh.h" />
+    <ClInclude Include="..\src\Core\NAnimation.h" />
     <ClInclude Include="..\src\Core\NAnimationBones.h" />
+    <ClInclude Include="..\src\Core\NAnimationNode.h" />
     <ClInclude Include="..\src\Core\NAssetManager.h" />
     <ClInclude Include="..\src\Core\NColliderAABB.h" />
     <ClInclude Include="..\src\Core\NColliderOBB.h" />

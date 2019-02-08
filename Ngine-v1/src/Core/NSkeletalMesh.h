@@ -6,6 +6,7 @@
 #include "NSkeletalNode.h"
 
 class N3DMesh;
+class NAnimation; 
 
 class NSkeletalMesh
 {
@@ -37,4 +38,6 @@ private:
 	int skeletonSize = 0;
 
 	std::vector<std::unique_ptr<NSkeletalNode>>   nodes;
+
+	NAnimation*									  animation; 
 };
