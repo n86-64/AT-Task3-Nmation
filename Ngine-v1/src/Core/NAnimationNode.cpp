@@ -1,5 +1,4 @@
 #include <algorithm>
-#include "Assimp/anim.h"
 
 #include "NAnimationNode.h"
 

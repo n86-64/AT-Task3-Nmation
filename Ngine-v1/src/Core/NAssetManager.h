@@ -7,16 +7,14 @@
 #include <string>
 #include <vector>
 
+#include "NAnimation.h"
 #include "Renderer/ShaderInput.h"
 #include "N3DMesh.h"
 #include "Helpers/Direct3D.h"
 #include "NSkeletalMesh.h"
 
-// Forward Decleration.
 struct aiScene;
 struct aiNode;
-
-
 
 class NAssetManager 
 {
@@ -46,4 +44,6 @@ private:
 
 	std::vector<std::unique_ptr<N3DMesh>>		  meshes;
 	std::vector<std::unique_ptr<NSkeletalMesh>>   skeletalMeshes;
+	std::vector<std::unique_ptr<NAnimation>>	  animations;
+
 };

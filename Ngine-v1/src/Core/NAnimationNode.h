@@ -6,7 +6,7 @@
 #include "Helpers/NMaths.h"
 #include <vector>
 
-struct aiNodeAnim;
+#include "Assimp/anim.h"
 
 struct NAnimationKey 
 {

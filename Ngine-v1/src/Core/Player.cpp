@@ -15,7 +15,7 @@ NPlayer::NPlayer()
 
 void NPlayer::Update(GameStateData& gameData)
 {
-	float speed = 1.0f * gameData.timeData->getDeltaTimeInSeconds();
+	float speed = 10.0f * gameData.timeData->getDeltaTimeInSeconds();
 	NMath::Vector3   motion;
 
 	motion = motion + (realForward * (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_W)));
@@ -24,7 +24,7 @@ void NPlayer::Update(GameStateData& gameData)
 	//motion = motion + (realRight * (speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_D)));
 	//motion = motion + (realRight * (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_A)));
 
-	position = position + motion;
+//	position = position + motion;
 	rotation = rotation + NMath::Vector3((speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_Q)) + (-speed * gameData.input->getKeyDown(NKeyboardKeys::KEY_R)), 0.0f, 0.0f);
 
 	realForward = DirectX::XMVector3Transform(forward.getRawVector(), DirectX::XMMatrixRotationRollPitchYawFromVector(rotation.getRawVector()));
@@ -32,7 +32,7 @@ void NPlayer::Update(GameStateData& gameData)
 
 	if (playerCamera) 
 	{
-	//	updateCameraPosition(speed, gameData.input);
+		updateCameraPosition(speed, gameData.input);
 	}
 
 	NGameObject::Update(gameData);
@@ -51,7 +51,7 @@ void NPlayer::onCollision(NPhysicsComponent* component)
 void NPlayer::setCamera(NCamera* camera)
 {
 	playerCamera = camera;
-	playerCamera->setCameraLookAt(this);
+	//playerCamera->setCameraLookAt(this);
 }
 
 void NPlayer::updateCameraPosition(float speed, NInputHandler* input)
