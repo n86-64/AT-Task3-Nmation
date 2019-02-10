@@ -10,6 +10,7 @@
 
 #include "Core/N3DComponent.h"
 #include "Core/NSkeletalMeshComponent.h"
+#include "Core/NAnimationComponent.h"
 
 constexpr unsigned int SWAP_CHAIN_BACK_BUFFER = 0;
 
@@ -180,6 +181,12 @@ void NRenderer::DrawObject(NSkeletalMeshComponent* component)
 		for (int mIndex : node->getModelIndicies()) 
 		{
 			meshComponent = mesh->getMesh(mIndex);
+
+			if (component->getGameObject()->getComponentByType<NAnimationComponent>()) 
+			{
+				// Load all the bones;
+
+			}
 
 			mvpMatracies.mvMatrix = DirectX::XMMatrixMultiply(componentObject->getModelMatrix() * node->getModelMatrix(), view);
 			mvpMatracies.mvMatrix = DirectX::XMMatrixTranspose(mvpMatracies.mvMatrix);

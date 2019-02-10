@@ -3,7 +3,7 @@
 
 #pragma once
 
-
+#include "Renderer/ShaderInput.h"
 #include "NSkeletalMesh.h"
 #include "NComponent.h"
 
@@ -12,7 +12,7 @@ class NSkeletalMeshComponent : public NComponent
 public:
 	NSkeletalMeshComponent() = default;
 
-	void assignSkeletalMesh(NSkeletalMesh* newMesh) { skeletalMesh = std::unique_ptr<NSkeletalMesh>(newMesh); }
+	void assignSkeletalMesh(NSkeletalMesh* newMesh) { skeletalMesh = std::unique_ptr<NSkeletalMesh>(newMesh); setupBoneMatrix(); }
 	NSkeletalMesh* getMesh() { return skeletalMesh.get(); }
 
 	NMaterial* getMaterial();
@@ -24,7 +24,13 @@ public:
 	virtual void Render(NRenderer * renderer) override;
 
 private:
+	void setupBoneMatrix();
+
+private:
 	std::unique_ptr<NSkeletalMesh>    skeletalMesh;
 	NMaterial*							  material;
 
+
+	cBufferBones					   boneObjects; 
+	ID3D11Buffer*					   skeletonBuffer;
 };

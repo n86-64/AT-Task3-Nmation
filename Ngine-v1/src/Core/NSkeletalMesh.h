@@ -20,7 +20,10 @@ public:
 	void addAnimationBone(NSkeletalBone* newBone);
 	void addanimationBoneAssimp(aiBone* newBone);
 
+	// Get the skeletal mesh. 
 	NSkeletalBone* getBoneByName(std::string name);
+	NSkeletalBone* getBoneByID(int i) { return skeleton[i].get(); }
+	int			   getNumberOfBones() { return skeleton.size(); }
 
 	int constructNode(aiNode* node, DirectX::XMMATRIX transform, int parent = -1);
 

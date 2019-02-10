@@ -24,3 +24,9 @@ void NSkeletalMeshComponent::Render(NRenderer* renderer)
 {
 	renderer->DrawObject(this);
 }
+
+void NSkeletalMeshComponent::setupBoneMatrix()
+{
+	
+}
+

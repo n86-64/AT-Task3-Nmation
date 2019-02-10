@@ -3,8 +3,8 @@
 
 #pragma once
 
+#include "Assimp/anim.h"
 #include "Helpers/NMaths.h"
-
 #include "Helpers/Direct3D.h"
 
 // The Data structure for inputs to a material.
@@ -21,4 +21,9 @@ struct cBufferMatrix
 {
 	DirectX::XMMATRIX    mvMatrix;
 	DirectX::XMMATRIX    projMatrix;
+};
+
+struct cBufferBones 
+{
+	DirectX::XMMATRIX    boneMatricies;
 };

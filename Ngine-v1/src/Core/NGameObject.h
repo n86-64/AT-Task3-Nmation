@@ -51,6 +51,9 @@ public:
 
 	DirectX::XMMATRIX   getModelMatrix();
 
+	template<class T>
+	T* getComponentByType();
+
 protected:
 	std::vector<std::unique_ptr<NComponent>> objectComponents;
 
@@ -65,3 +68,15 @@ protected:
 	const NMath::Vector3  right   = NMath::Vector3(1.0f, 0.0f, 0.0f);
 	const NMath::Vector3  up      = NMath::Vector3(0.0f, 1.0f, 0.0f);
 };
+
+template<class T>
+inline T * NGameObject::getComponentByType()
+{
+	for (int i = 0; i < objectComponents.size(); i++) 
+	{
+		if (dynamic_cast<T*>(objectComponents[i].get())) 
+		{
+			return (T*)objectComponents[i].get();
+		}
+	}
+}

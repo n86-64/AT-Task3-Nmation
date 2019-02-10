@@ -1,5 +1,5 @@
 // File - BasicVertex.hlsl
-// Description - A passthrough 3D vertex shader.
+// Description - A passthrough 3D vertex shader with vertex skinning capibilitues.
 
 // Input to the Vertex shader
 struct VS_IN

@@ -110,6 +110,9 @@
     <ClCompile Include="..\src\Core\NAnimationNode.cpp">
       <Filter>Core\Animation\Data</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Core\NAnimationComponent.cpp">
+      <Filter>Core\Components\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -261,9 +264,6 @@
     <ClInclude Include="..\src\Core\NWindow.h">
       <Filter>Core\Window</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\Core\NGame.h">
-      <Filter>Core\Game</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Core\NWinEvent.h">
       <Filter>Core\Window</Filter>
     </ClInclude>
@@ -389,6 +389,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NAnimationNode.h">
       <Filter>Core\Animation\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NAnimationComponent.h">
+      <Filter>Core\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NGame.h">
+      <Filter>Core\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
