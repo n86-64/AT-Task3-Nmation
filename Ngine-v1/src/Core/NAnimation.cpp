@@ -9,7 +9,10 @@ NAnimation::NAnimation(aiAnimation* animation)
 	duration = animation->mDuration / tickRate;
 
 	// TODO - Load the animation nodes. 
-	
+	for (int i = 0; i < animation->mNumChannels; i++) 
+	{
+		addNode(animation->mChannels[i]);
+	}
 }
 
 void NAnimation::addNode(aiNodeAnim* node)

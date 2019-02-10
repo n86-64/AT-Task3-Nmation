@@ -59,6 +59,7 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 	assetBuffer.loadAssets("meshes/Tux4.blend");
 	assetBuffer.loadAssets("meshes/forest-monster-final.blend");
 	assetBuffer.loadAssets("meshes/fgc_skeleton.blend");
+	assetBuffer.loadAssets("meshes/Taunt.fbx");
 
 	return result;
 }
