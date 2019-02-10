@@ -12,7 +12,7 @@ class NSkeletalMeshComponent : public NComponent
 public:
 	NSkeletalMeshComponent() = default;
 
-	void assignSkeletalMesh(NSkeletalMesh* newMesh) { skeletalMesh = std::unique_ptr<NSkeletalMesh>(newMesh); setupBoneMatrix(); }
+	void assignSkeletalMesh(NSkeletalMesh* newMesh, ID3D11Device* renderDevice);
 	NSkeletalMesh* getMesh() { return skeletalMesh.get(); }
 
 	NMaterial* getMaterial();
@@ -23,14 +23,17 @@ public:
 	virtual void Update(GameStateData & gameData) override;
 	virtual void Render(NRenderer * renderer) override;
 
+	ID3D11Buffer* const* getSkeletonBuffer() { return (ID3D11Buffer* const*)skeletonBuffer; }
+
 private:
-	void setupBoneMatrix();
+	void setupBoneMatrix(ID3D11Device* renderDevice);
 
 private:
 	std::unique_ptr<NSkeletalMesh>    skeletalMesh;
-	NMaterial*							  material;
+	NMaterial*						  material;
 
 
 	cBufferBones					   boneObjects; 
+
 	ID3D11Buffer*					   skeletonBuffer;
 };

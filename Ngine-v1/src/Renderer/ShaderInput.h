@@ -25,5 +25,5 @@ struct cBufferMatrix
 
 struct cBufferBones 
 {
-	DirectX::XMMATRIX    boneMatricies;
+	DirectX::XMMATRIX    boneOffsets;
 };

@@ -69,7 +69,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	//player->addComponent(playerMesh);
 
 	NSkeletalMeshComponent* playerMesh = new NSkeletalMeshComponent();
-	playerMesh->assignSkeletalMesh(renderer.aquireSkeletalMesh("meshes/Taunt.fbx"));
+	playerMesh->assignSkeletalMesh(renderer.aquireSkeletalMesh("meshes/Taunt.fbx"), renderer.getDevice());
 	playerMesh->setMaterial(renderer.createMaterial("test"));
 	player->addComponent(playerMesh);
 

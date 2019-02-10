@@ -27,6 +27,7 @@ public:
 	// TODO - Add copy constructor for copy and deletion of bones.
 	std::string getName() { return name; }
 
+	DirectX::XMMATRIX   getBoneTransform() { return offsetMatrix; }
 
 private:
 	std::string name;

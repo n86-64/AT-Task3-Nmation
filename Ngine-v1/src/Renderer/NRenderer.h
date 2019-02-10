@@ -69,6 +69,8 @@ public:
 
 	NSkeletalMesh* aquireSkeletalMesh(std::string meshName);
 
+	ID3D11Device*  getDevice() { return renderDevice; };
+
 public:
 	// Here are the public drawing functions.
 	void setMaterial();

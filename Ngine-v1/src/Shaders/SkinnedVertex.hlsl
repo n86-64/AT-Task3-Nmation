@@ -24,6 +24,11 @@ struct VS_OUT
 	float2 outUV : TEXCOORD0;
 };
 
+// Skeleton data for bones. 
+cbuffer SkeletonBones : register(b1) 
+{
+	matrix boneOffsets;
+}
 
 // The vertex shader.
 // This will simply take the input vertex and then output 
@@ -38,8 +43,8 @@ VS_OUT main(VS_IN input)
 	vert = mul(vert, projection);
 
 	output.pos = vert;
-
 	output.outColour = input.inColour;
+	output.outUV = input.inUV;
 
 	return output;
 }
