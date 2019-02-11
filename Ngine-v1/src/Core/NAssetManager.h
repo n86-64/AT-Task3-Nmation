@@ -37,8 +37,6 @@ private:
 	void LoadAnimationsRecursive(const aiScene* scene);
 	void LoadBones(const aiMesh* node, NSkeletalMesh* mesh);
 
-
-
 private:
 	ID3D11Device*							renderDevice = nullptr;
 

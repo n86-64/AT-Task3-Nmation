@@ -79,4 +79,6 @@ inline T * NGameObject::getComponentByType()
 			return (T*)objectComponents[i].get();
 		}
 	}
+
+	return nullptr;
 }

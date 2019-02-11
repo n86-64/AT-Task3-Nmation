@@ -6,6 +6,7 @@
 #include "Triangle.h"
 #include "Player.h"
 
+#include "NAnimationComponent.h"
 #include "NSkeletalMeshComponent.h"
 #include "NPhysicsComponent.h"
 #include "N3DComponent.h"
@@ -71,6 +72,9 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	NSkeletalMeshComponent* playerMesh = new NSkeletalMeshComponent();
 	playerMesh->assignSkeletalMesh(renderer.aquireSkeletalMesh("meshes/Taunt.fbx"), renderer.getDevice());
 	playerMesh->setMaterial(renderer.createMaterial("test"));
+
+	//NAnimationComponent*  animComp = new NAnimationComponent();
+	//animComp->setAnimation(renderer.);
 	player->addComponent(playerMesh);
 
 	player->setCamera(newCam);
