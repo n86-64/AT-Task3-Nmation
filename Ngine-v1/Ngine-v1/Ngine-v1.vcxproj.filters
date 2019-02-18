@@ -113,6 +113,9 @@
     <ClCompile Include="..\src\Core\NAnimationComponent.cpp">
       <Filter>Core\Components\Animation</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Helpers\WICTextureLoader.cpp">
+      <Filter>Helpers\FileIO\WICTextureLoading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -256,6 +259,9 @@
     <Filter Include="Core\Components\Animation">
       <UniqueIdentifier>{38ec51c6-9b51-419e-809f-16bb98b4024e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Helpers\FileIO\WICTextureLoading">
+      <UniqueIdentifier>{7b5b3e14-0bcf-47cd-8823-6aa5a8adfcee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -395,6 +401,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Core\NGame.h">
       <Filter>Core\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\WICTextureLoader.h">
+      <Filter>Helpers\FileIO\WICTextureLoading</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -194,6 +194,7 @@ xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y
     <ClCompile Include="..\src\Helpers\JSONFileReader.cpp" />
     <ClCompile Include="..\src\Helpers\NMath_Colour.cpp" />
     <ClCompile Include="..\src\Helpers\NMath_Vector.cpp" />
+    <ClCompile Include="..\src\Helpers\WICTextureLoader.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Renderer\NMaterial.cpp" />
     <ClCompile Include="..\src\Renderer\NMaterialProperites.cpp" />
@@ -241,6 +242,7 @@ xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y
     <ClInclude Include="..\src\Helpers\NMath_Vector.h" />
     <ClInclude Include="..\src\Helpers\OBJ_Loader.h" />
     <ClInclude Include="..\src\Helpers\Platform.h" />
+    <ClInclude Include="..\src\Helpers\WICTextureLoader.h" />
     <ClInclude Include="..\src\Helpers\Win32Ref.h" />
     <ClInclude Include="..\src\Renderer\NMaterial.h" />
     <ClInclude Include="..\src\Renderer\NMaterialProperites.h" />
@@ -269,7 +271,10 @@ xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
-    <FxCompile Include="..\src\Shaders\SkinnedVertex.hlsl" />
+    <FxCompile Include="..\src\Shaders\SkinnedVertex.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
