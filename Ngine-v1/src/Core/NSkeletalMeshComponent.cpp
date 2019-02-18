@@ -36,25 +36,25 @@ void NSkeletalMeshComponent::Render(NRenderer* renderer)
 // Load the skeleton bones onto the GPU.
 void NSkeletalMeshComponent::setupBoneMatrix(ID3D11Device* renderDevice)
 {
-	cBufferBones  bones[MAX_NUMBER_OF_BONES] = {};
-
+	cBufferBones boneObject;
 	HRESULT  hr = S_OK;
+
+	for (int i = 0; i < skeletalMesh->getNumberOfBones(); i++) 
+	{
+		boneObject.boneOffsets = skeletalMesh->getBoneByID(i)->getBoneTransform();
+		bones.emplace_back(boneObject);
+	}
 
 	D3D11_BUFFER_DESC   skeletonBufferDesc = { 0 };
 	skeletonBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	skeletonBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	skeletonBufferDesc.ByteWidth = sizeof(cBufferBones) * skeletalMesh->getNumberOfBones();
+	skeletonBufferDesc.ByteWidth = sizeof(cBufferBones) * bones.size();
 	skeletonBufferDesc.CPUAccessFlags = 0;
 	skeletonBufferDesc.StructureByteStride = 0;
 	skeletonBufferDesc.MiscFlags = 0;
 
-	for (int i = 0; i < skeletalMesh->getNumberOfBones(); i++) 
-	{
-		bones[i].boneOffsets = skeletalMesh->getBoneByID(i)->getBoneTransform(); 
-	}
-
 	D3D11_SUBRESOURCE_DATA skeletonData = { };
-	skeletonData.pSysMem = bones;
+	skeletonData.pSysMem = bones.data();
 	skeletonData.SysMemPitch = 0;
 	skeletonData.SysMemSlicePitch = 0;
 

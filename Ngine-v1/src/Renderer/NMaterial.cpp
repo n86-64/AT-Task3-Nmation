@@ -1,3 +1,5 @@
+#include <cassert>
+
 #include "NMaterial.h"
 #include "Helpers/FileReaderBinary.h"
 
@@ -26,6 +28,7 @@ NMaterial::NMaterial(std::string newMaterialName, ID3D11Device* device)
 					// Load the specified shader from the file.
 					std::string test = shaders["Name"].as_string(); 
 					shadersLoaded = loadShaders(shaders["Name"].as_string(), (NMaterialShaderTypes)shaders["Type"].as_int(), device);
+					assert(shadersLoaded);
 				}
 			}
 		}
@@ -68,7 +71,7 @@ bool NMaterial::loadVertexShader(std::string name, ID3D11Device* device)
 	if (file.openFile()) 
 	{
 		hr = device->CreateVertexShader((void*)file.getFileData(), file.getFileSize(), nullptr,  &vertexShader);
-		hr = device->CreateInputLayout(shaderInput, 3, file.getFileData(), file.getFileSize(), &matInput);
+		hr = device->CreateInputLayout(shaderInput, 5, file.getFileData(), file.getFileSize(), &matInput);
 		return SUCCEEDED(hr);
 	}
 	else 

@@ -71,11 +71,12 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 	NSkeletalMeshComponent* playerMesh = new NSkeletalMeshComponent();
 	playerMesh->assignSkeletalMesh(renderer.aquireSkeletalMesh("meshes/Taunt.fbx"), renderer.getDevice());
-	playerMesh->setMaterial(renderer.createMaterial("test"));
+	playerMesh->setMaterial(renderer.createMaterial("test2"));
 
-	//NAnimationComponent*  animComp = new NAnimationComponent();
-	//animComp->setAnimation(renderer.);
+	NAnimationComponent*  animComp = new NAnimationComponent();
+	//animComp->setAnimation();
 	player->addComponent(playerMesh);
+	//player->addComponent(animComp);
 
 	player->setCamera(newCam);
 	newCam->setPosition(NMath::Vector3(0.0f, 50.0f, -45.0f));

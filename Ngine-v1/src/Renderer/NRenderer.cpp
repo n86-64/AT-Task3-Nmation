@@ -169,7 +169,7 @@ void NRenderer::DrawObject(NSkeletalMeshComponent* component)
 	NSkeletalNode*   node = nullptr;
 	NSkeletalMesh*   mesh = component->getMesh();
 	N3DMesh*		 meshComponent = nullptr;
-	NAnimationComponent* animComp = nullptr;
+	NSkeletalMeshComponent* skeletalMeshComp = nullptr;
 
 	std::queue<int> nodeToRender;
 	nodeToRender.emplace(0);
@@ -182,12 +182,9 @@ void NRenderer::DrawObject(NSkeletalMeshComponent* component)
 		for (int mIndex : node->getModelIndicies()) 
 		{
 			meshComponent = mesh->getMesh(mIndex);
-			animComp = component->getGameObject()->getComponentByType<NAnimationComponent>();
-			if (animComp) 
-			{
-				// Load all the bones;
-				deviceContext->VSSetConstantBuffers(1, 1, component->getSkeletonBuffer());
-			}
+			
+			// Load all the bones;
+			deviceContext->VSSetConstantBuffers(1, 1, &component->skeletonBuffer);
 
 			mvpMatracies.mvMatrix = DirectX::XMMatrixMultiply(componentObject->getModelMatrix() * node->getModelMatrix(), view);
 			mvpMatracies.mvMatrix = DirectX::XMMatrixTranspose(mvpMatracies.mvMatrix);

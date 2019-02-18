@@ -36,6 +36,7 @@ void NAssetManager::loadAssets(std::string name)
 		// Treat all objects as hierarchical meshes.
 		// simplifies the engine and gets it working.
 		LoadMeshRecursive(sceneObject, name);
+		LoadAnimationsRecursive(sceneObject);
 	}
 }
 
@@ -101,7 +102,7 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene, std::string name)
 	}
 
 	skeletalMesh->constructNode(scene->mRootNode, model, parent);
-	LoadAnimationsRecursive(scene);
+	//LoadAnimationsRecursive(scene);
 
 
 	// Assign the skeletal mesh to the list.

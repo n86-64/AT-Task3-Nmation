@@ -1,0 +1,10 @@
+{
+	"Name": "default",
+	"Shaders": 
+	[
+			{"Name": "SkinnedVertex.cso", "Type": 0},
+			{"Name": "BasicPixel.cso", "Type": 1}
+	],
+	
+	"Properties": {}
+}

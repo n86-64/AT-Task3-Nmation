@@ -7,6 +7,8 @@ struct VS_IN
 	float4 inVector : POSITION;
 	float4 inColour : COLOR0;
 	float2 inUV     : TEXCOORD0;
+    uint4  bIndex   : BLENDINDICIES;
+    float4 bWeights : BLENDWEIGHT;
 };
 
 
@@ -17,6 +19,9 @@ cbuffer MVPConstants : register(b0)
 	matrix projection;
 };
 
+matrix boneOffset[200] : register(b1); // Obtains the transform for the bones.
+
+
 struct VS_OUT
 {
 	float4 pos : SV_POSITION;
@@ -24,11 +29,6 @@ struct VS_OUT
 	float2 outUV : TEXCOORD0;
 };
 
-// Skeleton data for bones. 
-cbuffer SkeletonBones : register(b1) 
-{
-	matrix boneOffsets;
-}
 
 // The vertex shader.
 // This will simply take the input vertex and then output 

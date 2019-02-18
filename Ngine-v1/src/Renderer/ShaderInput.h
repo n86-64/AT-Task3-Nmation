@@ -14,6 +14,10 @@ struct VertexInput
 	DirectX::XMFLOAT4   pos;
 	DirectX::XMFLOAT4	col;
 	DirectX::XMFLOAT2	uv;
+
+	// Bone indicies and weights.
+	DirectX::XMUINT4	bIndex = DirectX::XMUINT4(0,0,0,0);
+	DirectX::XMFLOAT4	bWeight = DirectX::XMFLOAT4(0.0f,0.0f,0.0f,0.0f);
 };
 
 // Definitions for 3D projection. 

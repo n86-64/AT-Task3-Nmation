@@ -23,7 +23,9 @@ public:
 	virtual void Update(GameStateData & gameData) override;
 	virtual void Render(NRenderer * renderer) override;
 
-	ID3D11Buffer* const* getSkeletonBuffer() { return (ID3D11Buffer* const*)skeletonBuffer; }
+	ID3D11Buffer*  getSkeletonBuffer() { return skeletonBuffer; }
+
+	ID3D11Buffer*  skeletonBuffer;
 
 private:
 	void setupBoneMatrix(ID3D11Device* renderDevice);
@@ -33,7 +35,5 @@ private:
 	NMaterial*						  material;
 
 
-	cBufferBones					   boneObjects; 
-
-	ID3D11Buffer*					   skeletonBuffer;
+	std::vector<cBufferBones>		  bones; 
 };
