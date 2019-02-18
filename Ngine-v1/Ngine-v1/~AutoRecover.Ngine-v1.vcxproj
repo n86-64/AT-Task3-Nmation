@@ -102,7 +102,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)dependancies;$(SolutionDir)dependancies\jsoncons\include;$(SolutionDir)dependancies\Assimp\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>assimp-vc140-mt.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc140-mt.lib;dxguid.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)dependancies\Assimp\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -149,7 +149,7 @@ xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>assimp-vc140-mt.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)dependancies\Assimp\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -200,6 +200,7 @@ xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y
     <ClCompile Include="..\src\Renderer\NMaterialProperites.cpp" />
     <ClCompile Include="..\src\Renderer\NRenderer.cpp" />
     <ClCompile Include="..\src\Renderer\NRendererDevice.cpp" />
+    <ClCompile Include="NTextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Core\BVAABB.h" />
@@ -249,6 +250,7 @@ xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y
     <ClInclude Include="..\src\Renderer\NRenderer.h" />
     <ClInclude Include="..\src\Renderer\NRendererDevice.h" />
     <ClInclude Include="..\src\Renderer\ShaderInput.h" />
+    <ClInclude Include="NTextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="..\src\Shaders\BasicPixel.hlsl">

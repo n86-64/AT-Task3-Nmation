@@ -49,6 +49,15 @@ N3DMesh::N3DMesh(ID3D11Device* device, aiMesh* meshObject)
 			newInput.uv = DirectX::XMFLOAT2((float)meshObject->mTextureCoords[0][i].x, (float)meshObject->mTextureCoords[0][i].y);
 		}
 
+		if (meshObject->mColors[0]) 
+		{
+			newInput.col = DirectX::XMFLOAT4((float)meshObject->mColors[0][i].r, (float)meshObject->mColors[0][i].g, (float)meshObject->mColors[0][i].b, (float)meshObject->mColors[0][i].a);
+		}
+		else 
+		{
+			newInput.col = DirectX::XMFLOAT4(meshObject->mNormals[i].x, meshObject->mNormals[i].y, meshObject->mNormals[i].z, 1.0f);
+		}
+
 		verticies.emplace_back(newInput);
 	}
 
