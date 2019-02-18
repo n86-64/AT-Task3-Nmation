@@ -116,6 +116,7 @@
     <ClCompile Include="..\src\Helpers\WICTextureLoader.cpp">
       <Filter>Helpers\FileIO\WICTextureLoading</Filter>
     </ClCompile>
+    <ClCompile Include="NTextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Helpers">
@@ -262,6 +263,9 @@
     <Filter Include="Helpers\FileIO\WICTextureLoading">
       <UniqueIdentifier>{7b5b3e14-0bcf-47cd-8823-6aa5a8adfcee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Renderer\Textures">
+      <UniqueIdentifier>{699f8303-21a2-4566-84aa-eb229b47c820}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Helpers\Win32Ref.h">
@@ -404,6 +408,9 @@
     </ClInclude>
     <ClInclude Include="..\src\Helpers\WICTextureLoader.h">
       <Filter>Helpers\FileIO\WICTextureLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="NTextureManager.h">
+      <Filter>Core\Renderer\Textures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

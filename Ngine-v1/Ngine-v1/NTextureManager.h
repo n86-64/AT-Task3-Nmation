@@ -13,9 +13,9 @@
 
 struct NTextureData 
 {
-	std::string				name = "null";
-	ID3D11Texture2D*		textureObject = nullptr;
-	ID3D11SamplerState*		sampler = nullptr;
+	std::string						name = "null";
+	ID3D11Texture2D*				textureObject = nullptr;
+	ID3D11ShaderResourceView*		sampler = nullptr;
 };
 
 
@@ -24,7 +24,7 @@ class NTextureManager
 public:
 	NTextureManager() = default;
 
-	void assignRenderDevice(ID3D11Device*  device) { renderDevice = device; }
+	void assignRenderDeviceAndContext(ID3D11Device*  device, ID3D11DeviceContext* context) { renderDevice = device; renderContext = context; }
 
 	NTextureData*  createTexture(std::string name);
 	NTextureData*  createTexture(std::string name, aiTexture* newTexture); // Create texture from assimp texture, instead of searching for texture.
@@ -34,4 +34,5 @@ private:
 
 	std::vector<NTextureData>	textures;
 	ID3D11Device*			renderDevice = nullptr;
+	ID3D11DeviceContext*	renderContext = nullptr;
 };
