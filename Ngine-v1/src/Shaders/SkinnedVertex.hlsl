@@ -19,7 +19,10 @@ cbuffer MVPConstants : register(b0)
 	matrix projection;
 };
 
-matrix boneOffset[200] : register(b1); // Obtains the transform for the bones.
+cbuffer bufferBones : register(b1)
+{
+	matrix boneOffset[200]; // Obtains the transform for the bones.
+};
 
 
 struct VS_OUT

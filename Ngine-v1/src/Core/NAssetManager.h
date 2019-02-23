@@ -35,7 +35,7 @@ private:
 	
 	// Loading functions for various aspects of the model.
 	void LoadAnimationsRecursive(const aiScene* scene);
-	void LoadBones(const aiMesh* node, NSkeletalMesh* mesh);
+	void LoadBones(int meshIndex, const aiMesh* node, NSkeletalMesh* mesh);
 
 private:
 	ID3D11Device*							renderDevice = nullptr;

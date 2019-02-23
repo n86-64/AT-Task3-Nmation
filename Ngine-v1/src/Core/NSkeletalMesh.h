@@ -18,10 +18,10 @@ public:
 	std::string getName() { return name; }
 
 	void addAnimationBone(NSkeletalBone* newBone);
-	void addanimationBoneAssimp(aiBone* newBone);
+	void addanimationBoneAssimp(int meshIndex, aiBone* newBone);
 
 	// Get the skeletal mesh. 
-	NSkeletalBone* getBoneByName(std::string name);
+	int			   getBoneByName(std::string name);
 	NSkeletalBone* getBoneByID(int i) { return skeleton[i].get(); }
 	int			   getNumberOfBones() { return skeleton.size(); }
 

@@ -48,7 +48,7 @@ void NSkeletalMeshComponent::setupBoneMatrix(ID3D11Device* renderDevice)
 	D3D11_BUFFER_DESC   skeletonBufferDesc = { 0 };
 	skeletonBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	skeletonBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	skeletonBufferDesc.ByteWidth = sizeof(cBufferBones) * bones.size();
+	skeletonBufferDesc.ByteWidth = sizeof(DirectX::XMMATRIX) * bones.size();
 	skeletonBufferDesc.CPUAccessFlags = 0;
 	skeletonBufferDesc.StructureByteStride = 0;
 	skeletonBufferDesc.MiscFlags = 0;

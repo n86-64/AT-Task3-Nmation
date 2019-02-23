@@ -97,12 +97,11 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene, std::string name)
 
 	for (int i = 0; i < scene->mNumMeshes; i++)
 	{
-		LoadBones(scene->mMeshes[i], skeletalMesh); 
 		skeletalMesh->addMesh(new N3DMesh(renderDevice, scene->mMeshes[i]));
+		LoadBones(i, scene->mMeshes[i], skeletalMesh); 
 	}
 
 	skeletalMesh->constructNode(scene->mRootNode, model, parent);
-	//LoadAnimationsRecursive(scene);
 
 
 	// Assign the skeletal mesh to the list.
@@ -118,11 +117,11 @@ void NAssetManager::LoadAnimationsRecursive(const aiScene* scene)
 	}
 }
 
-void NAssetManager::LoadBones(const aiMesh* node, NSkeletalMesh* mesh)
+void NAssetManager::LoadBones(int meshIndex, const aiMesh* node, NSkeletalMesh* mesh)
 {
 	// Load the animation data for bones.
 	for (int i = 0; i < node->mNumBones; i++) 
 	{
-		mesh->addanimationBoneAssimp(node->mBones[i]);
+		mesh->addanimationBoneAssimp(meshIndex, node->mBones[i]);
 	}
 }

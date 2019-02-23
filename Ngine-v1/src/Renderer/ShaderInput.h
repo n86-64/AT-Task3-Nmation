@@ -16,7 +16,7 @@ struct VertexInput
 	DirectX::XMFLOAT2	uv;
 
 	// Bone indicies and weights.
-	DirectX::XMUINT4	bIndex = DirectX::XMUINT4(0,0,0,0);
+	DirectX::XMUINT4	bIndex = DirectX::XMUINT4(UINT_MAX, UINT_MAX, UINT_MAX, UINT_MAX);
 	DirectX::XMFLOAT4	bWeight = DirectX::XMFLOAT4(0.0f,0.0f,0.0f,0.0f);
 };
 

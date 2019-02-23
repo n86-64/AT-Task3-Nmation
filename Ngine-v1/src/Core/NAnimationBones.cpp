@@ -15,6 +15,7 @@ NSkeletalBone::NSkeletalBone(aiBone& animBone)
 	// Construct from aiBone.
 	name = animBone.mName.C_Str();
 	weights = new NSkeletalBoneWeight[animBone.mNumWeights];
+	weightCount = animBone.mNumWeights;
 	
 	for (int i = 0; i < animBone.mNumWeights; i++) 
 	{

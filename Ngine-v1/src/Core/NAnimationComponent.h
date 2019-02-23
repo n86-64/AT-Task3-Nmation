@@ -25,5 +25,4 @@ public:
 
 private:
 	NAnimation* selectedAnimation = nullptr;
-
 };

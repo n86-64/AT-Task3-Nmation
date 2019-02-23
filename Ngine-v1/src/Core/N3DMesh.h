@@ -36,6 +36,7 @@ public:
 	void setModelMatrix(DirectX::XMMATRIX mat) { modelMatrix = mat; }
 	DirectX::XMMATRIX setModelMatrix(aiNode* node);
 
+	void addBoneValues(int vertexID, int boneId, float weight);
 
 private:
 	std::string meshName = "Null mesh";

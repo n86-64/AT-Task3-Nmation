@@ -2,14 +2,15 @@
 #include <Assimp/scene.h>
 
 #include "NSkeletalMesh.h"
+#include "N3DMesh.h"
 
 NSkeletalMesh::NSkeletalMesh(aiBone * bones, int size)
 {
-	skeletonSize += size;
-	for (int i = 0; i < size; i++) 
-	{
-		addanimationBoneAssimp(&(bones[i]));
-	}
+	//skeletonSize += size;
+	//for (int i = 0; i < size; i++) 
+	//{
+	//	addanimationBoneAssimp(&(bones[i]));
+	//}
 }
 
 void NSkeletalMesh::addAnimationBone(NSkeletalBone* newBone)
@@ -18,21 +19,33 @@ void NSkeletalMesh::addAnimationBone(NSkeletalBone* newBone)
 	skeletonSize++;
 }
 
-void NSkeletalMesh::addanimationBoneAssimp(aiBone* newBone)
+void NSkeletalMesh::addanimationBoneAssimp(int meshIndex, aiBone* newBone)
 {
+	int boneIndex = getBoneByName(newBone->mName.C_Str());
+	if (boneIndex == -1) 
+	{
+		skeleton.emplace_back(std::make_unique<NSkeletalBone>(*newBone));
+		boneIndex = skeleton.size() - 1;
+	}
+
 	// Add a new bone.
-	skeleton.emplace_back(std::make_unique<NSkeletalBone>(*newBone));
+	for (int i = 0; i < newBone->mNumWeights; i++) 
+	{
+		meshes[meshIndex]->addBoneValues(newBone->mWeights[i].mVertexId, boneIndex, newBone->mWeights[i].mWeight);
+	}
 }
 
-NSkeletalBone* NSkeletalMesh::getBoneByName(std::string name)
+int NSkeletalMesh::getBoneByName(std::string name)
 {
 	for (int i = 0; i < skeleton.size(); i++)
 	{
 		if (skeleton[i]->getName() == name) 
 		{
-			return skeleton[i].get();
+			return i;
 		}
 	}
+
+	return -1;
 }
 
 int NSkeletalMesh::constructNode(aiNode* node, DirectX::XMMATRIX transform, int parent)

@@ -1,4 +1,6 @@
 #include <algorithm>
+#include <climits>
+
 #include <Assimp/mesh.h>
 #include <Assimp/scene.h>
 
@@ -7,6 +9,8 @@
 #include "Helpers/OBJ_Loader.h"
 #include "N3DMesh.h"
 #include "Renderer/NMaterial.h"
+
+#define XMATH_MAX_UINT 1333788672
 
 
 inline float clamp(float value, float min, float max) 
@@ -103,6 +107,30 @@ DirectX::XMMATRIX N3DMesh::setModelMatrix(aiNode* node)
 {
 	modelMatrix = convertToMatrix(&node->mTransformation);
 	return modelMatrix;
+}
+
+void N3DMesh::addBoneValues(int vertexID, int boneId, float weight)
+{
+	DirectX::XMVECTOR indexVec = DirectX::XMVectorSet((uint32_t)verticies[vertexID].bIndex.x, (uint32_t)verticies[vertexID].bIndex.y, (uint32_t)verticies[vertexID].bIndex.z, (uint32_t)verticies[vertexID].bIndex.w);
+	DirectX::XMVECTOR weightVec = DirectX::XMLoadFloat4(&verticies[vertexID].bWeight);
+	
+	int boneSlot = -1;
+	for (int i = 0; i < 4; i++) 
+	{
+		if (DirectX::XMVectorGetIntByIndex(indexVec, i) == XMATH_MAX_UINT) 
+		{
+			boneSlot = i;
+			break;
+		}
+	}
+
+	if (boneSlot == -1) { return; }
+
+	indexVec = DirectX::XMVectorSetIntByIndex(indexVec, boneId, boneSlot);
+	weightVec = DirectX::XMVectorSetIntByIndex(indexVec, weight, boneSlot);
+
+	DirectX::XMStoreUInt4(&verticies[vertexID].bIndex, indexVec);
+	DirectX::XMStoreFloat4(&verticies[vertexID].bWeight, weightVec);
 }
 
 void N3DMesh::loadMesh(std::string name)
