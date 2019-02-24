@@ -41,8 +41,20 @@ VS_OUT main(VS_IN input)
 
 	float4 vert = float4(0.0f, 0.0f, 0.0f, 0.0f);
 
+	// perform the vertex skinning here.
+	matrix boneTransform = { 1.0f, 0.0f, 0.0f, 0.0f,
+							0.0f, 1.0f, 0.0f, 0.0f,
+							0.0f, 0.0f, 1.0f, 0.0f,
+							0.0f, 0.0f, 0.0f, 1.0f };
+
+	boneTransform = boneOffset[input.bIndex.x] * input.bWeights.x;
+	boneTransform += boneOffset[input.bIndex.y] * input.bWeights.y;
+	boneTransform += boneOffset[input.bIndex.z] * input.bWeights.z;
+	boneTransform += boneOffset[input.bIndex.w] * input.bWeights.w;
+
 	// convert the points to 3D space.
-	vert = mul(input.inVector, mvMatrix);
+	vert = mul(input.inVector, boneTransform);
+	vert = mul(vert, mvMatrix);
 	vert = mul(vert, projection);
 
 	output.pos = vert;
