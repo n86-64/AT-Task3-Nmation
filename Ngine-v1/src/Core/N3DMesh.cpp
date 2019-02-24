@@ -111,13 +111,13 @@ DirectX::XMMATRIX N3DMesh::setModelMatrix(aiNode* node)
 
 void N3DMesh::addBoneValues(int vertexID, int boneId, float weight)
 {
-	DirectX::XMVECTOR indexVec = DirectX::XMVectorSet((uint32_t)verticies[vertexID].bIndex.x, (uint32_t)verticies[vertexID].bIndex.y, (uint32_t)verticies[vertexID].bIndex.z, (uint32_t)verticies[vertexID].bIndex.w);
+	DirectX::XMVECTOR indexVec = DirectX::XMVectorSetInt(verticies[vertexID].bIndex.x, verticies[vertexID].bIndex.y, verticies[vertexID].bIndex.z, verticies[vertexID].bIndex.w);
 	DirectX::XMVECTOR weightVec = DirectX::XMLoadFloat4(&verticies[vertexID].bWeight);
 	
 	int boneSlot = -1;
 	for (int i = 0; i < 4; i++) 
 	{
-		if (DirectX::XMVectorGetIntByIndex(indexVec, i) == XMATH_MAX_UINT) 
+		if (DirectX::XMVectorGetIntByIndex(indexVec, i) == UINT_MAX) 
 		{
 			boneSlot = i;
 			break;
@@ -129,7 +129,14 @@ void N3DMesh::addBoneValues(int vertexID, int boneId, float weight)
 	indexVec = DirectX::XMVectorSetIntByIndex(indexVec, boneId, boneSlot);
 	weightVec = DirectX::XMVectorSetByIndex(weightVec, weight, boneSlot);
 
-	DirectX::XMStoreUInt4(&verticies[vertexID].bIndex, indexVec);
+	// Set the bone values manualy.
+	verticies[vertexID].bIndex.x = DirectX::XMVectorGetIntByIndex(indexVec, 0);
+	verticies[vertexID].bIndex.y = DirectX::XMVectorGetIntByIndex(indexVec, 1);
+	verticies[vertexID].bIndex.z = DirectX::XMVectorGetIntByIndex(indexVec, 2);
+	verticies[vertexID].bIndex.w = DirectX::XMVectorGetIntByIndex(indexVec, 3);
+
+
+//	DirectX::XMStoreUInt4A(&verticies[vertexID].bIndex, indexVec);
 	DirectX::XMStoreFloat4(&verticies[vertexID].bWeight, weightVec);
 }
 
