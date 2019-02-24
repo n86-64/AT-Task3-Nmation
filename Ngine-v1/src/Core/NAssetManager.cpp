@@ -99,6 +99,7 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene, std::string name)
 	{
 		skeletalMesh->addMesh(new N3DMesh(renderDevice, scene->mMeshes[i]));
 		LoadBones(i, scene->mMeshes[i], skeletalMesh); 
+		skeletalMesh->getMesh(i)->setupMesh(renderDevice);
 	}
 
 	skeletalMesh->constructNode(scene->mRootNode, model, parent);

@@ -74,7 +74,7 @@ N3DMesh::N3DMesh(ID3D11Device* device, aiMesh* meshObject)
 	}
 
 
-	setupMesh(device);
+	//setupMesh(device);
 }
 
 N3DMesh::~N3DMesh()
@@ -127,7 +127,7 @@ void N3DMesh::addBoneValues(int vertexID, int boneId, float weight)
 	if (boneSlot == -1) { return; }
 
 	indexVec = DirectX::XMVectorSetIntByIndex(indexVec, boneId, boneSlot);
-	weightVec = DirectX::XMVectorSetIntByIndex(indexVec, weight, boneSlot);
+	weightVec = DirectX::XMVectorSetByIndex(weightVec, weight, boneSlot);
 
 	DirectX::XMStoreUInt4(&verticies[vertexID].bIndex, indexVec);
 	DirectX::XMStoreFloat4(&verticies[vertexID].bWeight, weightVec);

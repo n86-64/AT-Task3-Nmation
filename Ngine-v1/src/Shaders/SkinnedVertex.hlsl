@@ -7,7 +7,7 @@ struct VS_IN
 	float4 inVector : POSITION;
 	float4 inColour : COLOR0;
 	float2 inUV     : TEXCOORD0;
-    uint4  bIndex   : BLENDINDICIES;
+    uint4  bIndex   : BLENDINDICES;
     float4 bWeights : BLENDWEIGHT;
 };
 

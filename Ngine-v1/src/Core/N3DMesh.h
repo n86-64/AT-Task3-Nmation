@@ -38,6 +38,8 @@ public:
 
 	void addBoneValues(int vertexID, int boneId, float weight);
 
+	void setupMesh(ID3D11Device* device);
+
 private:
 	std::string meshName = "Null mesh";
 
@@ -47,7 +49,6 @@ private:
 
 	// Create the buffers for the mesh.
 	void loadMesh(std::string name);
-	void setupMesh(ID3D11Device* device); 
 
 	DirectX::XMMATRIX   modelMatrix = DirectX::XMMatrixIdentity(); // The transform of the object in local space.
 
