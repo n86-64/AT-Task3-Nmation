@@ -10,9 +10,6 @@
 #include "N3DMesh.h"
 #include "Renderer/NMaterial.h"
 
-#define XMATH_MAX_UINT 1333788672
-
-
 inline float clamp(float value, float min, float max) 
 {
 	float return_value = value;
@@ -30,7 +27,7 @@ N3DMesh::N3DMesh(std::string name, ID3D11Device* device)
 	setupMesh(device);
 }
 
-N3DMesh::N3DMesh(ID3D11Device* device, ID3D11DeviceContext* deviceContext, aiMesh* meshObject)
+N3DMesh::N3DMesh(ID3D11Device* device, ID3D11DeviceContext* deviceContext, aiMesh* meshObject, const aiScene* scene)
 {
 	VertexInput newInput;
 	verticies.reserve(meshObject->mNumVertices);
@@ -76,7 +73,19 @@ N3DMesh::N3DMesh(ID3D11Device* device, ID3D11DeviceContext* deviceContext, aiMes
 		}
 	}
 
-	texture = new NMaterialTexture("resources/textures/image2.jpg", device, deviceContext);
+	aiString materialPath;
+	aiTexture*  textureHandle = nullptr;
+	aiMaterial* material = scene->mMaterials[meshObject->mMaterialIndex];
+	material->Get(AI_MATKEY_TEXTURE(aiTextureType_DIFFUSE, 0), materialPath);
+
+	if (auto textureHandle = scene->GetEmbeddedTexture(materialPath.C_Str())) 
+	{
+		printf("There are materials here \n");
+	}
+	else 
+	{
+		texture = new NMaterialTexture("resources/textures/" + std::string(materialPath.C_Str()), device, deviceContext);
+	}
 }
 
 N3DMesh::~N3DMesh()

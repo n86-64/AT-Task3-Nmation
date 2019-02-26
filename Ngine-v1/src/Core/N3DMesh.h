@@ -15,6 +15,7 @@
 
 struct aiMesh;
 struct aiNode;
+struct aiScene;
 
 class NMaterial;
 
@@ -22,7 +23,7 @@ class N3DMesh
 {
 public:
 	N3DMesh(std::string name, ID3D11Device* device); 
-	N3DMesh(ID3D11Device* device, ID3D11DeviceContext* deviceContext, aiMesh* meshObject);
+	N3DMesh(ID3D11Device* device, ID3D11DeviceContext* deviceContext, aiMesh* meshObject, const aiScene* scene);
 	~N3DMesh();
 
 	std::string getName() const;

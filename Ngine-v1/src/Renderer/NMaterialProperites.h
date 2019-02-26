@@ -8,6 +8,8 @@
 #include <vector>
 #include <memory>
 
+#include <assimp/texture.h>
+
 #include "Helpers/Direct3D.h"
 #include "Helpers/WICTextureLoader.h"
 
@@ -69,6 +71,31 @@ struct NMaterialTexture
 	ID3D11SamplerState*			samplerState = nullptr;  // Describes how to sample the texture.
 
 	NMaterialTexture() {}
+
+	NMaterialTexture(aiTexture* texture,
+		ID3D11Device* renderDevice,
+		ID3D11DeviceContext* deviceContext) 
+	{
+		// Create the texture.
+		D3D11_TEXTURE2D_DESC tex2DDesc = {};
+		tex2DDesc.Width = texture->mWidth;
+		tex2DDesc.Height = texture->mHeight;
+		tex2DDesc.MipLevels = tex2DDesc.ArraySize = 1;
+		tex2DDesc.SampleDesc.Count = 1;
+		tex2DDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		tex2DDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		tex2DDesc.Usage = D3D11_USAGE_DYNAMIC;
+		tex2DDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+		tex2DDesc.MiscFlags = 0;
+
+		D3D11_SUBRESOURCE_DATA data = {};
+		data.pSysMem = texture->pcData;
+		data.SysMemPitch = 0;
+		data.SysMemSlicePitch = 0;
+
+		hr = renderDevice->CreateTexture2D(&tex2DDesc, &data, &textureData);
+
+	}
 
 	NMaterialTexture(std::string textureFileName, 
 		ID3D11Device* renderDevice, 

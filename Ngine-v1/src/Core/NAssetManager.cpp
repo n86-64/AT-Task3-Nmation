@@ -84,7 +84,7 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene, std::string name)
 		if (scene->mNumMeshes == 1 &&
 			!scene->mMeshes[0]->HasBones())
 		{
-				meshes.emplace_back(new N3DMesh(renderDevice, deviceContext, scene->mMeshes[0]));
+				meshes.emplace_back(new N3DMesh(renderDevice, deviceContext, scene->mMeshes[0], scene));
 				return;
 		}
 	}
@@ -98,7 +98,7 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene, std::string name)
 
 	for (int i = 0; i < scene->mNumMeshes; i++)
 	{
-		skeletalMesh->addMesh(new N3DMesh(renderDevice, deviceContext, scene->mMeshes[i]));
+		skeletalMesh->addMesh(new N3DMesh(renderDevice, deviceContext, scene->mMeshes[i], scene));
 		LoadBones(i, scene->mMeshes[i], skeletalMesh); 
 		skeletalMesh->getMesh(i)->setupMesh(renderDevice);
 	}
