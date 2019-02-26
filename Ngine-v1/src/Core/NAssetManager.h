@@ -21,7 +21,7 @@ class NAssetManager
 public:
 	NAssetManager() = default;
 
-	void setRenderDevice(ID3D11Device* device);
+	void setRenderDevice(ID3D11Device* device, ID3D11DeviceContext* context);
 
 	void loadAssets(std::string name);
 	N3DMesh* aquireMesh(std::string name);
@@ -39,6 +39,7 @@ private:
 
 private:
 	ID3D11Device*							renderDevice = nullptr;
+	ID3D11DeviceContext*					deviceContext = nullptr;
 
 	std::vector<std::unique_ptr<N3DMesh>>		  meshes;
 	std::vector<std::unique_ptr<NSkeletalMesh>>   skeletalMeshes;

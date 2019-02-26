@@ -10,6 +10,8 @@
 #include "Helpers/Direct3D.h"
 #include "Renderer/ShaderInput.h"
 
+#include "Renderer/NMaterialProperites.h"
+
 
 struct aiMesh;
 struct aiNode;
@@ -20,7 +22,7 @@ class N3DMesh
 {
 public:
 	N3DMesh(std::string name, ID3D11Device* device); 
-	N3DMesh(ID3D11Device* device, aiMesh* meshObject);
+	N3DMesh(ID3D11Device* device, ID3D11DeviceContext* deviceContext, aiMesh* meshObject);
 	~N3DMesh();
 
 	std::string getName() const;
@@ -30,6 +32,8 @@ public:
 	ID3D11Buffer*  getIndexBuffer();
 
 	int			   getIndexCount() const;
+
+	NMaterialTexture*  getTexture();
 
 	// Transform functions. 
 	DirectX::XMMATRIX getModelMatrix() { return modelMatrix; }
@@ -53,6 +57,8 @@ private:
 	DirectX::XMMATRIX   modelMatrix = DirectX::XMMatrixIdentity(); // The transform of the object in local space.
 
 	NMaterial*			material;
+
+	NMaterialTexture*    texture = nullptr;
 
 private:
 	ID3D11Buffer*		vBuffer = nullptr;

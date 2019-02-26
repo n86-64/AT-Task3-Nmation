@@ -32,7 +32,11 @@ public:
 	int width = 0;
 	int height = 0;
 
+#ifdef _DEBUG
 	bool debugMode = false;
+#else 
+	bool debugMode = true;
+#endif
 };
 
 

@@ -18,6 +18,6 @@ struct PS_IN
 // The Pixel shader. just returns the input colour.
 float4 main(PS_IN input) : SV_TARGET
 {
-    float4 outCol = input.outColour;
+    float4 outCol = matTex.Sample(matState, input.outUV);
     return outCol;
 }

@@ -6,9 +6,10 @@
 
 #include "NAssetManager.h"
 
-void NAssetManager::setRenderDevice(ID3D11Device * device)
+void NAssetManager::setRenderDevice(ID3D11Device * device, ID3D11DeviceContext* context)
 {
 	renderDevice = device;
+	deviceContext = context;
 }
 
 void NAssetManager::loadAssets(std::string name)
@@ -83,7 +84,7 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene, std::string name)
 		if (scene->mNumMeshes == 1 &&
 			!scene->mMeshes[0]->HasBones())
 		{
-				meshes.emplace_back(new N3DMesh(renderDevice, scene->mMeshes[0]));
+				meshes.emplace_back(new N3DMesh(renderDevice, deviceContext, scene->mMeshes[0]));
 				return;
 		}
 	}
@@ -97,7 +98,7 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene, std::string name)
 
 	for (int i = 0; i < scene->mNumMeshes; i++)
 	{
-		skeletalMesh->addMesh(new N3DMesh(renderDevice, scene->mMeshes[i]));
+		skeletalMesh->addMesh(new N3DMesh(renderDevice, deviceContext, scene->mMeshes[i]));
 		LoadBones(i, scene->mMeshes[i], skeletalMesh); 
 		skeletalMesh->getMesh(i)->setupMesh(renderDevice);
 	}

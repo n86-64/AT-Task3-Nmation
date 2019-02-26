@@ -3,10 +3,13 @@
 
 #pragma once
 
+#include <comdef.h>
+
 #include <vector>
 #include <memory>
 
 #include "Helpers/Direct3D.h"
+#include "Helpers/WICTextureLoader.h"
 
 // TODO - Add this into materials to show textures.
 // Store textures seperatly.
@@ -65,12 +68,41 @@ struct NMaterialTexture
 	ID3D11ShaderResourceView*	textureSRV = nullptr;    // Used as a handler to retrieve the shader resource.
 	ID3D11SamplerState*			samplerState = nullptr;  // Describes how to sample the texture.
 
+	NMaterialTexture() {}
+
+	NMaterialTexture(std::string textureFileName, 
+		ID3D11Device* renderDevice, 
+		ID3D11DeviceContext* deviceContext) 
+	{
+		textureName = textureFileName;
+		std::wstring wTemp(textureFileName.begin(), textureFileName.end());
+		hr = DirectX::CreateWICTextureFromFile(renderDevice, deviceContext, wTemp.c_str(), (ID3D11Resource**)&textureData, &textureSRV);
+
+		// Create the sampler.
+		D3D11_SAMPLER_DESC   texDesc;
+		ZeroMemory(&texDesc, sizeof(texDesc));
+		texDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+		texDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+		texDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+		texDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+		texDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+		texDesc.MinLOD = 0;
+		texDesc.MaxLOD = D3D11_FLOAT32_MAX;
+
+		hr = renderDevice->CreateSamplerState(&texDesc, &samplerState);
+	}
+
+	bool isTextureValid() { return SUCCEEDED(hr); }
+
 	~NMaterialTexture() 
 	{
 		NMATERIAL_RELEASE(textureData);
 		NMATERIAL_RELEASE(textureSRV);
 		NMATERIAL_RELEASE(samplerState); 
 	}
+
+private:
+	HRESULT hr;
 };
 
 class NMaterialProperties 

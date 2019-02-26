@@ -35,6 +35,8 @@ public:
 	std::string getShaderName() const; 
 	bool materialLoaded() const;
 
+
+
 private:
 	std::string  materialName;
 
@@ -68,5 +70,5 @@ private:
 
 	ID3D11InputLayout*    matInput = nullptr;
 
-	
+	std::vector<NMaterialTexture>   textures;
 };

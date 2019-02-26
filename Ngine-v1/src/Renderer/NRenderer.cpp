@@ -54,7 +54,7 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 		result = setupRenderingMatrix();
 	}
 
-	assetBuffer.setRenderDevice(renderDevice);
+	assetBuffer.setRenderDevice(renderDevice, deviceContext);
 	assetBuffer.loadAssets("meshes/cube.obj");
 	assetBuffer.loadAssets("meshes/Cycles.blend");
 	assetBuffer.loadAssets("meshes/Tux4.blend");
@@ -171,6 +171,8 @@ void NRenderer::DrawObject(NSkeletalMeshComponent* component)
 	N3DMesh*		 meshComponent = nullptr;
 	NSkeletalMeshComponent* skeletalMeshComp = nullptr;
 
+	NMaterialTexture* texture;
+
 	std::queue<int> nodeToRender;
 	nodeToRender.emplace(0);
 	
@@ -205,6 +207,14 @@ void NRenderer::DrawObject(NSkeletalMeshComponent* component)
 			deviceContext->VSSetConstantBuffers(0, 1, &constBuffer);
 
 			deviceContext->PSSetShader(component->getMaterial()->getFragmentShader(), nullptr, 0);
+
+
+			texture = meshComponent->getTexture();
+			if (texture) 
+			{
+				deviceContext->PSSetShaderResources(0, 1, &texture->textureSRV);
+				deviceContext->PSSetSamplers(0, 1, &texture->samplerState);
+			}
 
 			// DRAW! DRAW! DRAW!
 			deviceContext->DrawIndexed(meshComponent->getIndexCount(), 0, 0);

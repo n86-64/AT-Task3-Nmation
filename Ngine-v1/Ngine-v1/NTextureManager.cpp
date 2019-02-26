@@ -26,7 +26,7 @@ void NTextureManager::constructTexture(std::string name)
 
 	NTextureData data;
 
-	HRESULT hr = CreateWICTextureFromFile(renderDevice, renderContext, wName.c_str(), (ID3D11Resource**)&data.textureObject, &data.sampler);
+	HRESULT hr = DirectX::CreateWICTextureFromFile(renderDevice, renderContext, wName.c_str(), (ID3D11Resource**)&data.textureObject, &data.sampler);
 
 	if (SUCCEEDED(hr)) 
 	{

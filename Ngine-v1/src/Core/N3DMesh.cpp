@@ -30,7 +30,7 @@ N3DMesh::N3DMesh(std::string name, ID3D11Device* device)
 	setupMesh(device);
 }
 
-N3DMesh::N3DMesh(ID3D11Device* device, aiMesh* meshObject)
+N3DMesh::N3DMesh(ID3D11Device* device, ID3D11DeviceContext* deviceContext, aiMesh* meshObject)
 {
 	VertexInput newInput;
 	verticies.reserve(meshObject->mNumVertices);
@@ -76,8 +76,7 @@ N3DMesh::N3DMesh(ID3D11Device* device, aiMesh* meshObject)
 		}
 	}
 
-
-	//setupMesh(device);
+	texture = new NMaterialTexture("resources/textures/image2.jpg", device, deviceContext);
 }
 
 N3DMesh::~N3DMesh()
@@ -104,6 +103,11 @@ ID3D11Buffer * N3DMesh::getIndexBuffer()
 int N3DMesh::getIndexCount() const
 {
 	return indicies.size();
+}
+
+NMaterialTexture* N3DMesh::getTexture()
+{
+	return texture;
 }
 
 DirectX::XMMATRIX N3DMesh::setModelMatrix(aiNode* node)
