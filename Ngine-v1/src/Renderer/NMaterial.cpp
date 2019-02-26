@@ -71,7 +71,7 @@ bool NMaterial::loadVertexShader(std::string name, ID3D11Device* device)
 	if (file.openFile()) 
 	{
 		hr = device->CreateVertexShader((void*)file.getFileData(), file.getFileSize(), nullptr,  &vertexShader);
-		hr = device->CreateInputLayout(shaderInput, 5, file.getFileData(), file.getFileSize(), &matInput);
+		hr = device->CreateInputLayout(shaderInput, 6, file.getFileData(), file.getFileSize(), &matInput);
 		return SUCCEEDED(hr);
 	}
 	else 

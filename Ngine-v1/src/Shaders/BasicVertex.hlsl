@@ -5,6 +5,7 @@
 struct VS_IN
 {
     float4 inVector : POSITION;
+	float4 normal   : NORMAL;
     float4 inColour : COLOR0;
 	float2 inUV     : TEXCOORD0;
 	uint4  bIndex   : BLENDINDICES;
@@ -22,6 +23,7 @@ cbuffer MVPConstants : register(b0)
 struct VS_OUT
 {
     float4 pos : SV_POSITION;
+	float4 normal : NORMAL0;
     float4 outColour : COLOR0;
 	float2 outUV : TEXCOORD0;
 };
@@ -42,6 +44,8 @@ VS_OUT main(VS_IN input)
     output.pos = vert;
 
     output.outColour = input.inColour;
+
+	output.normal = input.normal;
 
     return output;
 }

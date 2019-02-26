@@ -12,6 +12,7 @@
 struct VertexInput
 {
 	DirectX::XMFLOAT4   pos;
+	DirectX::XMFLOAT4	normal;
 	DirectX::XMFLOAT4	col;
 	DirectX::XMFLOAT2	uv;
 

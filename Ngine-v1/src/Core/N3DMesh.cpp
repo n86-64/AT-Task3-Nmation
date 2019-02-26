@@ -37,11 +37,14 @@ N3DMesh::N3DMesh(ID3D11Device* device, aiMesh* meshObject)
 
 	meshName = std::string(meshObject->mName.C_Str());
 	aiVector3D vec;
+	aiVector3D nor;
 
 	for (int i = 0; i < meshObject->mNumVertices; i++) 
 	{
 		vec = meshObject->mVertices[i];
+		if(meshObject->mNormals) { nor = meshObject->mNormals[i]; }
 		newInput.pos = DirectX::XMFLOAT4(vec.x, vec.y, vec.z, 1.0f);
+		newInput.normal = DirectX::XMFLOAT4(nor.x, nor.y, nor.z, 0.0f);
 
 		if (meshObject->mColors[0])
 		{
@@ -146,6 +149,7 @@ void N3DMesh::loadMesh(std::string name)
 	objl::Loader  object;
 
 	DirectX::XMFLOAT4  pos;
+	DirectX::XMFLOAT4  normal;
 	DirectX::XMFLOAT4  col;
 	DirectX::XMFLOAT2  uv;
 
@@ -157,10 +161,11 @@ void N3DMesh::loadMesh(std::string name)
 		for (objl::Vertex v : object.LoadedMeshes[0].Vertices) 
 		{
 			pos = DirectX::XMFLOAT4(v.Position.X, v.Position.Y, v.Position.Z, 1.0f);
+			normal = DirectX::XMFLOAT4(v.Normal.X, v.Normal.Y, v.Normal.Z, 0.0f);
 			col = DirectX::XMFLOAT4(clamp(v.Position.X, 0.0f, 0.2f), clamp(v.Position.Y, 0.2f, 0.5f), clamp(v.Position.Z, 0.f, 1.0f), 1.0f);
 			uv = DirectX::XMFLOAT2(v.TextureCoordinate.X, v.TextureCoordinate.Y);
 
-			verticies[i] = VertexInput{ pos, col, uv };
+			verticies[i] = VertexInput{ pos, normal, col, uv };
 			++i;
 		}
 

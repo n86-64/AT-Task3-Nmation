@@ -10,6 +10,7 @@ SamplerState	matState : register(s0);
 struct PS_IN
 {
     float4 pos : SV_POSITION;
+	float4 normal : NORMAL0;
     float4 outColour : COLOR0;
 	float2 outUV : TEXCOORD0;
 };
