@@ -28,7 +28,8 @@ public:
 	std::string getName() { return name; }
 
 	DirectX::XMMATRIX   getBoneTransform() { return offsetMatrix; }
-
+	void				setBoneTransform(DirectX::XMMATRIX boneTransform) { offsetMatrix = boneTransform; };
+	
 private:
 	std::string name;
 

@@ -103,7 +103,7 @@ void NAssetManager::LoadMeshRecursive(const aiScene* scene, std::string name)
 	}
 
 	skeletalMesh->constructNode(scene->mRootNode, model, parent);
-
+	skeletalMesh->setupBones();
 
 	// Assign the skeletal mesh to the list.
 	skeletalMeshes.emplace_back(std::unique_ptr<NSkeletalMesh>(skeletalMesh));

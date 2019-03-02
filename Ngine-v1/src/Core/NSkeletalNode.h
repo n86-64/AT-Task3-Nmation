@@ -13,7 +13,7 @@ class NSkeletalNode
 {
 public:
 	NSkeletalNode() = default;
-
+	
 	void AddBone(NSkeletalBone* bone);
 	void assignMeshes(int newMesh);
 
@@ -26,10 +26,14 @@ public:
 	void addChildNodes(int* nodes, int count);
 	void addChild(int cIndex) { children.emplace_back(cIndex); }
 
+	void setName(std::string newName) { name = newName; }
+	std::string getName() { return name; }
+
 	std::vector<int>& getModelIndicies() { return meshIndicies; }
 	std::vector<int>& getChildren() { return children; }
 
 private:
+	std::string										name = "";
 
 	DirectX::XMMATRIX								modelMatrix = DirectX::XMMatrixIdentity();
 

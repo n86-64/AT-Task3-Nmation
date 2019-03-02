@@ -1,3 +1,5 @@
+#include <queue>
+
 #include <Assimp/mesh.h>
 #include <Assimp/scene.h>
 
@@ -53,6 +55,7 @@ int NSkeletalMesh::constructNode(aiNode* node, DirectX::XMMATRIX transform, int 
 	DirectX::XMMATRIX model = transform * convertToMatrix(&node->mTransformation);
 
 	NSkeletalNode* newNode = new NSkeletalNode();
+	newNode->setName(std::string(node->mName.data));
 	newNode->setParent(parent);
 	newNode->setModelMatrix(model);
 
@@ -81,4 +84,26 @@ int NSkeletalMesh::constructNode(aiNode* node, DirectX::XMMATRIX transform, int 
 void NSkeletalMesh::addMesh(N3DMesh* newMesh)
 {
 	meshes.emplace_back(newMesh);
+}
+
+void NSkeletalMesh::setupBones()
+{
+	int nodeIndex = -1;
+	for (int i = 0; i < skeleton.size(); i++) 
+	{
+		nodeIndex = getNodeIndex(skeleton[i]->getName());
+		skeleton[i]->setBoneTransform(nodes[i]->getModelMatrix() * skeleton[i]->getBoneTransform());
+	}
+}
+
+int NSkeletalMesh::getNodeIndex(std::string name)
+{
+	int index = 0;
+
+	for (int i = 0; i < nodes.size(); i++) 
+	{
+		if (nodes[i]->getName() == name) { return index; }
+	}
+	
+	return -1;
 }

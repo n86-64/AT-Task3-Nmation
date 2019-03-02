@@ -32,6 +32,11 @@ public:
 	NSkeletalNode* retrieveNode(int nIndex) { return nodes[nIndex].get(); }
 	N3DMesh*	   getMesh(int mIndex) { return meshes[mIndex]; }
 
+	void		   setupBones();
+
+private:
+	int			   getNodeIndex(std::string name);
+
 private:
 	std::string name;
 
