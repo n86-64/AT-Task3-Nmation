@@ -27,8 +27,9 @@ public:
 	// TODO - Add copy constructor for copy and deletion of bones.
 	std::string getName() { return name; }
 
-	DirectX::XMMATRIX   getBoneTransform() { return offsetMatrix; }
-	void				setBoneTransform(DirectX::XMMATRIX boneTransform) { offsetMatrix = boneTransform; };
+	DirectX::XMMATRIX   getBoneOffset() { return offsetMatrix; }
+	DirectX::XMMATRIX   getBoneTransform() { return boneTransform; }
+	void				setBoneTransform(DirectX::XMMATRIX transform) { boneTransform = transform; };
 	
 private:
 	std::string name;
@@ -37,4 +38,5 @@ private:
 	NSkeletalBoneWeight*	weights = nullptr;
 	int						weightCount = 0;
 	DirectX::XMMATRIX		offsetMatrix = DirectX::XMMatrixIdentity();
+	DirectX::XMMATRIX		boneTransform = DirectX::XMMatrixIdentity();
 };

@@ -92,17 +92,15 @@ void NSkeletalMesh::setupBones()
 	for (int i = 0; i < skeleton.size(); i++) 
 	{
 		nodeIndex = getNodeIndex(skeleton[i]->getName());
-		skeleton[i]->setBoneTransform(nodes[i]->getModelMatrix() * skeleton[i]->getBoneTransform());
+		skeleton[i]->setBoneTransform(nodes[nodeIndex]->getModelMatrix() * skeleton[i]->getBoneOffset());
 	}
 }
 
 int NSkeletalMesh::getNodeIndex(std::string name)
 {
-	int index = 0;
-
 	for (int i = 0; i < nodes.size(); i++) 
 	{
-		if (nodes[i]->getName() == name) { return index; }
+		if (nodes[i]->getName() == name) { return i; }
 	}
 	
 	return -1;

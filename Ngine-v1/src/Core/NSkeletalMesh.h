@@ -34,7 +34,7 @@ public:
 
 	void		   setupBones();
 
-private:
+public:
 	int			   getNodeIndex(std::string name);
 
 private:
