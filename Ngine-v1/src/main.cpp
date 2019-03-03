@@ -70,7 +70,7 @@ int WINAPI WinMain(
 	}
 
 	NInitSettings initParams = {};
-	initParams.gameTitle = "NLOL";
+	initParams.gameTitle = "NAnimationSystem";
 	initParams.nCmdShow = nCmdShow;
 
 	MSG msg = {};

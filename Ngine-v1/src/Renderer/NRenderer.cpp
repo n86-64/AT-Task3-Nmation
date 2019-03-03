@@ -53,6 +53,10 @@ bool NRenderer::init(NWindowHandle& windowHadle, NRendererConfig parameters)
 		result = setupRenderingPipelineDepthStencil(parameters);
 		result = setupRenderingMatrix();
 	}
+	else 
+	{
+		return result;
+	}
 
 	assetBuffer.setRenderDevice(renderDevice);
 	assetBuffer.loadAssets("meshes/cube.obj");
