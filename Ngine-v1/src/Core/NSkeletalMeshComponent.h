@@ -15,7 +15,7 @@ public:
 	NSkeletalMeshComponent() = default;
 
 	void assignSkeletalMesh(NSkeletalMesh* newMesh, ID3D11Device* renderDevice);
-	NSkeletalMesh* getMesh() { return skeletalMesh.get(); }
+	NSkeletalMesh* getMesh() { return skeletalMesh; }
 
 	NMaterial* getMaterial();
 	void setMaterial(NMaterial* newMaterial);
@@ -37,6 +37,6 @@ private:
 	void setupBoneMatrix(ID3D11Device* renderDevice);
 
 private:
-	std::unique_ptr<NSkeletalMesh>    skeletalMesh;
+	NSkeletalMesh*				  skeletalMesh;
 	NMaterial*						  material;
 };

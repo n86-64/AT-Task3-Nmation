@@ -5,7 +5,7 @@ constexpr int MAX_NUMBER_OF_BONES = 100;
 
 void NSkeletalMeshComponent::assignSkeletalMesh(NSkeletalMesh * newMesh, ID3D11Device * renderDevice)
 {
-	skeletalMesh = std::unique_ptr<NSkeletalMesh>(newMesh); 
+	skeletalMesh = newMesh; 
 	setupBoneMatrix(renderDevice);
 }
 

@@ -9,6 +9,8 @@
 class NAnimation;
 class NSkeletalMeshComponent;
 
+class aiScene;
+
 class NAnimationComponent : public NComponent 
 {
 public:

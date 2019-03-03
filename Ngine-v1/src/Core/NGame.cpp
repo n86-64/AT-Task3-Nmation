@@ -74,7 +74,6 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	playerMesh->setMaterial(renderer.createMaterial("test2"));
 
 	NAnimationComponent*  animComp = new NAnimationComponent();
-	//animComp->setAnimation();
 	player->addComponent(playerMesh);
 	player->addComponent(animComp);
 
