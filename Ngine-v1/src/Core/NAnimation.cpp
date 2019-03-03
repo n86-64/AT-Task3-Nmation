@@ -20,7 +20,7 @@ void NAnimation::addNode(aiNodeAnim* node)
 	animNodes.emplace_back(NAnimationNode(node));
 }
 
-NAnimationNode& NAnimation::getNode(int i)
+NAnimationNode* NAnimation::getNode(int i)
 {
-	return animNodes[i];
+	return &animNodes[i];
 }

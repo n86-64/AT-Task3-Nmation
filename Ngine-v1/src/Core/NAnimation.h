@@ -20,7 +20,7 @@ public:
 
 	int getAnimCount() { return animNodes.size(); }
 
-	NAnimationNode&  getNode(int i);
+	NAnimationNode*  getNode(int i);
 
 private:
 	std::string animationName = "NewAnim";

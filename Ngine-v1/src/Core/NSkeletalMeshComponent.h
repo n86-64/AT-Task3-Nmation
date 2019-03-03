@@ -31,6 +31,8 @@ public:
 
 	std::vector<cBufferBones>		  bones;
 
+	void updateBoneData();
+
 private:
 	void setupBoneMatrix(ID3D11Device* renderDevice);
 

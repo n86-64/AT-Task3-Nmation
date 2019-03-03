@@ -42,6 +42,11 @@ float NMath::Vector3::z()
 	return DirectX::XMVectorGetZ(vector);
 }
 
+float NMath::Vector3::w()
+{
+	return DirectX::XMVectorGetW(vector);
+}
+
 void NMath::Vector3::setVectorValues(float x, float y, float z)
 {
 	vector = DirectX::XMVectorSet(x, y, z, 1.0f);

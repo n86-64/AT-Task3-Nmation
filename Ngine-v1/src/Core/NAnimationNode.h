@@ -26,11 +26,16 @@ public:
 	NAnimationNode(aiNodeAnim* animNode);
 
 
-
-private:
-	std::string nodeAffected = "";
+	std::string name;
 
 	std::vector<NAnimationKey>  translation;
 	std::vector<NAnimationKey>  rotation;
 	std::vector<NAnimationKey>  scale;
+
+private:
+	std::string nodeAffected = "";
+
+	//std::vector<NAnimationKey>  translation;
+	//std::vector<NAnimationKey>  rotation;
+	//std::vector<NAnimationKey>  scale;
 };

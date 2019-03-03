@@ -22,6 +22,7 @@ namespace NMath
 		float x();
 		float y();
 		float z();
+		float w();
 
 		void setVectorValues(float x, float y, float z);
 		void setX(float x);

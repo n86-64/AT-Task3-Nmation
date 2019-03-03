@@ -4,6 +4,7 @@
 
 NAnimationNode::NAnimationNode(aiNodeAnim* animNode)
 {
+	name = std::string(animNode->mNodeName.C_Str());
 	unsigned int maxIndex = animNode->mNumPositionKeys;
 	maxIndex = std::max(maxIndex, animNode->mNumRotationKeys);
 	maxIndex = std::max(maxIndex, animNode->mNumScalingKeys);

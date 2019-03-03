@@ -33,6 +33,14 @@ void NSkeletalMeshComponent::Render(NRenderer* renderer)
 	renderer->DrawObject(this);
 }
 
+void NSkeletalMeshComponent::updateBoneData()
+{
+	for (int i = 0; i < skeletalMesh->getNumberOfBones(); i++)
+	{
+		bones[i].boneOffsets = skeletalMesh->getBoneByID(i)->getBoneTransform();
+	}
+}
+
 // Load the skeleton bones onto the GPU.
 void NSkeletalMeshComponent::setupBoneMatrix(ID3D11Device* renderDevice)
 {
