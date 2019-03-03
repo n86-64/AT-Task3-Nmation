@@ -76,6 +76,7 @@ public:
 	// Here are the public drawing functions.
 	void setMaterial();
 
+	NAssetManager							assetBuffer;
 
 private:
 	void updateSkeletalAnimations(NSkeletalMeshComponent* component, NAnimationComponent* animComp);
@@ -130,8 +131,6 @@ private:
 private:
 	std::vector<std::unique_ptr<NMaterial>>  materialBuffer; // Allows Materials of a set name to be loaded from a cache. 
 	std::vector<std::unique_ptr<N3DMesh>>   meshBuffer;
-
-	NAssetManager							assetBuffer;
 
 	NMaterial*   searchMaterials(std::string name);
 	N3DMesh*	 searchMesh(std::string name);

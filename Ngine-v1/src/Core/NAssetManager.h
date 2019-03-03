@@ -28,6 +28,9 @@ public:
 
 	NSkeletalMesh* aquireSkeletalMesh(std::string name);
 
+	NAnimation* getAnimationByIndex(int i) { return animations[i].get(); }
+
+
 private:
 	void createNodes(aiNode* node, DirectX::XMMATRIX transform, NSkeletalMesh* mesh);
 
