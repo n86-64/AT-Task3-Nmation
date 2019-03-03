@@ -244,7 +244,7 @@ void NRenderer::updateSkeletalAnimations(NSkeletalMeshComponent* component, NAni
 		{
 			// Update the bone positions according to the animation. 
 			animComp->updateBoneData(component);
-			deviceContext->UpdateSubresource(component->skeletonBuffer, 1, nullptr, component->bones.data(), 0, 0);
+			deviceContext->UpdateSubresource(component->skeletonBuffer, 0, nullptr, component->bones.data(), 0, 0);
 		}
 	}
 

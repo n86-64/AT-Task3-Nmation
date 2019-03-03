@@ -50,9 +50,9 @@ void NAnimationComponent::updateBoneData(NSkeletalMeshComponent* skeletalMeshCom
 		rotation = DirectX::XMMatrixRotationQuaternion(animNode->rotation[1].value.getRawVector());
 		scale = DirectX::XMMatrixScaling(animNode->scale[1].value.x(), animNode->scale[1].value.y(), animNode->scale[1].value.z());
 
-		//position = DirectX::XMMatrixTranspose(position);
-		//rotation = DirectX::XMMatrixTranspose(rotation);
-		//scale = DirectX::XMMatrixTranspose(scale);
+		position = DirectX::XMMatrixTranspose(position);
+		rotation = DirectX::XMMatrixTranspose(rotation);
+		scale = DirectX::XMMatrixTranspose(scale);
 
 		// Apply the frame. 
 		nodeTransform = scale * rotation * position;
