@@ -16,6 +16,7 @@
 #include "Core/N3DMesh.h"
 #include "Core/NAssetManager.h"
 
+class NAnimationComponent;
 class NSkeletalMeshComponent;
 class N3DComponent;
 class NCamera;
@@ -75,6 +76,9 @@ public:
 	// Here are the public drawing functions.
 	void setMaterial();
 
+
+private:
+	void updateSkeletalAnimations(NSkeletalMeshComponent* component, NAnimationComponent* animComp);
 
 private:
 	NMath::Colour    clearColour = NMath::Colour(1.0f, 1.0f, 1.0f, 1.0f);

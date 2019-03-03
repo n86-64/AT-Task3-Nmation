@@ -169,11 +169,12 @@ void NRenderer::DrawObject(NSkeletalMeshComponent* component)
 	NSkeletalNode*   node = nullptr;
 	NSkeletalMesh*   mesh = component->getMesh();
 	N3DMesh*		 meshComponent = nullptr;
-	NSkeletalMeshComponent* skeletalMeshComp = nullptr;
 
 	std::queue<int> nodeToRender;
 	nodeToRender.emplace(0);
 	
+	updateSkeletalAnimations(component, component->getGameObject()->getComponentByType<NAnimationComponent>());
+
 	while (!nodeToRender.empty()) 
 	{
 		node = mesh->retrieveNode(nodeToRender.front());
@@ -228,6 +229,21 @@ NSkeletalMesh* NRenderer::aquireSkeletalMesh(std::string meshName)
 
 void NRenderer::setMaterial()
 {
+
+}
+
+void NRenderer::updateSkeletalAnimations(NSkeletalMeshComponent* component, NAnimationComponent * animComp)
+{
+	if (animComp) 
+	{
+		if (animComp->hasAnimation()) 
+		{
+			// Update the bone positions according to the animation. 
+			animComp->updateBoneData(component);
+			deviceContext->UpdateSubresource(component->skeletonBuffer, 1, nullptr, component->bones.data(), 0, 0);
+		}
+	}
+
 
 }
 

@@ -8,6 +8,8 @@
 class N3DMesh;
 class NAnimation; 
 
+class aiNode;
+
 class NSkeletalMesh
 {
 public:
@@ -30,6 +32,7 @@ public:
 	void addMesh(N3DMesh* newMesh);
 
 	NSkeletalNode* retrieveNode(int nIndex) { return nodes[nIndex].get(); }
+	NSkeletalNode* retrieveNodeByName(std::string name);
 	N3DMesh*	   getMesh(int mIndex) { return meshes[mIndex]; }
 
 	void		   setupBones();

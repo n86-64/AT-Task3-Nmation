@@ -1,5 +1,5 @@
 // NAnimationComponent.h
-// Discription - Manages animations for the selectd skeleton.
+// Discription - Manages animations for the selected skeleton.
 
 
 #pragma once
@@ -7,6 +7,7 @@
 #include "NComponent.h"
 
 class NAnimation;
+class NSkeletalMeshComponent;
 
 class NAnimationComponent : public NComponent 
 {
@@ -16,13 +17,17 @@ public:
 
 	// Inherited via NComponent
 	virtual void Construct(EngineStateData engineState, NConstructorValues constructorData) override;
-	virtual void Update(GameStateData & gameData) override;
+	virtual void Update(GameStateData& gameData) override;
 	virtual void Render(NRenderer * renderer) override;
 
 	void setAnimation(NAnimation* newAnim); 
 	bool hasAnimation() { return (selectedAnimation != nullptr); }
 
+	void updateBoneData(NSkeletalMeshComponent* skeletalMeshComp);
 
 private:
 	NAnimation* selectedAnimation = nullptr;
+	bool loop = true;
+	float elapsedTime = 0.0f; 
+	float elapsedTicks;
 };

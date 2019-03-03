@@ -7,6 +7,8 @@
 #include "NSkeletalMesh.h"
 #include "NComponent.h"
 
+class NMaterial;
+
 class NSkeletalMeshComponent : public NComponent
 {
 public:
@@ -27,13 +29,12 @@ public:
 
 	ID3D11Buffer*  skeletonBuffer;
 
+	std::vector<cBufferBones>		  bones;
+
 private:
 	void setupBoneMatrix(ID3D11Device* renderDevice);
 
 private:
 	std::unique_ptr<NSkeletalMesh>    skeletalMesh;
 	NMaterial*						  material;
-
-
-	std::vector<cBufferBones>		  bones; 
 };

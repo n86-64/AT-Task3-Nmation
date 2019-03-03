@@ -76,7 +76,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	NAnimationComponent*  animComp = new NAnimationComponent();
 	//animComp->setAnimation();
 	player->addComponent(playerMesh);
-	//player->addComponent(animComp);
+	player->addComponent(animComp);
 
 	player->setCamera(newCam);
 	newCam->setPosition(NMath::Vector3(0.0f, 50.0f, -45.0f));

@@ -86,6 +86,16 @@ void NSkeletalMesh::addMesh(N3DMesh* newMesh)
 	meshes.emplace_back(newMesh);
 }
 
+NSkeletalNode* NSkeletalMesh::retrieveNodeByName(std::string name)
+{
+	for (int i = 0; i < nodes.size(); i++)
+	{
+		if (nodes[i]->getName() == name) { return nodes[i].get(); }
+	}
+
+	return nullptr;
+}
+
 void NSkeletalMesh::setupBones()
 {
 	int nodeIndex = -1;
