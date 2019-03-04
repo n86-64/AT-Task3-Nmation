@@ -22,6 +22,9 @@ public:
 	void setModelMatrix(DirectX::XMMATRIX& mat) { modelMatrix = mat; }
 	DirectX::XMMATRIX getModelMatrix() { return modelMatrix;  }
 
+	void settransformMatrix(DirectX::XMMATRIX& mat) { transformMatrix = mat; }
+	DirectX::XMMATRIX gettransformMatrix() { return transformMatrix; }
+
 	void setParent(int pIndex) { parent = pIndex; }
 	void addChildNodes(int* nodes, int count);
 	void addChild(int cIndex) { children.emplace_back(cIndex); }
@@ -36,6 +39,7 @@ private:
 	std::string										name = "";
 
 	DirectX::XMMATRIX								modelMatrix = DirectX::XMMatrixIdentity();
+	DirectX::XMMATRIX								transformMatrix = DirectX::XMMatrixIdentity();
 
 	int				      							parent;
 	std::vector<int>								children;
