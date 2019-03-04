@@ -33,7 +33,7 @@ public:
 	int width = 0;
 	int height = 0;
 
-	bool debugMode = true;
+	bool debugMode = false;
 };
 
 

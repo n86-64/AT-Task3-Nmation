@@ -55,9 +55,9 @@ void NAnimationComponent::updateBoneData(NSkeletalMeshComponent* skeletalMeshCom
 		//scale = DirectX::XMMatrixTranspose(scale);
 
 		// Apply the frame. 
-		nodeTransform = position * rotation * scale;
+		nodeTransform = scale * rotation * position;
 		nodeTransform = DirectX::XMMatrixTranspose(nodeTransform);
-		bone->setBoneTransform(node->getModelMatrix() * nodeTransform * bone->getBoneOffset());
+		bone->setBoneTransform(node->getModelMatrix() * bone->getBoneOffset() * nodeTransform);
 	} 
 
 	skeletalMeshComp->updateBoneData();
