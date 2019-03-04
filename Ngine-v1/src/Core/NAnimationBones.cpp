@@ -1,4 +1,6 @@
 #include <Assimp/mesh.h>
+#include "Helpers/NMaths.h"
+
 #include "NAnimationBones.h"
 
 NSkeletalBone::~NSkeletalBone()
@@ -20,7 +22,7 @@ NSkeletalBone::NSkeletalBone(aiBone& animBone)
 	for (int i = 0; i < animBone.mNumWeights; i++) 
 	{
 		weights[i].vIndex = animBone.mWeights[i].mVertexId;
-		weights[i].weight = animBone.mWeights[i].mWeight;
+		weights[i].weight = clamp(animBone.mWeights[i].mWeight, 0.0f, 0.0f);
 	}
 
 	offsetMatrix = convertToMatrix(&animBone.mOffsetMatrix);

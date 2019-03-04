@@ -10,17 +10,6 @@
 #include "N3DMesh.h"
 #include "Renderer/NMaterial.h"
 
-#define XMATH_MAX_UINT 1333788672
-
-
-inline float clamp(float value, float min, float max) 
-{
-	float return_value = value;
-	if (value < min) { return_value = min; }
-	else if (value > max) { return_value = max; }
-
-	return return_value;
-}
 
 N3DMesh::N3DMesh(std::string name, ID3D11Device* device)
 	:meshName(name)

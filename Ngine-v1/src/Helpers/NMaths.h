@@ -22,3 +22,12 @@ inline DirectX::XMMATRIX convertToMatrix(aiMatrix4x4* mat)
 
 	return DirectX::XMMatrixTranspose(matX);
 }
+
+inline float clamp(float value, float min, float max)
+{
+	float return_value = value;
+	if (value < min) { return_value = min; }
+	else if (value > max) { return_value = max; }
+
+	return return_value;
+}
