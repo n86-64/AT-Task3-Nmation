@@ -74,13 +74,14 @@ N3DMesh::N3DMesh(ID3D11Device* device, ID3D11DeviceContext* deviceContext, aiMes
 	}
 
 	aiString materialPath;
-	aiTexture*  textureHandle = nullptr;
+	const aiTexture*  textureHandle = nullptr;
 	aiMaterial* material = scene->mMaterials[meshObject->mMaterialIndex];
 	material->Get(AI_MATKEY_TEXTURE(aiTextureType_DIFFUSE, 0), materialPath);
 
-	if (auto textureHandle = scene->GetEmbeddedTexture(materialPath.C_Str())) 
+	if (textureHandle = scene->GetEmbeddedTexture(materialPath.C_Str())) 
 	{
 		printf("There are materials here \n");
+		texture = new NMaterialTexture((aiTexture*)textureHandle, device, deviceContext);
 	}
 	else 
 	{

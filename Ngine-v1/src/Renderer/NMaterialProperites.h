@@ -76,24 +76,71 @@ struct NMaterialTexture
 		ID3D11Device* renderDevice,
 		ID3D11DeviceContext* deviceContext) 
 	{
-		// Create the texture.
-		D3D11_TEXTURE2D_DESC tex2DDesc = {};
-		tex2DDesc.Width = texture->mWidth;
-		tex2DDesc.Height = texture->mHeight;
-		tex2DDesc.MipLevels = tex2DDesc.ArraySize = 1;
-		tex2DDesc.SampleDesc.Count = 1;
-		tex2DDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-		tex2DDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-		tex2DDesc.Usage = D3D11_USAGE_DYNAMIC;
-		tex2DDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
-		tex2DDesc.MiscFlags = 0;
 
-		D3D11_SUBRESOURCE_DATA data = {};
-		data.pSysMem = texture->pcData;
-		data.SysMemPitch = 0;
-		data.SysMemSlicePitch = 0;
+		if (texture->mHeight == 0) 
+		{
+			// Ignore for now.
+			// hr = DirectX::CreateWICTextureFromMemory(renderDevice, texData.data(), texData.size() * sizeof(unsigned char), (ID3D11Resource**)&textureData, &textureSRV);
+		}
+		else 
+		{
+			std::vector<unsigned char> texData;
+			int length = texture->mHeight == 0 ? texture->mWidth : texture->mWidth * texture->mHeight;
+			// Load the colour data (It can be expressed as a string)
+			for (int i = 0; i < length; i++)
+			{
+				aiTexel* pixel = &texture->pcData[i];
+				texData.emplace_back(pixel->r);
+				texData.emplace_back(pixel->g);
+				texData.emplace_back(pixel->b);
+				texData.emplace_back(pixel->a);
+			}
 
-		hr = renderDevice->CreateTexture2D(&tex2DDesc, &data, &textureData);
+			// Create the texture.
+			D3D11_TEXTURE2D_DESC tex2DDesc = {};
+			tex2DDesc.Width = texture->mWidth;
+			tex2DDesc.Height = texture->mHeight;
+			tex2DDesc.MipLevels = tex2DDesc.ArraySize = 1;
+			tex2DDesc.SampleDesc.Count = 1;
+			tex2DDesc.SampleDesc.Quality = 0;
+			tex2DDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+			tex2DDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+			tex2DDesc.Usage = D3D11_USAGE_DEFAULT;
+			tex2DDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+			tex2DDesc.MiscFlags = 0;
+
+			D3D11_SUBRESOURCE_DATA data = {};
+			data.pSysMem = &texData[0];
+			data.SysMemPitch = tex2DDesc.Width * 4u * sizeof(unsigned char); // unsigned char is always 1 byte, I just like to illustrate better
+
+			hr = renderDevice->CreateTexture2D(&tex2DDesc, &data, &textureData);
+
+			if (FAILED(hr)) { return; }
+
+			D3D11_SHADER_RESOURCE_VIEW_DESC  srvDesc = {};
+			srvDesc.Format = tex2DDesc.Format;
+			srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+			srvDesc.Texture2D.MostDetailedMip = 0;
+			srvDesc.Texture2D.MipLevels = -1;
+
+			hr = renderDevice->CreateShaderResourceView(textureData, &srvDesc, &textureSRV);
+		}
+
+		if (textureData) 
+		{
+			// Create the sampler.
+			D3D11_SAMPLER_DESC   texDesc;
+			ZeroMemory(&texDesc, sizeof(texDesc));
+			texDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
+			texDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+			texDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+			texDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+			texDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
+			texDesc.MinLOD = 0;
+			texDesc.MaxLOD = D3D11_FLOAT32_MAX;
+
+			hr = renderDevice->CreateSamplerState(&texDesc, &samplerState);
+		}
 
 	}
 
