@@ -28,6 +28,14 @@ public:
 	void updateBoneData(NSkeletalMeshComponent* skeletalMeshComp);
 
 private:
+	DirectX::XMVECTOR getInterpolatedPosition(NAnimationNode* node);
+	DirectX::XMVECTOR getInterpolatedRotation(NAnimationNode* node);
+	DirectX::XMVECTOR getInterpolatedScale(NAnimationNode* node);
+
+
+	int getAnimKeyIndex(std::vector<NAnimationKey>& nodeKeys);
+
+private:
 	NAnimation* selectedAnimation = nullptr;
 	bool loop = true;
 	float elapsedTime = 0.0f; 

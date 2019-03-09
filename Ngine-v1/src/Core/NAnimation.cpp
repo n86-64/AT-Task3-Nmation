@@ -6,7 +6,8 @@ NAnimation::NAnimation(aiAnimation* animation)
 {
 	animationName = animation->mName.C_Str();
 	tickRate = animation->mTicksPerSecond;
-	duration = animation->mDuration / tickRate;
+	durationTicks = animation->mDuration;
+	duration = durationTicks / tickRate;
 
 	// TODO - Load the animation nodes. 
 	for (int i = 0; i < animation->mNumChannels; i++) 
