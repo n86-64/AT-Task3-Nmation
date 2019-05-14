@@ -53,23 +53,27 @@ void NSkeletalMeshComponent::setupBoneMatrix(ID3D11Device* renderDevice)
 		bones.emplace_back(boneObject);
 	}
 
-	D3D11_BUFFER_DESC   skeletonBufferDesc = { 0 };
-	skeletonBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	skeletonBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	skeletonBufferDesc.ByteWidth = sizeof(DirectX::XMMATRIX) * bones.size();
-	skeletonBufferDesc.CPUAccessFlags = 0;
-	skeletonBufferDesc.StructureByteStride = 0;
-	skeletonBufferDesc.MiscFlags = 0;
+	if (skeletalMesh->getNumberOfBones() > 0) 
+	{
+		D3D11_BUFFER_DESC   skeletonBufferDesc = { 0 };
+		skeletonBufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		skeletonBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+		skeletonBufferDesc.ByteWidth = sizeof(DirectX::XMMATRIX) * bones.size();
+		skeletonBufferDesc.CPUAccessFlags = 0;
+		skeletonBufferDesc.StructureByteStride = 0;
+		skeletonBufferDesc.MiscFlags = 0;
 
-	D3D11_SUBRESOURCE_DATA skeletonData = { };
-	skeletonData.pSysMem = bones.data();
-	skeletonData.SysMemPitch = 0;
-	skeletonData.SysMemSlicePitch = 0;
+		D3D11_SUBRESOURCE_DATA skeletonData = { };
+		skeletonData.pSysMem = bones.data();
+		skeletonData.SysMemPitch = 0;
+		skeletonData.SysMemSlicePitch = 0;
 
-	hr = renderDevice->CreateBuffer(&skeletonBufferDesc, &skeletonData, &skeletonBuffer);
+		hr = renderDevice->CreateBuffer(&skeletonBufferDesc, &skeletonData, &skeletonBuffer);
 
-	if (FAILED(hr)) { throw; }
+		if (FAILED(hr)) { throw; }
 
-	//return FAILED(hr);
+		//return FAILED(hr);
+	}
+	
 }
 

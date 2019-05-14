@@ -47,10 +47,13 @@ VS_OUT main(VS_IN input)
 							0.0f, 0.0f, 1.0f, 0.0f,
 							0.0f, 0.0f, 0.0f, 1.0f };
 
-	boneTransform = boneOffset[input.bIndex.x] * input.bWeights.x;
-	boneTransform += boneOffset[input.bIndex.y] * input.bWeights.y;
-	boneTransform += boneOffset[input.bIndex.z] * input.bWeights.z;
-	boneTransform += boneOffset[input.bIndex.w] * input.bWeights.w;
+	if (input.bIndex.x != 4294967295) 
+	{
+		boneTransform = boneOffset[input.bIndex.x] * input.bWeights.x;
+		boneTransform += boneOffset[input.bIndex.y] * input.bWeights.y;
+		boneTransform += boneOffset[input.bIndex.z] * input.bWeights.z;
+		boneTransform += boneOffset[input.bIndex.w] * input.bWeights.w;
+	}
 
 	// convert the points to 3D space.
 	vert = mul(input.inVector, boneTransform);

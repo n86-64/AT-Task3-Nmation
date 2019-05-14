@@ -70,13 +70,13 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 	//player->addComponent(playerMesh);
 
 	NSkeletalMeshComponent* playerMesh = new NSkeletalMeshComponent();
-	playerMesh->assignSkeletalMesh(renderer.aquireSkeletalMesh("meshes/Taunt.fbx"), renderer.getDevice());
+	playerMesh->assignSkeletalMesh(renderer.aquireSkeletalMesh("meshes/fgc_skeleton.blend"), renderer.getDevice());
 	playerMesh->setMaterial(renderer.createMaterial("test2"));
 
 	NAnimationComponent*  animComp = new NAnimationComponent();
 	animComp->setAnimation(renderer.assetBuffer.getAnimationByIndex(0));
 	player->addComponent(playerMesh);
-	player->addComponent(animComp);
+	//player->addComponent(animComp);  // Only enable if the object has an animation.
 
 	player->setCamera(newCam);
 	newCam->setPosition(NMath::Vector3(0.0f, 50.0f, -45.0f));
@@ -84,7 +84,7 @@ bool NGame::init(NWindowHandle* window, NInitSettings launchParams)
 
 	testTriangle->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
 	testTriangle->setScale(NMath::Vector3(10.0f, 1.0f, 10.0f));
-	//testTriangle2->setPosition(NMath::Ve ctor3(3.0f, 0.0f, 0.0f));
+	//testTriangle2->setPosition(NMath::Vector3(3.0f, 0.0f, 0.0f));
 	player->setPosition(NMath::Vector3(0.0f, 0.0f, 0.0f));
 	//player->setRotation(NMath::Vector3(0.0f, 90.0f, 0.0f));
 
