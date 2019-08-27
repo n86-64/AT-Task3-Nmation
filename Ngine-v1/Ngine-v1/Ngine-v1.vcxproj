@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{A765551C-5546-4E61-A73E-ABBB7563BF6B}</ProjectGuid>
+    <RootNamespace>Nginev1</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)immediate\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)immediate\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)resources\*" "$(OutDir)resources\" /F /R /Y /I /S</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)dependancies;$(SolutionDir)dependancies\jsoncons\include;$(SolutionDir)dependancies\Assimp\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>assimp-vc140-mt.lib;dxguid.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependancies\Assimp\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)resources\*" "$(OutDir)resources\" /F /R /Y /I /S
+xcopy "$(SolutionDir)dependancies\Assimp\bin\$(Platform)\*" "$(OutDir)" /F /R /Y /I /S</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)resources\*" "$(OutDir)resources\" /F /R /Y /I /S</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)src;$(SolutionDir)dependancies;$(SolutionDir)dependancies\jsoncons\include;$(SolutionDir)dependancies\Assimp\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>assimp-vc140-mt.lib;dxguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependancies\Assimp\lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)resources\*" "$(OutDir)resources\" /F /R /Y /I /S</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Core\BVAABB.cpp" />
+    <ClCompile Include="..\src\Core\Camera.cpp" />
+    <ClCompile Include="..\src\Core\InputHandler.cpp" />
+    <ClCompile Include="..\src\Core\N3DComponent.cpp" />
+    <ClCompile Include="..\src\Core\N3DMesh.cpp" />
+    <ClCompile Include="..\src\Core\NAnimation.cpp" />
+    <ClCompile Include="..\src\Core\NAnimationBones.cpp" />
+    <ClCompile Include="..\src\Core\NAnimationComponent.cpp" />
+    <ClCompile Include="..\src\Core\NAnimationNode.cpp" />
+    <ClCompile Include="..\src\Core\NAssetManager.cpp" />
+    <ClCompile Include="..\src\Core\NColliderAABB.cpp" />
+    <ClCompile Include="..\src\Core\NColliderOBB.cpp" />
+    <ClCompile Include="..\src\Core\NCollidsionQueryNode.cpp" />
+    <ClCompile Include="..\src\Core\NComponent.cpp" />
+    <ClCompile Include="..\src\Core\NGameObject.cpp" />
+    <ClCompile Include="..\src\Core\NGame.cpp" />
+    <ClCompile Include="..\src\Core\NPhysicsComponent.cpp" />
+    <ClCompile Include="..\src\Core\NPhysicsResolver.cpp" />
+    <ClCompile Include="..\src\Core\NSceneGraph.cpp" />
+    <ClCompile Include="..\src\Core\NSkeletalMesh.cpp" />
+    <ClCompile Include="..\src\Core\NSkeletalMeshComponent.cpp" />
+    <ClCompile Include="..\src\Core\NSkeletalNode.cpp" />
+    <ClCompile Include="..\src\Core\NWindow.cpp" />
+    <ClCompile Include="..\src\Core\NWinEvent.cpp" />
+    <ClCompile Include="..\src\Core\Player.cpp" />
+    <ClCompile Include="..\src\Core\SceneManager.cpp" />
+    <ClCompile Include="..\src\Core\TestComp.cpp" />
+    <ClCompile Include="..\src\Core\time.cpp" />
+    <ClCompile Include="..\src\Core\Triangle.cpp" />
+    <ClCompile Include="..\src\Helpers\FileReaderBinary.cpp" />
+    <ClCompile Include="..\src\Helpers\JSONFileReader.cpp" />
+    <ClCompile Include="..\src\Helpers\NMath_Colour.cpp" />
+    <ClCompile Include="..\src\Helpers\NMath_Vector.cpp" />
+    <ClCompile Include="..\src\Helpers\WICTextureLoader.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Renderer\NMaterial.cpp" />
+    <ClCompile Include="..\src\Renderer\NMaterialProperites.cpp" />
+    <ClCompile Include="..\src\Renderer\NRenderer.cpp" />
+    <ClCompile Include="..\src\Renderer\NRendererDevice.cpp" />
+    <ClCompile Include="NTextureManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Core\BVAABB.h" />
+    <ClInclude Include="..\src\Core\Camera.h" />
+    <ClInclude Include="..\src\Core\InputHandler.h" />
+    <ClInclude Include="..\src\Core\InputState.h" />
+    <ClInclude Include="..\src\Core\N3DComponent.h" />
+    <ClInclude Include="..\src\Core\N3DMesh.h" />
+    <ClInclude Include="..\src\Core\NAnimation.h" />
+    <ClInclude Include="..\src\Core\NAnimationBones.h" />
+    <ClInclude Include="..\src\Core\NAnimationComponent.h" />
+    <ClInclude Include="..\src\Core\NAnimationNode.h" />
+    <ClInclude Include="..\src\Core\NAssetManager.h" />
+    <ClInclude Include="..\src\Core\NColliderAABB.h" />
+    <ClInclude Include="..\src\Core\NColliderOBB.h" />
+    <ClInclude Include="..\src\Core\NCollidsionQueryNode.h" />
+    <ClInclude Include="..\src\Core\NComponent.h" />
+    <ClInclude Include="..\src\Core\NGameObject.h" />
+    <ClInclude Include="..\src\Core\NGame.h" />
+    <ClInclude Include="..\src\Core\NDataStructures.h" />
+    <ClInclude Include="..\src\Core\NPhysicsComponent.h" />
+    <ClInclude Include="..\src\Core\NPhysicsData.h" />
+    <ClInclude Include="..\src\Core\NPhysicsResolver.h" />
+    <ClInclude Include="..\src\Core\NSceneGraph.h" />
+    <ClInclude Include="..\src\Core\NSkeletalMesh.h" />
+    <ClInclude Include="..\src\Core\NSkeletalMeshComponent.h" />
+    <ClInclude Include="..\src\Core\NSkeletalNode.h" />
+    <ClInclude Include="..\src\Core\NWindow.h" />
+    <ClInclude Include="..\src\Core\NWinEvent.h" />
+    <ClInclude Include="..\src\Core\Player.h" />
+    <ClInclude Include="..\src\Core\SceneManager.h" />
+    <ClInclude Include="..\src\Core\TestComp.h" />
+    <ClInclude Include="..\src\Core\time.h" />
+    <ClInclude Include="..\src\Core\Triangle.h" />
+    <ClInclude Include="..\src\Helpers\Direct3D.h" />
+    <ClInclude Include="..\src\Helpers\FileReaderBinary.h" />
+    <ClInclude Include="..\src\Helpers\JSONFileReader.h" />
+    <ClInclude Include="..\src\Helpers\NMaths.h" />
+    <ClInclude Include="..\src\Helpers\NMath_Colour.h" />
+    <ClInclude Include="..\src\Helpers\NMath_Vector.h" />
+    <ClInclude Include="..\src\Helpers\OBJ_Loader.h" />
+    <ClInclude Include="..\src\Helpers\Platform.h" />
+    <ClInclude Include="..\src\Helpers\WICTextureLoader.h" />
+    <ClInclude Include="..\src\Helpers\Win32Ref.h" />
+    <ClInclude Include="..\src\Renderer\NMaterial.h" />
+    <ClInclude Include="..\src\Renderer\NMaterialProperites.h" />
+    <ClInclude Include="..\src\Renderer\NRenderer.h" />
+    <ClInclude Include="..\src\Renderer\NRendererDevice.h" />
+    <ClInclude Include="..\src\Renderer\ShaderInput.h" />
+    <ClInclude Include="NTextureManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\src\Shaders\BasicPixel.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="..\src\Shaders\BasicVertex.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="..\src\Shaders\SkinnedVertex.hlsl">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\directxtex_desktop_2015.2018.8.18.2\build\native\directxtex_desktop_2015.targets" Condition="Exists('..\packages\directxtex_desktop_2015.2018.8.18.2\build\native\directxtex_desktop_2015.targets')" />
+  </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\directxtex_desktop_2015.2018.8.18.2\build\native\directxtex_desktop_2015.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\directxtex_desktop_2015.2018.8.18.2\build\native\directxtex_desktop_2015.targets'))" />
+  </Target>
+</Project>

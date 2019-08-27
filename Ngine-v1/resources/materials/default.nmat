@@ -1,0 +1,10 @@
+{
+	"Name": "default",
+	"Shaders": 
+	[
+			{"Name": "DefaultVertex.cso", "Type": 0},
+			{"Name": "DefaultFrag.cso", "Type": 0}
+	],
+	
+	"Properties": {}
+}

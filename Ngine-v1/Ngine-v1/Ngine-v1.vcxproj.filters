@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\Core\NWindow.cpp">
+      <Filter>Core\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NWinEvent.cpp">
+      <Filter>Core\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NGame.cpp">
+      <Filter>Core\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\NRenderer.cpp">
+      <Filter>Core\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\NRendererDevice.cpp">
+      <Filter>Core\Renderer\On Hold</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Helpers\NMath_Colour.cpp">
+      <Filter>Helpers\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Helpers\NMath_Vector.cpp">
+      <Filter>Helpers\Maths</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NGameObject.cpp">
+      <Filter>Core\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Camera.cpp">
+      <Filter>Core\GameObjects\Core Objects\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\NMaterial.cpp">
+      <Filter>Core\Renderer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Helpers\FileReaderBinary.cpp">
+      <Filter>Helpers\FileIO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Triangle.cpp">
+      <Filter>Core\GameObjects\Core Objects\Test Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\InputHandler.cpp">
+      <Filter>Core\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\TestComp.cpp">
+      <Filter>Core\Components\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Helpers\JSONFileReader.cpp">
+      <Filter>Helpers\FileIO\JSON</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\N3DComponent.cpp">
+      <Filter>Core\Components\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NComponent.cpp">
+      <Filter>Core\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\time.cpp">
+      <Filter>Core\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Renderer\NMaterialProperites.cpp">
+      <Filter>Core\Renderer\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\SceneManager.cpp">
+      <Filter>Core\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NPhysicsComponent.cpp">
+      <Filter>Core\Components\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NPhysicsResolver.cpp">
+      <Filter>Core\Physics\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\Player.cpp">
+      <Filter>Core\GameObjects\Core Objects\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NColliderAABB.cpp">
+      <Filter>Core\Physics\Colliders\AABB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NColliderOBB.cpp">
+      <Filter>Core\Physics\Colliders\OBB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\BVAABB.cpp">
+      <Filter>Core\Physics\Colliders\BV-AABB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NSceneGraph.cpp">
+      <Filter>Core\Physics\Spacial Data Structures\SceneGraph</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NCollidsionQueryNode.cpp">
+      <Filter>Core\Physics\Spacial Data Structures\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NAssetManager.cpp">
+      <Filter>Core\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\N3DMesh.cpp">
+      <Filter>Core\Renderer\Resources\Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NAnimationBones.cpp">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes\Bones</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NSkeletalMesh.cpp">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NSkeletalNode.cpp">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NSkeletalMeshComponent.cpp">
+      <Filter>Core\Components\3D\Skeletal Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NAnimation.cpp">
+      <Filter>Core\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NAnimationNode.cpp">
+      <Filter>Core\Animation\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Core\NAnimationComponent.cpp">
+      <Filter>Core\Components\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Helpers\WICTextureLoader.cpp">
+      <Filter>Helpers\FileIO\WICTextureLoading</Filter>
+    </ClCompile>
+    <ClCompile Include="NTextureManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{eeffd789-3d8a-4508-a95b-441f7abfe11a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{488bf368-74e3-4b27-ae88-a67b3089325c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Window">
+      <UniqueIdentifier>{47a7bf85-208b-4002-87c8-f55455916759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Game">
+      <UniqueIdentifier>{e7a13d4f-9a13-485f-8d02-88d334045f32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer">
+      <UniqueIdentifier>{3f57e9a1-f66a-4403-8ab4-d81e66d8dbe0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\On Hold">
+      <UniqueIdentifier>{fd8b4ba4-b078-47f7-abd1-4a86c4a9851d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\Maths">
+      <UniqueIdentifier>{5d8c6bf6-8b94-4e7f-9b93-b08f7f6af00b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{a846587c-bafc-4d32-a135-df5e377e38dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects">
+      <UniqueIdentifier>{3adcb8b9-3e74-42a5-b439-79da60cdc268}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Materials">
+      <UniqueIdentifier>{45147e03-7fbc-4221-a55a-c6e72d668a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Core Objects">
+      <UniqueIdentifier>{98260894-6f47-40a7-82f1-6ac2d489ddc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\FileIO">
+      <UniqueIdentifier>{80b7b06e-89ce-4f1e-825e-f05a692c2c55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Core Objects\Camera">
+      <UniqueIdentifier>{677a0724-e79d-4b9e-af11-6844d3ecd851}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Core Objects\Test Objects">
+      <UniqueIdentifier>{193479be-fa28-4c17-83f6-6e29b48c8f0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Input">
+      <UniqueIdentifier>{1692d906-200d-4a91-8e29-de1a28a6dfc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Input">
+      <UniqueIdentifier>{0588713e-f6eb-45f3-a66b-b606dc510d90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components">
+      <UniqueIdentifier>{6122d02d-2aec-4b6e-b6cc-64dfa28ebc17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Init">
+      <UniqueIdentifier>{f9244677-889b-4f82-ad80-60776d643db3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components\Test">
+      <UniqueIdentifier>{f2c3eb02-c48e-4457-8740-33f0208450d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\FileIO\JSON">
+      <UniqueIdentifier>{e09e9be8-4269-4a11-aa12-dee97ed2fedb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components\3D">
+      <UniqueIdentifier>{a20b1985-dbbb-43b0-99cc-343181fe47d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\FileIO\OBJLoader">
+      <UniqueIdentifier>{11ef84f3-c0ff-4ac5-bfbd-ef57945a8807}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Time">
+      <UniqueIdentifier>{e68593fe-ae38-460a-9395-31ddf60c90a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Materials\Material Properties">
+      <UniqueIdentifier>{50be47d7-1f9d-417b-9e27-4edc8bb42cb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Scenes">
+      <UniqueIdentifier>{a3e909c2-f15e-413e-9b6e-e5d9a170c62a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics">
+      <UniqueIdentifier>{99549fac-f88b-49d8-a169-4ddf86ff311b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Colliders">
+      <UniqueIdentifier>{5df17b57-dd69-4d01-8407-ccef94558df1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components\Physics">
+      <UniqueIdentifier>{748bb503-c58c-42bd-94c9-33a719b5e412}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Manager">
+      <UniqueIdentifier>{0f7b9a89-d1cc-42d5-83ea-1b72f7fd2804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Data">
+      <UniqueIdentifier>{8e08a553-be63-4478-826b-ab87e11da4d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\GameObjects\Core Objects\Player">
+      <UniqueIdentifier>{1c6bcffd-9e43-4263-badc-0008093e0b72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Colliders\AABB">
+      <UniqueIdentifier>{f10b22ed-c930-4088-89c3-9490d107e3ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Colliders\OBB">
+      <UniqueIdentifier>{554ddbe1-bc52-46b8-beee-e3fe44aa742a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Colliders\BV-AABB">
+      <UniqueIdentifier>{4f518018-c143-4833-90ad-40a16d322e12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Spacial Data Structures">
+      <UniqueIdentifier>{aee58bc1-ffb0-4a01-9528-4d3dbdfb2358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Spacial Data Structures\Nodes">
+      <UniqueIdentifier>{a4279dfa-8d58-4a69-9c30-be2cbbccf533}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Physics\Spacial Data Structures\SceneGraph">
+      <UniqueIdentifier>{597fba35-e8ba-4c77-ba0c-6c9cafc42722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Assets">
+      <UniqueIdentifier>{358bde3e-d4cd-40fa-aedb-3b5fa4e47ea5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Resources">
+      <UniqueIdentifier>{343c32d0-8dc2-4e59-99a3-f092a1a08498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Resources\Meshes">
+      <UniqueIdentifier>{7142e3c6-057b-4e0d-b98b-54cd9b00960c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Resources\Skeletal Meshes">
+      <UniqueIdentifier>{83c0021a-1616-4aa0-b286-0b268dbab950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Animation">
+      <UniqueIdentifier>{0d120982-391d-47f8-be1b-bf9d02c28401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Resources\Skeletal Meshes\Bones">
+      <UniqueIdentifier>{49124589-63e9-4e4c-af74-dfa246057e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Animation\Data">
+      <UniqueIdentifier>{c924322a-7974-419c-9398-e048c0592192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Resources\Skeletal Meshes\Nodes">
+      <UniqueIdentifier>{556dac8f-c9eb-4d85-8d9e-f78a01238a05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components\3D\Skeletal Mesh">
+      <UniqueIdentifier>{ec9cb952-0d6a-4fb3-82b9-4bb0a80d4485}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Components\Animation">
+      <UniqueIdentifier>{38ec51c6-9b51-419e-809f-16bb98b4024e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Helpers\FileIO\WICTextureLoading">
+      <UniqueIdentifier>{7b5b3e14-0bcf-47cd-8823-6aa5a8adfcee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Renderer\Textures">
+      <UniqueIdentifier>{699f8303-21a2-4566-84aa-eb229b47c820}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\Helpers\Win32Ref.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NWindow.h">
+      <Filter>Core\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NWinEvent.h">
+      <Filter>Core\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\Platform.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\NRenderer.h">
+      <Filter>Core\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\Direct3D.h">
+      <Filter>Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\NRendererDevice.h">
+      <Filter>Core\Renderer\On Hold</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\NMaths.h">
+      <Filter>Helpers\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\NMath_Colour.h">
+      <Filter>Helpers\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\NMath_Vector.h">
+      <Filter>Helpers\Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NGameObject.h">
+      <Filter>Core\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Camera.h">
+      <Filter>Core\GameObjects\Core Objects\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\NMaterial.h">
+      <Filter>Core\Renderer\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\FileReaderBinary.h">
+      <Filter>Helpers\FileIO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Triangle.h">
+      <Filter>Core\GameObjects\Core Objects\Test Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\ShaderInput.h">
+      <Filter>Core\Renderer\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\InputHandler.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\InputState.h">
+      <Filter>Core\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NComponent.h">
+      <Filter>Core\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\TestComp.h">
+      <Filter>Core\Components\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\JSONFileReader.h">
+      <Filter>Helpers\FileIO\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\N3DComponent.h">
+      <Filter>Core\Components\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\OBJ_Loader.h">
+      <Filter>Helpers\FileIO\OBJLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\time.h">
+      <Filter>Core\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NDataStructures.h">
+      <Filter>Core\GameObjects\Init</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Renderer\NMaterialProperites.h">
+      <Filter>Core\Renderer\Materials\Material Properties</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\SceneManager.h">
+      <Filter>Core\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NPhysicsComponent.h">
+      <Filter>Core\Components\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NPhysicsResolver.h">
+      <Filter>Core\Physics\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NPhysicsData.h">
+      <Filter>Core\Physics\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\Player.h">
+      <Filter>Core\GameObjects\Core Objects\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NColliderAABB.h">
+      <Filter>Core\Physics\Colliders\AABB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NColliderOBB.h">
+      <Filter>Core\Physics\Colliders\OBB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\BVAABB.h">
+      <Filter>Core\Physics\Colliders\BV-AABB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NCollidsionQueryNode.h">
+      <Filter>Core\Physics\Spacial Data Structures\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NSceneGraph.h">
+      <Filter>Core\Physics\Spacial Data Structures\SceneGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NAssetManager.h">
+      <Filter>Core\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\N3DMesh.h">
+      <Filter>Core\Renderer\Resources\Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NSkeletalMesh.h">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NAnimationBones.h">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes\Bones</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NSkeletalNode.h">
+      <Filter>Core\Renderer\Resources\Skeletal Meshes\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NSkeletalMeshComponent.h">
+      <Filter>Core\Components\3D\Skeletal Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NAnimation.h">
+      <Filter>Core\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NAnimationNode.h">
+      <Filter>Core\Animation\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NAnimationComponent.h">
+      <Filter>Core\Components\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Core\NGame.h">
+      <Filter>Core\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Helpers\WICTextureLoader.h">
+      <Filter>Helpers\FileIO\WICTextureLoading</Filter>
+    </ClInclude>
+    <ClInclude Include="NTextureManager.h">
+      <Filter>Core\Renderer\Textures</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\src\Shaders\BasicVertex.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\src\Shaders\BasicPixel.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\src\Shaders\SkinnedVertex.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
